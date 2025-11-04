@@ -159,6 +159,14 @@
     </sl-tree-item>
     <sl-tree-item>
       <a href="#section-7">7. Waterproof Test</a>
+      <sl-tree-item><a href="#sub-section-7a">7.1 Methodology</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-7b">7.2 Results and Shortcoming </a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-7c">7.3 Future Improvements </a></sl-tree-item>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a href="#section-8">8. Pain Points and Future Implementations</a>
+      <sl-tree-item><a href="#sub-section-8a">8.1 Improved Waterproof Housign Design</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-8b">8.2 Internal Electronics Organization</a></sl-tree-item>
     </sl-tree-item>
     <sl-tree-item>
       <a href="#references">Summary</a>
@@ -376,8 +384,124 @@
     <p>
     The resulting flap does not serve as the main structure for transmitting air pressure but instead acts as a flexible connecting membrane that unifies the tentacles into a cohesive bell-like form. When the tentacles expand and contract, the flap assists in pushing water downward, helping to generate thrust and enhance the propulsion efficiency of the Jellybot.
 
-        
-        
+    <section id="section-6">
+    <h2>6. Housing Fabrication</h2>
+    <p>
+    The housing for Prototype 1 was fabricated using a PVC pipe as the main structural body due to its excellent waterproofing capability, mechanical strength, and ease of modification. The fabrication process began by cutting the PVC tube to the required length using a precision saw, followed by filing and sanding the edges to remove burrs and ensure a smooth finish for safe handling and proper sealing.
+    <p>
+     <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+    <p>
+      A circular opening was then cut on the top end of the PVC tube to mount the acrylic dome, which serves as the transparent enclosure for the onboard camera. The dome was secured in place using stainless steel screws, ensuring a firm mechanical connection. To achieve a watertight seal, silicone sealant was applied around the dome’s edge and screw joints, preventing any leakage during underwater operation.
+    <p>
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+    <p> 
+      Additional holes were drilled along the PVC housing to accommodate wire feedthroughs and pneumatic connectors required for the tentacle actuation system. Each connector and cable entry point was carefully sealed with silicone to maintain full waterproof integrity.
+    <p> 
+      During this process, the team consulted with members of NUS Bumblebee, a student underwater robotics team, to gain insights into effective waterproofing techniques. Based on their advice, cable glands were used and silicone sealant was applied as a temporary measure, since ordering specialized wire penetrators from Blue Robotics would take time. 
+    <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+    <p> 
+    This approach allowed the prototype to remain watertight for testing purposes, while the use of marine-grade wire penetrators has been identified as a key improvement for the next prototype iteration to ensure long-term waterproof reliability.
+    <p>  
+    This fabrication approach provides a robust, modular, and waterproof housing capable of protecting the internal electronics from underwater pressure and moisture. The use of PVC not only ensures mechanical stability but also allows for easy modification and re-sealing during iterative testing and design improvements.
+    
+    <section id="section-7">
+    <h2>7. Waterproof Test</h2>
+    <p>
+    To evaluate the watertightness of the Jellybot housing, two verification methods were performed: the positive pressure test and the submersion test. These tests were selected to complement each other, with the positive pressure test serving as a rapid non-destructive screening method and the submersion test providing confirmation under realistic operating conditions.
+    <p>
+
+    <section id="section-7a">
+    <h3 class="subsection" style="margin-top:40px;">7.1 Methodology</h3>
+  <p>
+    To evaluate the watertightness of the Jellybot housing, two verification methods were performed:
+    (1) <strong>Positive Pressure Test</strong> and (2) <strong>Submersion Test</strong>.
+    These complementary methods were selected to ensure comprehensive assessment — with the positive pressure test serving as a
+    <em>non-destructive preliminary check</em> and the submersion test simulating <em>real underwater operating conditions</em>.
+  </p>
+
+  <h4>Positive Pressure Test</h4>
+  <p>
+    The sealed housing was slightly pressurized using external air. A soap-water solution was applied along all sealing interfaces,
+    including the joints between the PVC pipe, acrylic dome, and end covers. The presence of continuous air bubbles indicated potential
+    leak paths. This test allowed rapid identification of major leaks without exposing the internal cavity to water, ensuring a safe
+    preliminary evaluation before full immersion.
+  </p>
+
+  <h4>Submersion Test</h4>
+  <p>
+    After passing the pressure test, the housing was submerged in a container of water mixed with red dye to aid leak visualization.
+    The assembly was weighted to ensure full coverage and observed for air bubbles escaping from the seals. A dry paper towel was placed
+    inside as a moisture indicator. Following 10–30 minutes of immersion, the housing was removed, dried externally, and opened to check
+    for any water ingress or condensation. These two methods collectively provided an effective means to validate waterproofing integrity
+    and detect both rapid and slow leakage paths.
+  </p>
+
+  <section id="section-7b">
+  <h3 class="subsection" style="margin-top:40px;">7.2 Results and Shortcomings</h3>
+  <p>
+    <strong>Positive Pressure Test:</strong> When high air pressure was applied, bubbles were observed forming around the screw areas,
+    indicating small air leaks. Under lower manual pressure, no bubbles appeared. However, upon opening the cap, water droplets were found
+    near the dome and screw region. It remained unclear whether these droplets resulted from condensation or actual water ingress.
+  </p>
+  <p>
+    <strong>Submersion Test:</strong> After 10 minutes of immersion in dyed water, the paper towel inside was fully wet and stained red,
+    confirming water ingress into the housing. Disassembly revealed that the black O-ring failed to provide an effective seal—it appeared
+    to absorb moisture rather than repel it. Leakage points were concentrated around screw holes and the primary O-ring interface.
+  </p>
+  <p>
+    These findings suggest that while the prototype provided partial sealing, the current sealing method was insufficient for maintaining
+    waterproof performance during underwater operation.
+  </p>
+
+  <section id="section-7c">
+  <h3 class="subsection" style="margin-top:40px;">7.3 Future Improvements</h3>
+  <ul>
+    <li>
+      <strong>Improved O-ring Integration:</strong> Install dedicated O-rings under each screw head to prevent leaks through fastening points.
+      Replace the existing O-ring with <em>marine-grade silicone</em> or <em>EPDM rubber</em> variants that resist water absorption.
+    </li>
+    <li>
+      <strong>Enhanced Sealant Application:</strong> Apply <em>marine-grade silicone sealant</em> along all gaps between the dome, PVC tube,
+      and end caps. Seal screw holes, wire connectors, and threaded joints with <em>gasket sealant</em> to eliminate micro-leakage paths.
+    </li>
+    <li>
+      <strong>Connector Waterproofing:</strong> Based on consultation with <em>NUS Bumblebee</em>, cable glands were adopted and sealed with
+      silicone as a temporary solution. For the next prototype, implement <em>Blue Robotics wire penetrators</em> for long-term,
+      professional-grade waterproofing.
+    </li>
+    <li>
+      <strong>Verification Testing:</strong> Repeat both pressure and submersion tests using the updated design. Conduct extended submersion
+      (up to 24 hours) to verify performance over prolonged exposure.
+    </li>
+  </ul>
+
+  <p>
+    After applying these improvements, a follow-up submersion test was conducted for 10 minutes with red dye. The interior remained
+    completely dry, confirming that the enhanced sealing approach successfully achieved a <strong>fully waterproof enclosure</strong> and
+    a substantial improvement over the original design.
+  </p>
+</section>
+
+  <section id="section-8">
+  <h2>8. Pain Points and Future Implementations</h2>
+
+  <section id="section-8a">
+  <h3 class="subsection" style="margin-top:40px;">8.1 Improved Waterproof Housign Design</h3><p>
+  One of the key pain points identified during the testing phase was the limitation of the current waterproof housing. The PVC structure, while effective for initial prototyping, required frequent resealing using silicone after each assembly or modification. This process was not only time-consuming but also introduced inconsistency in the sealing quality, as the effectiveness depended heavily on the manual application of silicone and operator precision. Over time, repeated sealing and resealing also increased the risk of uneven surfaces and micro-leakage paths around joints and connectors.
+  <p>
+  To address these challenges, future iterations of the Jellybot will adopt a marine-grade waterproof enclosure that incorporates predefined sealing interfaces and standardized O-ring placements. Such an enclosure will eliminate the need for repeated manual sealing while ensuring consistent waterproofing across multiple assemblies.
+  <p>
+  In addition, the next design phase aims to integrate IP-rated waterproof standards, ensuring that the housing achieves full submersion resistance suitable for long-term underwater operations. This improvement will not only enhance the durability and reliability of the system but also streamline the assembly process by introducing an intuitive and modular design that allows quick access to internal components without compromising waterproof integrity.
+  <p>
+  By transitioning to a professional-grade waterproof housing, the Jellybot will achieve higher operational consistency, improved maintenance efficiency, and long-term structural integrity for extended underwater testing and deployment.
+
+
+  <section id="section-8b">
+  <h3 class="subsection" style="margin-top:40px;">8.2 Internal Electronics Organization</h3>
+  
+    
+  
   </main>
 
   <!-- Footer -->
