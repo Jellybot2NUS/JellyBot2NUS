@@ -313,6 +313,93 @@ M<sub>needed</sub> ≈ 821.81 g
         </p>
       </div>
 
+    <!-- Part 2 -->
+    <h2>4. Additional Calculations and Interpretations</h2>
+
+    <p><b>Buoyant Force:</b></p>
+    <pre>
+F<sub>b</sub> = ρ × g × V<sub>disp,housing+dome</sub>
+
+ρ = 1 g/cm³ (density of fresh water)
+
+V<sub>disp,housing+dome</sub> 
+= π(R<sub>o</sub>²)(H<sub>total</sub>) + 2π(R<sub>cap,out</sub>² - R<sub>o</sub>²)(H<sub>cap</sub>) + 68.66
+= π(5.7²)(H<sub>total</sub>) + 2π(6.15² - 5.7²)(5.3) + 68.66
+= [102.07H<sub>total</sub> + 177.577 + 68.66] cm³
+= [102.07(15) + 177.577 + 68.66] cm³
+= 1777.287 cm³
+
+Therefore, F<sub>b</sub> = 1(g)(1777.287) = g1777.287 N
+    </pre>
+
+    <p>
+      To achieve <b>neutral buoyancy</b>, the buoyant force must equal the weight:
+      <i>F<sub>b</sub> = W = mg</i>.
+    </p>
+
+    <p><b>Interpretation:</b></p>
+    <ul>
+      <li>If F<sub>b</sub> > W → Positive buoyancy → Floats to surface.</li>
+      <li>If F<sub>b</sub> < W → Negative buoyancy → Sinks to bottom.</li>
+    </ul>
+
+    <h3 class="subsection">4.1 Mass of Housing + Dome</h3>
+    <pre>
+M<sub>housing+dome</sub> 
+= [V<sub>pvc</sub> × Density] + M<sub>dome</sub>
+= [13.823H<sub>total</sub> + 158.51](1.38) + 15
+= [19.076H<sub>total</sub> + 218.75 + 15] g
+= [19.076(15) + 218.75 + 15] g
+= 519.89 g
+
+Therefore, W = mg = g519.89 N
+(F<sub>b</sub> > W → Positively buoyant → Floats)
+    </pre>
+
+    <h3 class="subsection">4.2 Additional Mass for Neutral Buoyancy</h3>
+    <pre>
+Mass needed for neutral buoyancy:
+= g1777.287 - g519.89
+= 1257.397 g ≈ 1.26 kg
+    </pre>
+
+    <h3 class="subsection">4.3 Added Mass = 1.7 kg</h3>
+    <pre>
+Total Mass = [519.89 + 1700] g = 2219.89 g
+W = g2219.89 N
+
+Since W > F<sub>b</sub> (2219.89 > 1777.287), 
+prototype should sink — however it hovered between 17–32 cm depth,
+indicating <b>neutral buoyancy</b> due to trapped air in plastic wrap.
+
+F<sub>b'</sub> = ρ × g × (V<sub>disp,housing+dome</sub> + V<sub>air_in_plastic</sub>)
+F<sub>b'</sub> = W (neutral buoyancy)
+
+g(1777.287 + V<sub>air_in_plastic</sub>) = g2219.89
+V<sub>air_in_plastic</sub> = 2219.89 - 1777.287 = 442.603 cm³
+    </pre>
+
+    <h3 class="subsection">4.4 Added Mass = 2 kg</h3>
+    <pre>
+Total Mass = [519.89 + 2000] g = 2519.89 g
+W = g2519.89 N
+
+Since W > F<sub>b</sub> (2519.89 > 1777.287),
+prototype should sink, yet hovered between 29–44 cm depth,
+again maintaining <b>neutral buoyancy</b> due to displaced air volume.
+
+F<sub>b'</sub> = ρ × g × (1777.287 + V<sub>air_in_plastic</sub>)
+F<sub>b'</sub> = W (neutral buoyancy)
+
+g(1777.287 + V<sub>air_in_plastic</sub>) = g2519.89
+V<sub>air_in_plastic</sub> = 2519.89 - 1777.287 = 742.603 cm³
+    </pre>
+
+    <p style="margin-top:30px;">
+      These results confirm that as additional mass increases, the amount of trapped air displacing water also increases,
+      leading to neutral buoyancy achieved at deeper depths due to larger submerged air volumes.
+    </p>
+
   </main>
 
   <!-- Footer -->
