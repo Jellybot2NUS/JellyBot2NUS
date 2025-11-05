@@ -204,6 +204,137 @@
       </tbody>
     </table>
 
+    <!--Weightage-->
+    <h2>7. Actuator Selection</h2>
+
+      <p><strong>Objective:</strong><br>
+      From the problem statement, our chosen actuator must prioritize:
+      </p>
+      <ol>
+        <li>Biomimicry (25%)</li>
+        <li>Manufacturability (20%)</li>
+        <li>Energy Efficiency (15%)</li>
+        <li>Eco-friendliness (15%)</li>
+        <li>Cost (15%)</li>
+        <li>Control Complexity (10%)</li>
+      </ol>
+      
+      <!-- Actuator Evaluation Table -->
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>Criterion</th>
+            <th>Weightage</th>
+            <th>Pneumatic Score</th>
+            <th>DE Score</th>
+            <th>SMA Score</th>
+            <th>HASEL Score</th>
+            <th>Notes / Observations</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Biomimicry</td>
+            <td>25%</td>
+            <td>5</td>
+            <td>3</td>
+            <td>3</td>
+            <td>5</td>
+            <td>Smooth bell-like deformation; proven soft-robot jellyfish<br>
+                Membrane motion ok but limited stroke under load<br>
+                Motion is jerky/thermal; less fluid-like<br>
+                Highly jellyfish-like stroke with flexible pouches
+            </td>
+          </tr>
+          <tr>
+            <td>Manufacturability</td>
+            <td>20%</td>
+            <td>3</td>
+            <td>2</td>
+            <td>4</td>
+            <td>2</td>
+            <td>Tubing + sealing moderate; well-documented<br>
+                Uniform film & electrode patterning is finicky<br>
+                Wires widely available; simple assembly<br>
+                Multi-layer pouches + oil filling complex
+            </td>
+          </tr>
+          <tr>
+            <td>Energy Efficiency</td>
+            <td>15%</td>
+            <td>4</td>
+            <td>3</td>
+            <td>2</td>
+            <td>3</td>
+            <td>Low-voltage pumps; good mech. output per input<br>
+                Needs kV drive; conversion/driver losses<br>
+                Resistive heating/cooling cycles are inefficient<br>
+                HV electrostatic; moderate mech. efficiency
+            </td>
+          </tr>
+          <tr>
+            <td>Eco-friendliness</td>
+            <td>15%</td>
+            <td>4</td>
+            <td>3</td>
+            <td>3</td>
+            <td>2</td>
+            <td>Air/benign fluids; minimal contamination risk<br>
+                Elastomer films/electrodes; potential degradation<br>
+                Stable metals but energy-intensive<br>
+                Oil-filled pouches risk leakage in water
+            </td>
+          </tr>
+          <tr>
+            <td>Cost</td>
+            <td>15%</td>
+            <td>5</td>
+            <td>2</td>
+            <td>3</td>
+            <td>2</td>
+            <td>Common, cheap parts; scalable build cost<br>
+                Materials + HV driver increase cost<br>
+                Moderate price; fatigue replacement adds cost<br>
+                Precision materials + HV raise costs
+            </td>
+          </tr>
+          <tr>
+            <td>Control Complexity</td>
+            <td>10%</td>
+            <td>3</td>
+            <td>2</td>
+            <td>3</td>
+            <td>2</td>
+            <td>Valve timing manageable on MCU; decent response<br>
+                HV switching + feedback; safety<br>
+                Simple drive but thermal lag; slow bandwidth<br>
+                HV control + multi-pouch coordination is hard
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Weighted Total</strong></td>
+            <td>100%</td>
+            <td><strong>4.10</strong></td>
+            <td><strong>2.55</strong></td>
+            <td><strong>3.05</strong></td>
+            <td><strong>2.90</strong></td>
+            <td>Weighted total = Score × Weightage summed across criteria</td>
+          </tr>
+        </tbody>
+      </table>
+      
+      <h3>Conclusion</h3>
+      <p>
+      After comparing the four actuator options, the pneumatic system stood out as the most balanced and practical choice, with the 
+      highest overall score of 4.10. HASEL actuators can closely mimic the movement of real jellyfish, and Shape-Memory Alloys (SMA) 
+      are simple to build, but both have clear downsides—HASEL and Dielectric Elastomers (DE) need very high voltages to run, and SMA 
+      wastes energy through heating and wears out quickly. Pneumatic actuators, by contrast, operate safely at low voltage, use harmless 
+      air or fluid, and are much cheaper to produce. Although building and sealing the tubing system takes some effort, the process 
+      is well understood and manageable with standard lab tools. In short, pneumatic silicone actuation offers the best mix of realistic 
+      motion, safety, affordability, and environmental compatibility, making it the most suitable option for powering our jellyfish robot underwater.
+      </p>
+
+
     
     <h2>2. Calculations Data</h2>
     <table class="styled-table" style="margin-bottom:60px;">
