@@ -400,6 +400,93 @@ V<sub>air_in_plastic</sub> = 2519.89 - 1777.287 = 742.603 cm³
       leading to neutral buoyancy achieved at deeper depths due to larger submerged air volumes.
     </p>
 
+
+    <!-- ========================= -->
+<!-- Propulsion Test (Static) -->
+<!-- ========================= -->
+
+<h2>5. Propulsion Test (Static)</h2>
+
+<h3>5.1 Objective</h3>
+<p>
+  The objective of this test was to determine the optimal actuation duration for the pneumatic system controlling the tentacles 
+  and central flap of the jellyfish prototype. This duration should achieve the most effective expansion and contraction cycle 
+  — maximizing stroke volume and responsiveness — without causing excessive delay or material creep. The findings from this 
+  static (air-based) test would be used as the baseline setting for subsequent dynamic (in-water) propulsion experiments.
+</p>
+
+<h3>5.2 Test Approach</h3>
+<p>
+  The static propulsion test aimed to evaluate how the actuator’s tentacles and flap behave under different inflation times. 
+  Since pneumatic actuators follow a time-dependent pressure-filling curve, the inflation period affects both the amount of 
+  expansion (stroke size) and the time required for deflation (reset speed). Three actuation durations were tested: 4 seconds, 
+  5 seconds, and 6 seconds of valve-open time. Each trial followed the same procedure: the tentacles and flap were allowed to 
+  fully inflate and then deflate naturally once the valve closed. The entire sequence was recorded on video.
+</p>
+
+<h3>5.3 Test Setup</h3>
+<p>
+  The prototype was placed in a controlled environment with air supplied through the same pneumatic system used for water tests. 
+  The valve timing was controlled manually at 4 s, 5 s, and 6 s intervals for three separate iterations. Videos were captured for each test.
+</p>
+
+<!-- Images in a row -->
+<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:40px;">
+  <div style="text-align:center; flex:1; margin-right:10px;">
+    <img src="images/propulsion_4s.png" alt="4s actuation" style="width:100%; height:auto; border-radius:8px;">
+    <p class="figure-caption">4 s</p>
+  </div>
+  <div style="text-align:center; flex:1; margin:0 10px;">
+    <img src="images/propulsion_5s.png" alt="5s actuation" style="width:100%; height:auto; border-radius:8px;">
+    <p class="figure-caption">5 s</p>
+  </div>
+  <div style="text-align:center; flex:1; margin-left:10px;">
+    <img src="images/propulsion_6s.png" alt="6s actuation" style="width:100%; height:auto; border-radius:8px;">
+    <p class="figure-caption">6 s</p>
+  </div>
+</div>
+
+<h3>5.4 Results and Observations</h3>
+
+<p><strong>4-Second Actuation:</strong><br>
+  The tentacles began expanding but did not reach their full curvature or maximum surface displacement before the air supply stopped.
+  Inflation appeared incomplete, and the flap movement was visibly smaller compared to the other two trials. Deflation occurred 
+  quickly, but the reduced expansion meant the overall stroke per cycle was small.
+</p>
+
+<p><strong>5-Second Actuation:</strong><br>
+  The tentacles reached near-maximum expansion around the 5-second mark, displaying strong bending and full flap engagement. 
+  The inflation curve approached a plateau, indicating that the actuator had reached almost full volume without excessive dwell. 
+  Deflation was smooth and relatively quick, returning close to the original shape with minimal lag. Visually, this cycle appeared 
+  the most balanced and repeatable among the three.
+</p>
+
+<p><strong>6-Second Actuation:</strong><br>
+  The actuator reached full expansion slightly earlier (around 5 seconds) and remained at the plateau during the final second of 
+  inflation. The extended dwell caused minimal extra displacement but introduced a slower deflation response. The tentacles held 
+  their inflated shape longer before returning, suggesting increased internal pressure retention or minor viscoelastic creep of the 
+  silicone material.
+</p>
+
+<h3>5.5 Interpretations</h3>
+<p>
+  At 4 seconds, inflation was incomplete, resulting in smaller stroke volume and weaker thrust potential.
+</p>
+<p>
+  At 6 seconds, the system operated in the region of diminishing returns — extra inflation time produced minimal additional movement 
+  but increased material stress and delayed reset.
+</p>
+<p>
+  The 5-second actuation achieved approximately 95% of the maximum displacement while maintaining fast deflation and consistent 
+  cycle timing. This balance provides the highest effective stroke per unit time, making it the most efficient duration for propulsion.
+</p>
+<p>
+  In essence, 5 seconds of actuation filled the tentacles and flap to near their maximum useful expansion without overinflating or wasting 
+  pneumatic energy. It also preserved structural responsiveness for repeated cycles, which is crucial for continuous swimming motions 
+  in dynamic water tests. Therefore, the 5 s setting was selected as the optimal actuation period for subsequent underwater propulsion experiments.
+</p>
+
+
   </main>
 
   <!-- Footer -->
