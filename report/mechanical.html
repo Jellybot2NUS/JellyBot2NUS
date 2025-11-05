@@ -210,13 +210,13 @@
      <p> 
       Biomimicry (25%) – how closely the propulsion resembles jellyfish swimming.
       Manufacturability (20%) – ease of prototyping and fabrication.
-      Energy Efficiency (15%) – power consumption relative to endurance goals.
+      Power Comsumption (15%) – electrical power required for operation, where lower consumption indicates better energy efficiency and longer endurance.
       Eco-friendliness (15%) – impact on marine ecosystems (noise, turbulence, safety).
       Control Complexity (10%) – difficulty of implementation and actuation.
       Cost Savings (10%) – estimated material and production cost.
     <p>
-      Weights were applied to prioritize biomimicry and eco-friendliness, as the project’s primary goal is to develop a reef-compatible and environmentally safe surveillance platform. At the same time, manufacturability was given significant consideration to ensure the concept can be realistically prototyped and refined within the constraints of available resources, fabrication tools, and materials. By balancing innovation with practicality, the design process ensures that JellyBot remains not only functionally effective but also feasible to produce and scale for research applications. Table 1 summarizes the comparative assessment.
-      <p>
+      Weights were applied to prioritize <strong>biomimicry</strong> and <strong>eco-friendliness</strong>, as the project’s primary goal is to develop a reef-compatible and environmentally safe surveillance platform. At the same time, manufacturability was given significant consideration to ensure the concept can be realistically prototyped and refined within the available resources, fabrication tools, and materials. By balancing innovation with practicality, the design process ensures that JellyBot remains not only functionally effective but also feasible to produce and scale for research applications.
+    <p>
       <table border="1" cellspacing="0" cellpadding="5">
       <thead>
         <tr>
@@ -224,7 +224,7 @@
           <th>Selection Criteria</th>
           <th>A: Thrusters/Propellers</th>
           <th>B: Mechanical Linkages (Fins)</th>
-          <th>C: Pneumatic Silicone Actuators</th>
+          <th>C: Soft Biomimetic Actuators</th>
         </tr>
       </thead>
       <tbody>
@@ -242,7 +242,7 @@
           <td>4</td>
         </tr>
         <tr>
-          <td>Energy Efficiency (15%)</td>
+          <td>Power Consumption (15%)</td>
           <td>3</td>
           <td>3</td>
           <td>4</td>
@@ -274,9 +274,8 @@
       </tbody>
     </table>
 <p>
-    (<strong>Pneumatic Silicone Actuation</strong>) was identified as the most suitable approach, achieving the highest weighted score of 4.20. This concept demonstrates the best overall balance across biomimicry, manufacturability, energy efficiency, and eco-friendliness, making it ideal for replicating natural jellyfish propulsion in a sustainable and cost-effective manner. While the control system and fabrication process may require moderate refinement, these challenges are outweighed by its superior biomimetic performance and low environmental impact. Additionally, the silicone-based pneumatic actuation offers excellent energy efficiency and significant cost savings compared to traditional propulsion methods, ensuring that JellyBot remains both economically viable and environmentally safe for prolonged reef monitoring operations.
-      
-    <p>
+    (<strong>Soft Biomimetic Actuation</strong>)was identified as the most suitable approach, achieving the highest weighted score of 4.20. This concept provides the best balance across biomimicry, manufacturability, power consumption, and eco-friendliness, making it ideal for replicating natural jellyfish propulsion in a sustainable and cost-effective manner. While moderate refinement may be required for the control and fabrication processes, these challenges are outweighed by its superior biomimetic performance and low environmental impact. Moreover, the silicone-based pneumatic actuation system offers low power consumption and significant cost advantages over traditional propulsion methods, ensuring that JellyBot remains both energy-efficient and environmentally safe for long-duration reef monitoring operations.
+<p>
    <section id="section-3">
     <h2>3. Housing Material Selection</h2>
     <p>
@@ -509,7 +508,9 @@
   <h3 class="subsection" style="margin-top:40px;">8.1 Improved Waterproof Housign Design</h3><p>
   <strong>Problem:</strong><p>
   The current PVC housing design requires frequent resealing with silicone to maintain waterproof integrity. This manual sealing process is time-consuming, inconsistent, and prone to human error, resulting in potential leakage during underwater operations. The current approach also makes disassembly and reassembly difficult, limiting ease of maintenance and long-term durability.
-  <p>
+  <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/housingproblem.png?raw=true" alt="Housing Issue">
+    <p>
   <strong>Future Improvement:</strong><p>
   To enhance reliability and simplify maintenance, a marine-grade waterproof enclosure will be adopted in future iterations. This enclosure will feature predefined sealing interfaces and an IP-rated waterproof design to ensure consistent and complete sealing. By integrating standardized seals and fittings, the new housing design will provide 100% sealing reliability and allow for easier assembly and disassembly. Additionally, the improved design will enhance long-term usability and durability for extended underwater operations.
   <p>
@@ -520,10 +521,38 @@
   <strong>Problem:</strong><p>
   The current internal electronics setup within the housing is loosely arranged and lacks a proper mounting framework. This disorganized layout increases the risk of wire disconnection or component shifting during operation, potentially leading to electrical instability or system failure. Furthermore, the absence of a structured layout makes troubleshooting and component replacement more time-consuming.
   <p>
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/electricalhousingproblem.png?raw=true" alt="electrical housing">
+    <p>
   <strong>Future Improvement:</strong><p>
   To address these issues, a dedicated internal mounting frame or tray will be designed to securely hold all electrical and electronic components in place. Each module will be firmly bolted or fixed to the frame, ensuring stability and protection from mechanical stress. The implementation of a structured internal layout will also improve wire management, reduce clutter, and enhance overall system reliability. This organized setup will not only prevent accidental disconnections but also simplify maintenance and troubleshooting for future prototypes.
   <p>
+
+  <section id="sub-section-8c">
+  <h3 class="subsection" style="margin-top:40px;">8.3 Tentacle Tube Conncetion</h3> <p>
+
+  <strong>Problem:</strong><p>
+  During operation, the air tubes connecting to the silicone tentacles frequently came loose due to the lack of a secure attachment mechanism. This issue not only reduced propulsion efficiency but also required frequent maintenance to reseat or reseal the tubes. The unreliable tube connection resulted in inconsistent air pressure delivery, affecting the tentacle’s actuation performance and overall system reliability.
+  <p>
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/tubetentacleproblem.png?raw=true" alt="tentacle tubing">
+    <p>
     
+  <strong>Future Improvement:</strong><p>
+  To enhance air-tightness and durability, future iterations will integrate the pneumatic tubing directly into the silicone tentacle mold during fabrication. This embedded design will eliminate the need for external connections, reducing the risk of air leakage. Additionally, a reinforced connector interface featuring a mechanical locking mechanism will be developed to provide a more secure and reliable connection between the tubing and the tentacle base. These improvements will significantly enhance the system’s overall performance, reduce maintenance time, and ensure consistent pneumatic operation.
+  <p>
+  
+  <section id="sub-section-8d">
+  <h3 class="subsection" style="margin-top:40px;">8.4 Silicone Casting Process</h3> <p>
+
+  <strong>Problem:</strong><p>
+   In the current prototype, inconsistent inflation behavior was observed among the tentacles during actuation. This issue stemmed from variations in silicone mixing ratios, curing duration, and mold handling techniques. As a result, each tentacle exhibited different elasticity and inflation responses, leading to uneven propulsion performance and reduced overall system efficiency.
+    <p>
+      
+    <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/ballooningproblem.png?raw=true" alt="Tentacles Ballooning">
+    <p>
+    
+  <strong>Future Improvement:</strong><p>
+  To address these inconsistencies, a standardized silicone casting formula and fabrication process will be established. This includes defining fixed mixing ratios, controlled curing times, and uniform mold preparation procedures. By maintaining consistent material properties and casting conditions, each tentacle will achieve similar elasticity and deformation characteristics. These improvements will ensure smoother, more balanced propulsion performance while minimizing fabrication errors and rework time.
+    <p>
   
     
   
