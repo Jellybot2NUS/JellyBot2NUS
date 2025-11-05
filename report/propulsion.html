@@ -155,7 +155,57 @@
 
   <!-- Main Content -->
   <main>
-    <h2>Table of data</h2>
+    <h2>1. Actuator Comparison</h2>
+
+    <table class="styled-table">
+      <thead>
+        <tr>
+          <th>Actuator</th>
+          <th>Past Projects</th>
+          <th>Typical Drive</th>
+          <th>Reported Performance</th>
+          <th>Pros</th>
+          <th>Cons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Pneumatic</td>
+          <td>FludoJelly<br>Bistable Jellyfish</td>
+          <td>Low voltage pump + valves; compressible working fluid</td>
+          <td>0.67-0.8 Hz<br>53-160 mm/s</td>
+          <td>Quiet; low electric hazard; easy to scale; cheap, high output</td>
+          <td>Onboard bumps are heavy; needs a sealed reservoir</td>
+        </tr>
+        <tr>
+          <td>Dielectric Elastomers (DE)</td>
+          <td>FEDORA</td>
+          <td>kV driving voltage across thin elastomer membrane</td>
+          <td>0.2 Hz<br>3.2 mm/s</td>
+          <td>Light; quiet</td>
+          <td>High voltage; output force very low</td>
+        </tr>
+        <tr>
+          <td>Shape-Memory Alloy (SMA)</td>
+          <td>KrypoJelly<br>SoJel</td>
+          <td>Resistive heating and cooling cycles</td>
+          <td>0.33 Hz<br>20-60 mm/s</td>
+          <td>Compact; quiet</td>
+          <td>Poor efficiency (heating losses); fatigue over cycles</td>
+        </tr>
+        <tr>
+          <td>HASEL</td>
+          <td>HASEL Jellyfish</td>
+          <td>kV electrostatic zipping; oil-filled pouches</td>
+          <td>1.25 Hz<br>50 mm/s</td>
+          <td>High output; lightweight; biomimetic stroke</td>
+          <td>High voltage; Complex and costly</td>
+        </tr>
+      </tbody>
+    </table>
+
+    
+    <h2>2. Calculations Data</h2>
     <table class="styled-table" style="margin-bottom:60px;">
       <tr>
         <th>Component</th>
