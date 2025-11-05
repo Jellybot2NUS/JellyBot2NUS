@@ -148,36 +148,68 @@
 
   <!-- Main Content -->
   <main>
-    <h2>1. Overview of the Propulsion System</h2>
+    <h2>External Displaced Volume</h2>
+    <table class="styled-table">
+      <tr>
+        <th>Component</th>
+        <th>Volume (cm³)</th>
+      </tr>
+      <tr><td>Dome</td><td>68.66</td></tr>
+      <tr><td>Flap</td><td>187.09</td></tr>
+      <tr><td>8 Tentacles</td><td>304</td></tr>
+      <tr><td>PVC Housing (Caps)</td><td>177.577</td></tr>
+      <tr><td>PVC Housing (Body)</td><td>102.07 × H</td></tr>
+      <tr><th>Total Volume</th><th>102.07H + 737.33</th></tr>
+    </table>
+
+    <h2>Mass</h2>
+    <table class="styled-table">
+      <tr>
+        <th>Component</th>
+        <th>Mass (g)</th>
+      </tr>
+      <tr><td>Dome</td><td>15</td></tr>
+      <tr><td>Flap</td><td>200.19</td></tr>
+      <tr><td>8 Tentacles</td><td>121.49</td></tr>
+      <tr><td>PVC Cap</td><td>218.75</td></tr>
+      <tr><td>PVC Housing</td><td>19.076H</td></tr>
+      <tr><td>Internal Components</td><td>605</td></tr>
+      <tr><th>Total Mass</th><th>19.076H + 1160.43</th></tr>
+    </table>
+
+    <h2>Calculations</h2>
     <p>
-  The propulsion subsystem enables Jellybot’s movement through a biomimetic design inspired by jellyfish locomotion.
-  Using servo-driven actuation and flexible membranes, it generates rhythmic pulses that propel the robot smoothly through water.
-  The design prioritizes energy efficiency, stability, and low noise for effective navigation in delicate marine environments.
+      To achieve neutral buoyancy, the total mass (<i>M<sub>total</sub></i>) must be equal to the total volume of water displaced (<i>V<sub>disp,total</sub></i>).
     </p>
 
-    <h2>2. Calculation</h2>
+    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto;">
+M<sub>total</sub> = V<sub>disp,total</sub>
+19.076H<sub>total</sub> + 1160.43 = 102.07H<sub>total</sub> + 737.33
+
+-737.33 + 1160.43 = (102.07 - 19.076)H<sub>total</sub>
+423.1 = 82.994H<sub>total</sub>
+
+H<sub>total</sub> = 423.1 / 82.994
+H<sub>total</sub> ≈ 5.10 cm
+    </pre>
+
     <p>
-      Bounancy & Pressure
+      However, it is not possible for the height to be 5.10 cm due to the internal components and structural compatibility.
+      Hence, to maintain neutral buoyancy, we must increase the mass required.
     </p>
 
-    <h2>3. Test images and Diagrams  </h2>
-    <p>
-      Test calculation and conclusion
-    </p>
+    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto;">
+M<sub>needed</sub> = [82.994H<sub>total</sub> - 423.1] g
 
-    <h2>4. Summary and Future Improvements</h2>
-    <p>
-  The propulsion subsystem successfully achieves biomimetic movement inspired by natural jellyfish dynamics, offering smooth and efficient underwater navigation.
-  Its design prioritizes low energy consumption and mechanical simplicity.
-  Future developments may explore adaptive propulsion materials, advanced servo control algorithms, and feedback-based motion tuning to enhance maneuverability and propulsion efficiency in complex underwater environments.
-    </p>
-
-
+For our Jellybot of H<sub>total</sub> = 15 cm:
+M<sub>needed</sub> = [82.994(15) - 423.1] g
+M<sub>needed</sub> ≈ 821.81 g
+    </pre>
   </main>
 
   <!-- Footer -->
   <footer>
-    <p>© 2025 Jellybot Project — Mechanical Subsystem by Afham</p>
+    <p>© 2025 Jellybot Project — Mechanical Subsystem by Navin</p>
   </footer>
 
 </body>
