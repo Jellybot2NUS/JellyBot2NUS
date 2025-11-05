@@ -334,14 +334,14 @@
     <h3 class="subsection" style="margin-top:40px;">4.2 Designing of Tentacles Flap Mold</h3>
     <p>
      To achieve smooth and synchronized propulsion for the Jellybot, a custom tentacle flap mold was designed to form the connecting membrane between the individual tentacles. The purpose of this mold was to replicate the bell-like contraction mechanism observed in real jellyfish, where a soft elastic flap unites the tentacles to produce a collective pulsating motion that generates thrust.
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/flapmold.png?raw=true" alt="Flap Mold">
     <p>
     The mold was designed such that the silicone tentacles are positioned radially on a circular base mold, leaving small gaps between each tentacle. Once all tentacles were secured in position, a thin layer of silicone mixture was poured into the interstitial spaces, creating a flexible membrane that acts as a flap or bell structure. This membrane serves as a unifying actuator surface—when air pressure is applied to the internal chambers of each tentacle, the membrane flexes inward, mimicking the contraction of a jellyfish bell and expelling water downward to propel the robot upward.
 
       <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/jellybell.png?raw=true" alt="How Jellyfish Movement Works">
     <p>
     This design approach was inspired by prior research on soft robotic jellyfish propulsion systems, which demonstrated that integrating flexible silicone membranes between actuated appendages enhances hydrodynamic efficiency and allows for smoother deformation cycles. Studies such as Wang et al. (2020) and FludoJelly by Ghorbani et al. (2019) have shown that soft pneumatic composites with continuous membrane structures produce biomimetic fluid interactions and improved thrust performance compared to discrete tentacle configurations.
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/jellyresearch.png?raw=true" alt="Research on Jellyfish inspired design">
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/flapresearch.png?raw=true" alt="Research on Jellyfish inspired design">
      <p>
       By following this principle, the designed mold not only simplifies the assembly process but also improves the fluid continuity of motion, reducing drag while maintaining flexibility. The resulting flap layer thus plays a critical role in achieving efficient propulsion and more natural, jellyfish-like swimming dynamics.
 
@@ -393,17 +393,17 @@
     <p>
     The housing for Prototype 1 was fabricated using a PVC pipe as the main structural body due to its excellent waterproofing capability, mechanical strength, and ease of modification. The fabrication process began by cutting the PVC tube to the required length using a precision saw, followed by filing and sanding the edges to remove burrs and ensure a smooth finish for safe handling and proper sealing.
     <p>
-     <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+     <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/housingfab.png?raw=true" alt="Housing Fabrication">
     <p>
       A circular opening was then cut on the top end of the PVC tube to mount the acrylic dome, which serves as the transparent enclosure for the onboard camera. The dome was secured in place using stainless steel screws, ensuring a firm mechanical connection. To achieve a watertight seal, silicone sealant was applied around the dome’s edge and screw joints, preventing any leakage during underwater operation.
     <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/topcap.png?raw=true" alt="Top Cap">
     <p> 
       Additional holes were drilled along the PVC housing to accommodate wire feedthroughs and pneumatic connectors required for the tentacle actuation system. Each connector and cable entry point was carefully sealed with silicone to maintain full waterproof integrity.
     <p> 
       During this process, the team consulted with members of NUS Bumblebee, a student underwater robotics team, to gain insights into effective waterproofing techniques. Based on their advice, cable glands were used and silicone sealant was applied as a temporary measure, since ordering specialized wire penetrators from Blue Robotics would take time. 
     <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection">
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/bottomcap.png?raw=true" alt="Bottom Cap">
     <p> 
     This approach allowed the prototype to remain watertight for testing purposes, while the use of marine-grade wire penetrators has been identified as a key improvement for the next prototype iteration to ensure long-term waterproof reliability.
     <p>  
@@ -431,6 +431,9 @@
     leak paths. This test allowed rapid identification of major leaks without exposing the internal cavity to water, ensuring a safe
     preliminary evaluation before full immersion.
   </p>
+      <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/positivetest.png?raw=true" alt="Positive Pressure Test">
+    <p> 
 
   <h4>Submersion Test</h4>
   <p>
@@ -440,6 +443,9 @@
     for any water ingress or condensation. These two methods collectively provided an effective means to validate waterproofing integrity
     and detect both rapid and slow leakage paths.
   </p>
+      <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/submersiontest.png?raw=true" alt="Submersion Test">
+    <p> 
 
   <section id="sub-section-7b">
   <h3 class="subsection" style="margin-top:40px;">7.2 Results and Shortcomings</h3>
@@ -448,11 +454,17 @@
     indicating small air leaks. Under lower manual pressure, no bubbles appeared. However, upon opening the cap, water droplets were found
     near the dome and screw region. It remained unclear whether these droplets resulted from condensation or actual water ingress.
   </p>
+    <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/positivetestresult.png?raw=true" alt="Positive Pressure Test Result">
+    <p> 
   <p>
     <strong>Submersion Test:</strong> After 10 minutes of immersion in dyed water, the paper towel inside was fully wet and stained red,
     confirming water ingress into the housing. Disassembly revealed that the black O-ring failed to provide an effective seal—it appeared
     to absorb moisture rather than repel it. Leakage points were concentrated around screw holes and the primary O-ring interface.
   </p>
+    <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/submersiontestresult.png?raw=true" alt="Submersion Test Result">
+    <p> 
   <p>
     These findings suggest that while the prototype provided partial sealing, the current sealing method was insufficient for maintaining
     waterproof performance during underwater operation.
@@ -485,6 +497,9 @@
     completely dry, confirming that the enhanced sealing approach successfully achieved a <strong>fully waterproof enclosure</strong> and
     a substantial improvement over the original design.
   </p>
+    <p> 
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/improvedwaterproofresult.png?raw=true" alt="Improved Waterproof Test Results">
+    <p> 
 </section>
 
   <section id="section-8">
