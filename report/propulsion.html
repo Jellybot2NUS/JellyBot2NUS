@@ -579,29 +579,36 @@ M<sub>needed</sub> ≈ 821.81 g
     </div>
     <p><b>Objective :</b></p>
     <p>To verify that the Jellybot housing (i) maintains an upright (vertical) attitude in water and (ii) achieves neutral or slightly negative buoyancy so it remains submerged at a controlled depth rather than floating at the surface. This verification is a pre-requisite before open water trials to avoid uncontrolled floating and to confirm a stable trim suitable for imaging and sensing.</br></p>
+    
     <div style="margin-bottom:60px; text-align:center;">
-    <p>Buoyant Force (Fb) = ρ x g x Volume displaced</br></p>
-    <p>Weight, W = mg </br></p>
-    <p>Therefore, Fb = W<br>Assuming fresh water density, ρ = 1g/cm³<br>Gravitational acceleration, g cancels out from both equations.<br>Thus, Vdisplaced = m to achieve neutral buoyancy</p>
+      <p>Buoyant Force (Fb) = ρ x g x Volume displaced<br>Weight, W = mg<br>Therefore, Fb = W<br>Assuming fresh water density, ρ = 1g/cm³<br>Gravitational acceleration, g cancels out from both equations.<br>Thus, Vdisplaced = m to achieve neutral buoyanc</p>
     </div>
-      <h3 class="subsection">4.1 Procedure</h3>
-      <p>
-        The following steps outline the procedure used to assess the buoyancy and stability of the housing:
-      </p>
-      <ol style="margin-left:40px; margin-bottom:40px;">
-        <li>Remove tentacles and flaps.</li>
-        <li>Wrap housing with two plastic layers and remove as much trapped air as possible.</li>
-        <li>Place the chosen ballast at the base of the housing to lower its centre of gravity (CG).</li>
-        <li>Lower the housing into the water tank, release, and allow it to settle.</li>
-        <li>Record observations such as:
-          <ul style="margin-left:60px;">
-            <li>Attitude (Uprightness)</li>
-            <li>Submergence distance from surface of water to top end-cap</li>
-            <li>Any other behavior</li>
-          </ul>
-        </li>
-        <li>Repeat experiment as needed.</li>
-      </ol>
+    
+      <h3 class="subsection">4.1 Determining the additional mass required</h3>
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
+          <div>
+            <h2>Buoyancy Analysis of JellyBot</h2>
+            <p>Naturally JellyBot is positively buoyant as proven from the calculations</p>
+            <p>Theoretical Mass, m = 19.076H<sub>total</sub> + 1160.43g<br>
+            = 19.076(15) + 1160.43g<br>
+            = 1446.57g</p>
+            <p>Theoretical V<sub>disp,total</sub>, V<sub>displaced</sub> = 102.07H<sub>total</sub> + 737.33cm³<br>
+            = 102.07(15) + 737.33cm³<br>
+            = 2268.38cm³</p>
+            <p>Since F<sub>b</sub>, g2268.38N &gt; W, g1446.57N, JellyBot is positively buoyant. We have also confirmed this theory as shown in Fig. 5</p>
+            <p><b>Fig. 5</b></p>
+            <p>Based on theoretical calculations, additional mass required for neutral buoyancy:</p>
+            <p>[g2268.38N − g1446.57N] / g = 821.81g</p>
+            <p>Since internal components (mass = 605g) are removed, total theoretical additional mass required = 821.81 + 605<br>
+            = 1426.81g</p>
+            <p>However, the actual mass of JellyBot weighed in at 1603.45g as shown in Fig. 6</p>
+            <p><b>Fig. 6</b></p>
+            <p>In actuality, JellyBot is heavier by 1603.45 − 1446.57 = 156.88g</p>
+            <p>Therefore, actual additional mass required = 1426.81 − 156.88<br>
+            = 1269.93g</p> 
+          </div>
+        </pre>
+
       
       <h3 class="subsection">4.2 Acceptance Criteria</h3>
       <p>
