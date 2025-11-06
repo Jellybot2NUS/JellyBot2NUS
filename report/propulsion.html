@@ -754,6 +754,72 @@ M<sub>needed</sub> ≈ 821.81 g
       <h3 class="subseection">5.3 Propulsion Test</h3>
       <p style="margin-bottom:40px;">We submerged JellyBot to a flap depth of 40cm.<br>Observe the time taken for JellyBot to propel upwards during 1 cycle (4s).</p>
 
+      <h3 class="subseection">5.4 Observations and Interpretations</h3>
+      <p style="margin-bottom:40px;">
+      In one cycle (4s), JellyBot propelled upward from a flap depth of 40cm to a flap depth of 30cm.
+      </p>
+      
+      <p style="margin-bottom:40px;">
+      Velocity = Displacement / Time <br>
+      = 10cm / 4s <br>
+      = <b>2.5cm/s</b>
+      </p>
+      
+      <p style="margin-bottom:40px;">
+      We observed air leakage on one of the tentacles. Since our configuration connects four tentacles to a single 12V pump, the leakage affected its corresponding three tentacles. Consequently, only the remaining four tentacles managed to bend properly. The four tentacles that did not bend appeared stiff. 
+      <br><br>
+      The motor pump operates such that during the inflation phase, surrounding air is pumped into the tentacles. During the deflation phase, the pumped air is released back into the atmosphere. Because air was unable to enter the four affected tentacles, the pump instead released the natural air within them, creating a vacuum-like effect that caused stiffness.
+      </p>
+      
+      <h3 class="subseection">5.5 Shortcomings</h3>
+      <p style="margin-bottom:40px;">
+      We observed that plastic pneumatic tubes do not bond well with silicone materials. Additionally, JellyBot was unable to reach its desired velocity of 5cm/s.
+      </p>
+      
+      <h3 class="subseection">5.6 Future Recommendations</h3>
+      <p style="margin-bottom:40px;">
+      To improve bonding and air sealing, we plan to replace the current plastic pneumatic tubes with silicone tubes, as silicone bonds more effectively with silicone. We also plan to adopt silicone Y-connectors, as suggested by our industry expert, Dr. Wang.
+      </p>
+      
+      <h3 class="subseection">5.7 Visual Observations</h3>
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/start_propulsion.png?raw=true" 
+             alt="Start of Propulsion Test" 
+             style="display: block; margin: 20px auto; width: 60%; height: auto;">
+        <p class="figure-caption"><b>Fig 22.</b> Start of Propulsion Test (Flap depth 40cm)</p>
+      
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/end_propulsion.png?raw=true" 
+             alt="End of Propulsion Test" 
+             style="display: block; margin: 20px auto; width: 60%; height: auto;">
+        <p class="figure-caption"><b>Fig 23.</b> End of Propulsion Test (Flap depth 30cm)</p>
+      </div>
+      
+      <h3 class="subseection">5.8 Actuation Test (Manual Submergence)</h3>
+      <p style="margin-bottom:40px;">
+      The tentacles and flap were able to actuate underwater, as shown in Fig 24 and Fig 25.
+      </p>
+      
+      <div style="text-align: center; margin: 20px 0;">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/actuation1.png?raw=true" 
+             alt="Actuation Test 1" 
+             style="display: block; margin: 20px auto; width: 60%; height: auto;">
+        <p class="figure-caption"><b>Fig 24.</b> Tentacle actuation under manual submergence</p>
+      
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/actuation2.png?raw=true" 
+             alt="Actuation Test 2" 
+             style="display: block; margin: 20px auto; width: 60%; height: auto;">
+        <p class="figure-caption"><b>Fig 25.</b> Flap actuation under manual submergence</p>
+      </div>
+      
+      <h3 class="subseection">5.9 Interpretations</h3>
+      <p style="margin-bottom:40px;">
+      As expected, JellyBot without any ballast was positively buoyant when placed in water. According to our buoyancy calculations, to maintain neutral buoyancy, an additional mass of approximately 760g is required. In future iterations, we plan to place this ballast within the sealed hull of JellyBot to increase its weight while maintaining its displaced volume and test whether it sinks or hovers in water.
+      <br><br>
+      During actuation under manual submergence, the total pressure output for all eight tentacles was measured at 1.5, while our target was 1.2 per four tentacles. We deduced that this pressure discrepancy may have prevented optimal actuation of the flap and tentacles, thereby reducing lift efficiency.
+      <br><br>
+      Following jellyfish locomotion principles, the bell should contract fully to create a pressure gradient between its interior and exterior, generating a downward jet that produces lift. However, as seen in Fig 25, the flap and tentacles did not contract fully. Hence, we cannot confirm if JellyBot can generate sufficient lift until further iterations. To address this, we aim to calibrate the pressure output to 1.2 per four tentacles (total of 2.8), allowing for improved contraction and lift performance.
+      </p>
+
     
   </main>
 
