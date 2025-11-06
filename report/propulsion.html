@@ -585,7 +585,7 @@ M<sub>needed</sub> ≈ 821.81 g
     </div>
     
 <h3 class="subsection">4.1 Determining the Additional Mass Required</h3>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;"> 
+    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center; margin-bottom:40px;"> 
     Buoyancy Analysis of JellyBot
     Naturally JellyBot is positively buoyant as proven from the calculations
     Theoretical Mass, m = 19.076H<sub>total</sub> + 1160.43g
@@ -639,8 +639,8 @@ M<sub>needed</sub> ≈ 821.81 g
     <p style="margin-left:80px; margin-bottom:40px;">This was likely due to the Center of Gravity (CG) being below the Center of Buoyancy (CB), causing it to be stable and upright.</p>
   </div>
 
-    <h4 style="margin-bottom:40px">Summary of results</h4>
-    <table class="styled-table">
+    <h3 style="margin-bottom:40px">4.3 Summary of results</h3>
+    <table class="styled-table" style="margin-bottom:40px;">
       <tr>
         <th>Buoyancy Test</th>
         <th>Additional Mass Added (kg)</th>
@@ -675,236 +675,21 @@ M<sub>needed</sub> ≈ 821.81 g
     </table>
 
   
-      <h3 class="subsection">4.2 Acceptance Criteria</h3>
+      <h3 class="subsection">4.4 Shortcomings</h3>
       <p>
-        <b>Buoyancy:</b> Neutral / Slightly Negative — The housing remains submerged without rising to the surface.
+        Currently our JellyBot is not able to descend to depths on its own. It would require manual assistance to place the bot at our desired depth.
       </p>
-      <p style="margin-bottom:40px;">
-        <b>Stability:</b> The housing settles upright and stays that way; no tendency to roll.
-      </p>
-      
-      <h3 class="subsection">4.3 Results and Observations</h3>
+      <p style="margin-bottom:40px;">Tests were conducted in stable freshwater. Considering in reality there is seawater current, we would require JellyBot to have positive stability. This is to ensure self correcting capabilities when faced against the water current force. </p>
+
+      <h3 class="subsection">Future recommendations</h3>
       <p>
-        Observations were made for each ballast configuration to evaluate buoyancy behavior and orientation stability.
+        To combat the depth issue, we are considering a Variable Buoyancy System (VBS). With a VBS, we would be able to reach desired depths by pumping in water (F<sub>b</sub> &lt; W), causing the JellyBot to be negatively buoyant and sink. 
+        When approaching the desired depth for surveillance, the pump would release the water so that the weight of the JellyBot equals the buoyant force (F<sub>b</sub> = W), maintaining neutral buoyancy.
       </p>
       
-      <ul style="margin-left:40px; margin-bottom:40px; list-style-type:disc;">
-        <li><b>No Added Mass (Fig. 3):</b> Floated horizontally at the water surface; positively buoyant and not upright.</li>
-        <li><b>Added Mass = 1.7 kg (Fig. 4):</b> Housing settled upright and submerged distance = 17–32 cm; neutrally buoyant with attitude stable.</li>
-        <li><b>Added Mass = 2 kg (Fig. 5):</b> Housing settled upright and submerged distance = 29–44 cm with slight sinking tendency; neutrally buoyant with attitude stable.</li>
-      </ul>
-      
-      <h3 class="subsection" style="margin-top:40px;">4.4 Results Table</h3>
-      <table class="styled-table" style="margin-bottom:60px;">
-        <tr style="background-color:#1a4d8f; color:#fff;">
-          <th style="border:1px solid #ddd; padding:8px 12px;">Added Mass (kg)</th>
-          <th style="border:1px solid #ddd; padding:8px 12px;">Attitude</th>
-          <th style="border:1px solid #ddd; padding:8px 12px;">Submergence (cm)</th>
-          <th style="border:1px solid #ddd; padding:8px 12px;">Buoyancy</th>
-        </tr>
-        <tr style="background-color:#f3f3f3;">
-          <td style="border:1px solid #ddd; padding:8px 12px;">0</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">Horizontal</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">0</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">Positive</td>
-        </tr>
-        <tr>
-          <td style="border:1px solid #ddd; padding:8px 12px;">1.7</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">Vertical (Upright)</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">17 - 32</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">Neutral</td>
-        </tr>
-        <tr style="background-color:#f3f3f3;">
-          <td style="border:1px solid #ddd; padding:8px 12px;">2</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">Vertical (Upright)</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">29 - 44</td>
-          <td style="border:1px solid #ddd; padding:8px 12px;">Neutral</td>
-        </tr>
-      </table>
-      
-      <div class="image-center" style="text-align:center;">
-        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/buoyancy_test.jpg?raw=true" 
-             alt="Buoyancy Test Setup" 
-             style="width:60%; height:auto;">
-        <p class="figure-caption">
-          Buoyancy test setup and observation of housing attitude under various ballast weights.
-        </p>
-      </div>
-
-    <!-- Part 2 -->
-    <h2>5. Additional Calculations and Interpretations</h2>
-
-    <p><b>Buoyant Force:</b></p>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
-F<sub>b</sub> = ρ × g × V<sub>disp,housing+dome</sub>
-
-ρ = 1 g/cm³ (density of fresh water)
-
-V<sub>disp,housing+dome</sub> 
-= π(R<sub>o</sub>²)(H<sub>total</sub>) + 2π(R<sub>cap,out</sub>² - R<sub>o</sub>²)(H<sub>cap</sub>) + 68.66
-= π(5.7²)(H<sub>total</sub>) + 2π(6.15² - 5.7²)(5.3) + 68.66
-= [102.07H<sub>total</sub> + 177.577 + 68.66] cm³
-= [102.07(15) + 177.577 + 68.66] cm³
-= 1777.287 cm³
-
-Therefore, F<sub>b</sub> = 1(g)(1777.287) = g1777.287 N
-    </pre>
-
-    <p>
-      To achieve <b>neutral buoyancy</b>, the buoyant force must equal the weight:
-      <i>F<sub>b</sub> = W = mg</i>.
-    </p>
-
-    <p><b>Interpretation:</b></p>
-    <ul>
-      <li>If F<sub>b</sub> > W → Positive buoyancy → Floats to surface.</li>
-      <li>If F<sub>b</sub> < W → Negative buoyancy → Sinks to bottom.</li>
-    </ul>
-
-    <h3 class="subsection" style="margin-top:40px">5.1 Mass of Housing + Dome</h3>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
-M<sub>housing+dome</sub> 
-= [V<sub>pvc</sub> × Density] + M<sub>dome</sub>
-= [13.823H<sub>total</sub> + 158.51](1.38) + 15
-= [19.076H<sub>total</sub> + 218.75 + 15] g
-= [19.076(15) + 218.75 + 15] g
-= 519.89 g
-
-Therefore, W = mg = g519.89 N
-(F<sub>b</sub> > W → Positively buoyant → Floats)
-    </pre>
-
-    <h3 class="subsection" style="margin-top:40px">5.2 Additional Mass for Neutral Buoyancy</h3>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
-Mass needed for neutral buoyancy:
-= g1777.287 - g519.89
-= 1257.397 g ≈ 1.26 kg
-    </pre>
-
-    <h3 class="subsection" style="margin-top:40px">5.3 Added Mass = 1.7 kg</h3>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
-Total Mass = [519.89 + 1700] g = 2219.89 g
-W = g2219.89 N
-
-Since W > F<sub>b</sub> (2219.89 > 1777.287), 
-prototype should sink — however it hovered between 17–32 cm depth,
-indicating <b>neutral buoyancy</b> due to trapped air in plastic wrap.
-
-F<sub>b'</sub> = ρ × g × (V<sub>disp,housing+dome</sub> + V<sub>air_in_plastic</sub>)
-F<sub>b'</sub> = W (neutral buoyancy)
-
-g(1777.287 + V<sub>air_in_plastic</sub>) = g2219.89
-V<sub>air_in_plastic</sub> = 2219.89 - 1777.287 = 442.603 cm³
-    </pre>
-
-    <h3 class="subsection" style="margin-top:40px">5.4 Added Mass = 2 kg</h3>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
-Total Mass = [519.89 + 2000] g = 2519.89 g
-W = g2519.89 N
-
-Since W > F<sub>b</sub> (2519.89 > 1777.287),
-prototype should sink, yet hovered between 29–44 cm depth,
-again maintaining <b>neutral buoyancy</b> due to displaced air volume.
-
-F<sub>b'</sub> = ρ × g × (1777.287 + V<sub>air_in_plastic</sub>)
-F<sub>b'</sub> = W (neutral buoyancy)
-
-g(1777.287 + V<sub>air_in_plastic</sub>) = g2519.89
-V<sub>air_in_plastic</sub> = 2519.89 - 1777.287 = 742.603 cm³
-    </pre>
-
-    <p style="margin-top:30px;">
-      These results confirm that as additional mass increases, the amount of trapped air displacing water also increases,
-      leading to neutral buoyancy achieved at deeper depths due to larger submerged air volumes.
-    </p>
-
-
-    <!-- ========================= -->
-<!-- Propulsion Test (Static) -->
-<!-- ========================= -->
-
-<h2>6. Propulsion Test (Static)</h2>
-
-<h3 class="subsection" style="margin-top:40px">6.1 Objective</h3>
-<p>
-  The objective of this test was to determine the optimal actuation duration for the pneumatic system controlling the tentacles 
-  and central flap of the jellyfish prototype. This duration should achieve the most effective expansion and contraction cycle 
-  — maximizing stroke volume and responsiveness — without causing excessive delay or material creep. The findings from this 
-  static (air-based) test would be used as the baseline setting for subsequent dynamic (in-water) propulsion experiments.
-</p>
-
-<h3 class="subsection" style="margin-top:40px">6.2 Test Approach</h3>
-<p>
-  The static propulsion test aimed to evaluate how the actuator’s tentacles and flap behave under different inflation times. 
-  Since pneumatic actuators follow a time-dependent pressure-filling curve, the inflation period affects both the amount of 
-  expansion (stroke size) and the time required for deflation (reset speed). Three actuation durations were tested: 4 seconds, 
-  5 seconds, and 6 seconds of valve-open time. Each trial followed the same procedure: the tentacles and flap were allowed to 
-  fully inflate and then deflate naturally once the valve closed. The entire sequence was recorded on video.
-</p>
-
-<h3 class="subsection" style="margin-top:40px">6.3 Test Setup</h3>
-<p>
-  The prototype was placed in a controlled environment with air supplied through the same pneumatic system used for water tests. 
-  The valve timing was controlled manually at 4 s, 5 s, and 6 s intervals for three separate iterations. Videos were captured for each test.
-</p>
-
-<!-- Images in a row -->
-<div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:40px;">
-  <div style="text-align:center; flex:1; margin-right:10px;">
-    <img src="images/propulsion_4s.png" alt="4s actuation" style="width:100%; height:auto; border-radius:8px;">
-    <p class="figure-caption">4 s</p>
-  </div>
-  <div style="text-align:center; flex:1; margin:0 10px;">
-    <img src="images/propulsion_5s.png" alt="5s actuation" style="width:100%; height:auto; border-radius:8px;">
-    <p class="figure-caption">5 s</p>
-  </div>
-  <div style="text-align:center; flex:1; margin-left:10px;">
-    <img src="images/propulsion_6s.png" alt="6s actuation" style="width:100%; height:auto; border-radius:8px;">
-    <p class="figure-caption">6 s</p>
-  </div>
-</div>
-
-<h3 class="subsection" style="margin-top:40px">6.4 Results and Observations</h3>
-
-<p><strong>4-Second Actuation:</strong><br>
-  The tentacles began expanding but did not reach their full curvature or maximum surface displacement before the air supply stopped.
-  Inflation appeared incomplete, and the flap movement was visibly smaller compared to the other two trials. Deflation occurred 
-  quickly, but the reduced expansion meant the overall stroke per cycle was small.
-</p>
-
-<p><strong>5-Second Actuation:</strong><br>
-  The tentacles reached near-maximum expansion around the 5-second mark, displaying strong bending and full flap engagement. 
-  The inflation curve approached a plateau, indicating that the actuator had reached almost full volume without excessive dwell. 
-  Deflation was smooth and relatively quick, returning close to the original shape with minimal lag. Visually, this cycle appeared 
-  the most balanced and repeatable among the three.
-</p>
-
-<p><strong>6-Second Actuation:</strong><br>
-  The actuator reached full expansion slightly earlier (around 5 seconds) and remained at the plateau during the final second of 
-  inflation. The extended dwell caused minimal extra displacement but introduced a slower deflation response. The tentacles held 
-  their inflated shape longer before returning, suggesting increased internal pressure retention or minor viscoelastic creep of the 
-  silicone material.
-</p>
-
-<h3 class="subsection" style="margin-top:40px">6.5 Interpretations</h3>
-<p>
-  At 4 seconds, inflation was incomplete, resulting in smaller stroke volume and weaker thrust potential.
-</p>
-<p>
-  At 6 seconds, the system operated in the region of diminishing returns — extra inflation time produced minimal additional movement 
-  but increased material stress and delayed reset.
-</p>
-<p>
-  The 5-second actuation achieved approximately 95% of the maximum displacement while maintaining fast deflation and consistent 
-  cycle timing. This balance provides the highest effective stroke per unit time, making it the most efficient duration for propulsion.
-</p>
-<p>
-  In essence, 5 seconds of actuation filled the tentacles and flap to near their maximum useful expansion without overinflating or wasting 
-  pneumatic energy. It also preserved structural responsiveness for repeated cycles, which is crucial for continuous swimming motions 
-  in dynamic water tests. Therefore, the 5 s setting was selected as the optimal actuation period for subsequent underwater propulsion experiments.
-</p>
-
-
+      <p>
+        To ensure positive stability, we are considering adding rigid masses or steel bearings and bolting them to the base of the cylindrical hull of JellyBot. This keeps the Center of Gravity (CG) as low as possible below the Center of Buoyancy (CB).
+      </p>
   </main>
 
   <!-- Footer -->
