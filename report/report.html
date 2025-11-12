@@ -410,252 +410,152 @@
 		  <tr>
 			<th>Titles</th>
 		    <th>Features</th>
-		    <th>Target Value / Description</th>
+			<th>Target Description</th>
 		    <th>Purposes / Rationale</th>
 		    <th>Methodology</th>
 		  </tr>
 		
 		  <!-- Depth -->
 		  <tr>
-		    <td>1. Depth</td>
-			<td>Working Depth</td>
-		    <td>10 m</td>
-		    <td>
-		      Coral targets typically occur around 10 m in shallow water.<br>
-		      <em>Source:</em>
-		      <a href="https://www.sciencedirect.com/science/article/pii/S0025326X23008779?via%3Dihub" target="_blank">
-		        ScienceDirect
-		      </a>
-		    </td>
-		    <td>
-		      Testing of prototype 10 m below sea level to ensure structural and component integrity.
-		    </td>
+		    <td rowspan="3">1. Operating Parameters</td>
+			<td>1a. Working Depth</td>
+		    <td>5 m</td>
+		    <td>Most coral targets ≤5 m; shallow reef zone</td>
+		    <td>Pool test at 5m depth</td>
 		  </tr>
 		
 		  <!-- Housing Vessel section -->
 		  <tr>
-		    <td rowspan="3">2. Housing Vessel</td>
-		    <td>a. Pressure Tolerance</td>
-			<td>1.96 – 2 atm of pressure</td>
-		    <td>
-		      Safety protection against equipment and manufacturing tolerance.<br><br>
-		      <strong>Calculation:</strong><br>
-		      Po = Atmospheric pressure at surface (101325 Pa)<br>
-		      P = Density of water (1000 kg/m³)<br>
-		      g = 9.81 m/s²<br>
-		      h = 10 m<br><br>
-		      Pressure = Po + Pgh = 199.4 kPa = 1.96 atm
-		    </td>
-		    <!-- Shared Methodology cell -->
-		    <td rowspan="2">
-		      Submersion test for 2+ hours at 10 m working depth.
-		    </td>
+		    <td>2a. Pressure Tolerance</td>
+		    <td>>0.5 bar</td>
+			<td>Safety margin at 5 m depth </td>
+		    <td>Submersion and test leak at 5 m depth</td>
 		  </tr>
 		
 		  <tr>
-		    <td>b. Ingress Protection</td>
-			<td>IP68</td>
-		    <td>
-		      Protect electronics and actuation system from water ingress and pressure.<br>
-		      <em>Source:</em>
-		      <a href="https://integraenclosures.com/category/technical-articles/ip-rating-chart/" target="_blank">
-		        Integra Enclosures
-		      </a>
-		    </td>
+		    <td>2b. Buoyancy</td>
+			<td>Neutral at 5m depth</td>
+		    <td>Maintain at a stable depth, reducing collisions</td>
+			<td>Test in tank by with an adjustable ballast, measuring rise and sink</td>
+		  </tr>
+
+		  <!--Part 2-->
+		  <tr>
+		    <td rowspan="4">2. Actuation</td>
+			<td>3a. Tentacles Pressure/td>
+		    <td>120 - 170 kPa (1200 - 1700 hPa)</td>
+		    <td>Sufficient deformation without rupture</td>
+		    <td>Pressure cycling test of tenctacle, measuring displacement per pulse</td>
 		  </tr>
 		
 		  <tr>
-		    <td>c. Buoyancy</td>
-			<td>Neutral buoyancy at 10 m depth</td>
-		    <td>
-		      Maintain stable depth without active thrusters; prevents unintentional collision with sea floor or floating to surface.
-		    </td>
-		    <td>
-		      Buoyancy test in tank by adjusting internal ballast; measure rise/sink and verify stability during actuation.
-		    </td>
+		    <td>3b. Pulse Frequency</td>
+		    <td>>0.25 - 0.16Hz (4 - 6s period) </td>
+			<td>Silicone tentacles reach max formation at 2s - 3s. Maximum pressure recorded at 2s. </td>
+		    <td>Pressure cycling test of tenctacle, measuring displacement per pulse </td>
+		  </tr>
+		
+		  <tr>
+		    <td>3c. Foward Velocity</td>
+			<td>≥ 5 cm/s</td>
+		    <td>Safe, slow survery speed</td>
+			<td>Tank track: time over distance</td>
 		  </tr>
 
-		  <!-- Actuation -->
 		  <tr>
-		    <td rowspan="4">3. Actuation / Locomotion</td>
-		    <td>a. Actuation Pressure</td>
-			<td>1200hPa - 1700hPa</td>
-		    <td>
-		      Sufficient to deform silicone actuators while avoiding rupture.
-		    </td>
-		    <!-- Shared Methodology cell -->
-		    <td rowspan="2">
-		      Pressure cycling test of fingers; measure displacement of Jellybot per pulse
-		    </td>
-		  </tr>
-		  <tr>
-		    <td>b. Pulse frequency)</td>
-			<td>0.125Hz - 0.09Hz(4s to 6s cycle)</td>
-		    <td>Silicone actuators max formation at 4s - 5s. While maximum pressure recorded at 6s.</td>
-		  </tr>
-		  <tr>
-		    <td>c. Forward velocity</td>
-			<td>>5cm/s</td>
-		    <td>Safe, slow exploration to reduce disturbance of marine life. <br>Initial prototype (3 fingers) propel at ~5cm/s.</td>
-			<td>Track mark on tank and record time taken for Jellybot to move a certain distance.</td>
-		  </tr>
-		  <tr>
-		    <td>d. Segments of fingers</td>
-			<td>>4 , even number</td>
-		    <td>Symmetry reduces undesired yaw/roll during pulsing, with even weight distribution.<br>Based on a previous project, tested with 3 fingers, the structure slant sideways which shows uneven weight distribution.</td>
-			<td>Ensure Jellybot moves up and down horizontally in a straight line when all actuators are turned on.</td>
+		    <td>3d. Tentacle Segments</td>
+			<td>≥4 (even)</td>
+		    <td>Symmetry reduces undesired yaw/roll during pulsing, with even weight distribution.</td>
+			<td>Straight-line test; roll/yaw <2°</td>
 		  </tr>
 
-		  <!-- Power -->
+		  <!--Part 3-->
 		  <tr>
-		    <td rowspan="2">4. Power & Control</td>
-		    <td>a. Power source</td>
-			<td>Tethered 12-24V, 6A power for motor.<br>~25W supply to onboard controllers</td>
-		    <td>Continuous operation; ensures sufficient and stable energy for actuation and sensors.</td>
-		    <td>Electrical stability test; measure voltage/current stability under load.</td>
+		    <td rowspan="2">3. Power & Control</td>
+			<td>4a. Power/td>
+		    <td>Tethered 12 - 24 V, 3A for motors<br>~30 W for electronics</td>
+		    <td>Stable energy for sensors and motors</td>
+		    <td>Load test: voltage / current stability</td>
 		  </tr>
+		
 		  <tr>
-		    <td>b. Control Interface</td>
-			<td>Joystick control / Onboard microcontroller</td>
-		    <td>Intuitive human-in-the-loop control such as controlling Jellybot movement.<br>Logging of sensor data.</td>
-		    <td>Responsiveness test; verify data logging during maneuvering.</td>
-		  </tr>
-
-		  <!-- Ultrasonic Sensors -->
-		  <tr>
-		    <td rowspan="5">5. Ultrasonic Sensor</td>
-		    <td>a. Range</td>
-			<td>0.5 - 1m</td>
-		    <td>Successful photography is done >1m to reef. Ensure no collision happens.<br>‘Try to stay a constant distance of >1m above the benthos for consistent imaging and successful photogrammetry” (Roach et al., 2021)</td>
-		    <td rowspan="5">Tank test with targets at known distances (0.1, 0.5, 1, 2).Verify range error ≤ ±2 cm (≤1 m).<br>Verify beam patterns in the pool by setting obstacles around the test targets and return readings.<br>Carry out experiment >2hrs to ensure the sensor is still in working conditions.</td>
-		  </tr>
-		  <tr>
-		    <td>b. Operating frequency</td>
-			<td>~200khz</td>
-		    <td>Short-range, high-frequency sonar reduces reflections and improves resolution around complex reef structures.</td>
-		  </tr>
-		  <tr>
-		    <td>c. Beamwidth</td>
-			<td>20 Degree to 60 Degree</td>
-		    <td>Narrow enough to detect obstacles.</td>
-		  </tr>
-		  <tr>
-		    <td>d. Interface</td>
-			<td>UART, I2C or analog</td>
-		    <td>Easy integration with microcontroller, straightforward data logging onto board.</td>
-		  </tr>
-		  <tr>
-		    <td>e. IP Rating</td>
-			<td>IP68</td>
-		    <td>Installed externally for distance to object detections, it needs to be able to withstand harsh conditions.</td>
+		    <td>4b. Control Interface</td>
+		    <td>Joystick control and onboard microcontroller</td>
+			<td>intuitive teleoperation and logging data</td>
+		    <td>Responsiveness test; verify data logging during maneuvering</td>
 		  </tr>
 
-		   <!-- IMU -->
+		  <!--Part 4-->
 		  <tr>
-		    <td rowspan="3">6. IMU</td>
-		    <td>a. Accel and Gyro range</td>
-			<td>6 degree of freedom; ±250–2000°/s gyro, ±2–16 g accelerometer</td>
-		    <td rowspan="2">IMU provides attitude estimation for stable pulsed locomotion and logging for post-hoc motion analysis.IMU can get orientation information for camera / video footage capture.</td>
-		    <td rowspan="3">Dynamic motion tests on motion rig; verify orientation accuracy against optical tracking (error < 2° for pitch/roll during pulses).</td>
+		    <td rowspan="4">4. Sensing Suite</td>
+			<td>5. Ultrasonic Sensor/td>
+		    <td>Range: 0.5 - 1 m<br>
+				Frequency: ~200 kHz<br>
+				Beamwidth: 20–60°<br>
+				Interface: UART/I²C/analog</td>
+		    <td>Standoff to avoid coral contact, short-range obstacle awareness</td>
+		    <td>Tank test measuring marked out distance,Range error ≤ 2 cm</td>
 		  </tr>
+		
 		  <tr>
-		    <td>b. Interface</td>
-			<td>UART, I2C, Analog</td>
-		  </tr>
-		  <tr>
-		    <td>c. Sampling Rate</td>
-			<td>>400Hz</td>
-		    <td>High sampling helps with filtering and sensor fusion while actuation pulses occur.</td>
-		  </tr>
-
-		  <!-- Magnet -->
-		  <tr>
-		    <td rowspan="3">7. Magnetometer</td>
-		    <td>a. Range</td>
-			<td>±1000 µT (sufficient for Earth field ± disturbances)</td>
-		    <td rowspan="3">Useful for heading reference, especially when optical navigation is not available as Jellybot would operate in the open waters.<br>Provide a gauge on the current direction.</td>
-		    <td rowspan="3">Calibration with accuracy test vs known compass. Verify accuracy against known compass.</td>
-		  </tr>
-		  <tr>
-		    <td>b. Sampling Rate</td>
-			<td>~100Hz</td>
-		  </tr>
-		  <tr>
-		    <td>c. Interface</td>
-			<td>UART, I2C, Analog</td>
+		    <td>6. IMU (6 DOF)</td>
+		    <td>Acceleration Range: ±250–2000°/s<br>
+				Gyroscope Range: ±2–16 g<br>
+				Sampling Rate: >400 Hz<br>
+				Interface: UART/I²C/analog </td>
+			<td>Attitude for stable pulsing and video</td>
+		    <td>Motion tests on motion rig and observational reference. <2° error for pitch/roll during pulses.</td>
 		  </tr>
 
-		  <!-- Camera -->
 		  <tr>
-		    <td rowspan="5">8.Camera</td>
-		    <td>a. Frame rate</td>
-			<td>30 - 60fps</td>
-		    <td>For smooth live navigation feedback and surveillance for real time situational feedback.</td>
-		    <td rowspan="5">Visual tests in tank: contrast, low-light frame quality, color fidelity.<br>Verify live image/video latency to view.<br>Camera housing leak test to IP68 at 10 m. <br>Check image distortion.</td>
-		  </tr>
-		  <tr>
-		    <td>b. Shutter</td>
-			<td>Global shutter</td>
-			<td>Global shutter prevents rolling artifacts during pulsed motion. Especially underwater where water motion is continuous.</td>
-		  </tr>
-		  <tr>
-		    <td>c. Low light sensitivity</td>
-			<td>Low light sensitivity : <0.1 Lux</td>
-		    <td>Low-light performance for more deep fauna or murky water. <br>Generally, light is still able to reach the 10m depth.</td>
-		  </tr>
-		  <tr>
-		    <td>d. Field of view</td>
-			<td>70 Degree to 90 Degree</td>
-		    <td>Moderate FOV balances scene context and detail.</td>
-		  </tr>
-		  <tr>
-		    <td>e. Optical window</td>
-			<td>Anti reflective coated dome, rated to IP68</td>
-		    <td>Since the dome is circular, video/image may cause distortions causing fisheyes lens view.</td>
+		    <td>7. Magnetometer</td>
+		    <td>Range: ±1000 µT (sufficient for Earth field ± disturbances)<br>
+				Sampling Rate: ~100 Hz<br>
+				Interface: UART/I²C/analog </td>
+			<td>Heading reference for open water operation</td>
+		    <td>Calibration with accuracy test vs known compass. Verify accuracy against known compass.</td>
 		  </tr>
 
-		  <!-- MCU -->
 		  <tr>
-		    <td rowspan="8">9. Microcontroller</td>
-		    <td>a. Core performance</td>
-			<td>32-bit ARM Cortex-M4 or M7 class;</td>
-		    <td>Enough processing for sensor fusion, closed-loop actuation timing, low-latency telemetry and logging.</td>
-		    <td rowspan="8">All peripherals communicate reliably with no data loss or bus conflicts.<br>Systems remain operational after 10m depth, no short circuit or condensation inside housing.<br>Stable and accurate sensor readings (<5% deviation).</td>
+		    <td>8. Camera</td>
+		    <td>Frame rate: 30 - 60 fps<br>
+				Shutter: Global shutter<br>
+				Low light sensitivity: <0.1 Lux<br>
+				Field of view: 70–90°<br>
+				Optical window: Anti reflective coated dome, rated to IP68</td>
+			<td>Live navigation feedback and surveillance</td>
+		    <td>Visual tests in tank: contrast, low-light frame quality, color fidelity.<br>Verify live image/video latency to view.<br>Camera housing leak test to IP68 at 10 m. <br>Check image distortion.</td>
 		  </tr>
+
+
+		  <!--Part 5-->
 		  <tr>
-		    <td>b. Flash & RAM</td>
-			<td>Flash ≥ 512 kB; RAM ≥ 128 kB</td>
-			<td>Space for firmware, data buffers, file system, and on-board logging.</td>
+		    <td rowspan="4">5. Computation</td>
+			<td>9a. Microcontroller/td>
+		    <td>32-bit ARM Cortex-M4 or M7 class;<br>
+				Flash ≥ 512 kB; RAM ≥ 128 kB<br>
+				12- to 16-bit ADC; sampling rate ≥ 1 kS/s per channel (multiplexed)<br>
+				I²C, SPI, UART, SDIO (or SPI) for SD card</td>
+		    <td>Enough processing for sensor fusion, closed-loop actuation timing, low-latency telemetry and logging</td>
+		    <td>All peripherals communicate reliably with no data loss or bus conflicts</td>
 		  </tr>
+		
 		  <tr>
-		    <td>c. ADC / Analog</td>
-			<td>12- to 16-bit ADC; sampling rate ≥ 1 kS/s per channel (multiplexed)</td>
-		    <td>Read analog sensors and analog sonar outputs with required resolution.</td>
+		    <td>9b. Memory</td>
+		    <td>Flash ≥ 512 kB<br>
+				RAM ≥ 128 kB
+				</td>
+			<td>Space for firmware, data buffers, file system, and on-board logging</td>
+		    <td>All peripherals communicate reliably with no data loss or bus conflicts</td>
 		  </tr>
+
 		  <tr>
-		    <td>d. Peripheral interfaces</td>
-			<td>I²C, SPI, UART, SDIO (or SPI) for SD card</td>
-		    <td>Support for sensors, camera companion comms, tether comms, and local logging.</td>
-		  </tr>
-		  <tr>
-		    <td>e. Camera handling</td>
-			<td>High-rate image/video processing</td>
-		    <td>For continuous live feed for monitoring of surroundings and data.</td>
-		  </tr>
-		  <tr>
-		    <td>f. Power</td>
-			<td>5V-12V supply, 2A - 5A</td>
-		    <td>Ensure stable MCU operation over tether voltage variation; detect overcurrent and safely disable actuators.</td>
-		  </tr>
-		  <tr>
-		    <td>g. Temperature</td>
-			<td>Operating: −10 °C to +40 °C</td>
-		    <td>Prevent internal overheating.</td>
-		  </tr>
-		  <tr>
-		    <td>h. Physical</td>
-			<td>&lt; 80mm x 60mm<br>&lt; 50grams of weight </td>
-		    <td>Compactness keeps the center of buoyancy/control volumes manageable; ease of service.</td>
+		    <td>9c. ACD/IO</td>
+		    <td>12 - 16 bit ADC,<br>
+				Interface: UART/I²C/analog 
+				SDIO/SPI</td>
+			<td>Sensor fidelity and storage</td>
+		    <td>All peripherals communicate reliably with no data loss or bus conflicts</td>
 		  </tr>
 		</table>
 	</div>
