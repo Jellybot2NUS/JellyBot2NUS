@@ -214,18 +214,15 @@
       <a href="#section-3">3. Wiring Diagram</a>
       </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-4">4. Testing</a>
+      <a href="#section-4">4. Component Testing</a>
       <sl-tree-item><a href="#sub-section-4a">4.1 Camera Testing</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4b">4.2 Results</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4b">4.2 Navigation Testing</a></sl-tree-item>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-5">5. Navigation Testing</a>
+      <a href="#section-5">5. User Journey (Controller)</a>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-6">6. User Journey (Controller)</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-7">7. Summary and Future Improvements</a>
+      <a href="#section-6">6. Summary and Future Improvements</a>
     </sl-tree-item>
     <sl-tree-item>
       <a href="#references">References</a>
@@ -312,11 +309,24 @@
     </div>
 
     <section id="section-4">
-    <h2>4. Testing</h2>
+    <h2>4. Component Testing</h2>
     <section id="sub-section-4a">  
     <h3>4.1 Camera testing (Without Distortion)</h3>
-    <p><b>Purpose</b> : Determine the ideal distance between the Jellybot and coral reef for optimal resolution.</p>
-    <p><b>Test Set-up</b>: BEEX tank to mimic underwater murky conditions</p>
+    <p><b>Objective</b> :</p>
+      <p>The objective of this test is to determine the optimal operating distance between JellyBot and coral reef structures to achieve maximum image resolution and minimal distortion. This will inform the proper positioning of the onboard camera for underwater ecological monitoring.</p>
+    <p><b>Test Set-Up</b> :</p> <p>
+      <ul>
+      <li>A BEEX tank was used to simulate underwater conditions, including murky water and limited visibility.</li>
+      <li>A prop was used as a test target to simulate reef structures.</li>
+    </ul>
+      </p>
+      <p><b>Procedure</b> :</p> <p>
+      <ol>
+      <li>The JellyBot was positioned at varying distances from the prop (ranging from 0.2 m to 1.5 m).</li>
+      <li>Images were captured at each distance.</li>
+      <li>Observations were recorded regarding image clarity, focus, and distortion.</li>
+    </ol>
+      </p>
     <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
       <div style="flex: 1; text-align: center; margin-right: 10px;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/prop.png?raw=true" 
@@ -329,11 +339,25 @@
         <p style="text-align:center;">BeeX Tank used for testing</p>
       </div>
     </div>
-    <section id="sub-section-4b"> 
-    <h3>4.2 Results</h3>
-    <p><b>Finding</b> : Findings are consistent with threory, Image is most visible between 0.5 m - 1 m</p>
-    <p><b>Shortcoming</b> : The prop used is not a coral reef</p>
-    <p><b>Future testing</b> : <br>Set-Up: Clear, printed images of coral reefs<br>Measured: Capture still images at marked intervals<br>Assessment: MATLAB Edge-Detection </p>
+    <p><b>Results</b> :</p> <p>
+      <p><b>Findings</b> :</p> <p>
+      <ul>
+      <li>The captured images were clearest and most distinguishable at distances between <strong>0.5 m and 1.0 m</strong>, which aligns with theoretical predictions for underwater imaging resolution.</li>
+      <li>Image clarity decreases significantly beyond this range due to light scattering and refraction effects in the water.</li>
+    </ul>
+      <p><b>Limitations</b> :</p> <p>
+      <ul>
+      <li>The test object was a prop and does not fully replicate the complexity or texture of actual coral reefs.</li>
+      <li>The tank environment, while simulating murky conditions, may not entirely reflect field conditions such as water turbidity or lighting variations.</li>
+    </ul>
+      <p><b>Future Testing Plans</b> :</p> <p>
+      <ul>
+      <li><strong>Setup:</strong> Use printed images or 3D-printed models of coral reefs to better replicate natural reef structures.</li>
+      <li><strong>Measurements:</strong> Capture still images at marked intervals to quantify image sharpness and distortion.</li>
+      <li><strong>Analysis:</strong> Employ MATLAB Edge-Detection techniques to evaluate image quality, focus, and detection reliability under varying distances.</li>    
+      </ul>
+
+      
  <!-- Three images in one row -->
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 40px;">
       <div style="flex: 1; text-align: center; margin-right: 10px;">
@@ -352,8 +376,12 @@
         <p style="text-align:center;">100 cm</p>
       </div>
     </div>
-    <section id="section-5">
-    <h2>5. Navigation Testing</h2>
+      <p><b>Future Testing Plans</b> :</p> <p>
+        The preliminary tests successfully identified a working range for the camera, providing baseline data for subsequent in-situ testing. Further experiments using realistic reef models will refine the optimal operating distance and ensure reliable imaging performance for ecological monitoring.
+      </p>
+      
+    <section id="sub-section-4b">
+    <h3>4.2 Navigation Testing</h3>
     <p><b>Purpose</b> : Achieve a compass-like heading to deterimine orientation of the Jellybot.</p>
     <p><b>Test Set-up</b>: Compass and Magnetometer, keeping away from magnets and electronics.</p>
     <p><b>Findings</b>: Hold true to features and specifications (7) magnetometer.</p>
@@ -371,7 +399,7 @@
         <p style="text-align:center;">Readings</p>
       </div>
     </div>
-    <section id="section-6">
+    <section id="section-5">
     <h2>6. User Journey (Controller)</h2>
      <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/welcome_menu.png?raw=true'>
@@ -406,8 +434,8 @@
 
     
 
-    <section id="section-7">
-    <h2>7. Summary and Future Improvements</h2>
+    <section id="section-6">
+    <h2>6. Summary and Future Improvements</h2>
     <p>
   The electronics subsystem effectively manages signal processing, data acquisition, and communication between sensors and control modules.
   It forms the core intelligence that enables Jellybot’s autonomous functions and real-time responsiveness.
