@@ -314,7 +314,7 @@
     <h3>4.1 Camera testing (Without Distortion)</h3>
     <p><b>Objective</b> :</p>
       <p>The objective of this test is to determine the optimal operating distance between JellyBot and coral reef structures to achieve maximum image resolution and minimal distortion. This will inform the proper positioning of the onboard camera for underwater ecological monitoring.</p>
-    <p><b>Test Set-Up</b> :</p> <p>
+    <p><b>Test Setup</b> :</p> <p>
       <ul>
       <li>A BEEX tank was used to simulate underwater conditions, including murky water and limited visibility.</li>
       <li>A prop was used as a test target to simulate reef structures.</li>
@@ -339,7 +339,7 @@
         <p style="text-align:center;">BeeX Tank used for testing</p>
       </div>
     </div>
-    <p><b>Results</b> :</p> <p>
+    <p><b>Results</b></p> <p>
       <p><b>Findings</b> :</p> <p>
       <ul>
       <li>The captured images were clearest and most distinguishable at distances between <strong>0.5 m and 1.0 m</strong>, which aligns with theoretical predictions for underwater imaging resolution.</li>
@@ -376,18 +376,19 @@
         <p style="text-align:center;">100 cm</p>
       </div>
     </div>
-      <p><b>Future Testing Plans</b> :</p> <p>
+      <p><b>Conclusion</b> :</p> <p>
         The preliminary tests successfully identified a working range for the camera, providing baseline data for subsequent in-situ testing. Further experiments using realistic reef models will refine the optimal operating distance and ensure reliable imaging performance for ecological monitoring.
       </p>
       
     <section id="sub-section-4b">
     <h3>4.2 Navigation Testing</h3>
-    <p><b>Purpose</b> : Achieve a compass-like heading to deterimine orientation of the Jellybot.</p>
-    <p><b>Test Set-up</b>: Compass and Magnetometer, keeping away from magnets and electronics.</p>
-    <p><b>Findings</b>: Hold true to features and specifications (7) magnetometer.</p>
-    <p><b>Shortcoming</b>: Readings tend to drift, not very consistent.</p>
-    <p><b>Future implementations</b>: Have a better set-up to completely remove magnetic interference .</p>
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
+    <p><b>Objective</b> : </p>
+    <p>The objective of this test was to evaluate the JellyBot’s ability to determine its orientation accurately, achieving a compass-like heading using the onboard magnetometer. Reliable heading information is crucial for navigation and control in complex underwater environments.</p>
+    <p><b>Test Setup</b> : </p>
+    <p>The test employed the JellyBot’s compass and magnetometer sensors. Care was taken to keep the test area clear of magnets and other electronic devices that could introduce interference and affect readings. The JellyBot was rotated through multiple headings while stationary to assess the sensor’s responsiveness and accuracy.</p>  
+  
+      
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
       <div style="flex: 1; text-align: center; margin-right: 10px;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/test_set_up.png?raw=true" 
              alt="Pressure Test Setup" style="width:100%; height:auto;">
@@ -399,8 +400,23 @@
         <p style="text-align:center;">Readings</p>
       </div>
     </div>
+
+    <p><b>Findings</b> : </p>
+    <p>The magnetometer generally provided readings that aligned with the expected headings, confirming that the sensor functioned according to its specifications. The system successfully demonstrated basic orientation detection capability.</p>  
+    <p><b>Limitations</b> : </p>
+    <p>Despite the overall functionality, the magnetometer readings tended to drift over time and were occasionally inconsistent. Minor residual magnetic interference in the environment contributed to these fluctuations, highlighting the need for better isolation of the sensor.</p>  
+    <p><b>Future Testing Plans</b> :</p> <p>
+      <ul>
+      <li><strong>Setup:</strong> Improve the testing environment to eliminate all sources of magnetic interference, including hidden electronic components and nearby ferrous materials.</li>
+      <li><strong>Measurements:</strong> Record heading data over extended periods and across multiple orientations to assess long-term stability.</li>
+      <li><strong>Analysis:</strong> Implement calibration and filtering algorithms to reduce drift and enhance measurement consistency.</li>    
+      </ul>
+    <p><b>Conclusions</b> : </p>
+    <p>The preliminary navigation tests verified the magnetometer’s basic functionality and established a baseline for orientation detection. Further refinements in sensor placement, environmental isolation, and data processing will improve heading accuracy and reliability for precise underwater navigation.</p>  
+
+      
     <section id="section-5">
-    <h2>6. User Journey (Controller)</h2>
+    <h2>5. User Journey (Controller)</h2>
      <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/welcome_menu.png?raw=true'>
         <p style="text-align:center;">Welcome Menu</p>
