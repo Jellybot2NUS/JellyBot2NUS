@@ -235,51 +235,55 @@
 
 
     <h2>2. System</h2>
-    <h3>Component Table</h3>
-    <table class="styled-table">
-      <tr>
-        <th>Components</th>
-        <th>Mass</th>
-        <th>Dimensions</th>
-        <th>Voltage & Current</th>
-        <th>Power</th>
+    <p>
+      System Components & Specifications
+    </p>
+
+    <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
+      <tr style="background-color:#0a3d62; color:white;">
+        <th style="border: 1px solid #333; padding:8px;">Components</th>
+        <th style="border: 1px solid #333; padding:8px;">Arduino UNO</th>
+        <th style="border: 1px solid #333; padding:8px;">AM3030HPM Mini Pump (x2)</th>
+        <th style="border: 1px solid #333; padding:8px;">L298N Motor Driver (x2)</th>
+        <th style="border: 1px solid #333; padding:8px;">Electric Solenoid Valve (x2)</th>
       </tr>
       <tr>
-        <td>Raspberry Pi 5</td>
-        <td>50g</td>
-        <td>85 x 86 mm</td>
-        <td>5V, 1A</td>
-        <td>5W</td>
+        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Mass</td>
+        <td style="border: 1px solid #333; padding:8px;">25g</td>
+        <td style="border: 1px solid #333; padding:8px;">170g (85g each)</td>
+        <td style="border: 1px solid #333; padding:8px;">50g</td>
+        <td style="border: 1px solid #333; padding:8px;">90g (45g each)</td>
       </tr>
       <tr>
-        <td>SEN0311 Ultrasonic Sensor</td>
-        <td>61.57g</td>
-        <td>29.6 x 63.6 mm</td>
-        <td>3.3V, 8mA</td>
-        <td>26.4 mW</td>
+        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Dimensions</td>
+        <td style="border: 1px solid #333; padding:8px;">68.6 × 53.4mm</td>
+        <td style="border: 1px solid #333; padding:8px;">70 × 30 × 30mm</td>
+        <td style="border: 1px solid #333; padding:8px;">43 × 43 × 27mm</td>
+        <td style="border: 1px solid #333; padding:8px;">20 × 39 × 16mm</td>
       </tr>
       <tr>
-        <td>MPU6050 IMU</td>
-        <td>130 mg</td>
-        <td>20 x 15 mm</td>
-        <td>3.3V, 5μA</td>
-        <td>1.65 mW</td>
+        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Voltage & Current</td>
+        <td style="border: 1px solid #333; padding:8px;">5V, 20mA per pin</td>
+        <td style="border: 1px solid #333; padding:8px;">12V, 380mA</td>
+        <td style="border: 1px solid #333; padding:8px;">
+          Motor Voltage: 5V–35V, 2A<br>
+          Logic Voltage: 4.5V–7V
+        </td>
+        <td style="border: 1px solid #333; padding:8px;">12V, 0.3A</td>
       </tr>
       <tr>
-        <td>HMC5883L Magnetometer</td>
-        <td>0.5g</td>
-        <td>3 x 3 mm</td>
-        <td>3.3V, 6μA</td>
-        <td>1.98 mW</td>
-      </tr>
-      <tr>
-        <td>Raspberry Pi Camera Module V2</td>
-        <td>3g</td>
-        <td>25 x 23 mm</td>
-        <td>3.3V, 250 mA</td>
-        <td>0.825 W</td>
+        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Power Requirement</td>
+        <td style="border: 1px solid #333; padding:8px;">0.25W</td>
+        <td style="border: 1px solid #333; padding:8px;">4.56W</td>
+        <td style="border: 1px solid #333; padding:8px;">25W (Maximum)</td>
+        <td style="border: 1px solid #333; padding:8px;">2.5W</td>
       </tr>
     </table>
+
+    <p style="font-weight:bold; text-align:left; margin-top:10px;">
+      Total Mass: 115.2g<br>
+      Total Power Requirement: 5.86W
+    </p>
 
     <h2>3. Wiring Diagram</h2>
     <div class="center-image">
