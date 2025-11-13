@@ -208,23 +208,34 @@
       <a href="#section-1">1. Overview of the Electronics System</a>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-2">2. Deisgn</a>
-      <sl-tree-item><a href="#sub-section-2a">2.1 Application to JellyBot</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-2b">2.2 Value Proposition Statement</a></sl-tree-item>
+      <a href="#section-2">2. System Components & Specifications</a>
+      </sl-tree-item>
+    <sl-tree-item>
+      <a href="#section-3">3. Wiring Diagram</a>
+      </sl-tree-item>
+    <sl-tree-item>
+      <a href="#section-4">4. Testing</a>
+      <sl-tree-item><a href="#sub-section-4a">4.1 Camera Testing</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4b">4.2 Results</a></sl-tree-item>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-3">3. Concepts</a>
-      <sl-tree-item><a href="#sub-section-3a">3.1 Introduction</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-3b">3.2 Case Study</a></sl-tree-item>
+      <a href="#section-5">5. Navigation Testing</a>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#references">Summary</a>
+      <a href="#section-6">6. User Journey (Controller)</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a href="#section-7">7. Summary and Future Improvements</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a href="#references">References</a>
     </sl-tree-item>
   </sl-tree>
 </section>
 
   <!-- Main Content -->
   <main>
+    <section id="section-1">
     <h2>1. Overview of the Electronics System</h2>
     <p>
   The electronics subsystem serves as the control and sensory core of Jellybot, enabling communication, data processing, and coordination across all hardware modules.
@@ -233,7 +244,7 @@
   The subsystem is designed with waterproof connectors, organized PCB layouts, and proper grounding to minimize electrical noise and ensure reliability under high-pressure and high-humidity conditions.
     </p>
 
-
+  <section id="section-2">
     <h2>2. System</h2>
     <p>
       System Components & Specifications
@@ -294,14 +305,15 @@
     Together, they enable Jellybot to perceive its environment, support navigation and stabilization algorithms, and provide essential feedback for control. 
     The total power and mass remain minimal, maintaining system efficiency and suitability for underwater deployment.  
     </p>
-
+    <section id="section-3">
     <h2>3. Wiring Diagram</h2>
     <div class="center-image">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_sub.jpg?raw=true'>
     </div>
 
-
+    <section id="section-4">
     <h2>4. Testing</h2>
+    <section id="sub-section-4a">  
     <h3>4.1 Camera testing (Without Distortion)</h3>
     <p><b>Purpose</b> : Determine the ideal distance between the Jellybot and coral reef for optimal resolution.</p>
     <p><b>Test Set-up</b>: BEEX tank to mimic underwater murky conditions</p>
@@ -317,7 +329,7 @@
         <p style="text-align:center;">BeeX Tank used for testing</p>
       </div>
     </div>
-
+    <section id="sub-section-4b"> 
     <h3>4.2 Results</h3>
     <p><b>Finding</b> : Findings are consistent with threory, Image is most visible between 0.5 m - 1 m</p>
     <p><b>Shortcoming</b> : The prop used is not a coral reef</p>
@@ -340,7 +352,7 @@
         <p style="text-align:center;">100 cm</p>
       </div>
     </div>
-
+    <section id="section-5">
     <h2>5. Navigation Testing</h2>
     <p><b>Purpose</b> : Achieve a compass-like heading to deterimine orientation of the Jellybot.</p>
     <p><b>Test Set-up</b>: Compass and Magnetometer, keeping away from magnets and electronics.</p>
@@ -359,7 +371,7 @@
         <p style="text-align:center;">Readings</p>
       </div>
     </div>
-
+    <section id="section-6">
     <h2>6. User Journey (Controller)</h2>
      <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/welcome_menu.png?raw=true'>
@@ -394,14 +406,17 @@
 
     
 
-
-    <h2>4. Summary and Future Improvements</h2>
+    <section id="section-7">
+    <h2>7. Summary and Future Improvements</h2>
     <p>
   The electronics subsystem effectively manages signal processing, data acquisition, and communication between sensors and control modules.
   It forms the core intelligence that enables Jellybot’s autonomous functions and real-time responsiveness.
   Future iterations could integrate more compact embedded processors, improved sensor fusion techniques, and enhanced waterproofing strategies to increase performance, reduce latency, and support more advanced underwater analytics.
     </p>
 
+  <section id="references">
+    <h2>References</h2>
+      
   </main>
 
   <!-- Footer -->
