@@ -135,17 +135,25 @@
   <h2>Table of Contents</h2>
   <sl-tree>
     <sl-tree-item>
-      <a href="#section-1">1. Overview</a>
+      <a href="#section-1">1. Actuator Comparison</a>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-2">2. Deisgn</a>
-      <sl-tree-item><a href="#sub-section-2a">2.1 Application to JellyBot</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-2b">2.2 Value Proposition Statement</a></sl-tree-item>
+      <a href="#section-2">2. Actuator Selection</a>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-3">3. Concepts</a>
-      <sl-tree-item><a href="#sub-section-3a">3.1 Introduction</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-3b">3.2 Case Study</a></sl-tree-item>
+      <a href="#section-3">2. Bouyancy Calculations</a>
+      <sl-tree-item><a href="#sub-section-3a">3.1 Theoretical calculation</a></sl-tree-item>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a href="#section-4">4. Buoyancy Test</a>
+      <sl-tree-item><a href="#sub-section-4a">4.1 Determining the Additional Mass Required</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4b">4.2 Buoyancy Test</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4c">4.3 Summary of Results</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4d">4.4 Shortcomings</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4e">4.5 Future Recommendations</a></sl-tree-item>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a href="#section-5">5. Propulsion Test</a>
     </sl-tree-item>
     <sl-tree-item>
       <a href="#references">Summary</a>
@@ -155,6 +163,7 @@
 
   <!-- Main Content -->
   <main>
+    <section id="section-1">
     <h2>1. Actuator Comparison</h2>
 
     <table class="styled-table">
@@ -205,6 +214,7 @@
     </table>
 
     <!--Weightage-->
+      <section id="section-2">
     <h2>2. Actuator Selection</h2>
 
       <p><strong>Objective:</strong><br>
@@ -496,8 +506,145 @@
       </p>
 
 
-    
+    <section id="section-3">
     <h2>3. Calculations Data</h2>
+      
+        <h3>Calculations Made to Achieve Neutral Buoyancy</h3>
+      
+        <p>
+          To achieve neutral buoyancy, the <b>weight of the displaced water</b> must equal the <b>weight of the prototype</b>.
+          Under freshwater conditions (ρ = 1 g/cm³), this simplifies to:
+        </p>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
+      Volume of Displaced Water = Mass of Prototype
+        </pre>
+      
+        <h3>Prototype 1 CAD Design</h3>
+      
+        <p>
+          We calculate the volume of displaced water by summing the volumes of all external components:
+          PVC housing, dome, flap, and tentacles.
+        </p>
+      
+        <h4>PVC Housing</h4>
+        <p>
+          The PVC housing includes the pipe and two end caps. The pipe height (<i>H<sub>total</sub></i>) is unknown.
+        </p>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      PVC Pipe:
+        Density = 1.38 g/cm³
+        Outer Radius, Rₒ = 5.7 cm
+        Inner Radius, Rᵢ = 5.3 cm
+      
+      End Caps (x2):
+        Density = 1.38 g/cm³
+        Outer Radius, Rcap,out = 6.15 cm
+        Inner Radius, Rcap,in = 5.75 cm
+        Height, Hcap = 5.3 cm
+      
+      Unknown:
+        Htotal = (2 × Hcap) + Hexposed,pipe
+        </pre>
+      
+        <h4>Acrylic Dome</h4>
+        <p>
+          The acrylic dome is hemispherical. The volume of a hemisphere is given by:
+        </p>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      V<sub>dome</sub> = (2/3)πr³
+      r = 3.2 cm
+      V<sub>dome</sub> ≈ 68.66 cm³
+      M<sub>dome</sub> = 15 g
+        </pre>
+      
+        <h4>Silicone Flap and Tentacles</h4>
+        <p>
+          The flap and eight tentacles are made from Ecoflex 00-30 and Dragonskin 00-20 silicone.
+        </p>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      Flap:
+        Density = 1.07 g/cm³
+        R<sub>out</sub> = 15.2 cm
+        R<sub>in</sub> = 5.7 cm
+        Thickness = 0.3 cm
+        Volume = π(Rout² - Rin²)(Thickness)
+                = 187.09 cm³
+        Mass = 1.07 × 187.09 = 200.19 g
+      
+      Tentacles (×8):
+        Length = 9.5 cm, Width = 2 cm, Height = 2 cm, Thickness = 0.2 cm
+        Full Volume (8×) = 9.5 × 2 × 2 × 8 = 304 cm³
+        Inner Air Volume = 190.46 cm³
+        Silicone Volume = 304 - 190.46 = 113.54 cm³
+        Mass = 113.54 × 1.07 = 121.49 g
+        </pre>
+      
+        <h3>External Displaced Volume</h3>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      V<sub>dome</sub> = 68.66 cm³
+      V<sub>flap</sub> = 187.09 cm³
+      8 × V<sub>tentacle</sub> = 304 cm³
+      
+      Total (less PVC Housing):
+      V<sub>fixed</sub> = 68.66 + 187.09 + 304 = 559.75 cm³
+      
+      PVC Housing:
+      V<sub>disp,housing</sub> = π(Rₒ²)(Htotal) + 2π(Rcap,out² - Rₒ²)(Hcap)
+                               = 102.07Htotal + 177.58 cm³
+      
+      Total Displaced Volume:
+      V<sub>disp,total</sub> = 559.75 + 102.07Htotal + 177.58
+                             = 102.07Htotal + 737.33 cm³
+        </pre>
+      
+        <h3>Total Mass Calculation</h3>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      M<sub>dome</sub> = 15 g
+      M<sub>flap</sub> = 200.19 g
+      8 × M<sub>tentacle</sub> = 121.49 g
+      M<sub>internal</sub> = 605 g
+      M<sub>fixed</sub> = 941.68 g
+      
+      PVC Housing:
+      V<sub>pvc</sub> = π(Rₒ² - Rᵢ²)(Htotal) + 2π(Rcap,out² - Rcap,in²)(Hcap)
+                      = 13.823Htotal + 158.51 cm³
+      M<sub>pvc</sub> = (13.823Htotal + 158.51) × 1.38
+                      = 19.08Htotal + 218.75 g
+      
+      Total Mass:
+      M<sub>total</sub> = 941.68 + 19.08Htotal + 218.75
+                        = 19.08Htotal + 1160.43 g
+        </pre>
+      
+        <h3>Neutral Buoyancy Condition</h3>
+      
+        <p>
+          To achieve neutral buoyancy, the total mass (<i>M<sub>total</sub></i>) must equal the total volume of water displaced (<i>V<sub>disp,total</sub></i>).
+        </p>
+      
+        <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center;">
+      M<sub>total</sub> = V<sub>disp,total</sub>
+      19.076H<sub>total</sub> + 1160.43 = 102.07H<sub>total</sub> + 737.33
+      
+      -737.33 + 1160.43 = (102.07 - 19.076)H<sub>total</sub>
+      423.1 = 82.994H<sub>total</sub>
+      
+      H<sub>total</sub> = 423.1 / 82.994
+      H<sub>total</sub> ≈ 5.10 cm
+        </pre>
+      
+        <p>
+          Therefore, to achieve neutral buoyancy, the total PVC pipe height (<i>H<sub>total</sub></i>) must be approximately <b>5.10 cm</b>.
+        </p>
+      
+      <h3>Summary of Mass and Volume of Displaced Water Data</h3>
+      
     <table class="styled-table" style="margin-bottom:60px;">
       <tr>
         <th>Component</th>
@@ -541,7 +688,7 @@
       </tr>
   </table>
 
-
+    <section id="sub-section-3a">
     <h3>3.1 Theoretical calculations</h3>
     <p>
       To achieve neutral buoyancy, the total mass (<i>M<sub>total</sub></i>) must be equal to the total volume of water displaced (<i>V<sub>disp,total</sub></i>).
@@ -571,6 +718,7 @@ M<sub>needed</sub> = [82.994(15) - 423.1] g
 M<sub>needed</sub> ≈ 821.81 g
     </pre>
 
+    <section id="section-4">
     <h2>4. Buoyancy Tests</h2>
     <p>Neutral buoyancy is achieved when the upward force known as Buoyant Force = downward force also known as Weight as shown below.</p>
     <div style="display: flex; justify-content: center; align-items: center;">
@@ -583,7 +731,8 @@ M<sub>needed</sub> ≈ 821.81 g
     <div style="margin-bottom:60px; text-align:center;">
       <p>Buoyant Force (Fb) = ρ x g x Volume displaced<br>Weight, W = mg<br>Therefore, Fb = W<br>Assuming fresh water density, ρ = 1g/cm³<br>Gravitational acceleration, g cancels out from both equations.<br>Thus, Vdisplaced = m to achieve neutral buoyanc</p>
     </div>
-    
+
+      <section id="sub-section-4a">
 <h3 class="subsection">4.1 Determining the Additional Mass Required</h3>
     <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center; margin-bottom:40px;"> 
     Buoyancy Analysis of JellyBot
@@ -626,6 +775,8 @@ M<sub>needed</sub> ≈ 821.81 g
     </div>
 
   <div style="margin-bottom:40px;">
+    
+    <section id="sub-section-4b">
     <h3 class="subsection">4.2 Buoyancy Test</h3>
   
     <h4 style="margin-left:40px;">4.21 Neutral Buoyancy Test</h4>
@@ -692,7 +843,8 @@ M<sub>needed</sub> ≈ 821.81 g
       </div>
     </div>
 
-    <h3 style="margin-bottom:40px" class="subsection">4.3 Summary of results</h3>
+    <section id="sub-section-4c">
+    <h3 style="margin-bottom:40px" class="subsection">4.3 Summary of Results</h3>
     <table class="styled-table" style="margin-bottom:40px;">
       <tr>
         <th>Buoyancy Test</th>
@@ -727,14 +879,15 @@ M<sub>needed</sub> ≈ 821.81 g
       </tr>
     </table>
 
-  
+      <section id="sub-section-4d">
       <h3 class="subsection">4.4 Shortcomings</h3>
       <p>
         Currently our JellyBot is not able to descend to depths on its own. It would require manual assistance to place the bot at our desired depth.
       </p>
       <p style="margin-bottom:40px;">Tests were conducted in stable freshwater. Considering in reality there is seawater current, we would require JellyBot to have positive stability. This is to ensure self correcting capabilities when faced against the water current force. </p>
 
-      <h3 class="subsection">4.5 Future recommendations</h3>
+        <section id="sub-section-4e">
+      <h3 class="subsection">4.5 Future Recommendations</h3>
       <p>
         To combat the depth issue, we are considering a Variable Buoyancy System (VBS). With a VBS, we would be able to reach desired depths by pumping in water (F<sub>b</sub> &lt; W), causing the JellyBot to be negatively buoyant and sink. 
         When approaching the desired depth for surveillance, the pump would release the water so that the weight of the JellyBot equals the buoyant force (F<sub>b</sub> = W), maintaining neutral buoyancy.
@@ -744,6 +897,7 @@ M<sub>needed</sub> ≈ 821.81 g
         To ensure positive stability, we are considering adding rigid masses or steel bearings and bolting them to the base of the cylindrical hull of JellyBot. This keeps the Center of Gravity (CG) as low as possible below the Center of Buoyancy (CB).
       </p>
 
+        <section id="section-5">
       <h2>5. Propulsion Test</h2>
       <h3 class="subseection">5.1 Objective</h3>
       <p style="margin-bottom:40px;">To ensure our JellyBot is able to propel upwards with a velocity of 5cm/s</p>
@@ -810,7 +964,9 @@ M<sub>needed</sub> ≈ 821.81 g
              style="display: block; margin: 20px auto; width: 60%; height: auto;">
         <p class="figure-caption"><b>Fig 25.</b> Flap actuation under manual submergence</p>
       </div>
-      
+
+    <section id="references">
+    <h2>References</h2>
     
   </main>
 
