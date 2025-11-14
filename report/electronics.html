@@ -400,6 +400,47 @@
     The magnetometer measures Earth’s magnetic field, giving a global reference for yaw; combined with accelerometer-derived roll/pitch (tilt compensation), it yields a stable compass-like heading.
     </p>
 
+    <p>
+    The accelerometer and magnetometer data are fused mathematically to derive the orientation angles. 
+    The following equations summarize the key computations used in this system:
+    </p>
+
+<ul>
+  <li><strong>Accelerometer Conversion:</strong> Raw sensor readings are scaled using the ±2g range factor.<br>
+  <code>a<sub>x</sub> = AX<sub>RAW</sub> / 16384</code>, 
+  <code>a<sub>y</sub> = AY<sub>RAW</sub> / 16384</code>, 
+  <code>a<sub>z</sub> = AZ<sub>RAW</sub> / 16384</code></li>
+
+  <li><strong>Roll and Pitch from Accelerometer:</strong> 
+  <br><code>roll = atan2(a<sub>y</sub>, a<sub>z</sub>)</code> 
+  <br><code>pitch = atan2(-a<sub>x</sub>, √(a<sub>y</sub>² + a<sub>z</sub>²))</code></li>
+
+  <li><strong>Magnetometer Calibration (Hard-Iron Offset):</strong> 
+  <br><code>m'<sub>x</sub> = m<sub>x</sub> - b<sub>x</sub></code>, 
+  <code>m'<sub>y</sub> = m<sub>y</sub> - b<sub>y</sub></code>, 
+  <code>m'<sub>z</sub> = m<sub>z</sub> - b<sub>z</sub></code></li>
+
+  <li><strong>Tilt Compensation:</strong> The magnetic vector is rotated into the horizontal plane to remove the influence of pitch and roll.<br>
+  <code>m<sup>h</sup><sub>x</sub> = m'<sub>x</sub>cos(pitch) + m'<sub>z</sub>sin(pitch)</code><br>
+  <code>m<sup>h</sup><sub>y</sub> = m'<sub>x</sub>sin(roll)sin(pitch) + m'<sub>y</sub>cos(roll) - m'<sub>z</sub>sin(roll)cos(pitch)</code></li>
+
+  <li><strong>Heading Calculation:</strong> 
+  <br><code>heading = atan2(m<sup>h</sup><sub>y</sub>, m<sup>h</sup><sub>x</sub>)</code> 
+  <br>Converted to degrees and normalized to 0–360°.</li>
+
+  <li><strong>True Heading (Optional):</strong> Local magnetic declination can be added for geographic correction.<br>
+  <code>true_heading = (heading + declination) % 360</code></li>
+
+  <li><strong>Magnetic Field Magnitude:</strong> Used to detect nearby magnetic interference.<br>
+  <code>|B| = √(m'<sub>x</sub>² + m'<sub>y</sub>² + m'<sub>z</sub>²)</code></li>
+</ul>
+
+<p>
+  This approach ensures that Jellybot maintains a consistent directional reference even in the presence of gyroscopic drift. 
+  The fusion of accelerometer and magnetometer data forms the foundation of the <strong>compass-like heading</strong> used for navigation and orientation stability underwater.
+</p>
+    
+
     <p><b>Objective</b> : </p>
     <p>The objective of this test was to evaluate the JellyBot’s ability to determine its orientation accurately, achieving a compass-like heading using the onboard magnetometer. Reliable heading information is crucial for navigation and control in complex underwater environments.</p>
     <p><b>Test Setup</b> : </p>
