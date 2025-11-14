@@ -201,31 +201,54 @@
   </section>
 
   <!-- Table of content -->
-  <section class="table-of-content content-container">
+<section class="table-of-content content-container">
   <h2>Table of Contents</h2>
+
   <sl-tree>
+
     <sl-tree-item>
       <a href="#section-1">1. Overview of the Electrical System</a>
     </sl-tree-item>
+
     <sl-tree-item>
       <a href="#section-2">2. Electrical System</a>
     </sl-tree-item>
+
     <sl-tree-item>
       <a href="#section-3">3. Wiring Diagram</a>
-      </sl-tree-item>
-    <sl-tree-item>
+    </sl-tree-item>
+
+    <sl-tree-item collapsed>
       <a href="#section-4">4. Test & Results</a>
-      <sl-tree-item><a href="#sub-section-4a">4.1 Pressure Testing for Optimal Actuation</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4b">4.2 Conclusion on pressure inside tentacles</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4c">4.3 Bending Angle of Actuators</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4d">4.4 Comparison of pressure vs bend angle</a></s1-tree-item>
-      <sl-tree-item><a href="#sub-section-4e">4.5 Key Takeaways</a></s1-tree-item>
+
+      <sl-tree-item slot="children">
+        <a href="#sub-section-4a">4.1 Pressure Testing for Optimal Actuation</a>
+      </sl-tree-item>
+
+      <sl-tree-item slot="children">
+        <a href="#sub-section-4b">4.2 Conclusion on pressure inside tentacles</a>
+      </sl-tree-item>
+
+      <sl-tree-item slot="children">
+        <a href="#sub-section-4c">4.3 Bending Angle of Actuators</a>
+      </sl-tree-item>
+
+      <sl-tree-item slot="children">
+        <a href="#sub-section-4d">4.4 Comparison of pressure vs bend angle</a>
+      </sl-tree-item>
+
+      <sl-tree-item slot="children">
+        <a href="#sub-section-4e">4.5 Key Takeaways</a>
+      </sl-tree-item>
     </sl-tree-item>
+
     <sl-tree-item>
-      <a href="#section-5">Future Improvements</a>
+      <a href="#section-5">5. Future Improvements</a>
     </sl-tree-item>
+
   </sl-tree>
 </section>
+
 
 
   <!-- Main Content -->
