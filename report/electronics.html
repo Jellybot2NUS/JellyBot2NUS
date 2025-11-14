@@ -483,29 +483,39 @@
       </div>
     </div>
 
-    <p><b>Findings</b> : </p>
-    <p>The magnetometer generally provided readings that aligned with the expected headings, confirming that the sensor functioned according to its specifications. The system successfully demonstrated basic orientation detection capability.</p>  
-    <p><b>Limitations</b> : </p>
-    <p>Despite the overall functionality, the magnetometer readings tended to drift over time and were occasionally inconsistent. Minor residual magnetic interference in the environment contributed to these fluctuations, highlighting the need for better isolation of the sensor.</p>  
-    <p><b>Future Testing Plans</b> :</p> <p>
-      <ul>
-      <li><strong>Setup:</strong> Improve the testing environment to eliminate all sources of magnetic interference, including hidden electronic components and nearby ferrous materials.</li>
-      <li><strong>Measurements:</strong> Record heading data over extended periods and across multiple orientations to assess long-term stability.</li>
-      <li><strong>Analysis:</strong> Implement calibration and filtering algorithms to reduce drift and enhance measurement consistency.</li>    
-      </ul>
-    <p><b>Conclusions</b> : </p>
-    <p>The preliminary navigation tests verified the magnetometer’s basic functionality and established a baseline for orientation detection. Further refinements in sensor placement, environmental isolation, and data processing will improve heading accuracy and reliability for precise underwater navigation.
-    This prototype computes a tilt-compensated magnetic heading using the accelerometer and magnetometer.
-
-    Although the gyroscope values are read and displayed, they are not fused into the heading calculation. 
-    This means no complementary or Kalman filter is applied for yaw. 
-    As a result, the heading output comes fully from the magnetometer (after tilt compensation) and is drift-free but susceptible to magnetic disturbance.
-    
-    </p>  
-
+    <p><b>Findings & Limitations</b> : </p>
       
+    <p>
+    The magnetometer produced heading readings that were generally consistent with the reference compass, demonstrating that the tilt-compensated magnetic heading algorithm functioned correctly. 
+    This confirmed the system’s ability to provide a basic compass-like orientation estimate.
+    However, because the current implementation relies <strong>solely</strong> on magnetometer data (with roll and pitch derived from the accelerometer) and does not incorporate gyroscope fusion, the heading remained sensitive to magnetic disturbances in the environment. 
+    Residual interference from nearby metal objects and electronic devices occasionally caused fluctuations or small shifts in the reported heading. Unlike a fused gyro–magnetometer solution, which would stabilise short-term noise using gyro rate information, the magnetometer-only approach is more vulnerable to inconsistency and transient drift.    
+    </p>  
+      
+    <p><b>Future Testing Plans</b> :</p> <p>
+      <p>
+      In the next phase of development, the heading system will be enhanced by <strong>incorporating a complementary filter</strong> to fuse gyroscope and magnetometer data. 
+      While the current implementation relies solely on magnetometer readings (with accelerometer-derived tilt compensation), adding gyro fusion will significantly improve short-term stability by smoothing rapid changes in orientation and reducing susceptibility to magnetic disturbances.
+      The magnetometer will continue to provide the long-term absolute reference for yaw, while the gyroscope will supply fast, low-noise angular-rate information. 
+      By blending these signals, the complementary filter will correct gyro drift over time and produce a more stable, responsive, and reliable heading estimate—especially critical for underwater navigation where magnetic interference and motion dynamics are more challenging.
+      </p>
+    <li><strong>Tilt Compensation:</strong> The magnetic vector is rotated into the horizontal plane to remove the influence of pitch and roll.<br>
+<pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      <code>
+      yaw_pred   = yaw_fused_prev + gyro_z * dt
+      yaw_fused  = α * yaw_pred + (1 − α) * heading_mag
+      yaw_fused  = wrap360(yaw_fused)    # normalize to 0–360°
+
+      where:
+        gyro_z       = yaw rate from gyroscope (deg/s)
+        dt           = time step between samples (s)
+        α (alpha)    ≈ 0.95–0.99 (e.g. 0.98)
+        heading_mag  = tilt-compensated magnetic heading (deg)
+      </code> </pre>
+  </li>
+    
     <section id="section-5">
-    <h2>5. User Journey (Controller)</h2>
+    <h2>5. User Interface (via Controller)</h2>
     <p>This section illustrates the interface of the JellyBot controller, designed to provide the user with a seamless and intuitive operational experience. The controller interface is intended to guide the user through key stages of deployment and monitoring, ensuring that the robot is ready for underwater exploration before activation.
     </p>
     <p>Upon powering on the controller, the Welcome Menu appears, providing an overview of the system and access to the User Guide, which offers instructions for operating the JellyBot, including safety precautions and setup procedures.
