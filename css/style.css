@@ -39,6 +39,13 @@ header nav a:hover {
   color: white;
   text-align: center;
   padding: 120px 20px;
+
+  background-repeat: no-repeat;
+  height: 100vh;                 /* make hero full viewport height */
+  display: flex;                 /* optional: to center content */
+  flex-direction: column;        /* optional */
+  justify-content: center;       /* optional: vertical center */
+  align-items: center;
 }
 
 .hero::before {
@@ -309,5 +316,6 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 
 
