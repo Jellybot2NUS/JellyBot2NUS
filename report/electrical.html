@@ -216,11 +216,13 @@
     <sl-tree-item>
       <a href="#section-4">4. Test & Results</a>
       <sl-tree-item><a href="#sub-section-4a">4.1 Pressure Testing for Optimal Actuation</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4b">4.2 Bending Angle of Actuators</a></sl-tree-item>
+      <sl-tree-item><a href="#sub-section-4b">4.2 Conclusion on pressure inside tentacles</a></sl-tree-item>
       <sl-tree-item><a href="#sub-section-4c">4.3 Bending Angle of Actuators</a></sl-tree-item>
+      <s1-tree-item><a href="#sub-section-4d">4.4 Comparison of pressure vs bend angle</a></s1-tree-item>
+      <s1-tree-item><a href="#sub-section-4e">4.5 Key Takeaways</a></s1-tree-item>
     </sl-tree-item>
     <sl-tree-item>
-      <a href="#section-5">Summary and Future Improvements</a>
+      <a href="#section-5">Future Improvements</a>
     </sl-tree-item>
   </sl-tree>
 </section>
@@ -235,6 +237,7 @@
   It integrates the battery system, voltage regulators, and power management circuits to support long-duration underwater operation.
   Safety features such as overcurrent protection and waterproof connectors enhance reliability under varying load conditions.
     </p>
+    </section>
 
     <section id="section-2">
     <h2>2. Electrical System</h2>
@@ -287,6 +290,7 @@
       Total Mass: 335g<br>
       Total Power Requirement: 32.31W
     </p>
+    </section>
 
     <section id="section-3">
     <h2>3. Wiring Diagram</h2>
@@ -296,12 +300,14 @@
     <p>
   The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers are used to control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air—either channeling it into the silicone tentacles for inflation or releasing it into the atmosphere for deflation. This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behavior during testing.
     </p>
+    </section>
     
     <section id="section-4">
     <h2>4. Tests & Results </h2>
     <p>
   To evaluate the pneumatic system’s ability to generate sufficient pressure and bending motion in the silicone tentacles. Some functions that we will be testing will be the effect of number of pumps (1 vs 2) on inflation performance, relationship between air pressure and bending angle and the verification of pressure buildup, equilibrium behavior, and actuation speed.
     </p>
+    </section>
 
     <section id="sub-section-4a">
     <h3 class="subsection" style="margin-top:40px;">4.1 Pressure Testing for Optimal Actuation (1 Pump vs 2 Pump)</h3>
@@ -338,7 +344,6 @@
         <td>57&deg;C.</td>
       </tr>
     </table>
-    
     <p></p>
 <!-- Image 1 -->
     <div class="image-row">
@@ -352,9 +357,12 @@
     <p class="figure-caption" style="margin-bottom:40px;">
       Maximum pressure recorded inside the tentacles for 1 pump (Left) and 2 pump (Right)
     </p>
-
     <p style="margin-top:40px"><b>Conclusion:</b><br>The blue line represents max pressure recorded at 1173hPa using 2 pumps at around 2 seconds. The red line represents max pressure recorded at 917hPa using 1 pump at around 1 seconds. Within 1 seconds, the pressure inside all tentacles has reached its peak.</p>
-    <h3 class="subsection" style="margin-top:40px;">Conclusion on pressure inside tentacles</h3>
+    </section>
+
+      
+    <section id="sub-section-4b">
+    <h3 class="subsection" style="margin-top:40px;">4.2 Conclusion on pressure inside tentacles</h3>
     <p>In order to know the required pressure to overcome the ambient water pressure at different depths, a table was concluded to show the pressure required by the tentacles in order to overcome the water pressure at different depths. From the table, we can see that our maximum pressure of 1173hPa is only sufficient for surface level operation (0m).</p>
     <table class="styled-table" style="margin-bottom:60px;">
       <tr>
@@ -405,8 +413,9 @@
         <td>167.576</td>
       </tr>
     </table>
+    </section>
 
-    <section id="sub-section-4b">
+    <section id="sub-section-4c">
     <h3 class="subsection" style="margin-top:40px;">4.3 Bending Angle of Actuators (1 Pump vs 2 Pump)</h3>
     <p>
       A series of controlled experiments were conducted to determine the bending angle of the tentacles and find out how the numbers of pump affect the bending angle of the tentacles.
@@ -447,10 +456,45 @@
         Bending angle of 2 pumps with respect to time taken.
       </p>
     </div>
+    <p style="margin-top:40px"><b>Conclusion:</b><br>With 1 pump, the tentacles achieved a maximum bend angle of 41 Degree in 1 second & with 2 pump, the tentacles achieved a maximum bend angle of 57 Degree in 1.2 seconds. Interestingly, the bending angle peaks at around the same time the internal pressure reaches its maximum.</p>
+    </section>
 
-      <section id="sub-section-4c">
-    <h3 class="subsection" style="margin-top:40px;">4.3 Bending Angle of Actuators (1 Pump vs 2 Pump)</h3>
-    <p>The comparison scatter plot reveals a non-linear relationship between the internal pressure of the tentacles and their bending angle. At low pressures, the tentacle resists deformation, but once a certain threshold is reached, it bends rapidly before saturating at a maximum angle. This behavior indicates that while pressure primarily governs stiffness, the flow rate controls the actuation speed. Furthermore, increasing the number of pumps does not directly double the pressure, as pneumatic pressure is not additive. The material compliance of the silicone also limits further bending beyond a certain pressure, with thicker silicone walls resulting in smaller bend angles due to higher stiffness. However, several shortcomings were identified, including the manometer’s inability to capture gradual pressure changes, limited control over inflation and deflation rates, and the tendency for excessive inflation to cause ballooning. Moving forward, improvements will focus on using independent pump channels for each tentacle, experimenting with different silicone geometries and wall thicknesses, and testing the overall displacement of the JellyBot corresponding to each bend angle to better understand its propulsion efficiency.</p>
+      
+    <section id="sub-section-4d">
+    <h3 class="subsection" style="margin-top:40px;">4.4 Comparison of pressure vs bend angle</h3>
+    <div class="image-center" style="text-align:center;">
+      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/Comparison_P_A.png?raw=true" 
+           alt="Non Linear Graph" 
+           style="width: 60%; height: auto;">
+      <p class="figure-caption">
+        Non Linear Comparison of pressure vs bend angle
+      </p>
+    </div>
+    <p style="margin-top:40px"><b>Conclusion:</b><br>When plotting pressure vs bend angle, we observed a non linear relationship between the pressure within the tentacles vs the degree of the bent of the tentacles. The tentacle resists bending at low pressures, it then bends rapidly after a certain threshold and finally it saturates at a maximum angle.</p>
+    </section>
+
+      
+    <section id="sub-section-4e">
+    <h3 class="subsection" style="margin-top:40px; margin-bottom:40px;">4.5 Key Takeaways</h3>
+    <p><b>Lessons Learned:</b><br></p>
+    <ul style="margin-bottom:40px">
+      <li>Pressure governs stiffness, but flow rate governs actuation speed. Increasing number of pumps used does not directly double the pressure as pneumatic pressure is not additive. It only increase the air flow rate which meant faster inflation speed.</li>
+      <li>The material compliance of the silicone also limites further bending beyond a certain pressure, with thicker silicone materials results in smaller bend angles due to higher stiffness.</li>
+    </ul>
+    
+    <p><b>Shortcomings:</b><br></p>
+    <ul style="margin-bottom:40px">
+      <li>Measurements show immediate pressure jump, hard to capture gradual rises in the pressure recording</li>
+      <li>Inconsistency in the mixture of the silicone materials will cause tendency for excessive inflation which in turn caused silicone balloning, increasing the risk of rupturing.</li>
+    </ul>
+    
+    <p><b>Future improvements:</b><br></p>
+    <ul style="margin-bottom:40px">
+      <li>Separate pump outputs to independent tentacle channels instead of combining them.</li>
+      <li>Test with different silicone material mixture, currently we are using Ecoflex 00-30 purely.</li>
+      <li>Test the displacement of the Jellybot for each bend angle, and record the distance it moves with regards to the bend angle.</li>
+    </ul>
+    </section>
 
 
 
@@ -470,12 +514,10 @@
     <p></p>
 
     <section id="section-5">
-    <h2>5. Summary and Future Improvements</h2>
-    <p>
-  The electrical subsystem provides a stable and efficient foundation for Jellybot’s operation, ensuring consistent power delivery across all modules.
-  Its design emphasizes reliability and modularity, enabling seamless integration with other subsystems.
-  Future improvements could include implementing smart power monitoring systems, upgrading to higher energy-density batteries, and adopting wireless charging methods to improve efficiency and maintenance accessibility.
+    <h2>5. Future Improvements</h2>
+    <p>The development process began with selecting the appropriate microcontroller and identifying the required sensors. Following this, the initial circuit schematic was designed and the wiring layout was planned. The system diagram was then finalized alongside the selection of a suitable power source. Early circuit block testing was conducted and any necessary electronic components were ordered. Key components were first assembled on a breadboard, with perfboards prepared for more permanent mounting. The prototype circuit was soldered together, including the attachment of drivers and sensors, and subsequently wired to the microcontroller while early waterproofing measures were applied. Sensors and drivers were integrated and functionally tested before refining the circuit layout and tuning power distribution. All wiring was then verified, and a dry-run prototype test was performed. Waterproofing improvements and power flow adjustments were made prior to a full system test, which included telemetry collection and logging. Finally, all integration learnings and circuit diagrams were compiled into the project report.
     </p>
+    </section>
 
   </main>
 
