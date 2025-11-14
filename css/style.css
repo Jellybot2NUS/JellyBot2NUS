@@ -309,6 +309,19 @@ a {
 a:hover {
   text-decoration: underline;
 }
+/* FORCE NAV ALWAYS BLACK BACKGROUND + WHITE TEXT */
+header nav {
+  background-color: #000 !important;
+}
+
+header nav a {
+  color: white !important;
+}
+
+header nav a:hover {
+  color: #ffd700 !important;
+}
+
 
 
 
