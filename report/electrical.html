@@ -249,6 +249,46 @@
   </sl-tree>
 </section>
 
+  <!--Figures-->
+    <!-- Table of content -->
+<section class="table-of-content content-container">
+  <h2>Table of figures</h2>
+
+  <sl-tree>
+
+    <sl-tree-item>
+      <a>Table 1 : System components & Specifications</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Table 2 : Recorded test results carried out with different parameters</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Table 3 : Required pressure at different depths</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Figure 1 : Wiring Diagram of our setup</a>
+    </sl-tree-item>
+    <sl-treel-item>
+      <a>Figure 2 : Pressure produced by different number of pumps vs Time taken</a>
+    </sl-treel-item>
+     <sl-tree-item>
+      <a>Figure 3 : Tentacles at origin</a>
+    </sl-tree-item>
+     <sl-tree-item>
+      <a>Figure 4 : Tentacles at max bend</a>
+    </sl-tree-item>
+     <sl-tree-item>
+      <a>Figure 5 : Bending angle of 1 pump with respect to time taken</a>
+    </sl-tree-item>
+     <sl-tree-item>
+      <a>Figure 6 : Bending angle of 2 pumps with respect to time taken</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Figure 7 : Non linear comparison of pressure vs bend angle</a>
+    </sl-tree-item>
+  </sl-tree>
+</section>
+
 
 
   <!-- Main Content -->
@@ -265,7 +305,7 @@
     <section id="section-2">
     <h2>2. Electrical System</h2>
     <p>
-      System Components & Specifications
+      In accordance with our <b>design specifications(3a)</b>, the electrical subsystem was developed to operate within a 12–24 V tethered power supply and a maximum system load of approximately 30 W. The final design utilises two 12 V motors delivering an airflow rate of 0.6 L/min each, resulting in a combined maximum power consumption of 32 W. This aligns closely with the intended power budget and satisfies the required voltage and current stability validated through load testing.
     </p>
 
     <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
@@ -308,6 +348,9 @@
         <td style="border: 1px solid #333; padding:8px;">2.5W</td>
       </tr>
     </table>
+    <p class="figure-caption" style="margin-bottom:40px;">
+      Table 1 : System components & Specifications
+    </p>
 
     <p style="font-weight:bold; text-align:left; margin-top:10px;">
       Total Mass: 335g<br>
@@ -318,8 +361,11 @@
     <section id="section-3">
     <h2>3. Wiring Diagram</h2>
     <div class="image-center">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_final.png?raw=true'>
+        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_boxed.png?raw=true'>
     </div>
+    <p class="figure-caption" style="margin-bottom:40px;">
+      Figure 1 : Wiring Diagram of our setup
+    </p>
     <p>
   The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers are used to control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air—either channeling it into the silicone tentacles for inflation or releasing it into the atmosphere for deflation. This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behavior during testing.
     </p>
@@ -328,17 +374,16 @@
     <section id="section-4">
     <h2>4. Tests & Results </h2>
     <p>
-  To evaluate the pneumatic system’s ability to generate sufficient pressure and bending motion in the silicone tentacles. Some functions that we will be testing will be the effect of number of pumps (1 vs 2) on inflation performance, relationship between air pressure and bending angle and the verification of pressure buildup, equilibrium behavior, and actuation speed.
+  To ensure compliance with our design specifications for pneumatic actuation, we are currently conducting tentacle pressure and bending tests. These tests evaluate the system’s ability to generate sufficient internal pressure and produce the required bending deformation in the silicone tentacles. Specifically, we are verifying that the tentacles achieve the target pressure range of 120–170 kPa <b>design specifications(2a)</b> without rupture and demonstrate stable pressure cycling behaviour.<br>
+  Additionally, we are assessing the pulse frequency performance, ensuring that the actuation follows the required 0.16–0.25 Hz range (4–6 s period) as specified in <b>design specifications(2b)</b>, where silicone tentacles are expected to reach maximum deformation within 2–3 seconds and achieve maximum pressure at approximately 2 seconds.<br>
+  The testing scope includes examining the effect of using one versus two pumps on inflation performance, characterising the relationship between internal air pressure and bending angle, and verifying pressure buildup, equilibrium behaviour, and actuation speed. These evaluations collectively confirm whether the pneumatic subsystem meets the functional and safety requirements defined in our design specifications and also to confirm that the system can achieve controlled, repeatable bending under pneumatic pressure  which is a key requirement for soft robotic actuation.
     </p>
     </section>
 
     <section id="sub-section-4a">
     <h3 class="subsection" style="margin-top:40px;">4.1 Pressure Testing for Optimal Actuation (1 Pump vs 2 Pump)</h3>
     <p>
-      A series of controlled experiments were conducted to determine the optimal internal pressure of the pneumatic actuators for maximum expansion and responsiveness. 
-      Each configuration combined different numbers of DC air pumps and solenoid valves at varying supply voltages. 
-      The pressure values were measured using a digital barometric sensor connected to the actuator chamber. 
-      Results indicate that increasing voltage and the number of active pumps significantly improves internal pressure generation, enhancing actuator performance.
+      A series of controlled tests were carried out to identify the optimal internal pressure required for the pneumatic actuators to achieve maximum expansion and responsive bending. Various configurations were evaluated by adjusting the supply voltage and altering the number of active DC air pumps and solenoid valves, as shown in table 2. Internal pressure was recorded using a digital barometric sensor integrated into the actuator chamber. The pneumatic pressure was generated using two motor-driven air pumps, with an Arduino microcontroller managing the timing and control sequence. Two solenoid valves were implemented, one to route airflow into the tentacle and another to vent air to the atmosphere, enabling precise inflation and deflation during testing.
     </p>
     
     <table class="styled-table" style="margin-bottom:60px;">
@@ -367,26 +412,27 @@
         <td>57&deg;C.</td>
       </tr>
     </table>
+    <p class="figure-caption" style="margin-bottom:40px;">
+      Table 2 : Recorded test results carried out with different parameters
+    </p>
     <p></p>
 <!-- Image 1 -->
-    <div class="image-row">
-      <div class="image-left">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_graph.png?raw=true' alt="Pressure Test Setup">
-      </div>
-      <div class="image-right">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_table.png?raw=true' alt="Pressure Gauge Reading">
-      </div>
+    <div class="image-center">
+      <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_graph.png?raw=true' alt="Pressure Test Setup">
     </div>
     <p class="figure-caption" style="margin-bottom:40px;">
-      Maximum pressure recorded inside the tentacles for 1 pump (Left) and 2 pump (Right)
+      Figure 2 : Pressure produced by different number of pumps vs Time taken
     </p>
-    <p style="margin-top:40px"><b>Conclusion:</b><br>The blue line represents max pressure recorded at 1173hPa using 2 pumps at around 2 seconds. The red line represents max pressure recorded at 917hPa using 1 pump at around 1 seconds. Within 1 seconds, the pressure inside all tentacles has reached its peak.</p>
-    </section>
 
-      
+    <p style="margin-top:40px"><b>Conclusion:</b><br>The blue line represents max pressure recorded at 1173hPa using 2 pumps at around 2 seconds. The red line represents max pressure recorded at 917hPa using 1 pump at around 1 seconds. Within 1 seconds, the pressure inside all tentacles has reached its peak, as shown in figure 2.<br>These results highlight that pressure determines the final stiffness of the pneumatic tentacles, while airflow rate governs the speed of actuation. Increasing the number of pumps does not linearly double the output pressure, as pneumatic pressure is not strictly additive. Instead, adding pumps primarily increases the airflow rate, leading to faster inflation and improved responsiveness, rather than a proportional increase in maximum pressure.</p>
+    <p><b>Shortcomings:</b><br>The testing process revealed several limitations. The pressure measurements exhibited an immediate jump, making it difficult to capture gradual rises in the inflation profile. Additionally, inconsistencies in the silicone mixture caused uneven mechanical properties across samples, resulting in excessive inflation and localized ballooning, which increased the risk of rupture.</p>
+    <p><b>Future improvements:</b><br>To address these limitations, future work will involve separating the pump outputs into independent channels for each tentacle, rather than combining them into a shared line, allowing for more consistent and controlled pressure delivery. Further improvements include experimenting with alternative silicone formulations, as the current prototypes use pure Ecoflex 00-30, which may not provide the optimal balance between elasticity and structural stability.</p>
+    </section>
+  
+
     <section id="sub-section-4b">
-    <h3 class="subsection" style="margin-top:40px;">4.2 Conclusion on pressure inside tentacles</h3>
-    <p>In order to know the required pressure to overcome the ambient water pressure at different depths, a table was concluded to show the pressure required by the tentacles in order to overcome the water pressure at different depths. From the table, we can see that our maximum pressure of 1173hPa is only sufficient for surface level operation (0m).</p>
+    <h3 class="subsection" style="margin-top:40px;">4.2 Pressure at different depths</h3>
+    <p>To determine the pressure required to overcome ambient water pressure at various depths, a table was compiled showing the necessary tentacle pressures at different depths, as shown below in table 3. From the table, it is evident that our maximum recorded pressure of 1173 hPa is sufficient only for surface-level operation (0 m). With reference to our <b>design specifications(1a)</b>, which require operation in shallow reef zones with coral targets at depths of up to 5 m, this indicates that the current pneumatic system does not yet meet the full depth requirement. Future testing and adjustments will be needed to ensure adequate performance at the target 5 m depth.</p>
     <table class="styled-table" style="margin-bottom:60px;">
       <tr>
         <th>Depth (m)</th>
@@ -436,12 +482,16 @@
         <td>167.576</td>
       </tr>
     </table>
+    <p class="figure-caption" style="margin-bottom:40px;">
+      Table 3 : Required pressure at different depths
+    </p>
     </section>
 
     <section id="sub-section-4c">
     <h3 class="subsection" style="margin-top:40px;">4.3 Bending Angle of Actuators (1 Pump vs 2 Pump)</h3>
     <p>
-      A series of controlled experiments were conducted to determine the bending angle of the tentacles and find out how the numbers of pump affect the bending angle of the tentacles.
+      A series of controlled experiments were conducted to evaluate the bending angle of the silicone tentacles and to investigate how the number of active pumps influences both the bending angle and actuation dynamics, in accordance with the pulse frequency requirements <b>(design specifications 2b)</b> where maximum formation is expected within 2–3 seconds and peak pressure occurs at 2 seconds.<br>
+      As shown in Figure 3, the tentacle at 0 degree bend is displayed on the right, while the tentacle at maximum bend is shown on the left.
     </p>
 
     <div style="display: flex; justify-content: center; align-items: center;">
@@ -449,7 +499,7 @@
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/zero_degree.png?raw=true" 
              alt="1 pump bend" style="max-width: 90%; height: auto;">
         <p style="text-align: center; font-style: italic;">
-          Tentacles at origin.
+          Figure 3 : Tentacles at origin
         </p>
       </div>
     
@@ -457,7 +507,7 @@
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/max_degree.png?raw=true" 
              alt="2 pump bend" style="max-width: 90%; height: auto;">
         <p style="text-align: center; font-style: italic;">
-          Tentacles at max bend.
+          Figure 4 : Tentacles at max bend
         </p>
       </div>
     </div>
@@ -467,7 +517,7 @@
            alt="1 pump bend" 
            style="width: 60%; height: auto;">
       <p class="figure-caption">
-        Bending angle of 1 pump with respect to time taken.
+        Figure 5 : Bending angle of 1 pump with respect to time taken
       </p>
     </div>
     
@@ -476,30 +526,33 @@
            alt="2 pump bend" 
            style="width: 60%; height: auto;">
       <p class="figure-caption">
-        Bending angle of 2 pumps with respect to time taken.
+        Figure 6 : Bending angle of 2 pumps with respect to time taken
       </p>
     </div>
-    <p style="margin-top:40px"><b>Conclusion:</b><br>With 1 pump, the tentacles achieved a maximum bend angle of 41 Degree in 1 second & with 2 pump, the tentacles achieved a maximum bend angle of 57 Degree in 1.2 seconds. Interestingly, the bending angle peaks at around the same time the internal pressure reaches its maximum.</p>
+    <p style="margin-top:40px"><b>Conclusion:</b><br>As shown in figure 5 and 6 we can see that with 1 pump, the tentacles achieved a maximum bend angle of 41 Degree in 1 second & with 2 pump, the tentacles achieved a maximum bend angle of 57 Degree in 1.2 seconds. Interestingly, the bending angle peaks at around the same time the internal pressure reaches its maximum.</p>
+    <p><b>Shortcomings:</b><br>The material compliance of the silicone limits further bending beyond a certain pressure, with thicker silicone resulting in smaller bend angles due to higher stiffness. Inconsistencies in the silicone mixture can also lead to excessive inflation, causing localized ballooning and increasing the risk of rupture. Additionally, the displacement of the Jellybot varies with bend angle, highlighting the need for precise measurement and control of actuation to ensure predictable motion.</p>
+    <p><b>Future improvements:</b><br>Future work should focus on standardizing the silicone mixture to reduce variability in mechanical properties and minimize the risk of ballooning. Testing different silicone thicknesses or alternative formulations may help achieve larger bend angles while maintaining structural integrity. Furthermore, systematic measurement of Jellybot displacement at each bend angle should be conducted to better understand the relationship between actuation pressure and resulting motion, enabling improved control and performance.</p>
     </section>
 
       
     <section id="sub-section-4d">
     <h3 class="subsection" style="margin-top:40px;">4.4 Comparison of pressure vs bend angle</h3>
+    <p style="margin-top:40px">Next, we analyse the relationship between internal pneumatic pressure and the resulting bend angle of the silicone tentacles. By plotting pressure versus bend angle, we aim to characterise how variations in actuation pressure translate into mechanical deformation. This analysis provides insight into the responsiveness of the tentacles, the influence of pump configurations on bending performance, and the limits imposed by the material properties of the silicone. The results will help evaluate whether the tentacle actuation meets the design specifications for both bending range and controllability.</p>
     <div class="image-center" style="text-align:center;">
       <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/Comparison_P_A.png?raw=true" 
            alt="Non Linear Graph" 
            style="width: 60%; height: auto;">
       <p class="figure-caption">
-        Non linear comparison of pressure vs bend angle
+        Figure 7 : Non linear comparison of pressure vs bend angle
       </p>
     </div>
-    <p><b>Conclusion:</b><br>When plotting pressure vs bend angle, we observed a non linear relationship between the pressure within the tentacles vs the degree of the bent of the tentacles. The tentacle resists bending at low pressures, it then bends rapidly after a certain threshold and finally it saturates at a maximum angle.</p>
+    <p><b>Conclusion:</b><br>When plotting pressure vs bend angle, we observed a non linear relationship between the pressure within the tentacles vs the degree of the bent of the tentacles. The tentacle resists bending at low pressures, it then bends rapidly after a certain threshold and finally it saturates at a maximum angle. The nonlinear response is influenced by the material properties, including the thickness and elasticity of the silicone, which affect the threshold pressure and the rate of bending. Thicker or stiffer silicone results in smaller maximum bend angles and requires higher pressure to reach the rapid bending region. Additionally, variations in the silicone mixture and fabrication inconsistencies can lead to differences in bending behavior between tentacles. Understanding this relationship is critical for predicting actuation performance, designing control strategies, and ensuring that the tentacles operate safely within their material limits while meeting the design specifications.</p>
     </section>
 
       
     <section id="sub-section-4e">
     <h3 class="subsection" style="margin-top:40px;">4.5 Key Takeaways</h3>
-    <p><b>Lessons Learned:</b><br></p>
+    <p><b>Lessons Learnt:</b><br></p>
     <ul style="margin-bottom:40px">
       <li>Pressure governs stiffness, but flow rate governs actuation speed. Increasing number of pumps used does not directly double the pressure as pneumatic pressure is not additive. It only increase the air flow rate which meant faster inflation speed.</li>
       <li>The material compliance of the silicone also limites further bending beyond a certain pressure, with thicker silicone materials results in smaller bend angles due to higher stiffness.</li>
