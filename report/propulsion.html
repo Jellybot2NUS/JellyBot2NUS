@@ -717,28 +717,42 @@ M<sub>needed</sub> ≈ 821.81 g
 
       <section id="sub-section-4a">
 <h3 class="subsection">4.1 Determining the Additional Mass Required</h3>
-    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:center; margin-bottom:40px;"> 
-    Buoyancy Analysis of JellyBot
-    Naturally JellyBot is positively buoyant as proven from the calculations
-    Theoretical Mass, m = 19.076H<sub>total</sub> + 1160.43g
-                        = 19.076(15) + 1160.43g
-                        = 1446.57g
-    Theoretical V<sub>disp,total</sub>, V<sub>displaced</sub> = 102.07H<sub>total</sub> + 737.33cm³
-                                                             = 102.07(15) + 737.33cm³
-                                                             = 2268.38cm³
-    Since F<sub>b</sub>, g2268.38N > W, g1446.57N, JellyBot is positively buoyant.
-    We have also confirmed this theory as shown in Fig. 5
-    Based on theoretical calculations, additional mass required for neutral buoyancy:
-    [g2268.38N − g1446.57N] / g = 821.81g
-    Since internal components (mass = 605g) are removed,
-    total theoretical additional mass required = 821.81 + 605
-                                               = 1426.81g
-    However, the actual mass of JellyBot weighed in at 1603.45g as shown in Fig. 6
-    In actuality, JellyBot is heavier by 1603.45 − 1446.57 = 156.88g
-    Therefore, actual additional mass required = 1426.81 − 156.88
-                                               = 1269.93g
-    </pre>
-
+		<pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:left; margin-bottom:20px;"> 
+		Buoyancy Analysis of JellyBot
+		
+		Naturally JellyBot is positively buoyant as proven from the calculations.
+		
+		Theoretical Mass, m = 19.076H<sub>total</sub> + 1160.43g
+		                    = 19.076(15) + 1160.43g
+		                    = 1446.57g
+		
+		Theoretical V<sub>disp,total</sub> = 102.07H<sub>total</sub> + 737.33cm³
+		                                  = 102.07(15) + 737.33cm³
+		                                  = 2268.38cm³
+		
+		Since F<sub>b</sub> = g2268.38N > W = g1446.57N, JellyBot is positively buoyant.
+		</pre>
+		
+		<p style="text-align:center; margin: 20px 0;">
+		We also verified this theory experimentally (Fig. 5).  
+		Based on theoretical calculations, the additional mass required for neutral buoyancy is shown below.
+		</p>
+		
+		<pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc; overflow-x:auto; text-align:left; margin-bottom:40px;"> 
+		Additional Mass Required for Neutral Buoyancy
+		
+		Theoretical additional mass:
+		[g2268.38N − g1446.57N] / g = 821.81g
+		
+		Since internal components (mass = 605g) are removed:
+		Total theoretical mass required = 821.81 + 605 = 1426.81g
+		
+		Actual measured mass of JellyBot = 1603.45g (Fig. 6)
+		Actual excess mass = 1603.45 − 1446.57 = 156.88g
+		
+		Therefore final additional mass required:
+		1426.81 − 156.88 = 1269.93g
+		</pre>
     <div style="display: flex; justify-content: center; align-items: center;">
       <div style="width: 50%; text-align: center;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/fig_5.png?raw=true" 
