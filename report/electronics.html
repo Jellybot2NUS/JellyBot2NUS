@@ -248,16 +248,18 @@
     The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream: 
       <ul>
     <p>  
-    <li>To meet design specification 4a, the SEN0311 Ultrasonic Sensor was used to measure distance to obstacles.</li>
+    <li>To meet design specification 4a, the SEN0311 Ultrasonic Sensor was used to measure distance to obstacles through UART.</li>
     <p>  
     <li>To meet design specification 4b, the MPU6050 IMU was used to provide orientation through accelerometer and gyroscope readings. </li>
     <p>
     <li>To meet design specification 4c, the HMC5883L Magnetometer was used to offer heading information. </li>
     <p>
-    The MPU6050 IMU provides orientation through accelerometer and gyroscope readings, the HMC5883L magnetometer offers heading information, the SEN0311 ultrasonic sensor measures distance to obstacles, and the camera module delivers real-time visual feedback for monitoring and analysis. 
-    These modules communicate through I²C, UART, and CSI interfaces, all managed by the microcontroller. 
+    <li>To meet design specification 4d, the Raspberry Pi Camera Module V2 was used to deliver real-time visual feedback for monitoring and analysis. </li>
+    <p>
+    <li>To meet design specification 5a, the Raspberry Pi 5 was used as the primary processing unit, coordinating communication between all onboard sensors. </li>
+    <p>
     Together, they enable Jellybot to perceive its environment, support navigation and stabilization algorithms, and provide essential feedback for control. 
-    The total power and mass remain minimal, maintaining system efficiency and suitability for underwater deployment.  
+    The total power and mass remain minimal [Table 1], maintaining system efficiency and suitability for underwater deployment.  
       </ul></p>
 
     <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
@@ -305,7 +307,7 @@
       </tr>
     </table>
 
-    <p style="font-weight:bold; text-align:left; margin-top:10px;">
+    <p style="font-weight:bold; text-align:center; margin-top:10px;">
       Total Mass: 115.2g<br>
       Total Power Requirement: 5.86W
       
