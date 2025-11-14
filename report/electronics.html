@@ -452,15 +452,22 @@
 </ul>
 
 <p>
-  This approach ensures that Jellybot maintains a consistent directional reference even in the presence of gyroscopic drift. 
-  The fusion of accelerometer and magnetometer data forms the foundation of the <strong>compass-like heading</strong> used for navigation and orientation stability underwater.
+ This approach ensures that Jellybot maintains a consistent directional reference without accumulating yaw drift. 
+ By combining accelerometer-derived roll and pitch with magnetometer readings (tilt compensation), the system produces a stable, compass-like heading suitable for underwater navigation. 
+ Although the gyroscope is read, it is not fused into the heading calculation; therefore, the heading depends entirely on the magnetometer for long-term stability.
 </p>
-    
+    <hr>
 
     <p><b>Objective</b> : </p>
-    <p>The objective of this test was to evaluate the JellyBot’s ability to determine its orientation accurately, achieving a compass-like heading using the onboard magnetometer. Reliable heading information is crucial for navigation and control in complex underwater environments.</p>
-    <p><b>Test Setup</b> : </p>
-    <p>The test employed the JellyBot’s compass and magnetometer sensors. Care was taken to keep the test area clear of magnets and other electronic devices that could introduce interference and affect readings. The JellyBot was rotated through multiple headings while stationary to assess the sensor’s responsiveness and accuracy.</p>  
+    <p>
+    This test aimed to assess the accuracy and stability of JellyBot’s magnetometer-based heading estimation, ensuring the system delivers reliable orientation data needed for directional control in underwater environments.  
+    </p>
+    
+    <p><b>Test Set-up</b> : </p>
+    <p>
+    The test was conducted on a non-metallic table, with the JellyBot’s magnetometer module connected to the Raspberry Pi and placed flat beside a reference compass application on a smartphone. 
+    Nearby metal objects, magnets, and powered electronic devices were removed as far as practical to reduce magnetic interference.    
+    </p>  
   
       
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
@@ -487,7 +494,14 @@
       <li><strong>Analysis:</strong> Implement calibration and filtering algorithms to reduce drift and enhance measurement consistency.</li>    
       </ul>
     <p><b>Conclusions</b> : </p>
-    <p>The preliminary navigation tests verified the magnetometer’s basic functionality and established a baseline for orientation detection. Further refinements in sensor placement, environmental isolation, and data processing will improve heading accuracy and reliability for precise underwater navigation.</p>  
+    <p>The preliminary navigation tests verified the magnetometer’s basic functionality and established a baseline for orientation detection. Further refinements in sensor placement, environmental isolation, and data processing will improve heading accuracy and reliability for precise underwater navigation.
+    This prototype computes a tilt-compensated magnetic heading using the accelerometer and magnetometer.
+
+    Although the gyroscope values are read and displayed, they are not fused into the heading calculation. 
+    This means no complementary or Kalman filter is applied for yaw. 
+    As a result, the heading output comes fully from the magnetometer (after tilt compensation) and is drift-free but susceptible to magnetic disturbance.
+    
+    </p>  
 
       
     <section id="section-5">
