@@ -12,6 +12,23 @@
       background-color: #f9fafb;
       color: #003049;
     }
+	      /* Optional: make the iframe responsive */
+    .spreadsheet-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      height: 0;
+      overflow: hidden;
+    }
+
+    .spreadsheet-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
     /* Header Navigation */
     header nav {
@@ -200,6 +217,13 @@
       </p>
     </section>
 
+	  <section>
+      <h2>Our Project Plan</h2>
+	<div class="spreadsheet-container">
+    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRmkAxV5fVDMlaFTGk1D9_-tDHMLEV_ZLCKX9GaID626hc1k_u2Bw11bNllf9hy5wlKJe0lLvgFqDdh/pubhtml?widget=true&amp;headers=false"></iframe>
+  	</div>
+    </section>
+
   </div>
 
   <!-- Footer -->
@@ -208,6 +232,7 @@
   </footer>
 </body>
 </html>
+
 
 
 
