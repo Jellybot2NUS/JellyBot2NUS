@@ -242,9 +242,21 @@
     </p>
 
   <section id="section-2">
-    <h2>2. System</h2>
+    <h2>2. System Components & Specifications</h2>
+    
     <p>
-      System Components & Specifications
+    The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream: 
+    <p>  
+    To meet design specification 4a, the SEN0311 Ultrasonic Sensor was used to measure distance to obstacles.
+    <p>  
+    To meet design specification 4b, the MPU6050 IMU was used to provide orientation through accelerometer and gyroscope readings. 
+    <p>
+    To meet design specification 4c, the HMC5883L Magnetometer was used to offer heading information. 
+    <p>
+    The MPU6050 IMU provides orientation through accelerometer and gyroscope readings, the HMC5883L magnetometer offers heading information, the SEN0311 ultrasonic sensor measures distance to obstacles, and the camera module delivers real-time visual feedback for monitoring and analysis. 
+    These modules communicate through I²C, UART, and CSI interfaces, all managed by the microcontroller. 
+    Together, they enable Jellybot to perceive its environment, support navigation and stabilization algorithms, and provide essential feedback for control. 
+    The total power and mass remain minimal, maintaining system efficiency and suitability for underwater deployment.  
     </p>
 
     <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
@@ -296,12 +308,6 @@
       Total Mass: 115.2g<br>
       Total Power Requirement: 5.86W
       
-    <p>
-    The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream: the MPU6050 IMU provides orientation through accelerometer and gyroscope readings, the HMC5883L magnetometer offers heading information, the SEN0311 ultrasonic sensor measures distance to obstacles, and the camera module delivers real-time visual feedback for monitoring and analysis. 
-    These modules communicate through I²C, UART, and CSI interfaces, all managed by the microcontroller. 
-    Together, they enable Jellybot to perceive its environment, support navigation and stabilization algorithms, and provide essential feedback for control. 
-    The total power and mass remain minimal, maintaining system efficiency and suitability for underwater deployment.  
-    </p>
     <section id="section-3">
     <h2>3. Wiring Diagram</h2>
     <div class="center-image">
