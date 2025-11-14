@@ -4,9 +4,154 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Jellybot</title>
-  <link rel="stylesheet" href="css/style.css"/>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
   <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      background-color: #000; /* fallback */
+      color: #fff;
+    }
+
+    header nav {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 15px;
+      background-color: rgba(0,0,0,0.7);
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      text-align: center;
+      padding: 120px 20px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    /* Main Section */
+    .main-section {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      padding: 60px 20px;
+      background-color: #111;
+      flex-wrap: wrap;
+    }
+
+    .main-card {
+      background-color: rgba(255,255,255,0.05);
+      width: 250px;
+      text-align: center;
+      padding: 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      color: white;
+      transition: transform 0.3s;
+    }
+
+    .main-card:hover {
+      transform: scale(1.05);
+      background-color: rgba(255,255,255,0.1);
+    }
+
+    .main-card img {
+      width: 100%;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    /* Features Section */
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      padding: 60px 20px;
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/bg_wallpaper_2.png?raw=true'); /* example image */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+    }
+
+    .feature-card {
+      background-color: rgba(0,0,0,0.6);
+      width: 280px;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+    }
+
+    /* Section Titles with short underline */
+    .subsystem-heading {
+      text-align: center;
+      font-size: 2em;
+      margin-top: 60px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .subsystem-heading::after {
+      content: "";
+      display: block;
+      width: 50%;
+      height: 3px;
+      background-color: #fff;
+      margin: 8px auto 0;
+    }
+
+    /* Subsystems Section */
+    .subsystems {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 40px 20px;
+      flex-wrap: wrap;
+    }
+
+    .cube {
+      display: block;
+      width: 200px;
+      height: 150px;
+      background-color: rgba(255,255,255,0.1);
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      text-align: center;
+      line-height: 150px;
+      border-radius: 10px;
+      transition: transform 0.3s;
+    }
+
+    .cube:hover {
+      transform: scale(1.05);
+      background-color: rgba(255,255,255,0.2);
+    }
+
+    footer {
+      padding: 20px;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+  </style>
 </head>
 <body>
   <!-- Navigation -->
@@ -22,7 +167,26 @@
   <!-- Hero Section -->
   <section class="hero">
     <h1>Welcome to Jellybot</h1>
-    <p style="text-align:center; color:white;">Protecting the ocean with innovative robotics</p>
+    <p>Protecting the ocean with innovative robotics</p>
+  </section>
+
+  <!-- Main Section -->
+  <section class="main-section">
+    <a href="../about.html" class="main-card">
+      <img src="https://images.unsplash.com/photo-1557682250-44b6c4f95b99?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="About">
+      <h3>About</h3>
+      <p>Learn more about Jellybot and its mission.</p>
+    </a>
+    <a href="../contact.html" class="main-card">
+      <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Contact">
+      <h3>Contact</h3>
+      <p>Get in touch with the Jellybot team.</p>
+    </a>
+    <a href="../report/report.html" class="main-card">
+      <img src="https://images.unsplash.com/photo-1581091870623-3d2ef8de3e2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Report">
+      <h3>Report</h3>
+      <p>Explore detailed reports on Jellybot's subsystems.</p>
+    </a>
   </section>
 
   <!-- Features Title -->
@@ -50,7 +214,6 @@
       <p>Biomimetic propulsion mimics jellyfish motion for sustainable ocean exploration.</p>
     </div>
 
-    <!-- Newly added feature cards -->
     <div class="feature-card">
       <h2>Modular Subsystems</h2>
       <p>Each subsystem — mechanical, electrical, propulsion, and electronics — can be independently upgraded or replaced for flexible maintenance.</p>
@@ -73,8 +236,7 @@
 
   <!-- Footer -->
   <footer>
-    <p style="text-align:center; color:white;">© 2025 Jellybot Project</p>
+    <p>© 2025 Jellybot Project</p>
   </footer>
 </body>
 </html>
-
