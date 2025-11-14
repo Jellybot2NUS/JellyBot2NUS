@@ -387,11 +387,19 @@
       Additionally, MATLAB Edge-Detection techniques will be employed to analyze image quality, focus, and detection reliability under different underwater conditions. 
       These refinements aim to enhance the accuracy of camera calibration and the relevance of test results to real-world applications.
       </p>
+      
       <hr>
-
 
     <section id="sub-section-4b">
     <h3 class="subsection" style="margin-top:40px;">4.2 Navigation Testing</h3>    
+    <p><b>Motivation for Magnetometer</b> : </p>
+    <p> 
+    Using only a 6-axis IMU (accelerometer + gyroscope) does not provide a reliable long-term heading. 
+    Yaw from a gyro is obtained by integrating angular rate, so even a small bias accumulates over time and causes <strong>drift</strong>. 
+    To obtain an absolute reference for heading, a 3-axis magnetometer is added. 
+    The magnetometer measures Earth’s magnetic field, giving a global reference for yaw; combined with accelerometer-derived roll/pitch (tilt compensation), it yields a stable compass-like heading.
+    </p>
+
     <p><b>Objective</b> : </p>
     <p>The objective of this test was to evaluate the JellyBot’s ability to determine its orientation accurately, achieving a compass-like heading using the onboard magnetometer. Reliable heading information is crucial for navigation and control in complex underwater environments.</p>
     <p><b>Test Setup</b> : </p>
