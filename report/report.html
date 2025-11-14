@@ -421,19 +421,19 @@
 			<td>1a. Working Depth</td>
 		    <td>5 m</td>
 		    <td>Most coral targets ≤5 m; shallow reef zone</td>
-		    <td>Pool test at 5m depth</td>
+		    <td>Test at 5m depth</td>
 		  </tr>
 		
 		  <!-- Housing Vessel section -->
 		  <tr>
-		    <td>2a. Pressure Tolerance</td>
+		    <td>1b. Pressure Tolerance</td>
 		    <td>>0.5 bar</td>
 			<td>Safety margin at 5 m depth </td>
 		    <td>Submersion and test leak at 5 m depth</td>
 		  </tr>
 		
 		  <tr>
-		    <td>2b. Buoyancy</td>
+		    <td>1c. Buoyancy</td>
 			<td>Neutral at 5m depth</td>
 		    <td>Maintain at a stable depth, reducing collisions</td>
 			<td>Test in tank by with an adjustable ballast, measuring rise and sink</td>
@@ -442,28 +442,28 @@
 		  <!--Part 2-->
 		  <tr>
 		    <td rowspan="4">2. Actuation</td>
-			<td>3a. Tentacles Pressure/td>
+			<td>2a. Tentacles Pressure</td>
 		    <td>120 - 170 kPa (1200 - 1700 hPa)</td>
 		    <td>Sufficient deformation without rupture</td>
 		    <td>Pressure cycling test of tenctacle, measuring displacement per pulse</td>
 		  </tr>
 		
 		  <tr>
-		    <td>3b. Pulse Frequency</td>
+		    <td>2b. Pulse Frequency</td>
 		    <td>>0.25 - 0.16Hz (4 - 6s period) </td>
-			<td>Silicone tentacles reach max formation at 2s - 3s. Maximum pressure recorded at 2s. </td>
+			<td>Silicone tentacles reach max formation at 2s - 3s. Maximum pressure recorded at 2s</td>
 		    <td>Pressure cycling test of tenctacle, measuring displacement per pulse </td>
 		  </tr>
 		
 		  <tr>
-		    <td>3c. Foward Velocity</td>
+		    <td>2c. Foward Velocity</td>
 			<td>≥ 5 cm/s</td>
 		    <td>Safe, slow survery speed</td>
-			<td>Tank track: time over distance</td>
+			<td>Tracking distance over time taken</td>
 		  </tr>
 
 		  <tr>
-		    <td>3d. Tentacle Segments</td>
+		    <td>2d. Tentacle Segments</td>
 			<td>≥4 (even)</td>
 		    <td>Symmetry reduces undesired yaw/roll during pulsing, with even weight distribution.</td>
 			<td>Straight-line test; roll/yaw <2°</td>
@@ -472,14 +472,14 @@
 		  <!--Part 3-->
 		  <tr>
 		    <td rowspan="2">3. Power & Control</td>
-			<td>4a. Power/td>
+			<td>3a. Power</td>
 		    <td>Tethered 12 - 24 V, 3A for motors<br>~30 W for electronics</td>
 		    <td>Stable energy for sensors and motors</td>
 		    <td>Load test: voltage / current stability</td>
 		  </tr>
 		
 		  <tr>
-		    <td>4b. Control Interface</td>
+		    <td>3b. Control Interface</td>
 		    <td>Joystick control and onboard microcontroller</td>
 			<td>intuitive teleoperation and logging data</td>
 		    <td>Responsiveness test; verify data logging during maneuvering</td>
@@ -488,17 +488,17 @@
 		  <!--Part 4-->
 		  <tr>
 		    <td rowspan="4">4. Sensing Suite</td>
-			<td>5. Ultrasonic Sensor/td>
+			<td>4a. Ultrasonic Sensor</td>
 		    <td>Range: 0.5 - 1 m<br>
 				Frequency: ~200 kHz<br>
 				Beamwidth: 20–60°<br>
 				Interface: UART/I²C/analog</td>
 		    <td>Standoff to avoid coral contact, short-range obstacle awareness</td>
-		    <td>Tank test measuring marked out distance,Range error ≤ 2 cm</td>
+		    <td>Test measuring marked out distance,Range error ≤ 2 cm</td>
 		  </tr>
 		
 		  <tr>
-		    <td>6. IMU (6 DOF)</td>
+		    <td>4b. IMU (6 DOF)</td>
 		    <td>Acceleration Range: ±250–2000°/s<br>
 				Gyroscope Range: ±2–16 g<br>
 				Sampling Rate: >400 Hz<br>
@@ -508,7 +508,7 @@
 		  </tr>
 
 		  <tr>
-		    <td>7. Magnetometer</td>
+		    <td>4c. Magnetometer</td>
 		    <td>Range: ±1000 µT (sufficient for Earth field ± disturbances)<br>
 				Sampling Rate: ~100 Hz<br>
 				Interface: UART/I²C/analog </td>
@@ -517,21 +517,21 @@
 		  </tr>
 
 		  <tr>
-		    <td>8. Camera</td>
+		    <td>4d. Camera</td>
 		    <td>Frame rate: 30 - 60 fps<br>
 				Shutter: Global shutter<br>
 				Low light sensitivity: <0.1 Lux<br>
 				Field of view: 70–90°<br>
-				Optical window: Anti reflective coated dome, rated to IP68</td>
+				Optical window: Anti reflective coated dome</td>
 			<td>Live navigation feedback and surveillance</td>
-		    <td>Visual tests in tank: contrast, low-light frame quality, color fidelity.<br>Verify live image/video latency to view.<br>Camera housing leak test to IP68 at 10 m. <br>Check image distortion.</td>
+		    <td>Visual tests in tank: contrast, low-light frame quality, color fidelity.<br>Verify live image/video latency to view.<br>Check image distortion.</td>
 		  </tr>
 
 
 		  <!--Part 5-->
 		  <tr>
 		    <td rowspan="4">5. Computation</td>
-			<td>9a. Microcontroller/td>
+			<td>5a. Microcontroller/td>
 		    <td>32-bit ARM Cortex-M4 or M7 class;<br>
 				Flash ≥ 512 kB; RAM ≥ 128 kB<br>
 				12- to 16-bit ADC; sampling rate ≥ 1 kS/s per channel (multiplexed)<br>
@@ -541,7 +541,7 @@
 		  </tr>
 		
 		  <tr>
-		    <td>9b. Memory</td>
+		    <td>5b. Memory</td>
 		    <td>Flash ≥ 512 kB<br>
 				RAM ≥ 128 kB
 				</td>
@@ -550,7 +550,7 @@
 		  </tr>
 
 		  <tr>
-		    <td>9c. ACD/IO</td>
+		    <td>5c. ACD/IO</td>
 		    <td>12 - 16 bit ADC,<br>
 				Interface: UART/I²C/analog 
 				SDIO/SPI</td>
