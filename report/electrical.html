@@ -353,26 +353,64 @@
       Maximum pressure recorded inside the tentacles for 1 pump (Left) and 2 pump (Right)
     </p>
 
-    <!-- Image 2 
-    <div class="image-row">
-      <div class="image-left">
-        <img src="https://raw.githubusercontent.com/JellyBotNUS/JellyBotNUS.github.io/aebf7781f81ea16b9bd1336f38f99855c7022698/images/wiring_diagram_2.jpg" alt="Wiring Diagram 2">
-      </div>
-      <div class="image-right">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_gauge_2.jpg?raw=true' alt="Pressure Gauge Reading">
-      </div>
-    </div>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Figure 2. Wiring test setup (left) and gauge reading (right) used to measure actuator performance for 12V.
-    </p> -->
+    <p style="margin-top:40px"><b>Conclusion:</b><br>The blue line represents max pressure recorded at 1173hPa using 2 pumps at around 2 seconds. The red line represents max pressure recorded at 917hPa using 1 pump at around 1 seconds. Within 1 seconds, the pressure inside all tentacles has reached its peak.</p>
+    <h3 class="subsection" style="margin-top:40px;">Conclusion on pressure inside tentacles</h3>
+    <p>In order to know the required pressure to overcome the ambient water pressure at different depths, a table was concluded to show the pressure required by the tentacles in order to overcome the water pressure at different depths. From the table, we can see that our maximum pressure of 1173hPa is only sufficient for surface level operation (0m).</p>
+    <table class="styled-table" style="margin-bottom:60px;">
+      <tr>
+        <th>Depth (m)</th>
+        <th>Hydrostatic Pressure (ρ × g × h) (kPa)</th>
+        <th>Absolute Pressure (Atm + Hydrostatic) (kPa)</th>
+        <th>Pressure needed to bend (Abs + gauge) (kPa)</th>
+      </tr>
+      <tr>
+        <td>0</td>
+        <td>0.00</td>
+        <td>101.3</td>
+        <td>117.3</td>
+      </tr>
+    
+      <tr>
+        <td>1</td>
+        <td>10.055</td>
+        <td>111.355</td>
+        <td>127.355</td>
+      </tr>
+    
+      <tr>
+        <td>2</td>
+        <td>20.111</td>
+        <td>121.411</td>
+        <td>137.411</td>
+      </tr>
+    
+      <tr>
+        <td>3</td>
+        <td>30.166</td>
+        <td>131.466</td>
+        <td>147.466</td>
+      </tr>
+    
+      <tr>
+        <td>4</td>
+        <td>40.221</td>
+        <td>141.521</td>
+        <td>157.521</td>
+      </tr>
+    
+      <tr>
+        <td>5</td>
+        <td>50.276</td>
+        <td>151.576</td>
+        <td>167.576</td>
+      </tr>
+    </table>
 
     <section id="sub-section-4b">
-    <h3 class="subsection" style="margin-top:40px;">4.2 Bending Angle of Actuators (1 Pump vs 2 Pump)</h3>
+    <h3 class="subsection" style="margin-top:40px;">4.3 Bending Angle of Actuators (1 Pump vs 2 Pump)</h3>
     <p>
       A series of controlled experiments were conducted to determine the bending angle of the tentacles and find out how the numbers of pump affect the bending angle of the tentacles.
     </p>
-
-    <p></p>
 
     <div style="display: flex; justify-content: center; align-items: center;">
       <div style="width: 50%; text-align: center;">
