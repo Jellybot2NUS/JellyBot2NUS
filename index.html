@@ -12,7 +12,7 @@
       margin: 0;
       padding: 0;
       font-family: Arial, sans-serif;
-      background-color: #000; /* fallback */
+      background-color: #000;
       color: #fff;
     }
 
@@ -45,6 +45,16 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
+    }
+
+    .hero h1 {
+      font-size: 4em;
+      margin: 0;
+    }
+
+    .hero p {
+      font-size: 2em;
+      margin-top: 20px;
     }
 
     /* Main Section */
@@ -86,7 +96,7 @@
       justify-content: center;
       gap: 30px;
       padding: 60px 20px;
-      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/bg_wallpaper_2.png?raw=true'); /* example image */
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/bg_wallpaper_3.png?raw=true');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -94,28 +104,33 @@
 
     .feature-card {
       background-color: rgba(0,0,0,0.6);
-      width: 280px;
+      width: calc(33.33% - 20px); /* 3 per row */
       padding: 20px;
       border-radius: 10px;
       text-align: center;
     }
 
-    /* Section Titles with short underline */
+    .feature-card h2 {
+      font-size: 1.5em;
+      position: relative;
+      display: inline-block;
+      margin-bottom: 15px;
+    }
+
+    .feature-card h2::after {
+      content: "";
+      display: block;
+      width: 60%;
+      height: 3px;
+      background-color: #fff;
+      margin: 5px auto 0;
+    }
+
+    /* Centered Section Titles */
     .subsystem-heading {
       text-align: center;
       font-size: 2em;
       margin-top: 60px;
-      position: relative;
-      display: inline-block;
-    }
-
-    .subsystem-heading::after {
-      content: "";
-      display: block;
-      width: 50%;
-      height: 3px;
-      background-color: #fff;
-      margin: 8px auto 0;
     }
 
     /* Subsystems Section */
@@ -149,6 +164,27 @@
     footer {
       padding: 20px;
       background-color: rgba(0,0,0,0.8);
+      text-align: center;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 900px) {
+      .feature-card {
+        width: calc(50% - 20px);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .feature-card {
+        width: 100%;
+      }
+      .main-card {
+        width: 100%;
+      }
+      .cube {
+        width: 100%;
+        margin-bottom: 20px;
+      }
     }
 
   </style>
@@ -183,7 +219,7 @@
       <p>Get in touch with the Jellybot team.</p>
     </a>
     <a href="../report/report.html" class="main-card">
-      <img src="https://images.unsplash.com/photo-1581091870623-3d2ef8de3e2a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&w=400" alt="Report">
+      <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/bg_wallpaper_3.png?raw=true' alt="Report">
       <h3>Report</h3>
       <p>Explore detailed reports on Jellybot's subsystems.</p>
     </a>
