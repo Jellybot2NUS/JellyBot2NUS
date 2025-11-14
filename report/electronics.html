@@ -407,9 +407,14 @@
 
 <ul>
   <li><strong>Accelerometer Conversion:</strong> Raw sensor readings are scaled using the ±2g range factor.<br>
-  <code>a<sub>x</sub> = AX<sub>RAW</sub> / 16384</code>, 
-  <code>a<sub>y</sub> = AY<sub>RAW</sub> / 16384</code>, 
-  <code>a<sub>z</sub> = AZ<sub>RAW</sub> / 16384</code></li>
+    <pre style="background-color:#f8f8f8; padding:15px; border-radius:8px; border:1px solid #ccc;">
+      <code>
+      a<sub>x</sub> = AX<sub>RAW</sub> / 16384, 
+      a<sub>y</sub> = AY<sub>RAW</sub> / 16384, 
+      a<sub>z</sub> = AZ<sub>RAW</sub> / 16384
+      </code> </pre>
+  </li>
+  
 
   <li><strong>Roll and Pitch from Accelerometer:</strong> 
   <br><code>roll = atan2(a<sub>y</sub>, a<sub>z</sub>)</code> 
