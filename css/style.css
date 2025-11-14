@@ -12,7 +12,7 @@ header nav {
   display: flex;
   justify-content: center;
   gap: 30px;
-  background-color: #0a3d62; /* Dark ocean blue */
+  background-color: #000; /* Dark ocean blue */
   padding: 15px 0;
 }
 
@@ -292,7 +292,7 @@ p {
 
 /* ===== FOOTER ===== */
 footer {
-  background-color: #0a3d62;
+  background-color: #000;
   color: white;
   text-align: center;
   padding: 20px 0;
@@ -309,6 +309,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 
 
 
