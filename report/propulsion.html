@@ -180,7 +180,7 @@
       <tbody>
         <tr>
           <td>Pneumatic</td>
-          <td>FludoJelly<br>Bistable Jellyfish</td>
+          <td>FludoJelly (Joshi A, 2019)<br>Bistable Jellyfish (Wang S, 2025)</td>
           <td>Low voltage pump + valves; compressible working fluid</td>
           <td>0.67-0.8 Hz<br>53-160 mm/s</td>
           <td>Quiet; low electric hazard; easy to scale; cheap, high output</td>
@@ -188,7 +188,7 @@
         </tr>
         <tr>
           <td>Dielectric Elastomers (DE)</td>
-          <td>FEDORA</td>
+          <td>FEDORA (Christianson C, 2019)</td>
           <td>kV driving voltage across thin elastomer membrane</td>
           <td>0.2 Hz<br>3.2 mm/s</td>
           <td>Light; quiet</td>
@@ -196,7 +196,7 @@
         </tr>
         <tr>
           <td>Shape-Memory Alloy (SMA)</td>
-          <td>KrypoJelly<br>SoJel</td>
+          <td>KrypoJelly (Almubarak Y, 2020)<br>SoJel (Singh Matharu P, 2023)<td>
           <td>Resistive heating and cooling cycles</td>
           <td>0.33 Hz<br>20-60 mm/s</td>
           <td>Compact; quiet</td>
@@ -204,7 +204,7 @@
         </tr>
         <tr>
           <td>HASEL</td>
-          <td>HASEL Jellyfish</td>
+          <td>HASEL Jellyfish (Wang T, 2023)</td>
           <td>kV electrostatic zipping; oil-filled pouches</td>
           <td>1.25 Hz<br>50 mm/s</td>
           <td>High output; lightweight; biomimetic stroke</td>
@@ -218,12 +218,11 @@
     <h2>2. Actuator Selection</h2>
 
       <p><strong>Objective:</strong><br>
-      From the problem statement, our chosen actuator must prioritize:
-      </p>
+      As discussed from the mechanical side, to reflect project objectives and practical constraints, the following 6 criterions below were used. These 6 criterions were also used to determine the type of actuator best suited to our needs.
       <ol>
         <li>Biomimicry (25%)</li>
         <li>Manufacturability (20%)</li>
-        <li>Energy Efficiency (15%)</li>
+        <li>Power Consumption (15%)</li>
         <li>Eco-friendliness (15%)</li>
         <li>Cost (15%)</li>
         <li>Control Complexity (10%)</li>
@@ -308,7 +307,7 @@
         </thead>
         <tbody>
           <tr>
-            <td>Energy Efficiency</td>
+            <td>Power Consumption</td>
             <td>15%</td>
             <td>4</td>
             <td>3</td>
@@ -452,7 +451,7 @@
             <td>2</td>
           </tr>
           <tr>
-            <td>Energy Efficiency</td>
+            <td>Power Consumption</td>
             <td>15%</td>
             <td>4</td>
             <td>3</td>
@@ -498,7 +497,7 @@
       <p>
       After comparing the four actuator options, the pneumatic system stood out as the most balanced and practical choice, with the 
       highest overall score of 4.10. HASEL actuators can closely mimic the movement of real jellyfish, and Shape-Memory Alloys (SMA) 
-      are simple to build, but both have clear downsides—HASEL and Dielectric Elastomers (DE) need very high voltages to run, and SMA 
+      are simple to build, but both have clear downsides—HASEL and Dielectric Elastomers (DE) have complex control, and SMA 
       wastes energy through heating and wears out quickly. Pneumatic actuators, by contrast, operate safely at low voltage, use harmless 
       air or fluid, and are much cheaper to produce. Although building and sealing the tubing system takes some effort, the process 
       is well understood and manageable with standard lab tools. In short, pneumatic silicone actuation offers the best mix of realistic 
@@ -953,9 +952,10 @@ M<sub>needed</sub> ≈ 821.81 g
     <h2>References</h2>
        <ul>
       	<li>Almubarak, Y., Punnoose, M., Maly, N. X., Hamidi, A., & Tadesse, Y. (2020). KryptoJelly: A jellyfish robot with confined, adjustable pre-stress, and easily replaceable shape memory alloy NiTi actuators. https://bpb-us-e2.wpmucdn.com/labs.utdallas.edu/dist/c/259/files/2025/10/KryptoJelly-1.pdf</li>
-		    <li>Christianson, C., Bayag, C., Li, G., Jadhav, S., Giri, A., Agba, C., Li, T., & Tolley, M. T. (2019). Jellyfish-inspired soft robot driven by fluid electrode dielectric organic robotic actuators. Frontiers in Robotics and AI, 6, 126. https://doi.org/10.3389/frobt.2019.00126</li>
-	    	<li>Joshi, A., Kulkarni, A., & Tadesse, Y. (2019). FludoJelly: Experimental study on jellyfish-like soft robot enabled by soft pneumatic composite (SPC).https://doi.org/10.3390/robotics8030056</li>
-		    <li>Wang, S., Qiao, Z., Li, Z., Zhang, Y., Cheng, A., Zhu, B., Yue, X., Chen, Y., Wong, T.-W., & Li, G. (2025). Jellyfish-inspired soft robot driven by pneumatic bistable actuators. Soft Robotics, 12(1), 1–12. https://www-liebertpub-com.libproxy1.nus.edu.sg/doi/10.1089/soro.2023.0212</li>
+		<li>Christianson, C., Bayag, C., Li, G., Jadhav, S., Giri, A., Agba, C., Li, T., & Tolley, M. T. (2019). Jellyfish-inspired soft robot driven by fluid electrode dielectric organic robotic actuators. Frontiers in Robotics and AI, 6, 126. https://doi.org/10.3389/frobt.2019.00126</li>
+	    <li>Joshi, A., Kulkarni, A., & Tadesse, Y. (2019). FludoJelly: Experimental study on jellyfish-like soft robot enabled by soft pneumatic composite (SPC).https://doi.org/10.3390/robotics8030056</li>
+		<li>Singh Matharu, P., Wang, Z., Costello, J., Colin, S., Baughman, R., & Tadesse, Y. (2023). SoJel –A 3D printed jellyfish-like robot using soft materials for underwater applications. Ocean Engineering, 279 https://doi.org/10.1016/j.oceaneng.2023.114427</li>
+		<li>Wang, S., Qiao, Z., Li, Z., Zhang, Y., Cheng, A., Zhu, B., Yue, X., Chen, Y., Wong, T.-W., & Li, G. (2025). Jellyfish-inspired soft robot driven by pneumatic bistable actuators. Soft Robotics, 12(1), 1–12. https://www-liebertpub-com.libproxy1.nus.edu.sg/doi/10.1089/soro.2023.0212</li>
         <li>Wang, T., Joo, H.-J., Song, S, Hu, W., Keplinger, C., & Sitti, M. (2023). A versatile jellyfish-like robotic platform for effective underwater propulsion and manipulation. Science Advances, 9, eadg0292. https://www.science.org/doi/pdf/10.1126/sciadv.adg0292</li>
        </ul>
     
