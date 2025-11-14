@@ -18,7 +18,7 @@
       display: flex;
       justify-content: center;
       gap: 30px;
-      background-color: #0a3d62;
+      background-color: #000;
       padding: 15px 0;
     }
 
@@ -81,7 +81,7 @@
     }
 
     footer {
-      background-color: #0a3d62;
+      background-color: #000;
       color: white;
       text-align: center;
       padding: 20px 0;
@@ -255,20 +255,10 @@
   <h2>Table of figures</h2>
 
   <sl-tree>
-
-    <sl-tree-item>
-      <a>Table 1 : System components & Specifications</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Table 2 : Recorded test results carried out with different parameters</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Table 3 : Required pressure at different depths</a>
-    </sl-tree-item>
     <sl-tree-item>
       <a>Figure 1 : Wiring Diagram of our setup</a>
     </sl-tree-item>
-    <sl-treel-item>
+    <sl-tree-item>
       <a>Figure 2 : Pressure produced by different number of pumps vs Time taken</a>
     </sl-treel-item>
      <sl-tree-item>
@@ -285,6 +275,15 @@
     </sl-tree-item>
     <sl-tree-item>
       <a>Figure 7 : Non linear comparison of pressure vs bend angle</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Table 1 : System components & Specifications</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Table 2 : Recorded test results carried out with different parameters</a>
+    </sl-tree-item>
+    <sl-tree-item>
+      <a>Table 3 : Required pressure at different depths</a>
     </sl-tree-item>
   </sl-tree>
 </section>
@@ -360,14 +359,14 @@
 
     <section id="section-3">
     <h2>3. Wiring Diagram</h2>
+    <p>
+  The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers are used to control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air—either channeling it into the silicone tentacles for inflation or releasing it into the atmosphere for deflation. This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behavior during testing.
+    </p>
     <div class="image-center">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_boxed.png?raw=true'>
     </div>
     <p class="figure-caption" style="margin-bottom:40px;">
       Figure 1 : Wiring Diagram of our setup
-    </p>
-    <p>
-  The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers are used to control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air—either channeling it into the silicone tentacles for inflation or releasing it into the atmosphere for deflation. This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behavior during testing.
     </p>
     </section>
     
@@ -433,7 +432,7 @@
     <section id="sub-section-4b">
     <h3 class="subsection" style="margin-top:40px;">4.2 Pressure at different depths</h3>
     <p>To determine the pressure required to overcome ambient water pressure at various depths, a table was compiled showing the necessary tentacle pressures at different depths, as shown below in table 3. From the table, it is evident that our maximum recorded pressure of 1173 hPa is sufficient only for surface-level operation (0 m). With reference to our <b>design specifications(1a)</b>, which require operation in shallow reef zones with coral targets at depths of up to 5 m, this indicates that the current pneumatic system does not yet meet the full depth requirement. Future testing and adjustments will be needed to ensure adequate performance at the target 5 m depth.</p>
-    <table class="styled-table" style="margin-bottom:60px;">
+    <table class="styled-table">
       <tr>
         <th>Depth (m)</th>
         <th>Hydrostatic Pressure (ρ × g × h) (kPa)</th>
@@ -537,7 +536,7 @@
       
     <section id="sub-section-4d">
     <h3 class="subsection" style="margin-top:40px;">4.4 Comparison of pressure vs bend angle</h3>
-    <p style="margin-top:40px">Next, we analyse the relationship between internal pneumatic pressure and the resulting bend angle of the silicone tentacles. By plotting pressure versus bend angle, we aim to characterise how variations in actuation pressure translate into mechanical deformation. This analysis provides insight into the responsiveness of the tentacles, the influence of pump configurations on bending performance, and the limits imposed by the material properties of the silicone. The results will help evaluate whether the tentacle actuation meets the design specifications for both bending range and controllability.</p>
+    <p>Next, we analyse the relationship between internal pneumatic pressure and the resulting bend angle of the silicone tentacles. By plotting pressure versus bend angle, we aim to characterise how variations in actuation pressure translate into mechanical deformation. This analysis provides insight into the responsiveness of the tentacles, the influence of pump configurations on bending performance, and the limits imposed by the material properties of the silicone. The results will help evaluate whether the tentacle actuation meets the design specifications for both bending range and controllability.</p>
     <div class="image-center" style="text-align:center;">
       <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/Comparison_P_A.png?raw=true" 
            alt="Non Linear Graph" 
@@ -546,30 +545,15 @@
         Figure 7 : Non linear comparison of pressure vs bend angle
       </p>
     </div>
-    <p><b>Conclusion:</b><br>When plotting pressure vs bend angle, we observed a non linear relationship between the pressure within the tentacles vs the degree of the bent of the tentacles. The tentacle resists bending at low pressures, it then bends rapidly after a certain threshold and finally it saturates at a maximum angle. The nonlinear response is influenced by the material properties, including the thickness and elasticity of the silicone, which affect the threshold pressure and the rate of bending. Thicker or stiffer silicone results in smaller maximum bend angles and requires higher pressure to reach the rapid bending region. Additionally, variations in the silicone mixture and fabrication inconsistencies can lead to differences in bending behavior between tentacles. Understanding this relationship is critical for predicting actuation performance, designing control strategies, and ensuring that the tentacles operate safely within their material limits while meeting the design specifications.</p>
+    <p><b>Conclusion:</b><br>When plotting pressure vs bend angle, we observed a non linear relationship between the pressure within the tentacles vs the degree of the bent of the tentacles. The tentacle resists bending at low pressures, it then bends rapidly after a certain threshold and finally it saturates at a maximum angle. <br>The nonlinear response is influenced by the material properties, including the thickness and elasticity of the silicone, which affect the threshold pressure and the rate of bending. Thicker or stiffer silicone results in smaller maximum bend angles and requires higher pressure to reach the rapid bending region. Additionally, variations in the silicone mixture and fabrication inconsistencies can lead to differences in bending behavior between tentacles. Understanding this relationship is critical for predicting actuation performance, designing control strategies, and ensuring that the tentacles operate safely within their material limits while meeting the design specifications.</p>
     </section>
 
       
     <section id="sub-section-4e">
     <h3 class="subsection" style="margin-top:40px;">4.5 Key Takeaways</h3>
-    <p><b>Lessons Learnt:</b><br></p>
-    <ul style="margin-bottom:40px">
-      <li>Pressure governs stiffness, but flow rate governs actuation speed. Increasing number of pumps used does not directly double the pressure as pneumatic pressure is not additive. It only increase the air flow rate which meant faster inflation speed.</li>
-      <li>The material compliance of the silicone also limites further bending beyond a certain pressure, with thicker silicone materials results in smaller bend angles due to higher stiffness.</li>
-    </ul>
-    
-    <p><b>Shortcomings:</b><br></p>
-    <ul style="margin-bottom:40px">
-      <li>Measurements show immediate pressure jump, hard to capture gradual rises in the pressure recording</li>
-      <li>Inconsistency in the mixture of the silicone materials will cause tendency for excessive inflation which in turn caused silicone balloning, increasing the risk of rupturing.</li>
-    </ul>
-    
-    <p><b>Future improvements:</b><br></p>
-    <ul style="margin-bottom:40px">
-      <li>Separate pump outputs to independent tentacle channels instead of combining them.</li>
-      <li>Test with different silicone material mixture, currently we are using Ecoflex 00-30 purely.</li>
-      <li>Test the displacement of the Jellybot for each bend angle, and record the distance it moves with regards to the bend angle.</li>
-    </ul>
+    <p><b>Lessons Learnt:</b><br>Firstly, Pressure governs stiffness, but flow rate governs actuation speed. Increasing number of pumps used does not directly double the pressure as pneumatic pressure is not additive. It only increase the air flow rate which meant faster inflation speed.<br>Secondly, The material compliance of the silicone also limites further bending beyond a certain pressure, with thicker silicone materials results in smaller bend angles due to higher stiffness.</p>
+    <p><b>Shortcomings:</b><br>Firstly, Measurements show immediate pressure jump, hard to capture gradual rises in the pressure recording.<br>Secondly, Inconsistency in the mixture of the silicone materials will cause tendency for excessive inflation which in turn caused silicone balloning, increasing the risk of rupturing.</p>
+    <p><b>Future improvements:</b><br>Firstly, Separate pump outputs to independent tentacle channels instead of combining them.<br>Secondly, test with different silicone material mixture, currently we are using Ecoflex 00-30 purely.<br>Thirdly, testing of the displacement of the Jellybot for each bend angle, and record the distance it moves with regards to the bend angle.</p>
     </section>
 
 
