@@ -234,9 +234,13 @@
     <sl-tree>
       
     <sl-tree-item>
-      Table 1 : Electrical and Physical Specifications of Onboard Components
+      Table 1: Electrical and Physical Specifications of Onboard Components
     </sl-tree-item>
-      
+		
+    <sl-tree-item>
+		Figure 1: Wiring Diagram of Components
+    </sl-tree-item>
+
 	</sl-tree>
   </section>
 
@@ -274,7 +278,7 @@
     <p>
     <li>To meet <a href="report.html#spec-4d">design specification 4d</a>, the Raspberry Pi Camera Module V2 is used to deliver real-time visual feedback for monitoring and analysis. </li>
     <p>
-    <li>To meet <a href="report.html#spec-5a">design specification 5a</a>, the Raspberry Pi 5 is used as the primary processing unit, coordinating communication between all onboard sensors. </li></ul>
+    <li>To meet <a href="report.html#spec-5a">design specification 5</a>, the Raspberry Pi 5 is used as the primary processing unit, coordinating communication between all onboard sensors. </li></ul>
    
     <p>
     <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
@@ -341,16 +345,32 @@
 	  
     <section id="section-3">
     <h2>3. Wiring Diagram</h2>
+	<p>
+    The wiring diagram [Figure 1] illustrates the interconnection between the sensors, controller, and peripheral devices that make up the Jellybot’s electronics subsystem. 
+	<ul> 
+		<li>
+			The <strong>Raspberry Pi Camera Module 2</strong> is directly mounted on the Raspberry Pi 5 through the <strong>CSI interface</strong>. 
+		</li>
+		
+		<li>
+    		The <strong>SEN0311 ultrasonic sensor</strong> communicates with the Raspberry Pi via <strong>UART</strong>.
+		</li>
+
+		<li>
+			Both the <strong>MPU6050 IMU</strong> and <strong>HMC5883L magnetometer</strong> share the <strong>I²C bus</strong>. 
+		</li>
+	<p>
+    This configuration ensures efficient communication, minimal wiring complexity, and reliable real-time data exchange across all connected modules.     
+    </p>
+	</ul>	
     <div class="center-image">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_sub.jpg?raw=true'>
     </div>
-    <p>
-    The wiring diagram illustrates the interconnection between the sensors, controller, and peripheral devices that make up the Jellybot’s electronics subsystem. 
-    An external <strong>PS5 controller</strong> functions as the primary user interface, allowing manual control and navigation input during testing. 
-    The <strong>Raspberry Pi Camera Module 2</strong> is directly mounted on the <strong>Raspberry Pi 5</strong> through the <strong>CSI interface</strong>, providing live visual feedback for monitoring. 
-    The <strong>SEN0311 ultrasonic sensor</strong> communicates with the Raspberry Pi via <strong>UART</strong>, enabling accurate distance measurement, while both the <strong>MPU6050 IMU</strong> and <strong>HMC5883L magnetometer</strong> share the <strong>I²C bus</strong> for synchronized orientation and heading data acquisition. 
-    This configuration ensures efficient communication, minimal wiring complexity, and reliable real-time data exchange across all connected modules.     
-    </p>
+		
+	<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 1: Wiring Diagram of Components    
+	</p>
+    
 
 
 	<!-- COMPONENT TESTING -->
