@@ -276,7 +276,7 @@
     <p>
     <li>To meet <a href="report.html#spec-4c">design specification 4c</a>, the HMC5883L Magnetometer is used to offer heading information. </li>
     <p>
-    <li>To meet <a href="report.html#spec-4d">design specification 4d</a>, the Raspberry Pi Camera Module V2 is used to deliver real-time visual feedback for monitoring and analysis. </li>
+    <li>To provide real-time visual feedback for monitoring and analysis, the Raspberry Pi Camera Module V2 was selected.   </li>
     <p>
     <li>To meet <a href="report.html#spec-5a">design specification 5</a>, the Raspberry Pi 5 is used as the primary processing unit, coordinating communication between all onboard sensors. </li></ul>
    
@@ -381,19 +381,21 @@
     <h2>4. Component Testing</h2>
 	<p>
 		Component testing focuses on validating the functionality, reliability, and performance of each individual sensor and module before system-level integration. 
-		These tests ensure that every part of JellyBot—such as the IMU, magnetometer, ultrasonic sensor, and camera—operates according to expected specifications when evaluated independently. 
+		These tests ensure that every part of JellyBot: such as the IMU, magnetometer, ultrasonic sensor, and camera, operates according to expected specifications when evaluated independently. 
 		By characterizing the behaviour, limitations, and data quality of each component, this stage establishes a strong foundation for stable navigation, accurate sensing, and overall system robustness in later prototypes.
 		
 	</p>
 
+	<hr>
 		
     <section id="sub-section-4a">  
     <h3 class="subsection" style="margin-top:40px;">4.1 Preliminary Camera Testing (Without Distortion)</h3>    
     <p><b>Objective</b> :</p>
-      <p>The objective of this preliminary test is to evaluate the camera’s ability under simulated underwater conditions with reduced visibility. 
-        It also aims to determine the optimal distance between the camera and an object to achieve the best balance between image clarity without distortion. 
-        The findings from this test will help establish appropriate camera placement for future underwater deployments and ecological monitoring.
-      </p>
+      <p>
+		  The objective of this preliminary test is to evaluate the camera’s performance under simulated low-visibility, underwater-like conditions. 
+		  The test also aims to determine the optimal viewing distance that provides the best balance between image clarity and minimal distortion. 
+		  This assessment supports the fulfillment of <a href="report.html#spec-4d">design specification 4d</a>, ensuring the camera can reliably provide visual feedback for future underwater deployments and ecological monitoring.
+	  </p>
       
     <p><b>Test Setup</b> :</p> <p>
       <ul>
