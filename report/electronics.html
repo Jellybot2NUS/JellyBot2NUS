@@ -283,6 +283,29 @@
 		Figure 11: Ultrasonic Sensor Readings  
     </sl-tree-item>
 
+	<sl-tree-item>
+		Figure 12: Welcome Menu  
+    </sl-tree-item>
+
+	<sl-tree-item>
+		Figure 13: User Guide Menu 
+    </sl-tree-item>
+
+	<sl-tree-item>
+		Figure 14: Ready to Deploy Screen 
+    </sl-tree-item>
+
+	<sl-tree-item>
+		Figure 15: Exploration Screen
+    </sl-tree-item>
+
+	<sl-tree-item>
+		Figure 16: Controller Not Connected Pop-Up Menu
+    </sl-tree-item>
+
+	<sl-tree-item>
+		Figure 17: Sensor Not Connected Screen
+    </sl-tree-item>
 	</sl-tree>
   </section>
 
@@ -310,17 +333,17 @@
     The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream: 
       <ul>
     <p>  
-    <li>To meet <a href="report.html#spec-3b">design specification 3b</a>, the Playstation 5 Controller is used as the primary user control interface. </li>
+    <li>To provide a user control interface <a href="report.html#spec-3b">[design specification 3b]</a>, the Playstation 5 Controller was selected. </li>
     <p> 
-    <li>To meet <a href="report.html#spec-4a">design specification 4a</a>, the SEN0311 Ultrasonic Sensor is used to measure distance to obstacles through UART.</li>
+    <li>To measure distance to obstacles <a href="report.html#spec-4a">[design specification 4a]</a>, the SEN0311 Ultrasonic Sensor was selected.</li>
     <p>  
-    <li>To meet <a href="report.html#spec-4b">design specification 4b</a>, the MPU6050 IMU is used to provide orientation through accelerometer and gyroscope readings. </li>
+    <li>To provide orientation <a href="report.html#spec-4b">[design specification 4b]</a>, the MPU6050 IMU was selected.</li>
     <p>
-    <li>To meet <a href="report.html#spec-4c">design specification 4c</a>, the HMC5883L Magnetometer is used to offer heading information. </li>
+    <li>To provide heading information <a href="report.html#spec-4c">[design specification 4c]</a>, the HMC5883L Magnetometer was selected.</li>
     <p>
     <li>To provide real-time visual feedback for monitoring and analysis <a href="report.html#spec-4d">[design specification 4d]</a>, the Raspberry Pi Camera Module V2 was selected.   </li>
     <p>
-    <li>To meet <a href="report.html#spec-5a">design specification 5</a>, the Raspberry Pi 5 is used as the primary processing unit, coordinating communication between all onboard sensors. </li></ul>
+    <li>To coordinate communication between all onboard sensors <a href="report.html#spec-5a">[design specification 5]</a>, the Raspberry Pi 5 was selected. </li></ul>
    
     <p>
     <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
@@ -739,7 +762,7 @@
     <h2>5. User Interface (via Controller)</h2>
     <p>
     The controller-based interface was designed to reflect the intended <strong>user journey</strong> of future JellyBot operators, offering a preliminary simulation of how the robot will be deployed, checked, and controlled during real underwater missions. 
-    Each screen—beginning with the Welcome Menu, followed by the User Guide and the staged Pre-Dive Checks—mirrors the logical workflow a user would follow: verify system readiness, confirm sensor functionality, understand operating guidelines, and only then proceed to exploration. 
+    Each screen: beginning with the Welcome Menu, followed by the User Guide and the staged Pre-Dive Checks, mirrors the logical workflow a user would follow: verify system readiness, confirm sensor functionality, understand operating guidelines, and only then proceed to exploration. 
     This structure provides an early insight into the operational experience, ensuring that key interactions such as safety checks, navigation input, and live feedback handling are intuitive and aligned with real-world usage. 
     Although the current interface is a prototype, it establishes the foundational user experience that later hardware-integrated versions will expand upon.
     <hr>
@@ -747,21 +770,28 @@
       
       <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/welcome_menu.png?raw=true'>
-        <p style="text-align:center;">Welcome Menu</p>
-    </div>
+		<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 12: Welcome Menu 
+	</p>    </div>
 
     <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/user_guide.png?raw=true'>
-        <p style="text-align:center;">User Guide</p>
+        <p class="figure-caption" style="margin-bottom:40px;">
+		Figure 13: User Guide Menu
+	</p>
     </div>
 
     <p>
-    The <strong>Welcome Menu</strong> (top image) is the first screen the user encounters when powering on the JellyBot system. 
+    The <strong>Welcome Menu</strong> [Figure 11] is the first screen the user encounters when powering on the JellyBot system. 
     It provides an immediate overview of the robot’s status, highlighting sensor readiness and offering quick access to key actions such as the Pre-Dive Check and startup procedures. 
     It is highlighted in the image that the programme has yet to run a pre-dive analysis. 
     This is done intentionally.
-    For the actual user experience, the programme would automatically run a pre-dive analysis without needing the user to perform it manually. 
-    From here, users can navigate to the User Guide (bottom image), a dedicated sub-menu designed to provide clear operational instructions. 
+	For the actual user experience, the programme would automatically run a pre-dive analysis without needing the user to perform it manually. 
+
+	</p>
+		
+	<p>
+    From here, users can navigate to the <strong>User Guide</strong> [Figure 12], a dedicated sub-menu designed to provide clear operational instructions. 
     This guide outlines essential safety steps, sensor verification procedures, and basic navigation controls, ensuring that users understand how to operate the JellyBot safely and effectively before deployment.
     </p>
       
@@ -769,11 +799,12 @@
       
     <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/deploy.png?raw=true'>
-        <p style="text-align:center;">Ready to deploy</p>
-    </div>
+	<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 14: Ready to Deploy Screen
+	</p>    </div>
 
         <p>
-        The Ready to Deploy screen is the <strong>actual</strong> interface the user will see once all sensors have passed the Pre-Dive Check. 
+        The <strong>Ready to Deploy Screen</strong> [Figure 13] is the <strong>actual</strong> interface the user will see once all sensors have passed the Pre-Dive Check. 
         This menu confirms that the camera, IMU, and ultrasonic sensor are fully operational, indicating that JellyBot is prepared for deployment. 
         By presenting a clear readiness status, the interface ensures the user can confidently proceed with exploration knowing that all essential systems are functioning properly.
         </p>
@@ -782,11 +813,12 @@
       
     <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/exploration.png?raw=true'>
-        <p style="text-align:center;">Exploration Menu</p>
-    </div>
+	<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 15: Exploration Screen
+	</p>    </div>
 
       <p>
-        The Exploration Menu represents the interface that users will eventually rely on during real underwater navigation. 
+        The <strong>Exploration Screen</strong> [Figure 14] represents the interface that users will eventually rely on during real underwater navigation. 
         Although not fully implemented in this prototype, it outlines the key telemetry that will be available—such as depth, heading, and IMU status—and serves as a placeholder for the live camera HUD that will be integrated in future iterations. 
         This screen provides an early visualization of the intended user experience once JellyBot is capable of full manual exploration and real-time monitoring.
       </p>
@@ -795,18 +827,20 @@
       
     <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/controller_not_connected.png?raw=true'>
-        <p style="text-align:center;">Controller Not Connected Pop Up Menu</p>
-    </div>
+<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 16: Controller Not Connected Pop-Up Menu 
+	</p>    </div>
 
       <div class="center-image" style="margin-bottom:40px">
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/sensor.png?raw=true'>
-        <p style="text-align:center;">Sensor not connected</p>
-    </div>
+<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 17: Sensor Not Connected Screen
+	</p>    </div>
 
         <p>
           These two interfaces serve as <strong>error pop-up menus</strong> that alert the user when critical system components are not connected. 
-          The first notifies the user that the controller is missing, prompting them to plug in or pair the device before proceeding. 
-          The second highlights when one or more sensors—such as the IMU—are not detected, preventing the system from entering exploration mode. 
+          The first [Figure 15] notifies the user that the controller is missing, prompting them to plug in or pair the device before proceeding. 
+          The second [Figure 16] highlights when one or more sensors—such as the IMU—are not detected, preventing the system from entering exploration mode. 
           These safeguards ensure that JellyBot cannot be deployed without essential hardware operational.
         </p>
 
