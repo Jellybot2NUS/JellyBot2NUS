@@ -520,10 +520,8 @@
 		
     <p><b>Motivation for Magnetometer</b> : </p>
     <p> 
-    Using only a 6-axis IMU (accelerometer + gyroscope) does not provide a reliable long-term heading. 
-    Yaw from a gyro is obtained by integrating angular rate, so even a small bias accumulates over time and causes <strong>drift</strong>. 
-    To obtain an absolute reference for heading, a 3-axis magnetometer is added. 
-    The magnetometer measures Earth’s magnetic field, giving a global reference for yaw; combined with accelerometer-derived roll/pitch (tilt compensation), it yields a stable compass-like heading.
+    The addition of the HMC5883L magnetometer aims to meet <a href="report.html#spec-4c">design specification 4c</a>. 
+	Combined with IMU-derived roll and pitch, the magnetometer provides an absolute yaw reference, producing a tilt-compensated, compass-like heading for navigation.
     </p>
 
     <p>
