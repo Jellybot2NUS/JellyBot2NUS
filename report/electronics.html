@@ -250,15 +250,15 @@
     </sl-tree-item>   
 
 	<sl-tree-item>
-		Figure 4: Camera positioned 50 cm from the test prop
+		Figure 4: Camera positioned 0.5 m from the test prop
     </sl-tree-item>   
 		
 	<sl-tree-item>
-		Figure 4: Camera positioned 75 cm from the test prop
+		Figure 4: Camera positioned 0.75 m from the test prop
     </sl-tree-item>  
 		
 	<sl-tree-item>
-		Figure 4: Camera positioned 100 cm from the test prop
+		Figure 4: Camera positioned 1 m from the test prop
     </sl-tree-item>   		
 	</sl-tree>
   </section>
@@ -406,7 +406,9 @@
 	</p>
 
 	<hr>
-		
+
+	 <!-- CAMERA TEST -->
+	
     <section id="sub-section-4a">  
     <h3 class="subsection" style="margin-top:40px;">4.1 Preliminary Camera Testing (Without Distortion)</h3>    
     <p><b>Objective</b> :</p>
@@ -424,7 +426,7 @@
       </p>
       <p><b>Procedure</b> :</p> <p>
       <ol>
-      <li>The JellyBot was positioned at varying distances from the prop (ranging from 0.2 m to 1.5 m).</li>
+      <li>The JellyBot was positioned at varying distances from the prop (ranging from 0.5 m to 1 m).</li>
       <li>Images were captured at each distance.</li>
       <li>Observations were recorded regarding image clarity.</li>
     </ol>
@@ -456,21 +458,21 @@
              alt="Image 1" style="width:100%; height:auto;">
 		  
 	<p class="figure-caption" style="margin-bottom:40px;">
-		Figure 4: Camera positioned 50 cm from the test prop
+		Figure 4: Camera positioned 0.5 m from the test prop
 	</p>		  
       </div>
       <div style="flex: 1; text-align: center; margin-right: 10px;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/75cm.png?raw=true" 
              alt="Image 2" style="width:100%; height:auto;">
 	<p class="figure-caption" style="margin-bottom:40px;">
-		Figure 5: Camera positioned 75 cm from the test prop
+		Figure 5: Camera positioned 0.75m from the test prop
 	</p>      
 	  </div>
       <div style="flex: 1; text-align: center;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/100cm.png?raw=true" 
              alt="Image 3" style="width:100%; height:auto;">
 	<p class="figure-caption" style="margin-bottom:40px;">
-		Figure 6: Camera positioned 100 cm from the test prop
+		Figure 6: Camera positioned 1 m from the test prop
 	</p>    
 		</div>
     </div>
@@ -479,8 +481,8 @@
       
     <p><b>Findings & Limitations</b> :</p> 
       <p>
-      The captured images were clearest and most distinguishable at distances between <strong> 0.5 m and 1.0 m </strong>, aligning with theoretical expectations for underwater imaging resolution. 
-      Beyond this range, image clarity declined noticeably due to light scattering and refraction in the water. 
+      The captured images were clearest and most distinguishable at distances of <strong> 0.5 m [Figure 4] and 0.75 m [Figure 5] </strong>, aligning with theoretical expectations for underwater imaging resolution. 
+      Beyond the 0.75m range, image clarity declined noticeably due to light scattering and refraction in the water [Figure 6]. 
       However, as the test utilized a simplified prop and controlled tank environment, the results may not fully replicate the complexity of actual coral reef textures or the variability of real underwater conditions such as turbidity and lighting. 
       These preliminary findings nonetheless provide a practical reference for determining the optimal camera-to-subject distance in future field tests.
       </p>
@@ -489,15 +491,33 @@
       <p>
       Future tests will focus on improving environmental realism and quantitative image analysis. 
       Printed images will be used to better replicate natural reef textures. 
-      Still images will be captured at fixed intervals to evaluate sharpness and distortion across varying distances. 
+      Still images will still be captured at fixed intervals to evaluate sharpness and distortion across varying distances. 
       Additionally, MATLAB Edge-Detection techniques will be employed to analyze image quality, focus, and detection reliability under different underwater conditions. 
       These refinements aim to enhance the accuracy of camera calibration and the relevance of test results to real-world applications.
       </p>
       
       <hr>
 
+	 <!-- IMU TEST -->
+
+		
     <section id="sub-section-4b">
     <h3 class="subsection" style="margin-top:40px;">4.2 Navigation Testing</h3>    
+	
+	<p><b>Inertial-Measurement Unit </b> : </p>
+    <p> 
+    Initial navigation tests were conducted using only the 6-DOF MPU6050 IMU (3-axis accelerometer + 3-axis gyroscope) to evaluate <a href="report.html#spec-4b">design specification 4b</a>. 
+	This setup produced stable roll and pitch estimates, but yaw was obtained by integrating the Z-axis gyro rate, so tiny biases in the gyroscope accumulated over time. 
+	These tiny biases are otherwise known as Bias Instability (Inertial measurement unit (IMU) – an introduction, 2023).
+    </p>
+		
+    <p><b>Future Testing Plans</b> :</p> <p>
+	<p>
+		Integration with the full Jellybot hardware is still required to validate performance in the final underwater configuration.
+	</p>
+		
+	<hr>
+		
     <p><b>Motivation for Magnetometer</b> : </p>
     <p> 
     Using only a 6-axis IMU (accelerometer + gyroscope) does not provide a reliable long-term heading. 
@@ -706,6 +726,19 @@
     While they successfully provide an early functional foundation, future iterations will refine these systems with more robust hardware, improved sensor fusion, and higher-fidelity underwater performance. 
     This lays the groundwork for a more capable and reliable JellyBot in subsequent development stages.
     </p>
+
+	<!-- REFERENCES -->
+	<section id="section-7">
+    <h2>7. References</h2>	
+		<p>
+			<ul>
+				<li>
+					Inertial measurement unit (Imu) – an introduction. (2023, February 13). Advanced Navigation. https://www.advancednavigation.com/tech-articles/inertial-measurement-unit-imu-an-introduction/
+				</li>
+
+			</ul>
+
+		</p>
 
   </main>
 
