@@ -671,7 +671,7 @@
     <h3 class="subsection" style="margin-top:40px;">4.3 Distance from Subject Testing</h3>		
 	<p><b>Objective</b> : </p>
     <p>
-	The objective of this distance-from-subject testing is to evaluate the SEN0311 Ultrasonic Sensor as a promising option for Jellybot’s future underwater range sensing, in support of <a href="report.html#spec-4a">design specification 4a</a>. 
+	The objective of this distance-from-subject testing is to evaluate the Ultrasonic (Shaik et al., 2015; Arrow Electronics, 2018) as a promising option for Jellybot’s future underwater range sensing, in support of <a href="report.html#spec-4a">design specification 4a</a>. 
 	Since ultrasonic sensing can operate in liquids, this test focuses on confirming that the sensor provides reliable distance readings in pool conditions before proceeding to full underwater trials.		
 	</p>
 
@@ -707,7 +707,24 @@
         <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/figure_11_data.jpg?raw=true'>
         <p style="text-align:center;">Figure 11: Ultrasonic Sensor Readings</p>
     </div>
-			
+
+	<p> 
+
+	<p><b>Findings & Limitations</b> : </p>
+	<p>
+		With the sensor and target board fixed at ~1.25 m in air, the ultrasonic readings clustered around 1200–1250 mm, confirming accurate distance measurement above water. 
+		However, when the sensor was submerged while keeping the same physical separation, the outputs became unstable, frequently dropping to very small values (≈14–18 mm or 0 mm) with occasional readings near 1 m. 
+		This shows that, although the module is IP67-rated for waterproofing, it does not provide reliable underwater range measurements and therefore cannot meet design specification 4a for submerged distance sensing.
+	</p>
+
+	<p>
+
+	<p><b>Future Testing Plans</b> : </p>
+	<p>
+		Future work will investigate dedicated underwater ranging solutions, such as an IP68-rated ultrasonic sensor or a compact sonar module, to achieve reliable submerged distance measurements and satisfy design specification 4a.
+	</p>
+	
+
 
 
 
@@ -810,6 +827,10 @@
 			<ul>
 				<li>
 					Inertial measurement unit (Imu) – an introduction. (2023, February 13). Advanced Navigation. https://www.advancednavigation.com/tech-articles/inertial-measurement-unit-imu-an-introduction/
+				</li>
+
+				<li>
+					Arrow Electronics. (2018, April 4). All about ultrasonic sensors & how they work with Arduino. Arrow Electronics. https://www.arrow.com/en/research-and-events/articles/ultrasonic-sensors-how-they-work-and-how-to-use-them-with-arduino
 				</li>
 
 			</ul>
