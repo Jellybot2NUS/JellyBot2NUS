@@ -268,11 +268,19 @@
     </sl-tree-item>   	
 
 	<sl-tree-item>
-		Figure 7: Magnetometer Readings
+		Figure 8: Magnetometer Readings
     </sl-tree-item>   	
 
 	<sl-tree-item>
-		Figure 8: 
+		Figure 9: Boards used for the sensor and the target wall   
+    </sl-tree-item>
+
+	<sl-tree-item>
+		Figure 10: BEEX tank used for distance testing  
+    </sl-tree-item>	
+
+	<sl-tree-item>
+		Figure 11: Ultrasonic Sensor Readings  
     </sl-tree-item>
 
 	</sl-tree>
@@ -641,7 +649,6 @@
     <p><b>Future Testing Plans</b> :</p> <p>
       <p>
       In the next phase of development, the heading system will be enhanced by <strong>incorporating a complementary filter</strong> to fuse gyroscope and magnetometer data. 
-      While the current implementation relies solely on magnetometer readings (with accelerometer-derived tilt compensation), adding gyro fusion will significantly improve short-term stability by smoothing rapid changes in orientation and reducing susceptibility to magnetic disturbances.
       The magnetometer will continue to provide the long-term absolute reference for yaw, while the gyroscope will supply fast, low-noise angular-rate information. 
       By blending these signals, the complementary filter will correct gyro drift over time and produce a more stable, responsive, and reliable heading estimate—especially critical for underwater navigation where magnetic interference and motion dynamics are more challenging.
       </p>
@@ -661,7 +668,46 @@
   </li>
 
 	<section id="sub-section-4c">
-    <h3 class="subsection" style="margin-top:40px;">4.3 Distance from Subject Testing</h3>
+    <h3 class="subsection" style="margin-top:40px;">4.3 Distance from Subject Testing</h3>		
+	<p><b>Objective</b> : </p>
+    <p>
+	The objective of this distance-from-subject testing is to evaluate the SEN0311 Ultrasonic Sensor as a promising option for Jellybot’s future underwater range sensing, in support of <a href="report.html#spec-4a">design specification 4a</a>. 
+	Since ultrasonic sensing can operate in liquids, this test focuses on confirming that the sensor provides reliable distance readings in pool conditions before proceeding to full underwater trials.		
+	</p>
+
+	<p><b>Test Set-Up</b> : </p>
+	<p>
+		The test setup used two boards: one to mount the IP67 Ultrasonic Sensor and one to act as a flat target “wall” [Figure 9] 
+		A fixed distance of 1.23 m was marked between the sensor face and the target using a measuring tape, and all readings were taken with the boards held at this separation to assess the sensor’s ability to measure that range reliably [Figure 10].
+	</p>
+
+	
+    <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
+      <div style="flex: 1; text-align: center; margin-right: 10px;">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/prop.png?raw=true" 
+             alt="Pressure Test Setup" style="width:100%; height:auto;">
+	<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 9: Boards used for the sensor and the target wall   
+	</p>
+		  
+      </div>
+      <div style="flex: 1; text-align: center; margin-left: 10px;">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/tank.png?raw=true" 
+             alt="Pressure Gauge Reading" style="width:100%; height:auto;">
+	<p class="figure-caption" style="margin-bottom:40px;">
+		Figure 10: BEEX tank used for distance testing
+	</p>
+      </div>
+    </div>
+
+	<p>
+		
+	<p><b>Outcome</b> : </p>
+	<div class="center-image" style="margin-bottom:40px">
+        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/deploy.png?raw=true'>
+        <p style="text-align:center;">Figure 11: Ultrasonic Sensor Readings</p>
+    </div>
+			
 
 
 
