@@ -477,7 +477,6 @@
 		</div>
     </div>
 
-    <hr>
       
     <p><b>Findings & Limitations</b> :</p> 
       <p>
@@ -496,14 +495,24 @@
       These refinements aim to enhance the accuracy of camera calibration and the relevance of test results to real-world applications.
       </p>
       
-      <hr>
 
 	 <!-- IMU TEST -->
 
 		
     <section id="sub-section-4b">
     <h3 class="subsection" style="margin-top:40px;">4.2 Navigation Testing</h3>    
-	
+		
+	<p><b>Objective</b> : </p>
+    <p>
+	The objective of this navigation testing is to evaluate JellyBot’s IMU and magnetometer together, assessing the accuracy and stability of roll, pitch, and yaw/heading estimates, and ensuring the system provides reliable, tilt-compensated orientation data for directional control in underwater environments, in support of <a href="report.html#spec-4b">design specification 4b</a> (stable roll/pitch from the IMU) and <a href="report.html#spec-4c">design specification 4c</a> (stable compass-like heading from the magnetometer).	
+	</p>
+    
+    <p><b>Test Set-up for Magnetometer</b> : </p>
+    <p>
+    The test was conducted on a non-metallic table, with the JellyBot’s magnetometer module connected to the Raspberry Pi and placed flat beside a reference compass application on a smartphone. 
+    Nearby metal objects, magnets, and powered electronic devices were removed as far as practical to reduce magnetic interference.    
+    </p>  
+		
 	<p><b>Inertial-Measurement Unit </b> : </p>
     <p> 
     Initial navigation tests were conducted using only the 6-DOF MPU6050 IMU (3-axis accelerometer + 3-axis gyroscope) to evaluate <a href="report.html#spec-4b">design specification 4b</a>. 
@@ -582,16 +591,7 @@
 </p>
     <hr>
 
-    <p><b>Objective</b> : </p>
-    <p>
-    This test aimed to assess the accuracy and stability of JellyBot’s magnetometer-based heading estimation, ensuring the system delivers reliable orientation data needed for directional control in underwater environments.  
-    </p>
     
-    <p><b>Test Set-up</b> : </p>
-    <p>
-    The test was conducted on a non-metallic table, with the JellyBot’s magnetometer module connected to the Raspberry Pi and placed flat beside a reference compass application on a smartphone. 
-    Nearby metal objects, magnets, and powered electronic devices were removed as far as practical to reduce magnetic interference.    
-    </p>  
   
       
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
