@@ -243,6 +243,9 @@
 	
   <!-- Main Content -->
   <main>
+
+  <!-- OVERVIEW -->
+
     <section id="section-1">
     <h2>1. Overview of the Electronics System</h2>
     <p>
@@ -252,6 +255,8 @@
   The subsystem is designed with waterproof connectors, organized PCB layouts, and proper grounding to minimize electrical noise and ensure reliability under high-pressure and high-humidity conditions.
     </p>
 
+	<!-- SYSTEM COMPONENT TABLE -->
+	
   <section id="section-2">
     <h2>2. System Components & Specifications</h2>
     
@@ -321,17 +326,19 @@
 		Table 1: Electrical and Physical Specifications of Onboard Components    
 	</p>
 
-	<p>
-	  Total Mass: 115.2g<br>
+	<p style="font-weight:bold; text-align:left; margin-top:10px;">
+      Total Mass: 115.2g<br>
       Total Power Requirement: 5.86W
-	</p>
+    </p>
 	  <p>
 	<p> 
     Together, they enable Jellybot to perceive its environment, support navigation and stabilization algorithms, and provide essential feedback for control. 
     The total power and mass remain minimal [Table 1], maintaining system efficiency and suitability for underwater deployment.  
     </p>
-		
-      
+
+	  
+    <!-- WIRING DIAGRAM -->
+	  
     <section id="section-3">
     <h2>3. Wiring Diagram</h2>
     <div class="center-image">
@@ -344,6 +351,9 @@
     The <strong>SEN0311 ultrasonic sensor</strong> communicates with the Raspberry Pi via <strong>UART</strong>, enabling accurate distance measurement, while both the <strong>MPU6050 IMU</strong> and <strong>HMC5883L magnetometer</strong> share the <strong>I²C bus</strong> for synchronized orientation and heading data acquisition. 
     This configuration ensures efficient communication, minimal wiring complexity, and reliable real-time data exchange across all connected modules.     
     </p>
+
+
+	<!-- COMPONENT TESTING -->
 
     <section id="section-4">
     <h2>4. Component Testing</h2>
@@ -545,6 +555,8 @@
       heading_mag  = tilt-compensated magnetic heading (deg)
       </code> </pre>
   </li>
+
+	<!-- USER INTERFACE -->
     
     <section id="section-5">
     <h2>5. User Interface (via Controller)</h2>
@@ -621,6 +633,7 @@
           These safeguards ensure that JellyBot cannot be deployed without essential hardware operational.
         </p>
 
+	<!-- SUMMARY -->
 
     <section id="section-6">
     <h2>6. Summary</h2>
