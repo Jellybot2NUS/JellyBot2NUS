@@ -254,12 +254,26 @@
     </sl-tree-item>   
 		
 	<sl-tree-item>
-		Figure 4: Camera positioned 0.75 m from the test prop
+		Figure 5: Camera positioned 0.75 m from the test prop
     </sl-tree-item>  
 		
 	<sl-tree-item>
-		Figure 4: Camera positioned 1 m from the test prop
+		Figure 6: Camera positioned 1 m from the test prop
     </sl-tree-item>   		
+
+	<sl-tree-item>
+		Figure 7: Magnetometer Test Set-Up
+
+    </sl-tree-item>   	
+
+	<sl-tree-item>
+		Figure 7: Magnetometer Readings
+    </sl-tree-item>   	
+
+	<sl-tree-item>
+		Figure 8: 
+    </sl-tree-item>
+
 	</sl-tree>
   </section>
 
@@ -583,29 +597,31 @@
   </li>
 
 </ul>
-
-<p>
- This approach ensures that Jellybot maintains a consistent directional reference without accumulating yaw drift. 
- By combining accelerometer-derived roll and pitch with magnetometer readings (tilt compensation), the system produces a stable, compass-like heading suitable for underwater navigation. 
- Although the gyroscope is read, it is not fused into the heading calculation; therefore, the heading depends entirely on the magnetometer for long-term stability.
-</p>
-    <hr>
-
-    
   
-      
       <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
       <div style="flex: 1; text-align: center; margin-right: 10px;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/test_set_up.png?raw=true" 
              alt="Pressure Test Setup" style="width:100%; height:auto;">
-        <p style="text-align:center;">Test Set Up</p>
+		  
+        <p class="figure-caption" style="margin-bottom:40px;">
+		Figure 7: Magnetometer Test Set-Up
+	</p>      
       </div>
       <div style="flex: 1; text-align: center; margin-left: 10px;">
         <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/readings.png?raw=true" 
              alt="Pressure Gauge Reading" style="width:100%; height:auto;">
-        <p style="text-align:center;">Readings</p>
+		  
+        <p class="figure-caption" style="margin-bottom:40px;">
+		Figure 8: Magnetometer Readings
+	</p>      
       </div>
     </div>
+
+	<p>
+ 	This approach ensures that Jellybot maintains a consistent directional reference without accumulating yaw drift. 
+ 	By combining accelerometer-derived roll and pitch with magnetometer readings (tilt compensation), the system produces a stable, compass-like heading suitable for underwater navigation. 
+ 	Although the gyroscope is read, it is not fused into the heading calculation; therefore, the heading depends entirely on the magnetometer for long-term stability.
+	</p>
 
     <p><b>Findings & Limitations</b> : </p>
       
