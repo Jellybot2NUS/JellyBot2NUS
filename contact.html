@@ -1,218 +1,376 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contact JellyBot</title>
-  <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Jellybot Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    body {
+    *, *::before, *::after {
+      box-sizing: border-box;
       margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9fafb;
-      color: #003049;
+      padding: 0;
     }
 
-    /* Header Navigation */
-    header nav {
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.15);
+      --seafoam: #6ee7c7;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      background-color: #000;
-      padding: 15px 0;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.95) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
     }
 
-    header nav a {
-      color: white;
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
       text-decoration: none;
-      font-weight: bold;
     }
 
-    header nav a:hover {
-      text-decoration: underline;
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 40px; }
+
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      letter-spacing: 0.12em;
+      transition: color 0.3s;
     }
 
-    /* Hero Banner */
+    nav a:hover { color: var(--accent); }
+
+    /* ─── HERO ──────────────────────────────────────── */
     .hero {
+      position: relative;
+      height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      background-color: var(--deep);
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
       background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
       background-size: cover;
       background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      text-align: center;
-      padding: 120px 20px;
-      position: relative;
+      opacity: 0.2;
     }
 
-    .hero::before {
-      content: "";
+    .hero-overlay {
       position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, var(--deep) 100%);
     }
+
+    .hero-content { position: relative; z-index: 2; }
 
     .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3em, 8vw, 5em);
+      font-weight: 300;
+      margin-bottom: 10px;
+    }
+
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8em;
+      letter-spacing: 0.2em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    /* ─── TEAM SECTION ──────────────────────────────── */
+    .team-section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
       position: relative;
-      z-index: 1;
-      font-size: 3em;
-      letter-spacing: 2px;
     }
 
-    .hero p {
-      position: relative;
-      z-index: 1;
-      font-size: 1.3em;
-      margin-top: 10px;
-      color: #dbe8f4;
-    }
-
-    /* Content Container */
-    .content-container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      text-align: left;
-    }
-
-    section {
-      margin-bottom: 60px;
-    }
-
-    h2 {
-      color: #295a75;
-      border-left: 5px solid #295a75;
-      padding-left: 10px;
-    }
-
-    /* Team Section */
-    .team-members {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .team-member {
+    .section-header {
       text-align: center;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      flex: 1 1 200px;
-      max-width: 220px;
-      transition: transform 0.3s;
+      margin-bottom: 80px;
     }
 
-    .team-member:hover {
-      transform: translateY(-5px);
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
     }
 
-    .team-member img {
-      width: 120px;
-      height: 120px;
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+
+    .team-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 40px 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .team-card:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      transform: translateY(-10px);
+    }
+
+    .img-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 24px;
+    }
+
+    .team-card img {
+      width: 100%;
+      height: 100%;
       border-radius: 50%;
       object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #295a75;
+      filter: grayscale(100%) brightness(0.9);
+      transition: filter 0.4s;
+      border: 1px solid var(--glass-border);
     }
 
-    .team-member h3 {
-      margin-bottom: 5px;
-      color: #003049;
+    .team-card:hover img {
+      filter: grayscale(0%);
+      border-color: var(--accent);
     }
 
-    .team-member h4 {
-      margin-top: 0;
-      color: #295a75;
-      font-weight: normal;
+    .team-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8em;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
     }
 
-    .team-member p {
-      color: #555;
-      font-size: 0.9em;
+    .team-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7em;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
     }
 
+    .team-card p {
+      font-size: 0.85em;
+      color: var(--muted);
+      font-weight: 300;
+    }
+
+    /* ─── PARTICLES ────────────────────────────────── */
+    .particles {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: drift linear infinite;
+      opacity: 0;
+    }
+
+    @keyframes drift {
+      0% { transform: translateY(100vh) translateX(0); opacity: 0; }
+      10% { opacity: 0.4; }
+      90% { opacity: 0.2; }
+      100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
+    }
+
+    /* ─── FOOTER ────────────────────────────────────── */
     footer {
-      background-color: #000;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
+      padding: 40px 60px;
+      background: var(--deep);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2em;
+      font-weight: 300;
+      color: var(--muted);
+    }
+
+    .footer-logo span { color: var(--accent); }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      color: var(--muted);
+    }
+
+    @media (max-width: 768px) {
+      header { padding: 20px 30px; }
+      .team-section { padding: 60px 24px; }
+      nav { display: none; } /* Consider a mobile menu for production */
     }
   </style>
 </head>
-
 <body>
-  <!-- Navigation -->
-  <header style="background-color: #000;">
+
+  <header id="main-header">
+    <a href="index.html" class="logo">Jelly<span>bot</span></a>
     <nav>
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html" style="color: var(--text);">Contact</a>
       <a href="report/report.html">Report</a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section class="hero">
-    <h1>Meet the Creators of JellyBot</h1>
-	<p style="text-align: center; color:white">The "Geniuses" behind Jellybot</p>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="particles" id="particles"></div>
+    
+    <div class="hero-content">
+      <span class="hero-sub">The minds behind the mission</span>
+      <h1>Meet the <em>Creators</em></h1>
+    </div>
   </section>
 
+  <section class="team-section">
+    <div class="section-header">
+      <span class="section-label">Our Team</span>
+      <p style="color: var(--muted); font-weight: 200;">Engineering the future of ocean exploration at NUS.</p>
+    </div>
 
-    <!-- Team Members -->
-    <section class="team-members-section">
-      <h2>Meet the Team</h2>
-      <div class="team-members">
-		
-		<a href="https://sg.linkedin.com/in/afham-shahril" target="_blank" class="team-member">
+    <div class="team-grid">
+      <a href="https://sg.linkedin.com/in/afham-shahril" target="_blank" class="team-card">
+        <div class="img-container">
           <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/afham.jpg?raw=true" alt="Afham">
-          <h3>Afham</h3>
-          <h4>Mechanical and Team Lead</h4>
-          <p>NUS Electrical Engineering</p>
-		</a>
+        </div>
+        <h3>Afham</h3>
+        <h4>Mechanical & Team Lead</h4>
+        <p>Electrical Engineering</p>
+      </a>
 
-		<a href="https://sg.linkedin.com/in/darrel-yu-1438ab195" target="_blank" class="team-member">  
+      <a href="https://sg.linkedin.com/in/darrel-yu-1438ab195" target="_blank" class="team-card">
+        <div class="img-container">
           <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/darrel.jpg?raw=true" alt="Darrel">
-          <h3>Darrel</h3>
-          <h4>Electrical Engineer</h4>
-          <p>NUS Electrical Engineering</p>
-		</a>	
+        </div>
+        <h3>Darrel</h3>
+        <h4>Electrical Engineer</h4>
+        <p>Electrical Engineering</p>
+      </a>
 
-		 <a href="https://sg.linkedin.com/in/navin-siva-042107364" target="_blank" class="team-member"> 
+      <a href="https://sg.linkedin.com/in/navin-siva-042107364" target="_blank" class="team-card">
+        <div class="img-container">
           <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/navin.jpg?raw=true" alt="Navin">
-          <h3>Navin</h3>
-          <h4>Propulsion Engineer</h4>
-          <p>NUS Electrical Engineering</p>
-		 </a>
-		  
-		  <a href="https://sg.linkedin.com/in/wallacewee" target="_blank" class="team-member">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wallace.jpg?raw=true" alt="Wallace">
-          <h3>Wallace</h3>
-          <h4>Electronics and Control Engineer</h4>
-          <p>NUS Electrical Engineering</p>
-		  </a>
-		  
-      </div>
-    </section>
-  </div>
+        </div>
+        <h3>Navin</h3>
+        <h4>Propulsion Engineer</h4>
+        <p>Electrical Engineering</p>
+      </a>
 
-  <!-- Footer -->
-  <footer style="background-color: #000;">
-    <p style="text-align:center; color:white;">© 2025 Jellybot Project</p>
+      <a href="https://sg.linkedin.com/in/wallacewee" target="_blank" class="team-card">
+        <div class="img-container">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wallace.jpg?raw=true" alt="Wallace">
+        </div>
+        <h3>Wallace</h3>
+        <h4>Electronics & Control</h4>
+        <p>Electrical Engineering</p>
+      </a>
+    </div>
+  </section>
+
+  <footer>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2025 Jellybot Project — NUS</p>
   </footer>
+
+  <script>
+    // ── Particle generator ──
+    const container = document.getElementById('particles');
+    const count = 15;
+    for (let i = 0; i < count; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 3 + 1;
+      p.style.cssText = `
+        width: ${size}px;
+        height: ${size}px;
+        left: ${Math.random() * 100}%;
+        animation-duration: ${Math.random() * 10 + 7}s;
+        animation-delay: ${Math.random() * 5}s;
+      `;
+      container.appendChild(p);
+    }
+
+    // ── Header shrink ──
+    const header = document.getElementById('main-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        header.style.background = 'rgba(6,12,22,0.98)';
+        header.style.padding = '14px 60px';
+      } else {
+        header.style.background = 'linear-gradient(to bottom, rgba(6,12,22,0.95) 0%, transparent 100%)';
+        header.style.padding = '20px 60px';
+      }
+    });
+  </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
