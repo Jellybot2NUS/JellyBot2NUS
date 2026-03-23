@@ -4,188 +4,518 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Electrical | Jellybot</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --accent-glow: rgba(77,184,212,0.3);
+      --seafoam: #6ee7c7;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
     }
 
-    header nav {
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      background-color: #000;
-      padding: 15px 0;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: padding 0.3s ease, background 0.3s ease;
     }
 
-    header nav a {
-      color: white;
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
       text-decoration: none;
-      font-weight: bold;
     }
+    .logo span { color: var(--accent); }
 
-    header nav a:hover {
-      text-decoration: underline;
+    nav { display: flex; gap: 40px; }
+
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
     }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { transform: scaleX(1); }
 
+    /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      overflow: hidden;
+      padding: 0 60px 64px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
       background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pic05.jpg?raw=true');
       background-size: cover;
       background-position: center;
-      color: white;
-      text-align: center;
-      padding: 120px 20px;
+      opacity: 0.2;
+      filter: saturate(0.5) brightness(0.7);
     }
 
-    .hero::before {
-      content: "";
+    .hero-overlay {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(77,184,212,0.1) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.0) 30%, rgba(6,12,22,0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
     }
 
     .hero h1 {
-      position: relative;
-      z-index: 1;
-      font-size: 2.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3em, 7vw, 5.5em);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--text);
     }
 
-    .hero p {
-      position: relative;
-      z-index: 1;
-      font-size: 1.3rem;
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1em;
+      font-weight: 200;
+      color: var(--muted);
+      margin-top: 20px;
+      letter-spacing: 0.03em;
+      max-width: 55ch;
     }
 
-    main {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px 80px;
+    .hero-author {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
     }
 
-    h2 {
-      color: #0a3d62;
-      margin-top: 40px;
-      border-bottom: 3px solid #0a3d62;
-      padding-bottom: 6px;
+    .hero-author::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
     }
 
-    p {
-      text-align: justify;
-      color: #333;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    footer {
-      background-color: #000;
-      color: white;
+    /* ─── LAYOUT ────────────────────────────────────── */
+    .page-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1300px;
+      margin: 0 auto;
+      gap: 0;
+      padding: 60px 60px 120px;
+    }
+
+    /* ─── SIDEBAR / TOC ─────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      padding-right: 40px;
+      border-right: 1px solid var(--glass-border);
+    }
+
+    .toc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 0.8em;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 3px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s ease;
+      line-height: 1.4;
+    }
+
+    .toc-list a:hover,
+    .toc-list a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .toc-list li.sub > a {
+      padding-left: 24px;
+      font-size: 0.75em;
+    }
+
+    .toc-divider {
+      height: 1px;
+      background: var(--glass-border);
+      margin: 12px 0;
+    }
+
+    /* ─── MAIN CONTENT ──────────────────────────────── */
+    .content {
+      padding-left: 60px;
+    }
+
+    /* ─── SECTION BLOCKS ────────────────────────────── */
+    .doc-section {
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .doc-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62em;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .doc-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2em;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+
+    .section-rule {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 28px;
+    }
+
+    .doc-section h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5em;
+      font-weight: 300;
+      color: var(--text);
+      margin: 48px 0 8px;
+    }
+
+    .subsection-rule {
+      width: 32px;
+      height: 1px;
+      background: var(--accent);
+      opacity: 0.5;
+      margin-bottom: 20px;
+    }
+
+    .doc-section p {
+      font-size: 0.93em;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      max-width: 72ch;
+    }
+
+    .doc-section p a {
+      color: var(--accent);
+      text-decoration: none;
+      border-bottom: 1px solid rgba(77,184,212,0.3);
+      transition: border-color 0.2s;
+    }
+
+    .doc-section p a:hover { border-color: var(--accent); }
+
+    /* ─── CALLOUT BOXES ─────────────────────────────── */
+    .callout {
+      border-left: 2px solid var(--accent);
+      background: var(--accent-dim);
+      border-radius: 0 4px 4px 0;
+      padding: 18px 24px;
+      margin: 24px 0;
+    }
+
+    .callout-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+    }
+
+    .callout p {
+      margin-bottom: 0 !important;
+      font-size: 0.88em !important;
+    }
+
+    .callout-warn {
+      border-left-color: #e8a44a;
+      background: rgba(232,164,74,0.08);
+    }
+    .callout-warn .callout-title { color: #e8a44a; }
+
+    /* ─── TABLES ────────────────────────────────────── */
+    .table-wrap {
+      overflow-x: auto;
+      margin: 28px 0;
+    }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.82em;
+    }
+
+    .styled-table th {
+      background: rgba(77,184,212,0.12);
+      color: var(--accent);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.75em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-weight: 400;
+      padding: 12px 16px;
+      text-align: left;
+      border-bottom: 1px solid rgba(77,184,212,0.3);
+    }
+
+    .styled-table td {
+      padding: 11px 16px;
+      color: var(--muted);
+      font-weight: 300;
+      border-bottom: 1px solid var(--glass-border);
+      vertical-align: top;
+    }
+
+    .styled-table tr:hover td { background: var(--glass); }
+
+    .styled-table td:first-child {
+      color: var(--text);
+      font-weight: 400;
+    }
+
+    .figure-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.1em;
+      color: rgba(232,237,245,0.35);
       text-align: center;
-      padding: 20px 0;
-      margin-top: 40px;
+      margin-top: 12px;
+      padding-bottom: 32px;
     }
 
-    .table-of-content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
+    /* ─── STAT HIGHLIGHT ────────────────────────────── */
+    .stat-row {
+      display: flex;
+      gap: 24px;
+      margin: 28px 0;
+      flex-wrap: wrap;
     }
 
-    .table-of-content h2 {
-      color: #0a3d62;
-      border-bottom: 3px solid #0a3d62;
-      padding-bottom: 6px;
+    .stat-box {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 20px 28px;
+      flex: 1;
+      min-width: 140px;
     }
 
-    .table-of-content sl-tree {
-      margin-top: 10px;
+    .stat-box .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2em;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
     }
 
-    .subsection {
-    margin-left: 30px;
-    font-size: 1.3em;
-    color: #0a3d62;
-  }
+    .stat-box .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+      display: block;
+    }
 
-  .center-image {
-    text-align: center;
-    margin: 20px 0;
-  }
+    /* ─── IMAGES ────────────────────────────────────── */
+    .img-frame {
+      margin: 28px 0;
+      border: 1px solid var(--glass-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
 
-  .center-image img {
-    width: 70%;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
+    .img-frame img {
+      width: 100%;
+      display: block;
+    }
 
-  .styled-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    text-align: center;
-    font-family: Arial, sans-serif;
-  }
+    .img-pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
 
-  .styled-table th {
-    background-color: #0a3d62;
-    color: white;
-    padding: 10px;
-    border: 1px solid #333;
-  }
+    .img-pair .img-frame { margin: 0; }
 
-  .styled-table td {
-    border: 1px solid #333;
-    padding: 8px;
-    color: #333;
-  }
+    .img-single {
+      margin: 28px auto;
+      max-width: 70%;
+    }
 
-  .styled-table tr:nth-child(even) {
-    background-color: #f2f2f2;
-  }
+    /* ─── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 40px 60px;
+      background: var(--deep);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-  .styled-table tr:hover {
-    background-color: #dbe8f1;
-  }
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .footer-logo span { color: var(--accent); }
 
-  .image-row {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    gap: 10px;
-    margin-bottom: 0px;
-  }
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
 
-  .image-left {
-    flex: 3;
-  }
+    /* ─── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .page-body { grid-template-columns: 1fr; padding: 40px 32px 80px; }
+      .sidebar { position: static; border-right: none; border-bottom: 1px solid var(--glass-border); padding: 0 0 32px; margin-bottom: 48px; }
+      .content { padding-left: 0; }
+      header { padding: 16px 32px; }
+    }
 
-  .image-right {
-    flex: 1;
-  }
-
-  .image-left img,
-  .image-right img {
-    width: 100%;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  }
-
-  .figure-caption {
-    text-align: center;
-    font-size: 0.9em;
-    color: #555;
-    margin-top: 8px;
-    font-style: italic;
-  }
+    @media (max-width: 640px) {
+      header { padding: 14px 20px; }
+      nav { gap: 20px; }
+      .hero { padding: 0 24px 48px; }
+      .img-pair { grid-template-columns: 1fr; }
+      .img-single { max-width: 100%; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
   </style>
 </head>
 <body>
 
   <!-- Navigation -->
-  <header>
+  <header id="site-header">
+    <a href="../index.html" class="logo">Jelly<span>bot</span></a>
     <nav>
       <a href="../index.html">Home</a>
       <a href="../about.html">About</a>
@@ -194,394 +524,367 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <h1>Electrical<br><span style="font-size: 40%;"><em>By Darrel</em></span></h1>
-    <p style="text-align: center; color:white">Design & powering Jellybot with efficient energy distribution and control</p>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Subsystem Report · Jellybot 2025</span>
+      <h1>Electrical<br><em>Subsystem</em></h1>
+      <p class="hero-sub">Designing and powering Jellybot with efficient energy distribution and precise actuation control</p>
+      <div class="hero-author">By Darrel</div>
+    </div>
   </section>
 
-  <!-- Table of content -->
-<section class="table-of-content content-container">
-  <h2>Table of Contents</h2>
+  <!-- Page Body -->
+  <div class="page-body">
 
-  <sl-tree>
+    <!-- Sidebar TOC -->
+    <aside class="sidebar">
+      <span class="toc-label">Contents</span>
+      <ul class="toc-list" id="toc">
+        <li><a href="#section-1">1. Overview</a></li>
+        <li><a href="#section-2">2. Electrical System</a></li>
+        <li><a href="#section-3">3. Wiring Diagram</a></li>
+        <li><a href="#section-4">4. Tests & Results</a></li>
+        <li class="sub"><a href="#sub-section-4a">4.1 Pressure Testing</a></li>
+        <li class="sub"><a href="#sub-section-4b">4.2 Pressure at Depths</a></li>
+        <li class="sub"><a href="#sub-section-4c">4.3 Bending Angle</a></li>
+        <li class="sub"><a href="#sub-section-4d">4.4 Pressure vs Angle</a></li>
+        <li class="sub"><a href="#sub-section-4e">4.5 Key Takeaways</a></li>
+        <li><a href="#section-5">5. Future Improvements</a></li>
+      </ul>
+    </aside>
 
-    <sl-tree-item>
-      <a href="#section-1">1. Overview of the Electrical System</a>
-    </sl-tree-item>
+    <!-- Main Content -->
+    <main class="content">
 
-    <sl-tree-item>
-      <a href="#section-2">2. Electrical System</a>
-    </sl-tree-item>
-
-    <sl-tree-item>
-      <a href="#section-3">3. Wiring Diagram</a>
-    </sl-tree-item>
-
-    <sl-tree-item collapsed>
-      <a href="#section-4">4. Test & Results</a>
-
-      <sl-tree-item slot="children">
-        <a href="#sub-section-4a">4.1 Pressure Testing for Optimal Actuation</a>
-      </sl-tree-item>
-
-      <sl-tree-item slot="children">
-        <a href="#sub-section-4b">4.2 Conclusion on pressure inside tentacles</a>
-      </sl-tree-item>
-
-      <sl-tree-item slot="children">
-        <a href="#sub-section-4c">4.3 Bending Angle of Actuators</a>
-      </sl-tree-item>
-
-      <sl-tree-item slot="children">
-        <a href="#sub-section-4d">4.4 Comparison of pressure vs bend angle</a>
-      </sl-tree-item>
-
-      <sl-tree-item slot="children">
-        <a href="#sub-section-4e">4.5 Key Takeaways</a>
-      </sl-tree-item>
-    </sl-tree-item>
-
-    <sl-tree-item>
-      <a href="#section-5">5. Future Improvements</a>
-    </sl-tree-item>
-
-  </sl-tree>
-</section>
-
-  <!--Figures-->
-    <!-- Table of content -->
-<section class="table-of-content content-container">
-  <h2>Table of Figures</h2>
-
-  <sl-tree>
-    <sl-tree-item>
-      <a>Figure 1 : Wiring Diagram of our setup</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 2 : Pressure produced by different number of pumps vs Time taken</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 3 : Tentacles at origin</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 4 : Tentacles at max bend</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 5 : Bending angle of 1 pump with respect to time taken</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 6 : Bending angle of 2 pumps with respect to time taken</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 7 : Non linear comparison of pressure vs bend angle</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Table 1 : System components & Specifications</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Table 2 : Recorded test results carried out with different parameters</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Table 3 : Required pressure at different depths</a>
-    </sl-tree-item>
-  </sl-tree>
-</section>
-
-
-
-  <!-- Main Content -->
-  <main>
-    <section id="section-1">
-    <h2>1. Overview of the Electrical System</h2>
-    <p>The electrical subsystem provides and regulates power throughout Jellybot, supporting reliable operation of its actuation and control components. It coordinates the operation of pumps, valves, and control electronics to manage airflow and ensure consistent actuation behavior. Designed to maintain stable voltage and current under varying loads, the subsystem incorporates essential safety and protection features to ensure durability and dependable performance during testing and operation.
-    </p>
-    </section>
-
-    <section id="section-2">
-    <h2>2. Electrical System</h2>
-    <p>
-      In accordance with our <a href="report.html#spec-3a"><b>design specifications(3a)</b></a>, the electrical subsystem was developed to operate within a 12–24 V tethered power supply and a maximum system load of approximately 30 W. The final design utilises two 12 V motors delivering an airflow rate of 0.6 L/min each, resulting in a combined maximum power consumption of 32 W. This aligns closely with the intended power budget and satisfies the required voltage and current stability validated through load testing.
-    </p>
-
-    <table style="width:100%; border-collapse: collapse; margin-top: 20px; text-align:center;">
-      <tr style="background-color:#0a3d62; color:white;">
-        <th style="border: 1px solid #333; padding:8px;">Components</th>
-        <th style="border: 1px solid #333; padding:8px;">Arduino UNO</th>
-        <th style="border: 1px solid #333; padding:8px;">AM3030HPM Mini Pump (x2)</th>
-        <th style="border: 1px solid #333; padding:8px;">L298N Motor Driver (x2)</th>
-        <th style="border: 1px solid #333; padding:8px;">Electric Solenoid Valve (x2)</th>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Mass</td>
-        <td style="border: 1px solid #333; padding:8px;">25g</td>
-        <td style="border: 1px solid #333; padding:8px;">170g (85g each)</td>
-        <td style="border: 1px solid #333; padding:8px;">50g</td>
-        <td style="border: 1px solid #333; padding:8px;">90g (45g each)</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Dimensions</td>
-        <td style="border: 1px solid #333; padding:8px;">68.6 × 53.4mm</td>
-        <td style="border: 1px solid #333; padding:8px;">70 × 30 × 30mm</td>
-        <td style="border: 1px solid #333; padding:8px;">43 × 43 × 27mm</td>
-        <td style="border: 1px solid #333; padding:8px;">20 × 39 × 16mm</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Voltage & Current</td>
-        <td style="border: 1px solid #333; padding:8px;">5V, 20mA per pin</td>
-        <td style="border: 1px solid #333; padding:8px;">12V, 380mA</td>
-        <td style="border: 1px solid #333; padding:8px;">
-          Motor Voltage: 5V–35V, 2A<br>
-          Logic Voltage: 4.5V–7V
-        </td>
-        <td style="border: 1px solid #333; padding:8px;">12V, 0.3A</td>
-      </tr>
-      <tr>
-        <td style="border: 1px solid #333; padding:8px; font-weight:bold;">Power Requirement</td>
-        <td style="border: 1px solid #333; padding:8px;">0.25W</td>
-        <td style="border: 1px solid #333; padding:8px;">4.56W</td>
-        <td style="border: 1px solid #333; padding:8px;">25W (Maximum)</td>
-        <td style="border: 1px solid #333; padding:8px;">2.5W</td>
-      </tr>
-    </table>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Table 1 : System components & Specifications
-    </p>
-
-    <p style="font-weight:bold; text-align:left; margin-top:10px;">
-      Total Mass: 335g<br>
-      Total Power Requirement: 32.31W
-    </p>
-    </section>
-
-    <section id="section-3">
-    <h2>3. Wiring Diagram</h2>
-    <p>
-  The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers are used to control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air—either channeling it into the silicone tentacles for inflation or releasing it into the atmosphere for deflation. This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behavior during testing.
-    </p>
-    <div class="image-center">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_boxed.png?raw=true'>
-    </div>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Figure 1 : Wiring Diagram of our setup
-    </p>
-    </section>
-    
-    <section id="section-4">
-    <h2>4. Tests & Results </h2>
-    <p>
-  To ensure compliance with our design specifications for pneumatic actuation, we are currently conducting tentacle pressure and bending tests. These tests evaluate the system’s ability to generate sufficient internal pressure and produce the required bending deformation in the silicone tentacles. Specifically, we are verifying that the tentacles achieve the target pressure range of 120–170 kPa <a href="report.html#spec-2a"><b>design specifications(2a)</b></a> without rupture and demonstrate stable pressure cycling behaviour.<br>
-  Additionally, we are assessing the pulse frequency performance, ensuring that the actuation follows the required 0.16–0.25 Hz range (4–6 s period) as specified in <a href="report.html#spec-2b"><b>design specifications(2b)</b></a>, where silicone tentacles are expected to reach maximum deformation within 2–3 seconds and achieve maximum pressure at approximately 2 seconds.<br>
-  The testing scope includes examining the effect of using one versus two pumps on inflation performance, characterising the relationship between internal air pressure and bending angle, and verifying pressure buildup, equilibrium behaviour, and actuation speed. These evaluations collectively confirm whether the pneumatic subsystem meets the functional and safety requirements defined in our design specifications and also to confirm that the system can achieve controlled, repeatable bending under pneumatic pressure  which is a key requirement for soft robotic actuation.
-    </p>
-    </section>
-
-    <section id="sub-section-4a">
-    <h3 class="subsection" style="margin-top:40px;">4.1 Pressure Testing for Optimal Actuation (1 Pump vs 2 Pump)</h3>
-    <p>
-      A series of controlled tests were carried out to identify the optimal internal pressure required for the pneumatic actuators to achieve maximum expansion and responsive bending. Various configurations were evaluated by adjusting the supply voltage and altering the number of active DC air pumps and solenoid valves, as shown in table 2. Internal pressure was recorded using a digital barometric sensor integrated into the actuator chamber. The pneumatic pressure was generated using two motor-driven air pumps, with an Arduino microcontroller managing the timing and control sequence. Two solenoid valves were implemented, one to route airflow into the tentacle and another to vent air to the atmosphere, enabling precise inflation and deflation during testing.
-    </p>
-    
-    <table class="styled-table">
-      <tr>
-        <th>System Configuration</th>
-        <th>Voltage</th>
-        <th>Pressure Measured</th>
-        <th>Max bend angle</th>
-      </tr>
-      <tr>
-        <td>1 DC Motor</td>
-        <td>5V (Motor)</td>
-        <td>683 hPa</td>
-        <td>-&deg;C.</td>
-      </tr>
-      <tr>
-        <td>1 DC Motor</td>
-        <td>12V</td>
-        <td>917 hPa</td>
-        <td>41&deg;C.</td>
-      </tr>
-      <tr>
-        <td>2 DC Motor</td>
-        <td>12V</td>
-        <td>1173 hPa</td>
-        <td>57&deg;C.</td>
-      </tr>
-    </table>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Table 2 : Recorded test results carried out with different parameters
-    </p>
-    <p></p>
-<!-- Image 1 -->
-    <div class="image-center">
-      <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_graph.png?raw=true' alt="Pressure Test Setup">
-    </div>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Figure 2 : Pressure produced by different number of pumps vs Time taken
-    </p>
-
-    <p style="margin-top:40px"><b>Conclusion:</b><br>The blue line represents max pressure recorded at 1173hPa using 2 pumps at around 2 seconds. The red line represents max pressure recorded at 917hPa using 1 pump at around 1 seconds. Within 1 seconds, the pressure inside all tentacles has reached its peak, as shown in figure 2.<br><b>Comparing to the target 120kPa - 170kPa pressure, our tests is only able to achieve 117kPa.</b><br>These results highlight that pressure determines the final stiffness of the pneumatic tentacles, while airflow rate governs the speed of actuation. Increasing the number of pumps does not linearly double the output pressure, as pneumatic pressure is not strictly additive. Instead, adding pumps primarily increases the airflow rate, leading to faster inflation and improved responsiveness, rather than a proportional increase in maximum pressure.</p>
-    <p><b>Shortcomings:</b><br>The testing process revealed several limitations. The pressure measurements exhibited an immediate jump, making it difficult to capture gradual rises in the inflation profile. Additionally, inconsistencies in the silicone mixture caused uneven mechanical properties across samples, resulting in excessive inflation and localized ballooning, which increased the risk of rupture.</p>
-    <p><b>Future improvements:</b><br>To address these limitations, future work will involve separating the pump outputs into independent channels for each tentacle, rather than combining them into a shared line, allowing for more consistent and controlled pressure delivery. Further improvements include experimenting with alternative silicone formulations, as the current prototypes use pure Ecoflex 00-30, which may not provide the optimal balance between elasticity and structural stability.</p>
-    </section>
-  
-
-    <section id="sub-section-4b">
-    <h3 class="subsection" style="margin-top:40px;">4.2 Pressure at different depths</h3>
-    <p>To determine the pressure required to overcome ambient water pressure at various depths, a table was compiled showing the necessary tentacle pressures at different depths, as shown below in table 3. From the table, it is evident that our maximum recorded pressure of 1173 hPa is sufficient only for surface-level operation (0 m). With reference to our <a href="report.html#spec-1a"><b>design specifications(1a)</b></a>, which require operation in shallow reef zones with coral targets at depths of up to 5 m, this indicates that the current pneumatic system does not yet meet the full depth requirement. Future testing and adjustments will be needed to ensure adequate performance at the target 5 m depth.</p>
-    <table class="styled-table">
-      <tr>
-        <th>Depth (m)</th>
-        <th>Hydrostatic Pressure (ρ × g × h) (kPa)</th>
-        <th>Absolute Pressure (Atm + Hydrostatic) (kPa)</th>
-        <th>Pressure needed to bend (Abs + gauge) (kPa)</th>
-      </tr>
-      <tr>
-        <td>0</td>
-        <td>0.00</td>
-        <td>101.3</td>
-        <td>117.3</td>
-      </tr>
-    
-      <tr>
-        <td>1</td>
-        <td>10.055</td>
-        <td>111.355</td>
-        <td>127.355</td>
-      </tr>
-    
-      <tr>
-        <td>2</td>
-        <td>20.111</td>
-        <td>121.411</td>
-        <td>137.411</td>
-      </tr>
-    
-      <tr>
-        <td>3</td>
-        <td>30.166</td>
-        <td>131.466</td>
-        <td>147.466</td>
-      </tr>
-    
-      <tr>
-        <td>4</td>
-        <td>40.221</td>
-        <td>141.521</td>
-        <td>157.521</td>
-      </tr>
-    
-      <tr>
-        <td>5</td>
-        <td>50.276</td>
-        <td>151.576</td>
-        <td>167.576</td>
-      </tr>
-    </table>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Table 3 : Required pressure at different depths
-    </p>
-    </section>
-
-    <section id="sub-section-4c">
-    <h3 class="subsection" style="margin-top:40px;">4.3 Bending Angle of Actuators (1 Pump vs 2 Pump)</h3>
-    <p>
-      A series of controlled experiments were conducted to evaluate the bending angle of the silicone tentacles and to investigate how the number of active pumps influences both the bending angle and actuation dynamics, in accordance with the pulse frequency requirements <b>(design specifications 2b)</b> where maximum formation is expected within 2–3 seconds and peak pressure occurs at 2 seconds.<br>
-      As shown in Figure 3, the tentacle at 0 degree bend is displayed on the left, while the tentacle at maximum bend is shown on the right.
-    </p>
-
-    <div style="display: flex; justify-content: center; align-items: center;">
-      <div style="width: 50%; text-align: center;">
-        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/zero_degree.png?raw=true" 
-             alt="1 pump bend" style="max-width: 90%; height: auto;">
-        <p style="text-align: center; font-style: italic;">
-          Figure 3 : Tentacles at origin
-        </p>
+      <!-- Section 1 -->
+      <div class="doc-section" id="section-1">
+        <span class="section-num">01</span>
+        <h2>Overview of the Electrical System</h2>
+        <div class="section-rule"></div>
+        <p>The electrical subsystem provides and regulates power throughout Jellybot, supporting reliable operation of its actuation and control components. It coordinates the operation of pumps, valves, and control electronics to manage airflow and ensure consistent actuation behaviour.</p>
+        <p>Designed to maintain stable voltage and current under varying loads, the subsystem incorporates essential safety and protection features to ensure durability and dependable performance during testing and operation.</p>
       </div>
-    
-      <div style="width: 50%; text-align: center;">
-        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/max_degree.png?raw=true" 
-             alt="2 pump bend" style="max-width: 90%; height: auto;">
-        <p style="text-align: center; font-style: italic;">
-          Figure 4 : Tentacles at max bend
-        </p>
+
+      <!-- Section 2 -->
+      <div class="doc-section" id="section-2">
+        <span class="section-num">02</span>
+        <h2>Electrical System</h2>
+        <div class="section-rule"></div>
+        <p>In accordance with our <a href="report.html#spec-3a"><strong>design specifications (3a)</strong></a>, the electrical subsystem was developed to operate within a 12–24 V tethered power supply and a maximum system load of approximately 30 W. The final design utilises two 12 V motors delivering an airflow rate of 0.6 L/min each, resulting in a combined maximum power consumption of 32 W.</p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-val">32W</span>
+            <span class="stat-label">Total Power Draw</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">335g</span>
+            <span class="stat-label">Total Component Mass</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">12–24V</span>
+            <span class="stat-label">Supply Range</span>
+          </div>
+        </div>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Component</th>
+                <th>Mass</th>
+                <th>Dimensions</th>
+                <th>Voltage & Current</th>
+                <th>Power</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Arduino UNO</td>
+                <td>25 g</td>
+                <td>68.6 × 53.4 mm</td>
+                <td>5 V, 20 mA/pin</td>
+                <td>0.25 W</td>
+              </tr>
+              <tr>
+                <td>AM3030HPM Mini Pump (×2)</td>
+                <td>170 g</td>
+                <td>70 × 30 × 30 mm</td>
+                <td>12 V, 380 mA</td>
+                <td>4.56 W</td>
+              </tr>
+              <tr>
+                <td>L298N Motor Driver (×2)</td>
+                <td>50 g</td>
+                <td>43 × 43 × 27 mm</td>
+                <td>Motor: 5–35 V, 2 A · Logic: 4.5–7 V</td>
+                <td>25 W (max)</td>
+              </tr>
+              <tr>
+                <td>Electric Solenoid Valve (×2)</td>
+                <td>90 g</td>
+                <td>20 × 39 × 16 mm</td>
+                <td>12 V, 0.3 A</td>
+                <td>2.5 W</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption">Table 1 — System Components & Specifications</p>
       </div>
-    </div>
-<!-- Image 1 -->
-    <div class="image-center" style="text-align:center;">
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_pump_bend.png?raw=true" 
-           alt="1 pump bend" 
-           style="width: 60%; height: auto;">
-      <p class="figure-caption">
-        Figure 5 : Bending angle of 1 pump with respect to time taken
-      </p>
-    </div>
-    
-    <div class="image-center" style="text-align:center;">
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/2_pump_bend.png?raw=true" 
-           alt="2 pump bend" 
-           style="width: 60%; height: auto;">
-      <p class="figure-caption">
-        Figure 6 : Bending angle of 2 pumps with respect to time taken
-      </p>
-    </div>
-    <p style="margin-top:40px"><b>Conclusion:</b><br>As shown in figure 5 and 6 we can see that with 1 pump, the tentacles achieved a maximum bend angle of 41 Degree in 1 second & with 2 pump, the tentacles achieved a maximum bend angle of 57 Degree in 1.2 seconds. Interestingly, the bending angle peaks at around the same time the internal pressure reaches its maximum.<br><b>Comparing to our target of 4-6s period for one cycle, our tests achieved 1-2s period for one cycle</b><br></p>
-    <p><b>Shortcomings:</b><br>The material compliance of the silicone limits further bending beyond a certain pressure, with thicker silicone resulting in smaller bend angles due to higher stiffness. Inconsistencies in the silicone mixture can also lead to excessive inflation, causing localized ballooning and increasing the risk of rupture. Additionally, the displacement of the Jellybot varies with bend angle, highlighting the need for precise measurement and control of actuation to ensure predictable motion.</p>
-    <p><b>Future improvements:</b><br>Future work should focus on standardizing the silicone mixture to reduce variability in mechanical properties and minimize the risk of ballooning. Testing different silicone thicknesses or alternative formulations may help achieve larger bend angles while maintaining structural integrity. Furthermore, systematic measurement of Jellybot displacement at each bend angle should be conducted to better understand the relationship between actuation pressure and resulting motion, enabling improved control and performance.</p>
-    </section>
 
-      
-    <section id="sub-section-4d">
-    <h3 class="subsection" style="margin-top:40px;">4.4 Comparison of pressure vs bend angle</h3>
-    <p>Next, we analyse the relationship between internal pneumatic pressure and the resulting bend angle of the silicone tentacles. By plotting pressure versus bend angle, we aim to characterise how variations in actuation pressure translate into mechanical deformation. This analysis provides insight into the responsiveness of the tentacles, the influence of pump configurations on bending performance, and the limits imposed by the material properties of the silicone. The results will help evaluate whether the tentacle actuation meets the design specifications for both bending range and controllability.</p>
-    <div class="image-center" style="text-align:center;">
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/Comparison_P_A.png?raw=true" 
-           alt="Non Linear Graph" 
-           style="width: 60%; height: auto;">
-      <p class="figure-caption">
-        Figure 7 : Non linear comparison of pressure vs bend angle
-      </p>
-    </div>
-    <p><b>Conclusion:</b><br>When plotting pressure vs bend angle, we observed a non linear relationship between the pressure within the tentacles vs the degree of the bent of the tentacles. The tentacle resists bending at low pressures, it then bends rapidly after a certain threshold and finally it saturates at a maximum angle. <br>The nonlinear response is influenced by the material properties, including the thickness and elasticity of the silicone, which determine the threshold pressure and the rate of bending. Thicker or stiffer silicone produces smaller maximum bend angles and requires higher pressure to enter the rapid bending region. The nonlinear behaviour also means that simple open-loop pressure commands are unreliable; control gains must adapt or incorporate feedback mechanisms to maintain accuracy. Since the rapid bending transition occurs within about one second, precise control is needed to achieve smooth and delicate movements. Understanding this relationship is essential for predicting actuation performance, developing effective control strategies, and ensuring that the tentacles operate safely within their material limits while meeting the design specifications.</p>
-    </section>
-
-      
-    <section id="sub-section-4e">
-    <h3 class="subsection" style="margin-top:40px;">4.5 Key Takeaways</h3>
-    <p><b>Lessons Learnt:</b><br>Firstly, Pressure governs stiffness, but flow rate governs actuation speed. Increasing number of pumps used does not directly double the pressure as pneumatic pressure is not additive. It only increase the air flow rate which meant faster inflation speed.<br>Secondly, The material compliance of the silicone also limites further bending beyond a certain pressure, with thicker silicone materials results in smaller bend angles due to higher stiffness.</p>
-    <p><b>Shortcomings:</b><br>Firstly, Measurements show immediate pressure jump, hard to capture gradual rises in the pressure recording.<br>Secondly, Inconsistency in the mixture of the silicone materials will cause tendency for excessive inflation which in turn caused silicone balloning, increasing the risk of rupturing.</p>
-    <p><b>Future improvements:</b><br>Firstly, Separate pump outputs to independent tentacle channels instead of combining them.<br>Secondly, test with different silicone material mixture, currently we are using Ecoflex 00-30 purely.<br>Thirdly, testing of the displacement of the Jellybot for each bend angle, and record the distance it moves with regards to the bend angle.</p>
-    </section>
-
-
-
-<!-- Image 1
-    <div class="image-row">
-      <div class="image-left">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_pump_bend.png?raw=true'>
+      <!-- Section 3 -->
+      <div class="doc-section" id="section-3">
+        <span class="section-num">03</span>
+        <h2>Wiring Diagram</h2>
+        <div class="section-rule"></div>
+        <p>The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air — either channeling it into the silicone tentacles for inflation or releasing it to atmosphere for deflation.</p>
+        <p>This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behaviour during testing.</p>
+        <div class="img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_boxed.png?raw=true" alt="Wiring Diagram" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 1 — Wiring Diagram of our Setup</p>
       </div>
-      <div class="image-right">
-        <img src='https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/2_pump_bend.png?raw=true'>
+
+      <!-- Section 4 -->
+      <div class="doc-section" id="section-4">
+        <span class="section-num">04</span>
+        <h2>Tests & Results</h2>
+        <div class="section-rule"></div>
+        <p>To ensure compliance with our design specifications for pneumatic actuation, we are currently conducting tentacle pressure and bending tests. These tests evaluate the system's ability to generate sufficient internal pressure and produce the required bending deformation in the silicone tentacles. Specifically, we are verifying that the tentacles achieve the target pressure range of 120–170 kPa <a href="report.html#spec-2a"><strong>design specifications (2a)</strong></a> without rupture and demonstrate stable pressure cycling behaviour.</p>
+        <p>Additionally, we are assessing the pulse frequency performance, ensuring actuation follows the required 0.16–0.25 Hz range (4–6 s period) as specified in <a href="report.html#spec-2b"><strong>design specifications (2b)</strong></a>, where silicone tentacles are expected to reach maximum deformation within 2–3 seconds and peak pressure at approximately 2 seconds.</p>
+        <p>The testing scope includes examining the effect of using one versus two pumps on inflation performance, characterising the relationship between internal air pressure and bending angle, and verifying pressure buildup, equilibrium behaviour, and actuation speed.</p>
       </div>
-    </div>
-    <p class="figure-caption" style="margin-bottom:40px;">
-      Bending angle of 1 pump (left) and 2 pump (right) with respect to time taken.
-    </p> -->
 
-    <p></p>
+      <!-- Sub 4.1 -->
+      <div class="doc-section" id="sub-section-4a">
+        <h3>4.1 Pressure Testing for Optimal Actuation</h3>
+        <div class="subsection-rule"></div>
+        <p>A series of controlled tests were carried out to identify the optimal internal pressure required for the pneumatic actuators to achieve maximum expansion and responsive bending. Various configurations were evaluated by adjusting the supply voltage and altering the number of active DC air pumps and solenoid valves. Internal pressure was recorded using a digital barometric sensor integrated into the actuator chamber.</p>
 
-    <section id="section-5">
-    <h2>5. Future Improvements</h2>
-    <p>To enhance the performance of the pneumatic system, future iterations could incorporate higher air-flow pumps to achieve faster and more consistent tentacle actuation. Coupling this with an improved control algorithm would allow finer timing adjustments, ensuring smoother and more precise movements. Additionally, integrating feedback sensors directly into the tentacles would provide real-time pressure data, enabling the system to dynamically monitor and adjust the internal pressure. This closed-loop approach would improve reliability, prevent over-inflation, and allow the tentacles to achieve the desired bending more accurately.
-    </p>
-    </section>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>Voltage</th>
+                <th>Pressure Measured</th>
+                <th>Max Bend Angle</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1 DC Motor</td>
+                <td>5 V</td>
+                <td>683 hPa</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>1 DC Motor</td>
+                <td>12 V</td>
+                <td>917 hPa</td>
+                <td>41°</td>
+              </tr>
+              <tr>
+                <td>2 DC Motors</td>
+                <td>12 V</td>
+                <td>1173 hPa</td>
+                <td>57°</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption">Table 2 — Recorded Test Results with Different Parameters</p>
 
-  </main>
+        <div class="img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_graph.png?raw=true" alt="Pressure Graph" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 2 — Pressure Produced by Different Number of Pumps vs Time Taken</p>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">Key Finding</div>
+          <p>Comparing to the target 120–170 kPa pressure range, our tests achieved only 117.3 kPa. Increasing the number of pumps does not linearly double output pressure — it primarily increases airflow rate, leading to faster inflation rather than proportionally higher maximum pressure.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Shortcomings</div>
+          <p>Pressure measurements exhibited an immediate jump, making it difficult to capture gradual rises in the inflation profile. Inconsistencies in the silicone mixture caused uneven mechanical properties, resulting in excessive inflation and localised ballooning, increasing rupture risk.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Future Improvements</div>
+          <p>Separate pump outputs into independent channels per tentacle rather than a shared line. Experiment with alternative silicone formulations beyond pure Ecoflex 00-30 to better balance elasticity and structural stability.</p>
+        </div>
+      </div>
+
+      <!-- Sub 4.2 -->
+      <div class="doc-section" id="sub-section-4b">
+        <h3>4.2 Pressure at Different Depths</h3>
+        <div class="subsection-rule"></div>
+        <p>To determine the pressure required to overcome ambient water pressure at various depths, a table was compiled showing the necessary tentacle pressures. It is evident that our maximum recorded pressure of 1173 hPa is sufficient only for surface-level operation (0 m). With reference to <a href="report.html#spec-1a"><strong>design specifications (1a)</strong></a>, which require operation in shallow reef zones up to 5 m depth, the current pneumatic system does not yet meet the full depth requirement.</p>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Depth (m)</th>
+                <th>Hydrostatic Pressure (kPa)</th>
+                <th>Absolute Pressure (kPa)</th>
+                <th>Pressure to Bend (kPa)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>0</td><td>0.00</td><td>101.3</td><td>117.3</td></tr>
+              <tr><td>1</td><td>10.06</td><td>111.36</td><td>127.36</td></tr>
+              <tr><td>2</td><td>20.11</td><td>121.41</td><td>137.41</td></tr>
+              <tr><td>3</td><td>30.17</td><td>131.47</td><td>147.47</td></tr>
+              <tr><td>4</td><td>40.22</td><td>141.52</td><td>157.52</td></tr>
+              <tr><td>5</td><td>50.28</td><td>151.58</td><td>167.58</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption">Table 3 — Required Pressure at Different Depths</p>
+      </div>
+
+      <!-- Sub 4.3 -->
+      <div class="doc-section" id="sub-section-4c">
+        <h3>4.3 Bending Angle of Actuators</h3>
+        <div class="subsection-rule"></div>
+        <p>A series of controlled experiments were conducted to evaluate the bending angle of the silicone tentacles and investigate how the number of active pumps influences both bending angle and actuation dynamics, in accordance with pulse frequency requirements <strong>(design specifications 2b)</strong> where maximum deformation is expected within 2–3 seconds and peak pressure at approximately 2 seconds.</p>
+
+        <div class="img-pair">
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/zero_degree.png?raw=true" alt="Tentacles at origin" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 3 — Tentacles at Origin (0°)</p>
+          </div>
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/max_degree.png?raw=true" alt="Tentacles at max bend" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 4 — Tentacles at Max Bend</p>
+          </div>
+        </div>
+
+        <div class="img-single img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_pump_bend.png?raw=true" alt="1 pump bend" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 5 — Bending Angle of 1 Pump with Respect to Time</p>
+
+        <div class="img-single img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/2_pump_bend.png?raw=true" alt="2 pump bend" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 6 — Bending Angle of 2 Pumps with Respect to Time</p>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">Key Finding</div>
+          <p>With 1 pump the tentacles achieved a maximum bend angle of 41° in 1 second; with 2 pumps, 57° in 1.2 seconds. The bending angle peaks at around the same time internal pressure reaches its maximum. Comparing to the target 4–6 s period per cycle, our tests achieved only a 1–2 s period.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Shortcomings</div>
+          <p>Material compliance of the silicone limits further bending beyond a certain pressure. Thicker silicone produces smaller bend angles due to higher stiffness. Inconsistencies in silicone mixture can lead to localised ballooning and rupture risk.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Future Improvements</div>
+          <p>Standardise the silicone mixture to reduce variability in mechanical properties. Test different silicone thicknesses and alternative formulations for larger bend angles with structural integrity. Systematically measure Jellybot displacement at each bend angle for improved control.</p>
+        </div>
+      </div>
+
+      <!-- Sub 4.4 -->
+      <div class="doc-section" id="sub-section-4d">
+        <h3>4.4 Comparison of Pressure vs Bend Angle</h3>
+        <div class="subsection-rule"></div>
+        <p>We analyse the relationship between internal pneumatic pressure and the resulting bend angle of the silicone tentacles. By plotting pressure versus bend angle, we characterise how variations in actuation pressure translate into mechanical deformation — providing insight into tentacle responsiveness, pump configuration influence, and material property limits.</p>
+
+        <div class="img-single img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/Comparison_P_A.png?raw=true" alt="Non-linear pressure vs angle comparison" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 7 — Non-linear Comparison of Pressure vs Bend Angle</p>
+
+        <div class="callout">
+          <div class="callout-title">Conclusion</div>
+          <p>A non-linear relationship was observed between internal pressure and bending angle. The tentacle resists bending at low pressures, then bends rapidly after a certain threshold, finally saturating at a maximum angle. The nonlinear behaviour means simple open-loop pressure commands are unreliable; control gains must adapt or incorporate feedback mechanisms to maintain accuracy. Understanding this relationship is essential for predicting actuation performance and developing effective control strategies.</p>
+        </div>
+      </div>
+
+      <!-- Sub 4.5 -->
+      <div class="doc-section" id="sub-section-4e">
+        <h3>4.5 Key Takeaways</h3>
+        <div class="subsection-rule"></div>
+
+        <div class="callout">
+          <div class="callout-title">Lessons Learnt</div>
+          <p>Pressure governs stiffness, but flow rate governs actuation speed. Increasing the number of pumps does not directly double the pressure — pneumatic pressure is not additive; it only increases airflow rate, meaning faster inflation but not proportionally higher maximum pressure. The material compliance of the silicone also limits further bending beyond a certain pressure, with thicker silicone resulting in smaller bend angles due to higher stiffness.</p>
+        </div>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">Shortcomings</div>
+          <p>Measurements show an immediate pressure jump, making it hard to capture gradual rises in pressure recording. Inconsistency in the silicone mixture causes a tendency for excessive inflation, resulting in ballooning and increasing the risk of rupturing.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Future Improvements</div>
+          <p>Separate pump outputs to independent tentacle channels instead of combining them. Test with different silicone material mixtures, as current prototypes use pure Ecoflex 00-30. Test the displacement of Jellybot for each bend angle and record the distance it moves with respect to bending angle.</p>
+        </div>
+      </div>
+
+      <!-- Section 5 -->
+      <div class="doc-section" id="section-5">
+        <span class="section-num">05</span>
+        <h2>Future Improvements</h2>
+        <div class="section-rule"></div>
+        <p>To enhance the performance of the pneumatic system, future iterations could incorporate higher air-flow pumps to achieve faster and more consistent tentacle actuation. Coupling this with an improved control algorithm would allow finer timing adjustments, ensuring smoother and more precise movements.</p>
+        <p>Additionally, integrating feedback sensors directly into the tentacles would provide real-time pressure data, enabling the system to dynamically monitor and adjust internal pressure. This closed-loop approach would improve reliability, prevent over-inflation, and allow the tentacles to achieve the desired bending more accurately.</p>
+      </div>
+
+    </main>
+  </div>
 
   <!-- Footer -->
   <footer>
-    <p style="text-align:center; color:white;">© 2025 Jellybot Project — Electrical Subsystem by Darrel</p>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2025 Jellybot Project — Electrical Subsystem by Darrel</p>
   </footer>
+
+  <script>
+    // ── Header shrink ──
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 60) {
+        header.style.background = 'rgba(6,12,22,0.97)';
+        header.style.padding = '14px 60px';
+      } else {
+        header.style.background = '';
+        header.style.padding = '';
+      }
+    }, { passive: true });
+
+    // ── Scroll reveal ──
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.doc-section').forEach(el => revealObserver.observe(el));
+
+    // ── Active TOC highlight ──
+    const sections = document.querySelectorAll('.doc-section[id]');
+    const tocLinks = document.querySelectorAll('#toc a');
+
+    const tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`#toc a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+
+    sections.forEach(s => tocObserver.observe(s));
+  </script>
 
 </body>
 </html>
