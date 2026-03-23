@@ -3,246 +3,591 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About JellyBot</title>
-  <link rel="stylesheet" href="css/style.css">
+  <title>About | Jellybot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f9fafb;
-      color: #003049;
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --seafoam: #6ee7c7;
     }
-	      /* Optional: make the iframe responsive */
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: padding 0.3s ease, background 0.3s ease;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 40px; }
+
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 65vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      overflow: hidden;
+      padding: 0 60px 72px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      filter: saturate(0.5) brightness(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(77,184,212,0.1) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.0) 30%, rgba(6,12,22,0.9) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3em, 7vw, 5.5em);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--text);
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1em;
+      font-weight: 200;
+      color: var(--muted);
+      margin-top: 20px;
+      letter-spacing: 0.03em;
+      max-width: 55ch;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── CONTENT ───────────────────────────────────── */
+    .content-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 100px 60px 120px;
+    }
+
+    /* ─── SECTION BLOCKS ────────────────────────────── */
+    .about-section {
+      margin-bottom: 96px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .about-section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .about-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2em, 3.5vw, 2.8em);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+      line-height: 1.15;
+    }
+    .about-section h2 em { font-style: italic; color: var(--accent); }
+
+    .section-rule {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 32px;
+    }
+
+    .about-section p {
+      font-size: 0.95em;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.9;
+      max-width: 72ch;
+      margin-bottom: 16px;
+    }
+
+    /* ─── TWO-COL LAYOUT FOR PROBLEM ───────────────── */
+    .split-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* ─── STAT CARDS ────────────────────────────────── */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 40px;
+    }
+
+    .stat-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 4px;
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    .stat-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .stat-card:hover { border-color: rgba(77,184,212,0.3); background: var(--accent-dim); }
+    .stat-card:hover::before { transform: scaleX(1); }
+
+    .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2em;
+      font-weight: 300;
+      color: var(--accent);
+      line-height: 1;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      line-height: 1.5;
+    }
+
+    /* ─── VALUE PROP CARDS ──────────────────────────── */
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      margin-top: 40px;
+      background: var(--glass-border);
+    }
+
+    .value-card {
+      background: var(--ink);
+      padding: 36px 32px;
+      transition: background 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .value-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .value-card:hover { background: var(--surface); }
+    .value-card:hover::after { transform: scaleX(1); }
+
+    .value-icon {
+      width: 36px; height: 36px;
+      margin-bottom: 20px;
+      color: var(--accent);
+      opacity: 0.7;
+    }
+
+    .value-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3em;
+      font-weight: 400;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .value-card p {
+      font-size: 0.83em;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.75;
+    }
+
+    /* ─── PROJECT PLAN ──────────────────────────────── */
+    .spreadsheet-wrap {
+      margin-top: 40px;
+      border: 1px solid var(--glass-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .spreadsheet-header {
+      padding: 14px 20px;
+      background: var(--glass);
+      border-bottom: 1px solid var(--glass-border);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .spreadsheet-header span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .dot { width: 8px; height: 8px; border-radius: 50%; }
+    .dot-r { background: #ff5f57; }
+    .dot-y { background: #ffbd2e; }
+    .dot-g { background: #28ca41; }
+
     .spreadsheet-container {
       position: relative;
       width: 100%;
-      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      padding-bottom: 56.25%;
       height: 0;
       overflow: hidden;
     }
 
     .spreadsheet-container iframe {
       position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
       border: none;
     }
 
-    /* Header Navigation */
-    header nav {
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      background-color: #000;
-      padding: 15px 0;
+    /* ─── DIVIDER ────────────────────────────────────── */
+    .section-divider {
+      width: 100%;
+      height: 1px;
+      background: var(--glass-border);
+      margin: 0 0 96px;
     }
 
-    header nav a {
-      color: white;
-      text-decoration: none;
-      font-weight: bold;
-    }
-
-    header nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Hero Banner */
-    .hero {
-      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      color: white;
-      text-align: center;
-      padding: 120px 20px;
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
-    }
-
-    .hero h1 {
-      position: relative;
-      z-index: 1;
-      font-size: 3em;
-      letter-spacing: 2px;
-    }
-
-    .hero p {
-      position: relative;
-      z-index: 1;
-      font-size: 1.3em;
-      margin-top: 10px;
-      color: #dbe8f4;
-    }
-
-    /* Content Container */
-    .content-container {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-      text-align: left;
-    }
-
-    section {
-      margin-bottom: 60px;
-    }
-
-    h2 {
-      color: #295a75;
-      border-left: 5px solid #295a75;
-      padding-left: 10px;
-    }
-
-    /* Team Section */
-    .team-members {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 30px;
-    }
-
-    .team-member {
-      text-align: center;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-      flex: 1 1 200px;
-      max-width: 220px;
-      transition: transform 0.3s;
-    }
-
-    .team-member:hover {
-      transform: translateY(-5px);
-    }
-
-    .team-member img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 15px;
-      border: 3px solid #295a75;
-    }
-
-    .team-member h3 {
-      margin-bottom: 5px;
-      color: #003049;
-    }
-
-    .team-member h4 {
-      margin-top: 0;
-      color: #295a75;
-      font-weight: normal;
-    }
-
-    .team-member p {
-      color: #555;
-      font-size: 0.9em;
-    }
-
+    /* ─── FOOTER ────────────────────────────────────── */
     footer {
-      background-color: #000;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
+      padding: 40px 60px;
+      background: var(--deep);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .footer-logo span { color: var(--accent); }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 900px) {
+      header { padding: 16px 32px; }
+      .hero { padding: 0 32px 56px; }
+      .content-wrap { padding: 80px 32px 80px; }
+      .split-layout { grid-template-columns: 1fr; gap: 0; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .value-grid { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 12px; text-align: center; }
+    }
+
+    @media (max-width: 560px) {
+      header { padding: 14px 20px; }
+      nav { gap: 20px; }
+      .hero { padding: 0 20px 48px; }
+      .content-wrap { padding: 60px 20px 60px; }
+      .stats-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 
 <body>
+
   <!-- Navigation -->
-  <header>
+  <header id="site-header">
+    <a href="../index.html" class="logo">Jelly<span>bot</span></a>
     <nav>
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html">Contact</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
       <a href="report/report.html">Report</a>
     </nav>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="hero">
-    <h1>The Story of JellyBot</h1>
-	<p style="text-align: center; color:white">Innovating marine exploration through bio-inspired robotics</p>
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">NUS Engineering Project · 2025</span>
+      <h1>The Story of<br><em>JellyBot</em></h1>
+      <p class="hero-sub">Innovating marine exploration through bio-inspired robotics</p>
+    </div>
   </section>
 
-  <!-- Mission, Vision, and Beliefs -->
-  <div class="content-container">
-    <section>
-      <h2>Our Mission</h2>
-      <p>
-        We envision a future where sustainable and non-invasive marine exploration is accessible to all. By mimicking the gentle, pulsating motion of jellyfish, JellyBot redefines underwater research through energy-efficient, silent, and ecologically responsible locomotion.  
-      </p>
-    </section>
+  <!-- Content -->
+  <div class="content-wrap">
 
-    <section>
-      <h2>The Problem We're Solving</h2>
-      <p>
-    Underwater ecosystems like coral reefs are highly fragile yet frequently disrupted by traditional exploration methods. Conventional remotely operated vehicles (ROVs) generate strong turbulence and noise that can damage coral structures, while diver-based surveys are manpower-intensive, limited by dive duration, and extremely costly.
-    A typical diver survey can cost tens of thousands of dollars per year, while commercial ROV systems range between SGD 20,000–60,000, making frequent monitoring financially unsustainable.
-    Moreover, diver interactions pose direct risks to coral health—94% of divers make contact with reefs, with 66% causing visible coral damage (Worachananant et al., 2008).
-    </p><p>
-    These challenges highlight the need for a compact, quiet, and affordable underwater robot that can perform detailed ecological monitoring without harming fragile marine habitats.
-    </p>
-      </section>
-    
-    <section>
-      <h2>Our Solution</h2>
-      <p>
-        Inspired by the natural propulsion of jellyfish, JellyBot uses soft, pulsatile pneumatic actuation to glide gently through water—minimizing turbulence and noise while maintaining efficient propulsion. Its compact design allows it to access tight reef passages and shallow coastal areas that are difficult for ROVs to navigate, enabling low-impact, continuous reef observation.
-      </p>
-    </section>
+    <!-- Mission -->
+    <div class="about-section" id="mission">
+      <span class="section-label">Purpose</span>
+      <h2>Our <em>Mission</em></h2>
+      <div class="section-rule"></div>
+      <p>We envision a future where sustainable and non-invasive marine exploration is accessible to all. By mimicking the gentle, pulsating motion of jellyfish, JellyBot redefines underwater research through energy-efficient, silent, and ecologically responsible locomotion.</p>
+    </div>
 
-    <section>
-      <h2>Our Value Proposition</h2>
-      <p>
-        JellyBot provides marine researchers and ecologists in Singapore with a sustainable, low-cost, and eco-friendly platform for reef monitoring and underwater research.
-        <p> <ul>
-		    <li>Cost-efficient: Operates at roughly SGD 1,000, compared to diver surveys (≈ SGD 35,000/year) or commercial ROVs (SGD 20,000–60,000).</li>
-        <li>Compact & Safe: Designed for shallow, narrow reef environments inaccessible to bulky systems.</li>
-        <li>Eco-friendly: Soft, silent propulsion minimizes disruption to marine life.</li>
-        </ul></p><p>
-        By merging biomimicry with engineering, JellyBot bridges innovation and conservation—making marine exploration both affordable and environmentally responsible.
-      </p>
-    </section>
+    <div class="section-divider"></div>
 
-	  <section>
-      <h2>Our Project Plan</h2>
-	<div class="spreadsheet-container">
-    <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRmkAxV5fVDMlaFTGk1D9_-tDHMLEV_ZLCKX9GaID626hc1k_u2Bw11bNllf9hy5wlKJe0lLvgFqDdh/pubhtml?widget=true&amp;headers=false"></iframe>
-  	</div>
-    </section>
+    <!-- Problem -->
+    <div class="about-section" id="problem">
+      <span class="section-label">Context</span>
+      <h2>The Problem We're <em>Solving</em></h2>
+      <div class="section-rule"></div>
+
+      <div class="split-layout">
+        <div>
+          <p>Underwater ecosystems like coral reefs are highly fragile yet frequently disrupted by traditional exploration methods. Conventional ROVs generate strong turbulence and noise that can damage coral structures, while diver-based surveys are manpower-intensive, limited by dive duration, and extremely costly.</p>
+          <p>These challenges highlight the need for a compact, quiet, and affordable underwater robot that can perform detailed ecological monitoring without harming fragile marine habitats.</p>
+        </div>
+        <div>
+          <p>Moreover, diver interactions pose direct risks to coral health — 94% of divers make contact with reefs, with 66% causing visible coral damage (Worachananant et al., 2008).</p>
+          <p>A typical diver survey can cost tens of thousands of dollars per year, while commercial ROV systems range between SGD 20,000–60,000, making frequent monitoring financially unsustainable.</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-val">94%</span>
+          <span class="stat-label">of divers make contact with reefs</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-val">66%</span>
+          <span class="stat-label">cause visible coral damage</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-val">$60K</span>
+          <span class="stat-label">commercial ROV cost (SGD)</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Solution -->
+    <div class="about-section" id="solution">
+      <span class="section-label">Approach</span>
+      <h2>Our <em>Solution</em></h2>
+      <div class="section-rule"></div>
+      <p>Inspired by the natural propulsion of jellyfish, JellyBot uses soft, pulsatile pneumatic actuation to glide gently through water — minimising turbulence and noise while maintaining efficient propulsion.</p>
+      <p>Its compact design allows it to access tight reef passages and shallow coastal areas that are difficult for ROVs to navigate, enabling low-impact, continuous reef observation.</p>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Value Proposition -->
+    <div class="about-section" id="value">
+      <span class="section-label">Impact</span>
+      <h2>Our Value <em>Proposition</em></h2>
+      <div class="section-rule"></div>
+      <p>JellyBot provides marine researchers and ecologists in Singapore with a sustainable, low-cost, and eco-friendly platform for reef monitoring and underwater research. By merging biomimicry with engineering, JellyBot bridges innovation and conservation.</p>
+
+      <div class="value-grid">
+        <div class="value-card">
+          <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+          </svg>
+          <h3>Cost-Efficient</h3>
+          <p>Operates at roughly SGD 1,000 — compared to diver surveys (~SGD 35,000/year) or commercial ROVs (SGD 20,000–60,000).</p>
+        </div>
+        <div class="value-card">
+          <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+          </svg>
+          <h3>Compact & Safe</h3>
+          <p>Designed for shallow, narrow reef environments inaccessible to bulky conventional systems.</p>
+        </div>
+        <div class="value-card">
+          <svg class="value-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+            <path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+          <h3>Eco-Friendly</h3>
+          <p>Soft, silent propulsion minimises disruption to marine life and fragile reef ecosystems.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+
+    <!-- Project Plan -->
+    <div class="about-section" id="plan">
+      <span class="section-label">Timeline</span>
+      <h2>Our Project <em>Plan</em></h2>
+      <div class="section-rule"></div>
+      <p>A living schedule tracking milestones across all subsystems — mechanical, electrical, propulsion, and electronics — from initial design through to final testing and demonstration.</p>
+
+      <div class="spreadsheet-wrap">
+        <div class="spreadsheet-header">
+          <div class="dot dot-r"></div>
+          <div class="dot dot-y"></div>
+          <div class="dot dot-g"></div>
+          <span style="margin-left: 8px;">Project Gantt Chart — JellyBot 2025</span>
+        </div>
+        <div class="spreadsheet-container">
+          <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRmkAxV5fVDMlaFTGk1D9_-tDHMLEV_ZLCKX9GaID626hc1k_u2Bw11bNllf9hy5wlKJe0lLvgFqDdh/pubhtml?widget=true&headers=false"></iframe>
+        </div>
+      </div>
+    </div>
 
   </div>
 
   <!-- Footer -->
   <footer>
-    <p style="text-align:center; color:white;">© 2025 Jellybot Project</p>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2025 Jellybot Project</p>
   </footer>
+
+  <script>
+    // ── Header shrink ──
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.style.background = window.scrollY > 60
+        ? 'rgba(6,12,22,0.97)'
+        : '';
+      header.style.padding = window.scrollY > 60
+        ? (window.innerWidth > 640 ? '14px 60px' : '12px 32px')
+        : '';
+    }, { passive: true });
+
+    // ── Scroll reveal ──
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.about-section').forEach(el => observer.observe(el));
+  </script>
+
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
