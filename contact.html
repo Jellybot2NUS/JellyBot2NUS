@@ -3,18 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact — Jellybot Team</title>
+  <title>Contact — Jellybot</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
-
   <style>
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
     :root {
       --ink: #0a0f1a;
       --deep: #060c16;
@@ -25,16 +23,22 @@
       --muted: rgba(232,237,245,0.5);
       --accent: #4db8d4;
       --accent-dim: rgba(77,184,212,0.15);
+      --accent-glow: rgba(77,184,212,0.3);
       --seafoam: #6ee7c7;
     }
-
+    html {
+      scroll-behavior: smooth;
+    }
     body {
       font-family: 'Outfit', sans-serif;
       background-color: var(--deep);
       color: var(--text);
       overflow-x: hidden;
     }
-
+    /* ─── SCROLLBAR ─────────────────────────────────── */
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
     /* ─── NAV ───────────────────────────────────────── */
     header {
       position: fixed;
@@ -46,9 +50,9 @@
       align-items: center;
       background: linear-gradient(to bottom, rgba(6,12,22,0.95) 0%, transparent 100%);
       backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       transition: all 0.3s ease;
     }
-
     .logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.6em;
@@ -57,171 +61,69 @@
       color: var(--text);
       text-decoration: none;
     }
-
     .logo span { color: var(--accent); }
-
-    nav { display: flex; gap: 40px; }
-
+    nav {
+      display: flex;
+      gap: 40px;
+    }
     nav a {
       font-family: 'DM Mono', monospace;
       font-size: 0.72em;
+      font-weight: 300;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
-      letter-spacing: 0.12em;
       transition: color 0.3s;
+      position: relative;
     }
-
-    nav a:hover { color: var(--accent); }
-
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { transform: scaleX(1); }
+    nav a.active { color: var(--text); }
+    nav a.active::after { transform: scaleX(1); }
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
-      height: 60vh;
+      min-height: 80vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      background-color: var(--deep);
       overflow: hidden;
+      background-color: var(--deep);
     }
-
     .hero-bg {
       position: absolute;
       inset: 0;
       background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
       background-size: cover;
       background-position: center;
-      opacity: 0.2;
+      opacity: 0.25;
+      filter: saturate(0.6) brightness(0.8);
     }
-
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, transparent 0%, var(--deep) 100%);
+      background:
+        radial-gradient(ellipse 80% 60% at 50% 80%, rgba(77,184,212,0.12) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(6,12,22,0.4) 0%, rgba(6,12,22,0.1) 50%, rgba(6,12,22,0.8) 100%);
     }
-
-    .hero-content { position: relative; z-index: 2; }
-
-    .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(3em, 8vw, 5em);
-      font-weight: 300;
-      margin-bottom: 10px;
-    }
-
-    .hero h1 em { font-style: italic; color: var(--accent); }
-
-    .hero-sub {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.8em;
-      letter-spacing: 0.2em;
-      color: var(--muted);
-      text-transform: uppercase;
-    }
-
-    /* ─── TEAM SECTION ──────────────────────────────── */
-    .team-section {
-      padding: 100px 60px;
-      max-width: 1200px;
-      margin: 0 auto;
-      position: relative;
-    }
-
-    .section-header {
-      text-align: center;
-      margin-bottom: 80px;
-    }
-
-    .section-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 12px;
-      display: block;
-    }
-
-    .team-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 32px;
-    }
-
-    .team-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      padding: 40px 24px;
-      text-align: center;
-      text-decoration: none;
-      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-      border-radius: 4px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .team-card:hover {
-      background: var(--accent-dim);
-      border-color: var(--accent);
-      transform: translateY(-10px);
-    }
-
-    .img-container {
-      position: relative;
-      width: 140px;
-      height: 140px;
-      margin-bottom: 24px;
-    }
-
-    .team-card img {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      filter: grayscale(100%) brightness(0.9);
-      transition: filter 0.4s;
-      border: 1px solid var(--glass-border);
-    }
-
-    .team-card:hover img {
-      filter: grayscale(0%);
-      border-color: var(--accent);
-    }
-
-    .team-card h3 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.8em;
-      font-weight: 300;
-      color: var(--text);
-      margin-bottom: 8px;
-    }
-
-    .team-card h4 {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.7em;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 12px;
-    }
-
-    .team-card p {
-      font-size: 0.85em;
-      color: var(--muted);
-      font-weight: 300;
-    }
-
-    /* ─── PARTICLES ────────────────────────────────── */
     .particles {
       position: absolute;
       inset: 0;
       pointer-events: none;
-      z-index: 1;
     }
-
     .particle {
       position: absolute;
       border-radius: 50%;
@@ -229,14 +131,183 @@
       animation: drift linear infinite;
       opacity: 0;
     }
-
     @keyframes drift {
       0% { transform: translateY(100vh) translateX(0); opacity: 0; }
-      10% { opacity: 0.4; }
-      90% { opacity: 0.2; }
+      10% { opacity: 0.6; }
+      90% { opacity: 0.3; }
       100% { transform: translateY(-10vh) translateX(40px); opacity: 0; }
     }
-
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1.2s ease both;
+    }
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.3s both;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3.5em, 9vw, 7em);
+      font-weight: 300;
+      line-height: 0.95;
+      letter-spacing: -0.01em;
+      opacity: 0;
+      animation: fadeUp 1s ease 0.5s both;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .scroll-hint {
+      position: absolute;
+      bottom: 36px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0;
+      animation: fadeUp 1s ease 1.2s both;
+    }
+    .scroll-hint span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .scroll-line {
+      width: 1px;
+      height: 40px;
+      background: linear-gradient(to bottom, var(--accent), transparent);
+      animation: scrollPulse 2s ease infinite;
+    }
+    @keyframes scrollPulse {
+      0%, 100% { opacity: 0.3; transform: scaleY(1); }
+      50% { opacity: 1; transform: scaleY(1.1); }
+    }
+    /* ─── SECTION COMMON ────────────────────────────── */
+    section {
+      padding: 100px 60px;
+    }
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+      display: block;
+      text-align: center;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.2em, 4vw, 3.2em);
+      font-weight: 300;
+      line-height: 1.1;
+      text-align: center;
+      color: var(--text);
+      margin-bottom: 20px;
+    }
+    .section-title em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .team-section {
+      background: var(--ink);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 32px;
+    }
+    .team-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      padding: 40px 24px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .team-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--accent-dim), transparent);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+    .team-card:hover {
+      background: var(--surface);
+      border-color: var(--accent);
+      transform: translateY(-8px);
+      box-shadow: 0 20px 60px rgba(77,184,212,0.15);
+    }
+    .team-card:hover::before { opacity: 1; }
+    .img-container {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin-bottom: 28px;
+    }
+    .team-card img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      filter: grayscale(80%) brightness(0.9);
+      transition: all 0.4s ease;
+      border: 1px solid var(--glass-border);
+    }
+    .team-card:hover img {
+      filter: grayscale(0%) brightness(1);
+      border-color: var(--accent);
+      transform: scale(1.06);
+    }
+    .team-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.9em;
+      font-weight: 300;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+    .team-card h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 16px;
+    }
+    .team-card p {
+      font-size: 0.88em;
+      color: var(--muted);
+      line-height: 1.6;
+      font-weight: 300;
+      max-width: 32ch;
+    }
+    .team-card:hover h3 { color: var(--accent); }
     /* ─── FOOTER ────────────────────────────────────── */
     footer {
       padding: 40px 60px;
@@ -246,106 +317,137 @@
       justify-content: space-between;
       align-items: center;
     }
-
     .footer-logo {
       font-family: 'Cormorant Garamond', serif;
       font-size: 1.2em;
       font-weight: 300;
+      letter-spacing: 0.15em;
       color: var(--muted);
     }
-
     .footer-logo span { color: var(--accent); }
-
     footer p {
       font-family: 'DM Mono', monospace;
       font-size: 0.65em;
+      letter-spacing: 0.1em;
       color: var(--muted);
     }
-
+    /* ─── REVEAL ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .reveal-delay-1 { transition-delay: 0.1s; }
+    .reveal-delay-2 { transition-delay: 0.2s; }
+    .reveal-delay-3 { transition-delay: 0.3s; }
+    .reveal-delay-4 { transition-delay: 0.4s; }
+    /* ─── RESPONSIVE ────────────────────────────────── */
+    @media (max-width: 1024px) {
+      section { padding: 80px 40px; }
+      header { padding: 20px 40px; }
+    }
     @media (max-width: 768px) {
-      header { padding: 20px 30px; }
-      .team-section { padding: 60px 24px; }
-      nav { display: none; } /* Consider a mobile menu for production */
+      header { padding: 16px 24px; }
+      nav { gap: 24px; font-size: 0.68em; }
+      section { padding: 60px 24px; }
+      .hero { min-height: 70vh; }
+      .hero h1 { font-size: 3.4em; }
+    }
+    @media (max-width: 480px) {
+      nav { gap: 16px; font-size: 0.65em; }
+      .hero h1 { font-size: 2.8em; }
     }
   </style>
 </head>
 <body>
-
-  <header id="main-header">
+  <!-- Navigation -->
+  <header>
     <a href="index.html" class="logo">Jelly<span>bot</span></a>
     <nav>
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
-      <a href="contact.html" style="color: var(--text);">Contact</a>
+      <a href="contact.html" class="active">Contact</a>
       <a href="report/report.html">Report</a>
     </nav>
   </header>
 
+  <!-- Hero -->
   <section class="hero">
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="particles" id="particles"></div>
-    
+
     <div class="hero-content">
-      <span class="hero-sub">The minds behind the mission</span>
-      <h1>Meet the <em>Creators</em></h1>
+      <p class="hero-eyebrow">The Minds Behind Jellybot</p>
+      <h1>Meet the<br><em>Team</em></h1>
+    </div>
+
+    <div class="scroll-hint">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
     </div>
   </section>
 
+  <!-- Team Section -->
   <section class="team-section">
-    <div class="section-header">
-      <span class="section-label">Our Team</span>
-      <p style="color: var(--muted); font-weight: 200;">Engineering the future of ocean exploration at NUS.</p>
+    <div class="section-header reveal">
+      <span class="section-label">Our Crew</span>
+      <h2 class="section-title">Engineering Ocean<br>Protection at <em>NUS</em></h2>
     </div>
 
     <div class="team-grid">
-      <a href="https://sg.linkedin.com/in/afham-shahril" target="_blank" class="team-card">
+      <a href="https://sg.linkedin.com/in/afham-shahril" target="_blank" class="team-card reveal reveal-delay-1">
         <div class="img-container">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/afham.jpg?raw=true" alt="Afham">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/afham.jpg?raw=true" alt="Afham Shahril" loading="lazy">
         </div>
         <h3>Afham</h3>
         <h4>Mechanical & Team Lead</h4>
-        <p>Electrical Engineering</p>
+        <p>Leading hardware design and system integration for reliable underwater performance.</p>
       </a>
 
-      <a href="https://sg.linkedin.com/in/darrel-yu-1438ab195" target="_blank" class="team-card">
+      <a href="https://sg.linkedin.com/in/darrel-yu-1438ab195" target="_blank" class="team-card reveal reveal-delay-2">
         <div class="img-container">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/darrel.jpg?raw=true" alt="Darrel">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/darrel.jpg?raw=true" alt="Darrel Yu" loading="lazy">
         </div>
         <h3>Darrel</h3>
         <h4>Electrical Engineer</h4>
-        <p>Electrical Engineering</p>
+        <p>Power systems, sensor interfacing, and embedded hardware development.</p>
       </a>
 
-      <a href="https://sg.linkedin.com/in/navin-siva-042107364" target="_blank" class="team-card">
+      <a href="https://sg.linkedin.com/in/navin-siva-042107364" target="_blank" class="team-card reveal reveal-delay-3">
         <div class="img-container">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/navin.jpg?raw=true" alt="Navin">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/navin.jpg?raw=true" alt="Navin Siva" loading="lazy">
         </div>
         <h3>Navin</h3>
         <h4>Propulsion Engineer</h4>
-        <p>Electrical Engineering</p>
+        <p>Biomimetic actuator design and fluid dynamics optimization.</p>
       </a>
 
-      <a href="https://sg.linkedin.com/in/wallacewee" target="_blank" class="team-card">
+      <a href="https://sg.linkedin.com/in/wallacewee" target="_blank" class="team-card reveal reveal-delay-4">
         <div class="img-container">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wallace.jpg?raw=true" alt="Wallace">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wallace.jpg?raw=true" alt="Wallace Wee" loading="lazy">
         </div>
         <h3>Wallace</h3>
         <h4>Electronics & Control</h4>
-        <p>Electrical Engineering</p>
+        <p>Embedded control systems, feedback loops, and signal processing.</p>
       </a>
     </div>
   </section>
 
+  <!-- Footer -->
   <footer>
     <span class="footer-logo">Jelly<span>bot</span></span>
     <p>© 2025 Jellybot Project — NUS</p>
   </footer>
 
   <script>
-    // ── Particle generator ──
+    // Particle generator
     const container = document.getElementById('particles');
-    const count = 15;
+    const count = 18;
     for (let i = 0; i < count; i++) {
       const p = document.createElement('div');
       p.className = 'particle';
@@ -354,23 +456,34 @@
         width: ${size}px;
         height: ${size}px;
         left: ${Math.random() * 100}%;
-        animation-duration: ${Math.random() * 10 + 7}s;
-        animation-delay: ${Math.random() * 5}s;
+        animation-duration: ${Math.random() * 12 + 8}s;
+        animation-delay: ${Math.random() * 8}s;
       `;
       container.appendChild(p);
     }
 
-    // ── Header shrink ──
-    const header = document.getElementById('main-header');
+    // Scroll reveal
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Header shrink on scroll
+    const header = document.querySelector('header');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 50) {
-        header.style.background = 'rgba(6,12,22,0.98)';
+      if (window.scrollY > 60) {
+        header.style.background = 'rgba(6,12,22,0.97)';
         header.style.padding = '14px 60px';
       } else {
         header.style.background = 'linear-gradient(to bottom, rgba(6,12,22,0.95) 0%, transparent 100%)';
         header.style.padding = '20px 60px';
       }
-    });
+    }, { passive: true });
   </script>
 </body>
 </html>
