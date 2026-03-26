@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report | Jellybot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --seafoam: #6ee7c7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 40px; }
+
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      overflow: hidden;
+      padding: 0 60px 72px;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+      filter: saturate(0.5) brightness(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.9) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5em, 5vw, 4em);
+      font-weight: 300;
+      line-height: 1.1;
+      color: var(--text);
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    /* ─── CONTENT ───────────────────────────────────── */
+    .content-wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 60px 60px 120px;
+    }
+
+    .about-section {
+      margin-bottom: 96px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .about-section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.8em, 3vw, 2.4em);
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-rule {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 32px;
+    }
+
+    p {
+      font-size: 0.95em;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* ─── TABLES & GRIDS ────────────────────────────── */
+    .data-table-container {
+      width: 100%;
+      overflow-x: auto;
+      margin: 40px 0;
+      border: 1px solid var(--glass-border);
+      background: var(--surface);
+      border-radius: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+      min-width: 600px;
+    }
+
+    th {
+      background: var(--glass);
+      text-align: left;
+      padding: 16px;
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent);
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--muted);
+      vertical-align: top;
+    }
+
+    tr:hover td { color: var(--text); background: rgba(255,255,255,0.02); }
+
+    /* ─── IMAGES ────────────────────────────────────── */
+    .figure-box {
+      margin: 40px 0;
+      text-align: center;
+    }
+    .figure-box img {
+      max-width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--glass-border);
+      filter: saturate(0.8) contrast(1.1);
+    }
+    .caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      color: var(--muted);
+      margin-top: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* ─── LISTS ─────────────────────────────────────── */
+    .ref-list {
+      list-style: none;
+      font-size: 0.8em;
+      color: var(--muted);
+    }
+    .ref-list li {
+      margin-bottom: 12px;
+      padding-left: 20px;
+      position: relative;
+    }
+    .ref-list li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 40px 60px;
+      background: var(--deep);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+    }
+    .footer-logo span { color: var(--accent); }
+
+    footer p {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin: 0;
+    }
+
+    @media (max-width: 900px) {
+      header { padding: 16px 32px; }
+      .hero { padding: 0 32px 48px; }
+      .content-wrap { padding: 40px 32px; }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header id="site-header">
+    <a href="../index.html" class="logo">Jelly<span>bot</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="report.html">Report</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Academic Publication · FYP</span>
+      <h1>Final Year Project<br><em>Comprehensive Report</em></h1>
+    </div>
+  </section>
+
+  <div class="content-wrap">
+
+    <div class="about-section">
+      <span class="section-label">01 — Context</span>
+      <h2>Background & <em>Significance</em></h2>
+      <div class="section-rule"></div>
+      <p>Coral reefs provide habitat for 25% of marine species despite occupying <1% of the seafloor. With an estimated ecosystem value of <strong>US$2.7 trillion annually</strong>, safeguarding live coral cover is an ecological and human development priority.</p>
+      
+      <div class="figure-box">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/fig1.png?raw=true" alt="Impacts of ocean changes">
+        <p class="caption">Figure 1: Impacts of various changes in the ocean (GCRMN, 2020)</p>
+      </div>
+      
+      <p>Current pressures from climate change and local stressors have led to a steady decrease in hard coral observations globally, causing a shift toward fleshy algae dominance where water quality is poor.</p>
+    </div>
+
+    <div class="about-section">
+      <span class="section-label">02 — Review</span>
+      <h2>State of the <em>Industry</em></h2>
+      <div class="section-rule"></div>
+      <p>While commercial ROVs excel in modularity, Singapore's specific environmental constraints — high turbidity and shallow reefs — reveal gaps in soft, adaptive interfaces for delicate interactions.</p>
+
+      <div class="data-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Product</th>
+              <th>Key Features</th>
+              <th>Limitations</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>BlueROV2</td>
+              <td>Modular; 100-300m depth; HD Camera</td>
+              <td>Tether limits range in currents</td>
+            </tr>
+            <tr>
+              <td>REMUS 600</td>
+              <td>AUV; 600m depth; Sonar</td>
+              <td>High cost (~USD 1M); Rigid body</td>
+            </tr>
+            <tr>
+              <td>Boxfish Luna</td>
+              <td>Hybrid; 8K Camera; 300m depth</td>
+              <td>Limited battery for long surveys</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <span class="section-label">03 — Challenge</span>
+      <h2>Problem <em>Clarification</em></h2>
+      <div class="section-rule"></div>
+      <p>Traditional methods are intrusive: <strong>94% of divers make contact with reef substrates</strong>, with 66% causing visible damage. Furthermore, propeller-driven systems generate noise and turbulence that disrupt marine life behavior. JellyBot addresses this via a <em>How Might We</em> approach: designing a silent, biomimetic robot for shallow reef navigation.</p>
+    </div>
+
+    <div class="about-section">
+      <span class="section-label">04 — Analysis</span>
+      <h2>Value <em>Proposition</em></h2>
+      <div class="section-rule"></div>
+      <p>Compared to diver surveys costing ~SGD 35,000 annually, the JellyBot provides a sustainable monitoring platform at a fraction of the investment.</p>
+      
+      <div class="data-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Method</th>
+              <th>Initial Cost</th>
+              <th>Yearly Total (SGD)</th>
+              <th>Impact</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Traditional Diver</td>
+              <td>~$5,000</td>
+              <td>$34,920</td>
+              <td>Moderate (Sediment Disturbance)</td>
+            </tr>
+            <tr>
+              <td>Commercial ROV</td>
+              <td>$20,000 - $60,000</td>
+              <td>$23,300+</td>
+              <td>Moderate (Propeller Noise)</td>
+            </tr>
+            <tr>
+              <td><strong>JellyBot</strong></td>
+              <td><strong>~$1,000</strong></td>
+              <td><strong>$19,000</strong></td>
+              <td><strong>Minimal (Soft Propulsion)</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <span class="section-label">05 — Engineering</span>
+      <h2>Technical <em>Specifications</em></h2>
+      <div class="section-rule"></div>
+      <div class="data-table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Target Value</th>
+              <th>Rationale</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Working Depth</td>
+              <td>5 Meters</td>
+              <td>Shallow reef zone coverage</td>
+            </tr>
+            <tr>
+              <td>Pulse Frequency</td>
+              <td>0.16 - 0.25 Hz</td>
+              <td>Optimal silicone tentacle deformation</td>
+            </tr>
+            <tr>
+              <td>Computing</td>
+              <td>32-bit ARM Cortex-M4</td>
+              <td>Low-latency sensor fusion & logging</td>
+            </tr>
+            <tr>
+              <td>Sensors</td>
+              <td>Ultrasonic + IMU + Magnetometer</td>
+              <td>Obstacle avoidance and heading control</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <span class="section-label">06 — Validation</span>
+      <h2>Critical <em>Results</em></h2>
+      <div class="section-rule"></div>
+      <p>Our iterative prototyping has validated the core competencies required for deployment in fragile ecosystems.</p>
+      <div class="data-table-container">
+        <table style="width: 50%; min-width: 300px; margin: 0 auto;">
+          <thead>
+            <tr>
+              <th>Critical Function</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Waterproofing</td><td>Achieved (Prototype Stable)</td></tr>
+            <tr><td>Buoyancy</td><td>Neutral (Depth Stability)</td></tr>
+            <tr><td>Tentacle Bending</td><td>57° Maximum Angle</td></tr>
+            <tr><td>Vision</td><td>Clear Underwater Feed</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="about-section">
+      <span class="section-label">07 — Citations</span>
+      <h2>References</h2>
+      <div class="section-rule"></div>
+      <ul class="ref-list">
+        <li>Bindoff, N.L., et al. (2019). IPCC Special Report on the Ocean and Cryosphere.</li>
+        <li>Souter, D., et al. (2021). Status of coral reefs of the world: 2020. GCRMN.</li>
+        <li>Tan, A. (2023). Science Journals: Waves of change for Singapore’s coral reef research. The Straits Times.</li>
+        <li>Worachananant et al. (2008). Impact of Scuba Divers on Coral Reefs.</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <footer>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2025 Jellybot Project · Report View</p>
+  </footer>
+
+  <script>
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
+    }, { passive: true });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.about-section').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>
