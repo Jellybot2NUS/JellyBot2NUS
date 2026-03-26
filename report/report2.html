@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Report | Jellybot</title>
+  <title>Jellybot Report | NUS FYP</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
@@ -21,7 +21,6 @@
       --muted: rgba(232,237,245,0.5);
       --accent: #4db8d4;
       --accent-dim: rgba(77,184,212,0.12);
-      --seafoam: #6ee7c7;
     }
 
     html { scroll-behavior: smooth; }
@@ -33,10 +32,6 @@
       overflow-x: hidden;
       line-height: 1.7;
     }
-
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--deep); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
     /* ─── NAV ───────────────────────────────────────── */
     header {
@@ -64,40 +59,23 @@
     .logo span { color: var(--accent); }
 
     nav { display: flex; gap: 40px; }
-
     nav a {
       font-family: 'DM Mono', monospace;
       font-size: 0.72em;
-      font-weight: 300;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       text-decoration: none;
       transition: color 0.3s;
-      position: relative;
-    }
-    nav a::after {
-      content: '';
-      position: absolute;
-      bottom: -4px; left: 0; right: 0;
-      height: 1px;
-      background: var(--accent);
-      transform: scaleX(0);
-      transition: transform 0.3s ease;
-      transform-origin: left;
     }
     nav a:hover { color: var(--text); }
-    nav a:hover::after { transform: scaleX(1); }
 
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
-      min-height: 50vh;
+      min-height: 55vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      align-items: flex-start;
-      overflow: hidden;
       padding: 0 60px 72px;
     }
 
@@ -107,22 +85,16 @@
       background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
       background-size: cover;
       background-position: center;
-      opacity: 0.15;
-      filter: saturate(0.5) brightness(0.7);
+      opacity: 0.2;
     }
 
     .hero-overlay {
       position: absolute;
       inset: 0;
-      background: linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.9) 100%);
+      background: linear-gradient(to bottom, transparent 0%, rgba(6,12,22,1) 100%);
     }
 
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      animation: fadeUp 1s ease 0.2s both;
-    }
-
+    .hero-content { position: relative; z-index: 2; }
     .hero-eyebrow {
       font-family: 'DM Mono', monospace;
       font-size: 0.68em;
@@ -132,30 +104,24 @@
       margin-bottom: 20px;
       display: block;
     }
-
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5em, 5vw, 4em);
+      font-size: clamp(2.5em, 6vw, 4.5em);
       font-weight: 300;
-      line-height: 1.1;
-      color: var(--text);
+      line-height: 1.0;
     }
     .hero h1 em { font-style: italic; color: var(--accent); }
 
-    /* ─── CONTENT ───────────────────────────────────── */
-    .content-wrap {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 60px 60px 120px;
-    }
+    /* ─── CONTENT BLOCKS ────────────────────────────── */
+    .content-wrap { max-width: 1100px; margin: 0 auto; padding: 80px 60px; }
 
-    .about-section {
-      margin-bottom: 96px;
+    .report-section {
+      margin-bottom: 120px;
       opacity: 0;
       transform: translateY(20px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
+      transition: all 0.8s ease;
     }
-    .about-section.visible { opacity: 1; transform: translateY(0); }
+    .report-section.visible { opacity: 1; transform: translateY(0); }
 
     .section-label {
       font-family: 'DM Mono', monospace;
@@ -169,10 +135,17 @@
 
     h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.8em, 3vw, 2.4em);
+      font-size: clamp(2em, 3.5vw, 2.8em);
       font-weight: 300;
-      color: var(--text);
       margin-bottom: 8px;
+    }
+
+    h3.subsection {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      color: var(--accent);
+      margin: 40px 0 16px;
     }
 
     .section-rule {
@@ -183,120 +156,101 @@
     }
 
     p {
-      font-size: 0.95em;
-      font-weight: 300;
+      font-size: 1em;
+      font-weight: 200;
       color: var(--muted);
-      line-height: 1.8;
-      margin-bottom: 20px;
+      margin-bottom: 24px;
+      max-width: 80ch;
     }
 
-    /* ─── TABLES & GRIDS ────────────────────────────── */
-    .data-table-container {
+    /* ─── SUBSYSTEM CUBES ───────────────────────────── */
+    .subsystem-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 40px 0;
+    }
+
+    .cube {
+      display: block;
+      padding: 40px 20px;
+      text-align: center;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      text-decoration: none;
+      color: var(--text);
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      transition: all 0.3s ease;
+    }
+    .cube:hover {
+      background: var(--accent-dim);
+      border-color: var(--accent);
+      transform: translateY(-5px);
+    }
+
+    /* ─── TABLES ────────────────────────────────────── */
+    .table-container {
       width: 100%;
       overflow-x: auto;
       margin: 40px 0;
       border: 1px solid var(--glass-border);
-      background: var(--surface);
-      border-radius: 8px;
+      background: var(--ink);
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
       font-size: 0.85em;
-      min-width: 600px;
     }
 
     th {
       background: var(--glass);
+      padding: 18px;
       text-align: left;
-      padding: 16px;
       font-family: 'DM Mono', monospace;
-      font-weight: 400;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
       color: var(--accent);
       border-bottom: 1px solid var(--glass-border);
     }
 
     td {
-      padding: 16px;
+      padding: 18px;
       border-bottom: 1px solid var(--glass-border);
       color: var(--muted);
       vertical-align: top;
     }
 
-    tr:hover td { color: var(--text); background: rgba(255,255,255,0.02); }
+    .highlight-row { background: rgba(77, 184, 212, 0.05); color: var(--accent); }
 
-    /* ─── IMAGES ────────────────────────────────────── */
-    .figure-box {
-      margin: 40px 0;
-      text-align: center;
-    }
-    .figure-box img {
+    /* ─── FIGURES ───────────────────────────────────── */
+    .figure-container { margin: 60px 0; text-align: center; }
+    .figure-container img {
       max-width: 100%;
-      border-radius: 4px;
       border: 1px solid var(--glass-border);
-      filter: saturate(0.8) contrast(1.1);
+      margin-bottom: 15px;
     }
-    .caption {
+    .figure-caption {
       font-family: 'DM Mono', monospace;
       font-size: 0.65em;
-      color: var(--muted);
-      margin-top: 12px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
-    }
-
-    /* ─── LISTS ─────────────────────────────────────── */
-    .ref-list {
-      list-style: none;
-      font-size: 0.8em;
       color: var(--muted);
-    }
-    .ref-list li {
-      margin-bottom: 12px;
-      padding-left: 20px;
-      position: relative;
-    }
-    .ref-list li::before {
-      content: '→';
-      position: absolute;
-      left: 0;
-      color: var(--accent);
     }
 
     /* ─── FOOTER ────────────────────────────────────── */
     footer {
-      padding: 40px 60px;
-      background: var(--deep);
+      padding: 60px;
       border-top: 1px solid var(--glass-border);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
 
-    .footer-logo {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2em;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-    }
-    .footer-logo span { color: var(--accent); }
-
-    footer p {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-      margin: 0;
-    }
-
-    @media (max-width: 900px) {
-      header { padding: 16px 32px; }
-      .hero { padding: 0 32px 48px; }
-      .content-wrap { padding: 40px 32px; }
+    @media (max-width: 800px) {
+      header, footer { padding: 20px 30px; }
+      .content-wrap { padding: 40px 30px; }
     }
   </style>
 </head>
@@ -317,201 +271,314 @@
     <div class="hero-bg"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Academic Publication · FYP</span>
+      <span class="hero-eyebrow">NUS Mechanical Engineering</span>
       <h1>Final Year Project<br><em>Comprehensive Report</em></h1>
+      <p style="margin-top: 20px; color: var(--muted);">Jellybot: Protecting the ocean with innovative robotics</p>
     </div>
   </section>
 
   <div class="content-wrap">
 
-    <div class="about-section">
-      <span class="section-label">01 — Context</span>
-      <h2>Background & <em>Significance</em></h2>
+    <section class="report-section">
+      <span class="section-label">Architecture</span>
+      <h2>Subsystem <em>Overview</em></h2>
       <div class="section-rule"></div>
-      <p>Coral reefs provide habitat for 25% of marine species despite occupying <1% of the seafloor. With an estimated ecosystem value of <strong>US$2.7 trillion annually</strong>, safeguarding live coral cover is an ecological and human development priority.</p>
+      <p>The Jellybot is composed of four main subsystems that work together harmoniously to achieve efficient, biomimetic underwater motion and data collection. Each subsystem focuses on a critical aspect of design and performance — from structure and propulsion to control and electronics.</p>
       
-      <div class="figure-box">
-        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/fig1.png?raw=true" alt="Impacts of ocean changes">
-        <p class="caption">Figure 1: Impacts of various changes in the ocean (GCRMN, 2020)</p>
+      <div class="subsystem-grid">
+        <a href="mechanical.html" class="cube">Mechanical</a>
+        <a href="electrical.html" class="cube">Electrical</a>
+        <a href="propulsion.html" class="cube">Propulsion</a>
+        <a href="electronics.html" class="cube">Electronics</a>
       </div>
-      
-      <p>Current pressures from climate change and local stressors have led to a steady decrease in hard coral observations globally, causing a shift toward fleshy algae dominance where water quality is poor.</p>
-    </div>
+    </section>
 
-    <div class="about-section">
-      <span class="section-label">02 — Review</span>
-      <h2>State of the <em>Industry</em></h2>
+    <section class="report-section" id="section-1">
+      <span class="section-label">01</span>
+      <h2>Background</h2>
       <div class="section-rule"></div>
-      <p>While commercial ROVs excel in modularity, Singapore's specific environmental constraints — high turbidity and shallow reefs — reveal gaps in soft, adaptive interfaces for delicate interactions.</p>
+      <p><strong>Importance of coral reefs:</strong> Coral reefs are the most species-rich ecosystems in the ocean. Although they occur across more than one hundred countries and occupy well under 1% of the seafloor, their intricate, three-dimensional frameworks provide habitat, nursery grounds, and feeding areas for roughly a quarter of described marine species. This biological richness translates into substantial human benefits: reef fisheries and tourism support livelihoods, reef crests dissipate wave energy and reduce flooding, and bioprospecting has yielded medically relevant compounds. Recent global assessments estimate the combined value of these services at around US$2.7 trillion per year (GCRMN, 2020).</p>
+      
+      <div class="figure-container">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/fig1.png?raw=true" alt="Figure 1">
+        <p class="figure-caption">Figure 1 : Impacts of various changes in the ocean (GCRMN, 2020)</p>
+      </div>
 
-      <div class="data-table-container">
+      <p><strong>Status and pressures:</strong> Reefs are also among the ecosystems most exposed to human pressures. The IPCC (2019) identifies coral reefs as the marine system at highest risk from climate change—particularly marine heatwaves and stronger storms—compounded by ocean acidification. Local stressors exacerbate these impacts: nutrient and sediment runoff, marine pollution, and overfishing (including destructive methods) all erode reef condition and resilience.</p>
+      
+      <div class="figure-container">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/fig2.png?raw=true" alt="Figure 2">
+        <p class="figure-caption">Figure 2 : Graph showing steady decrease of hard coral observation (GCRMN, 2020)</p>
+      </div>
+
+      <p>As coral cover drops and structural complexity flattens, competitive balance shifts toward fleshy algae, especially where herbivory is depleted or water quality is poor; global datasets show algal cover increasing over the same period.</p>
+      
+      <div class="figure-container">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/fig3.png?raw=true" alt="Figure 3">
+        <p class="figure-caption">Figure 3 : Graph showing the increase of algae coverage on reefs (GCRMN, 2020)</p>
+      </div>
+
+      <p><strong>Why this matters:</strong> Coral reefs lie at the intersection of today’s three interconnected environmental crises: biodiversity loss, climate change, and pollution. Even if global warming is limited to 1.5 °C, prolonged heat stress is projected to put the vast majority of reefs at risk by mid-century. The consequences extend beyond species loss: hundreds of millions of people—especially in least-developed countries, economies in transition, and small island developing states—depend on reefs for food security, income, cultural identity, and coastal safety. Safeguarding live coral cover and preserving the structural complexity of reefs is therefore both an ecological and a human development priority.</p>
+    </section>
+
+    <section class="report-section" id="section-2">
+      <span class="section-label">02</span>
+      <h2>Literature Review</h2>
+      <div class="section-rule"></div>
+      <p>Defining a value proposition is an essential step in clarifying why a product is relevant, how it stands out from existing alternatives, and why key stakeholders should adopt it. Unlike technical specifications, the value proposition highlights both tangible and intangible benefits, making it compelling for end users.</p>
+
+      <h3 class="subsection">2.1 Introduction</h3>
+      <p>Underwater soft robotics, particularly remotely operated vehicles (ROVs) equipped with soft grippers like flap clamps for silicone tentacles, represents a growing field in marine ecosystem research and conservation. This literature review examines existing products and innovations in ROVs and autonomous underwater vehicles (AUVs) focused on coral reef monitoring, biofouling inspection, and restoration efforts. Drawing from Singapore-specific advancements, the review highlights how these technologies address challenges such as murky waters, sedimentation, and climate-induced stressors on reefs. Key sources include recent publications on Singapore's coral research evolution (Tan, 2023) and AI-powered ROV deployments (National Robotics Programme [NRP], 2024; Meghjani, 2024). Additionally, established commercial ROVs are surveyed to contextualize local innovations within global standards.</p>
+
+      <h3 class="subsection">2.2 Evolution of Coral Reef Research and Robotics in Singapore</h3>
+      <p>Singapore's reefs, reduced by >60% from reclamation, shifted from 1980s mapping (e.g., Prof. Chou's NUS lab with artificial reefs) to 1990s translocations (10% survival) and 2000s "gardening" nurseries (up to 80% survival by 2013). NParks' 2021 Marine Climate Change Science Programme emphasizes resilience, including microbiome studies for heat stress (Huang, as cited in Tan, 2023). Robotics addresses diving risks and turbid waters (<5m depth), with NRP funding AI integrations for sustainability (NRP, 2024).</p>
+
+      <h3 class="subsection">2.3 Existing ROV/AUV Products</h3>
+      <div class="table-container">
         <table>
           <thead>
             <tr>
               <th>Product</th>
+              <th>Developer</th>
               <th>Key Features</th>
+              <th>Relevance to Coral Reefs</th>
               <th>Limitations</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <td>BlueROV2</td>
-              <td>Modular; 100-300m depth; HD Camera</td>
-              <td>Tether limits range in currents</td>
+              <td><strong>BlueROV2</strong></td>
+              <td>Blue Robotics (USA)</td>
+              <td>Modular; 100–300 m depth; HD camera, manipulators; ~USD 3,000. Soft grippers add-on.</td>
+              <td>3D reef surveys; tentacle extensions for sampling.</td>
+              <td>Tether limits range in currents.</td>
             </tr>
             <tr>
-              <td>REMUS 600</td>
-              <td>AUV; 600m depth; Sonar</td>
-              <td>High cost (~USD 1M); Rigid body</td>
+              <td><strong>REMUS 600</strong></td>
+              <td>Hydroid (USA)</td>
+              <td>AUV; 600 m depth; sonar; ~USD 1M.</td>
+              <td>Autonomous bleaching detection.</td>
+              <td>High cost; rigid for soft interactions.</td>
             </tr>
             <tr>
-              <td>Boxfish Luna</td>
-              <td>Hybrid; 8K Camera; 300m depth</td>
-              <td>Limited battery for long surveys</td>
+              <td><strong>VideoRay Pro 5</strong></td>
+              <td>VideoRay (USA)</td>
+              <td>Compact; 305 m depth; 4K camera; ~USD 10,000.</td>
+              <td>Biofouling/reef scans.</td>
+              <td>Short tether in sedimentation.</td>
+            </tr>
+            <tr>
+              <td><strong>Saab Seaeye Falcon</strong></td>
+              <td>Saab (Sweden)</td>
+              <td>Work-class; 300 m depth; manipulators; ~USD 200,000.</td>
+              <td>Precision nubbin sampling.</td>
+              <td>Expensive for shallow reefs.</td>
+            </tr>
+            <tr>
+              <td><strong>Boxfish Luna</strong></td>
+              <td>Boxfish (NZ)</td>
+              <td>Hybrid; 300 m depth; 8K camera; ~USD 50,000.</td>
+              <td>High-res 3D modeling.</td>
+              <td>Limited battery for long surveys.</td>
             </tr>
           </tbody>
         </table>
       </div>
-    </div>
+      <p class="figure-caption">Table 1 : Comparison of existing ROV/AUV products</p>
 
-    <div class="about-section">
-      <span class="section-label">03 — Challenge</span>
-      <h2>Problem <em>Clarification</em></h2>
-      <div class="section-rule"></div>
-      <p>Traditional methods are intrusive: <strong>94% of divers make contact with reef substrates</strong>, with 66% causing visible damage. Furthermore, propeller-driven systems generate noise and turbulence that disrupt marine life behavior. JellyBot addresses this via a <em>How Might We</em> approach: designing a silent, biomimetic robot for shallow reef navigation.</p>
-    </div>
+      <h3 class="subsection">2.4 Singapore-Specific Innovations</h3>
+      <p>
+        <strong>AI Ship-Hull ROV (Meghjani/SUTD & Yuan/A*STAR)</strong>: Detects biofouling, validates cleaning, predicts fuel efficiency, and maps 3D reefs in minutes (NRP, 2024; Meghjani, 2024). Collaborates with SJINML; user portal for health assessments. Dual-use for biosecurity/monitoring; soft tentacles for non-destructive tasks.
+      </p>
+      <p>
+        <strong>MARVL Team Systems (SUTD)</strong>: Hybrid ROV/AUVs with AI for coral health, blooms, spills; 3D mapping in turbid waters (Meghjani, 2024). Aligns with NParks' 100,000-coral planting plan.
+      </p>
 
-    <div class="about-section">
-      <span class="section-label">04 — Analysis</span>
-      <h2>Value <em>Proposition</em></h2>
+      <h3 class="subsection">2.5 Gaps and Opportunities for Soft Robotics</h3>
+      <p>While commercial ROVs excel in modularity, Singapore's efforts reveal gaps in soft, adaptive interfaces for delicate reef interactions—e.g., full cap closure in clamps to prevent fragment loss in currents (paralleling the 1990s translocation failures). Existing systems like BlueROV2 support custom soft grippers, but lack integrated microbiome sampling for resilience studies (Huang, as cited in Tan, 2023). Opportunities include hybrid tentacle-ROVs for "gardening" in deeper, light-limited waters, funded via NRP's sustainability focus.</p>
+    </section>
+
+    <section class="report-section" id="section-3">
+      <span class="section-label">03</span>
+      <h2>Problem Clarification</h2>
       <div class="section-rule"></div>
-      <p>Compared to diver surveys costing ~SGD 35,000 annually, the JellyBot provides a sustainable monitoring platform at a fraction of the investment.</p>
-      
-      <div class="data-table-container">
+      <p><strong>Problem Clarification:</strong> Underwater ecosystems such as coral reefs are highly fragile and easily disturbed by conventional exploration methods. Traditional approaches involving divers or remotely operated vehicles (ROVs) face several limitations that compromise both cost-efficiency and ecological safety. Bulky ROVs struggle with maneuverability in narrow reef passages and shallow coastal zones, while propeller-driven systems generate noise and turbulence that can damage delicate coral structures. Diver-based surveys, on the other hand, demand extensive logistical support—trained personnel, safety teams, oxygen supplies, and large research vessels—resulting in high operational costs and time constraints, often amounting to hundreds to thousands of dollars per mission. Moreover, diver interactions pose direct risks to coral health; studies have shown that 94% of divers make contact with reef substrates, averaging 16 contacts every 10 minutes, with 66% causing visible coral damage (Worachananant et al., 2008). These findings highlight the need for an alternative exploration method that is compact, quiet, energy-efficient, and minimally invasive. Inspired by the gentle propulsion of jellyfish, biomimetic robots like JellyBot offer a promising solution—utilizing soft, pulsatile locomotion that mimics natural movement to enable low-energy, silent, and ecologically responsible underwater exploration without disrupting fragile marine ecosystems.</p>
+      <p><strong>Problem Statement:</strong> Traditional underwater exploration methods—such as human divers or remotely operated vehicles (ROVs)—often disturb delicate marine ecosystems and are constrained by size, noise, and maneuverability limitations. Divers and ROVs can unintentionally damage fragile coral structures through turbulence or direct contact, while diver-based surveys remain costly, manpower-intensive, and limited by dive duration and safety constraints. These challenges highlight the need for a compact, silent, and biomimetic underwater robot capable of navigating complex reef structures and shallow coastal environments to capture ecological data without disrupting marine life. The JellyBot aims to address this issue by mimicking the gentle, pulsatile propulsion of jellyfish, enabling precise, energy-efficient, and unobtrusive exploration that supports ecological research and long-term conservation efforts in a sustainable and responsible manner.</p>
+      <p><strong>How Might We Statement:</strong> How might we design a cost-efficient, biomimetic underwater robot that moves quietly and naturally to collect high-quality ecological data while navigating shallow and complex reef environments without disturbing marine life?</p>
+    </section>
+
+    <section class="report-section" id="section-4">
+      <span class="section-label">04</span>
+      <h2>Value Proposition</h2>
+      <div class="section-rule"></div>
+      <p>Defining a value proposition is an essential step in clarifying why a product is relevant, how it stands out from existing alternatives, and why key stakeholders should adopt it.</p>
+
+      <h3 class="subsection">4.1 Value Proposition Table</h3>
+      <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Method</th>
-              <th>Initial Cost</th>
+              <th>Customer (Marine Researchers and Ecologists)</th>
+              <th>JellyBot</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Jobs:</strong> Collect ecological data and footage in fragile reef environments without causing disruption; Reduce cost, manpower and risk involved in traditional diver-based surveys; Enable more frequent and sustainable long-term reef monitoring.</td>
+              <td><strong>Features:</strong> Soft pulsatile propulsion mimicking jellyfish movement; Silent low energy locomotion for minimal disturbance; Compact, manoeuverable design.</td>
+            </tr>
+            <tr>
+              <td><strong>Gains:</strong> Ability to capture ecological and environmental data unobtrusively and frequently; Promote sustainable, innovative and responsible marine research; Silent unobtrusive operation that does not disturb organisms.</td>
+              <td><strong>Pain Relievers:</strong> Minimizes disturbance and bias to marine life; Replace costly diver surveys; Reduces human risk and labor costs by enabling remote operation.</td>
+            </tr>
+            <tr>
+              <td><strong>Pains:</strong> Divers and ROVs disturb marine life and bias behavioral observations; Traditional diver surveys are costly and limited by safety; Commercial ROVs require high upfront costs; Bulky vehicles cannot navigate narrow reef passages.</td>
+              <td><strong>Gain Creators:</strong> Novel method of ecological monitoring without altering behaviour; Supports Singapore’s marine conservation goals through responsible innovation.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection">4.2 Comparison of Data Collection Methods</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Category</th>
+              <th>Traditional Diver Survey</th>
+              <th>Commercial ROVs</th>
+              <th>Bio-Inspired Solution</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Personnel Required</td><td>2–3 trained divers, 1 boat operator</td><td>1–2 ROV operators, 1 boat operator</td><td>1 operator (shore or boat-based)</td></tr>
+            <tr><td>Initial Equipment Cost</td><td>Diving equipment ≈ $5,000</td><td>ROV unit $20,000–$60,000</td><td>Bio-Inspired Solution ($800–$1,200)</td></tr>
+            <tr><td>Operation Depth</td><td>More than 30 m</td><td>Up to 100 m</td><td>0–20 m (reef zone)</td></tr>
+            <tr><td>Survey Duration</td><td>45–50 min</td><td>3–6 h continuous</td><td>3–4 h continuous</td></tr>
+            <tr><td>Environmental Impact</td><td>Moderate (diver movement)</td><td>Moderate (propeller turbulence)</td><td>Minimal (soft-body propulsion)</td></tr>
+            <tr><td>Data Frequency</td><td>Monthly or quarterly</td><td>Weekly</td><td>Continuous or autonomous</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="subsection">4.3 Cost Breakdown (Singapore Context)</h3>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Component</th>
+              <th>Total (SGD)</th>
               <th>Yearly Total (SGD)</th>
-              <th>Impact</th>
+              <th>References</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Traditional Diver</td>
-              <td>~$5,000</td>
-              <td>$34,920</td>
-              <td>Moderate (Sediment Disturbance)</td>
-            </tr>
-            <tr>
-              <td>Commercial ROV</td>
-              <td>$20,000 - $60,000</td>
-              <td>$23,300+</td>
-              <td>Moderate (Propeller Noise)</td>
-            </tr>
-            <tr>
-              <td><strong>JellyBot</strong></td>
-              <td><strong>~$1,000</strong></td>
-              <td><strong>$19,000</strong></td>
-              <td><strong>Minimal (Soft Propulsion)</strong></td>
-            </tr>
+            <tr class="highlight-row"><td colspan="4">Traditional Diver</td></tr>
+            <tr><td>Charter & Manpower</td><td>$28,800/year</td><td>$34,920</td><td>SJINML Pricing</td></tr>
+            <tr class="highlight-row"><td colspan="4">Commercial ROV</td></tr>
+            <tr><td>ROV Unit & Charter</td><td>$23,300 (Initial)</td><td>$23,300</td><td>Blue Robotics / SJINML</td></tr>
+            <tr class="highlight-row"><td colspan="4">Bio-Inspired Solution (JellyBot)</td></tr>
+            <tr><td>Unit & Charter</td><td>$19,000 (Initial)</td><td>$19,000</td><td>SJINML Pricing</td></tr>
           </tbody>
         </table>
       </div>
-    </div>
+      <p><strong>Interpretation:</strong> Bio-Inspired Solution is a far more affordable and sustainable solution for coral reef monitoring in Singapore compared to traditional diver surveys and commercial ROVs. Diver-based methods cost around SGD 35,000 annually due to frequent boat rentals, manpower, and equipment, while ROVs require a high initial investment of SGD 20,000–60,000. In contrast, JellyBot offers a low-cost alternative at about SGD 1,000, operating autonomously in shallow reefs with minimal environmental impact.</p>
+    </section>
 
-    <div class="about-section">
-      <span class="section-label">05 — Engineering</span>
-      <h2>Technical <em>Specifications</em></h2>
+    <section class="report-section" id="section-5">
+      <span class="section-label">05</span>
+      <h2>User Journey</h2>
       <div class="section-rule"></div>
-      <div class="data-table-container">
+      <p>The Jellybot user journey is structured based on the key principles from Nielsen Norman Group’s Journey Mapping 101, which focuses on understanding the user’s actions, thoughts, and emotions throughout an experience.</p>
+      <div class="figure-container">
+        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/UserJourney.png?raw=true" alt="User Journey">
+        <p class="figure-caption">Figure 4 : User Journey : Researcher Richard</p>
+      </div>
+    </section>
+
+    <section class="report-section" id="section-6">
+      <span class="section-label">06</span>
+      <h2>Features and Specifications</h2>
+      <div class="section-rule"></div>
+      <div class="table-container">
         <table>
           <thead>
             <tr>
-              <th>Parameter</th>
-              <th>Target Value</th>
-              <th>Rationale</th>
+              <th>Category</th>
+              <th>Feature</th>
+              <th>Target Description</th>
+              <th>Purpose / Rationale</th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Working Depth</td>
-              <td>5 Meters</td>
-              <td>Shallow reef zone coverage</td>
-            </tr>
-            <tr>
-              <td>Pulse Frequency</td>
-              <td>0.16 - 0.25 Hz</td>
-              <td>Optimal silicone tentacle deformation</td>
-            </tr>
-            <tr>
-              <td>Computing</td>
-              <td>32-bit ARM Cortex-M4</td>
-              <td>Low-latency sensor fusion & logging</td>
-            </tr>
-            <tr>
-              <td>Sensors</td>
-              <td>Ultrasonic + IMU + Magnetometer</td>
-              <td>Obstacle avoidance and heading control</td>
-            </tr>
+            <tr><td>Operating Parameters</td><td>Working Depth</td><td>5 m</td><td>Most coral targets ≤5 m; shallow reef zone</td></tr>
+            <tr><td>Operating Parameters</td><td>Pressure Tolerance</td><td>>0.5 bar</td><td>Safety margin at 5 m depth</td></tr>
+            <tr><td>Actuation</td><td>Tentacles Pressure</td><td>120 - 170 kPa</td><td>Sufficient deformation without rupture</td></tr>
+            <tr><td>Actuation</td><td>Pulse Frequency</td><td>0.16 - 0.25 Hz</td><td>Silicone tentacles reach max formation at 2s-3s</td></tr>
+            <tr><td>Sensing Suite</td><td>Camera</td><td>30 - 60 fps</td><td>Live navigation feedback and surveillance</td></tr>
+            <tr><td>Computation</td><td>Microcontroller</td><td>32-bit ARM Cortex-M4</td><td>Processing for sensor fusion and closed-loop actuation</td></tr>
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
 
-    <div class="about-section">
-      <span class="section-label">06 — Validation</span>
-      <h2>Critical <em>Results</em></h2>
+    <section class="report-section" id="section-7">
+      <span class="section-label">07</span>
+      <h2>Critical Functions</h2>
       <div class="section-rule"></div>
-      <p>Our iterative prototyping has validated the core competencies required for deployment in fragile ecosystems.</p>
-      <div class="data-table-container">
-        <table style="width: 50%; min-width: 300px; margin: 0 auto;">
+      <p>The successful operation of JellyBot relies on several key functions: Waterproofing, Buoyancy, Movement of Tentacles, Propulsion, Vision, and Navigation (Heading). These functions serve as the foundation of JellyBot’s overall performance, as failure in any one aspect would compromise its ability to be deployed underwater.</p>
+      
+      <div class="table-container" style="max-width: 600px; margin: 40px auto;">
+        <table>
           <thead>
             <tr>
               <th>Critical Function</th>
-              <th>Status</th>
+              <th>Achieved</th>
             </tr>
           </thead>
           <tbody>
-            <tr><td>Waterproofing</td><td>Achieved (Prototype Stable)</td></tr>
-            <tr><td>Buoyancy</td><td>Neutral (Depth Stability)</td></tr>
-            <tr><td>Tentacle Bending</td><td>57° Maximum Angle</td></tr>
-            <tr><td>Vision</td><td>Clear Underwater Feed</td></tr>
+            <tr><td>Waterproof</td><td>Waterproof Prototype</td></tr>
+            <tr><td>Buoyancy</td><td>Neutral Buoyancy</td></tr>
+            <tr><td>Movement of Tentacle</td><td>Maximum Bending Angle of 57°</td></tr>
+            <tr><td>Propulsion</td><td>Upward Propulsion</td></tr>
+            <tr><td>Vision</td><td>Underwater Vision</td></tr>
+            <tr><td>Heading</td><td>Compass-like Heading</td></tr>
           </tbody>
         </table>
       </div>
-    </div>
+    </section>
 
-    <div class="about-section">
-      <span class="section-label">07 — Citations</span>
-      <h2>References</h2>
+    <section class="report-section" id="references">
+      <span class="section-label">References</span>
+      <h2>Bibliography</h2>
       <div class="section-rule"></div>
-      <ul class="ref-list">
-        <li>Bindoff, N.L., et al. (2019). IPCC Special Report on the Ocean and Cryosphere.</li>
-        <li>Souter, D., et al. (2021). Status of coral reefs of the world: 2020. GCRMN.</li>
-        <li>Tan, A. (2023). Science Journals: Waves of change for Singapore’s coral reef research. The Straits Times.</li>
-        <li>Worachananant et al. (2008). Impact of Scuba Divers on Coral Reefs.</li>
-      </ul>
-    </div>
+      <p style="font-size: 0.8em; line-height: 2;">
+        • Bindoff, N.L., et al. (2019). Changing Ocean, Marine Ecosystems, and Dependent Communities. IPCC Special Report.<br>
+        • National Robotics Programme. (2024). Post on AI-Powered Ship Inspection ROV.<br>
+        • Souter, D., et al. (2021). Status of coral reefs of the world: 2020. GCRMN & ICRI.<br>
+        • Tan, A. (2023). Waves of change for Singapore’s coral reef research. The Straits Times.<br>
+        • Worachananant et al. (2008). Impact of Scuba Divers on Coral Reefs.
+      </p>
+    </section>
 
   </div>
 
   <footer>
     <span class="footer-logo">Jelly<span>bot</span></span>
-    <p>© 2025 Jellybot Project · Report View</p>
+    <p>© 2025 Jellybot Project · NUS Engineering</p>
   </footer>
 
   <script>
     const header = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
       header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
+      header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
     }, { passive: true });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.about-section').forEach(el => observer.observe(el));
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.report-section').forEach(el => observer.observe(el));
   </script>
 
 </body>
