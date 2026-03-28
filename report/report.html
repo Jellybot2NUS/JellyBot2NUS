@@ -72,11 +72,12 @@
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
-      min-height: 55vh;
+      min-height: 55vh; /* Keep your height */
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 0 60px 72px;
+      padding: 120px 60px 72px; /* ADD 120px to the TOP padding to account for header */
+      overflow: hidden;
     }
 
     .hero-bg {
@@ -94,15 +95,11 @@
       background: linear-gradient(to bottom, transparent 0%, rgba(6,12,22,1) 100%);
     }
 
-    .hero-content { position: relative; z-index: 2; }
-    .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68em;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      display: block;
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      margin-top: auto; /* Ensures content stays at the bottom of the flex container */
+      animation: fadeUp 1s ease 0.2s both;
     }
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
