@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mechanical | Jellybot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --accent-glow: rgba(77,184,212,0.3);
+      --seafoam: #6ee7c7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: padding 0.3s ease, background 0.3s ease;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 40px; }
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
+    }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { transform: scaleX(1); }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 55vh; /* Keep your height */
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 60px 72px; /* ADD 120px to the TOP padding to account for header */
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      filter: saturate(0.5) brightness(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(77,184,212,0.1) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.0) 30%, rgba(6,12,22,0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      margin-top: auto; /* Ensures content stays at the bottom of the flex container */
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3em, 7vw, 5.5em);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--text);
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1em;
+      font-weight: 200;
+      color: var(--muted);
+      margin-top: 20px;
+      letter-spacing: 0.03em;
+      max-width: 55ch;
+    }
+
+    .hero-author {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .hero-author::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── LAYOUT ────────────────────────────────────── */
+    .page-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 60px 120px;
+    }
+
+    /* ─── SIDEBAR / TOC ─────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      padding-right: 40px;
+      border-right: 1px solid var(--glass-border);
+    }
+
+    .toc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .toc-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 0.8em;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: none;
+      border-radius: 3px;
+      border-left: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+
+    .toc-list a:hover,
+    .toc-list a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    .toc-list li.sub > a {
+      padding-left: 24px;
+      font-size: 0.75em;
+    }
+
+    /* ─── MAIN CONTENT ──────────────────────────────── */
+    .content {
+      padding-left: 60px;
+    }
+
+    .doc-section {
+      margin-bottom: 80px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .doc-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62em;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .doc-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2em;
+      font-weight: 300;
+      color: var(--text);
+      margin-bottom: 8px;
+    }
+
+    .section-rule {
+      width: 48px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 28px;
+    }
+
+    .doc-section p {
+      font-size: 0.95em;
+      font-weight: 300;
+      color: var(--muted);
+      line-height: 1.85;
+      margin-bottom: 16px;
+      max-width: 72ch;
+    }
+
+    /* ─── CALLOUT BOXES ─────────────────────────────── */
+    .callout {
+      border-left: 2px solid var(--accent);
+      background: var(--accent-dim);
+      padding: 18px 24px;
+      margin: 24px 0;
+      border-radius: 0 4px 4px 0;
+    }
+
+    .callout-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 8px;
+      letter-spacing: 0.15em;
+    }
+
+    /* ─── TABLES ────────────────────────────────────── */
+    .table-wrap { overflow-x: auto; margin: 28px 0; }
+
+    .styled-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85em;
+    }
+
+    .styled-table th {
+      background: rgba(77,184,212,0.1);
+      color: var(--accent);
+      padding: 12px 16px;
+      text-align: left;
+      font-family: 'DM Mono', monospace;
+      font-weight: 400;
+      border-bottom: 1px solid var(--accent);
+    }
+
+    .styled-table td {
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--glass-border);
+      color: var(--muted);
+    }
+
+    /* ─── FOOTER ────────────────────────────────────── */
+    footer {
+      padding: 40px 60px;
+      background: var(--deep);
+      border-top: 1px solid var(--glass-border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2em;
+      color: var(--muted);
+    }
+    .footer-logo span { color: var(--accent); }
+
+  </style>
+</head>
+<body>
+
+  <header id="site-header">
+    <a href="../index.html" class="logo">Jelly<span>bot</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../report/report.html">Report</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <span class="hero-eyebrow">Subsystem Report · Propulsion</span>
+      <h1>Propulsion<br><em>Subsystem</em></h1>
+      <p class="hero-sub">Biomimetic Actuator Design and Fluid Dynamics Optimization</p>
+      <div class="hero-author">By [Your Name]</div>
+    </div>
+  </section>
+
+  <div class="page-body">
+
+    <aside class="sidebar">
+      <span class="toc-label">Contents</span>
+      <ul class="toc-list" id="toc">
+        <li><a href="#section-1">1. Overview</a></li>
+        <li><a href="#section-2">2. Structural Design</a></li>
+        <li><a href="#section-3">3. Material Selection</a></li>
+        <li><a href="#section-4">4. CAD & Fabrication</a></li>
+        <li><a href="#section-5">5. Future Iterations</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+
+      <div class="doc-section" id="section-1">
+        <span class="section-num">01</span>
+        <h2>System Overview</h2>
+        <div class="section-rule"></div>
+        <p>The mechanical subsystem serves as the physical body of Jellybot, designed to withstand hydrostatic pressure while maintaining the flexibility required for pulsatile propulsion.</p>
+        <p>Replace this text with your specific mechanical overview. Discuss the body structure, how it houses the internal components, and the overall dimensions.</p>
+      </div>
+
+      <div class="doc-section" id="section-2">
+        <span class="section-num">02</span>
+        <h2>Structural Design</h2>
+        <div class="section-rule"></div>
+        <p>Insert details about the design of the housing, the tentacle attachment points, and the waterproof sealing mechanisms. You can reference specific design constraints here.</p>
+
+        <div class="callout">
+          <div class="callout-title">Design Philosophy</div>
+          <p>Discuss the biomimetic inspiration behind the mechanical form here. How does it mimic a real jellyfish?</p>
+        </div>
+      </div>
+
+      <div class="doc-section" id="section-3">
+        <span class="section-num">03</span>
+        <h2>Material Selection</h2>
+        <div class="section-rule"></div>
+        <p>Discuss the use of soft materials like silicone (e.g., Ecoflex) and rigid components for the main body housing.</p>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Material</th>
+                <th>Properties</th>
+                <th>Application</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Silicone (Ecoflex 00-30)</td>
+                <td>High Elasticity</td>
+                <td>Pneumatic Tentacles</td>
+              </tr>
+              <tr>
+                <td>Acrylic / PLA</td>
+                <td>Rigid / Waterproof</td>
+                <td>Electronics Housing</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="doc-section" id="section-4">
+        <span class="section-num">04</span>
+        <h2>CAD & Fabrication</h2>
+        <div class="section-rule"></div>
+        <p>Detail the modeling process (SolidWorks, Fusion 360) and the fabrication methods (3D printing, casting) used to create the mechanical parts.</p>
+      </div>
+
+      <div class="doc-section" id="section-5">
+        <span class="section-num">05</span>
+        <h2>Future Iterations</h2>
+        <div class="section-rule"></div>
+        <p>Outline what you would change in the mechanical design for version 2.0. Perhaps lighter materials or a more streamlined profile?</p>
+      </div>
+
+    </main>
+  </div>
+
+  <footer>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2025 Jellybot Project — Mechanical Subsystem</p>
+  </footer>
+
+  <script>
+    // Header shrink
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
+      header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+    }, { passive: true });
+
+    // Scroll reveal
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.doc-section').forEach(el => revealObserver.observe(el));
+
+    // Active TOC highlight
+    const sections = document.querySelectorAll('.doc-section[id]');
+    const tocLinks = document.querySelectorAll('#toc a');
+    const tocObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach(a => a.classList.remove('active'));
+          const active = document.querySelector(`#toc a[href="#${entry.target.id}"]`);
+          if (active) active.classList.add('active');
+        }
+      });
+    }, { rootMargin: '-20% 0px -70% 0px' });
+    sections.forEach(s => tocObserver.observe(s));
+  </script>
+
+</body>
+</html>
