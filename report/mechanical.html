@@ -92,13 +92,12 @@
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
-      min-height: 60vh;
+      min-height: 55vh; /* Keep your height */
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      align-items: flex-start;
+      padding: 120px 60px 72px; /* ADD 120px to the TOP padding to account for header */
       overflow: hidden;
-      padding: 0 60px 64px;
     }
 
     .hero-bg {
@@ -122,6 +121,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
+      margin-top: auto; /* Ensures content stays at the bottom of the flex container */
       animation: fadeUp 1s ease 0.2s both;
     }
 
