@@ -4,749 +4,189 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mechanical | Jellybot</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/themes/light.css" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.16.0/cdn/shoelace-autoloader.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
 
   <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --accent-glow: rgba(77,184,212,0.3);
+      --seafoam: #6ee7c7;
+    }
+
+    html { scroll-behavior: smooth; }
+
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      line-height: 1.6;
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
     }
 
-    header nav {
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
       display: flex;
-      justify-content: center;
-      gap: 30px;
-      background-color: #000;
-      padding: 15px 0;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: padding 0.3s ease, background 0.3s ease;
     }
 
-    header nav a {
-      color: white;
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
       text-decoration: none;
-      font-weight: bold;
     }
+    .logo span { color: var(--accent); }
 
-    header nav a:hover {
-      text-decoration: underline;
+    nav { display: flex; gap: 40px; }
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      font-weight: 300;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+      position: relative;
     }
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -4px; left: 0; right: 0;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+      transform-origin: left;
+    }
+    nav a:hover { color: var(--text); }
+    nav a:hover::after { transform: scaleX(1); }
 
+    /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
-      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pic03.jpg?raw=true');
-      background-size: cover;
-      background-position: center;
-      color: white;
-      text-align: center;
-      padding: 120px 20px;
+      min-height: 60vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: flex-start;
+      overflow: hidden;
+      padding: 0 60px 64px;
     }
 
-    .hero::before {
-      content: "";
+    .hero-bg {
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 0;
+      background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.2;
+      filter: saturate(0.5) brightness(0.7);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 70% 50% at 20% 80%, rgba(77,184,212,0.1) 0%, transparent 70%),
+        linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.0) 30%, rgba(6,12,22,0.85) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeUp 1s ease 0.2s both;
+    }
+
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
     }
 
     .hero h1 {
-      position: relative;
-      z-index: 1;
-      font-size: 2.8rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3em, 7vw, 5.5em);
+      font-weight: 300;
+      line-height: 1.0;
+      color: var(--text);
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .hero-sub {
+      font-size: 1em;
+      font-weight: 200;
+      color: var(--muted);
+      margin-top: 20px;
+      letter-spacing: 0.03em;
+      max-width: 55ch;
     }
 
-    .hero p {
-      position: relative;
-      z-index: 1;
-      font-size: 1.3rem;
+    .hero-author {
+      margin-top: 24px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.15em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .hero-author::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--accent);
     }
 
-    main {
-      max-width: 900px;
-      margin: 60px auto;
-      padding: 0 20px 80px;
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
     }
 
-    h2 {
-      color: #0a3d62;
-      margin-top: 40px;
-      border-bottom: 3px solid #0a3d62;
-      padding-bottom: 6px;
-    }
-    
-    .subsection {
-    margin-left: 30px;
-    font-size: 1.3em;
-    color: #0a3d62;
-  }
-
-    p {
-      text-align: justify;
-      color: #333;
+    /* ─── LAYOUT ────────────────────────────────────── */
+    .page-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 60px 120px;
     }
 
-    footer {
-      background-color: #000;
-      color: white;
-      text-align: center;
-      padding: 20px 0;
-      margin-top: 40px;
-    }
-
-    .table-of-content {
-      max-width: 900px;
-      margin: 40px auto;
-      padding: 0 20px;
-    }
-
-    .table-of-content h2 {
-      color: #0a3d62;
-      border-bottom: 3px solid #0a3d62;
-      padding-bottom: 6px;
-    }
-
-    .table-of-content sl-tree {
-      margin-top: 10px;
-    }
-
-    .center-image {
-      text-align: center;
-      margin: 20px 0;
-    }
-
-  </style>
-</head>
-<body>
-
-  <!-- Navigation -->
-  <header style ="background-color: black;">
-    <nav>
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../report/report.html">Report</a>
-    </nav>
-  </header>
-
-  <!-- Hero Section -->
-  <section class="hero">
-    <h1>Mechanical<br><span style="font-size: 40%;"><em>By Afham</em></span></h1>
-    <p style="text-align: center; color:white">Design, structure, and performance of Jellybot’s mechanical system</p>
-  </section>
-
-  <!-- Table of Contents -->
-<section class="table-of-content content-container">
-  <h2>Table of Contents</h2>
-  <sl-tree>
-    <sl-tree-item>
-      <a href="#section-1">1. Overview</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-2">2. Concept Selection</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-3">3. Housing Material Selection</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-4">4. Designing of Prototype 1</a>
-      <sl-tree-item><a href="#sub-section-4a">4.1 Designing of Silicone Tentacle Mold</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4b">4.2 Designing of Tentacles Flap Mold</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-4c">4.3 Designing of Flap Clamp</a></sl-tree-item>
-    </sl-tree-item>
-      <sl-tree-item>
-      <a href="#section-5">5. Silicone Casting</a>
-      <sl-tree-item><a href="#sub-section-5a">5.1 Silicone Casting for Tentacles</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-5b">5.2 Silicone Casting for Flap</a></sl-tree-item>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-6">6. Housing Fabrication</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-7">7. Waterproof Test</a>
-      <sl-tree-item><a href="#sub-section-7a">7.1 Methodology</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-7b">7.2 Results and Shortcoming </a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-7c">7.3 Improvements Made</a></sl-tree-item>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#section-8">8. Pain Points and Future Implementations</a>
-      <sl-tree-item><a href="#sub-section-8a">8.1 Improved Waterproof Housing Design</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-8b">8.2 Internal Electronics Organization</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-8c">8.3 Tentacle Tube Connection</a></sl-tree-item>
-      <sl-tree-item><a href="#sub-section-8d">8.4 Silicone Casting Process</a></sl-tree-item>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a href="#references">References</a>
-    </sl-tree-item>
-  </sl-tree>
-</section>
-
-	<!--Figures-->
-    <!-- Table of Figures -->
-<section class="table-of-content content-container">
-  <h2>Table of Figures</h2>
-
-  <sl-tree>
-
-    
-    <sl-tree-item>
-      <a>Figure 1: Miniature Self-Propelled Jellyfish-like Swimming Robot (Yu et al., 2016)</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 2: Jellyfish-Inspired Soft Robot Driven by Pneumatic Bistable Actuators (Wang et al., 2025)</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 3: Concept Generation</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 4: Prototype 1 CAD</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 5: Tentacles Mold CAD</a>
-    </sl-tree-item>
-     <sl-tree-item>
-      <a>Figure 6: Jellyfish Propulsion Principles</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 7: Tentacles Flap Mold</a>
-    </sl-tree-item>
-	<sl-tree-item>
-      <a>Figure 8: Tentacles Flap Clamp</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 9: Tentacles Flap Clamp on Housing</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 10: Housing Fabrication</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 11: Top Cap of Housing</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 12: Bottom Cap of Housing</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 13: Positive Pressure Test</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 14: Submersion Test</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 15: Positive Pressure Test Results</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 16: Submersion Test Results</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 17: Improved Waterproofing Test Results</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 18: Prototype 1</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 19: Current Electrical Organization</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 20: Pneumatic Tube Leak</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Figure 21: Tentacles Balooning</a>
-    </sl-tree-item>
-    <sl-tree-item>
-      <a>Table 1: Concept Evaluation</a>
-    </sl-tree-item>
-	
-  </sl-tree>
-</section>
-
-<sl-divider></sl-divider>
-
-
-  <!-- Main Content -->
-  <main>
-    <section id="section-1">
-    <h2>1. Concept Generation</h2>
-    <p>
-        In the early stages of the project, inspiration was drawn from prior research on jellyfish-inspired soft robotic systems. Two notable studies; Miniature Self-Propelled Jellyfish-like Swimming Robot (Yu et al., 2016) and Jellyfish-Inspired Soft Robot Driven by Pneumatic Bistable Actuators (Wang et al., 2025), provided valuable insights into achieving jellyfish-like propulsion through soft-bodied and pneumatic actuation mechanisms.
-        <p>
-		<div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 40px;">
-      <div style="flex: 1; text-align: center; margin-right: 10px;">
-        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/miniaturejelly.png?raw=true" 
-             alt="Miniature Self-Propelled Jellyfish-like Swimming Robot" style="width:100%; height:auto;">
-        <p style="text-align:center;">Miniature Self-Propelled Jellyfish-like Swimming Robot</p>
-		  <p class="figure-caption"><b>Figure 1.</b> Miniature Self-Propelled Jellyfish-like Swimming Robot (Yu et al., 2016)</p> 
-      </div>
-      <div style="flex: 1; text-align: center; margin-left: 10px;">
-        <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/flapresearch.png?raw=true" 
-             alt="Jellyfish-Inspired Soft Robot Driven by Pneumatic Bistable Actuators" style="width:100%; height:auto;">
-        <p style="text-align:center;">Jellyfish-Inspired Soft Robot Driven by Pneumatic Bistable Actuators</p>
-		   <p class="figure-caption"><b>Figure 2.</b> Jellyfish-Inspired Soft Robot Driven by Pneumatic Bistable Actuators (Wang et al., 2025)</p> 
-      </div>
-    </div>
-        From studying these examples, several important design insights were gained. Most jellyfish-inspired robots share a dome-shaped upper body coupled with a cylindrical housing that contains the electronic, power, and control systems. This configuration offers a good balance between biological resemblance, hydrodynamic efficiency, and practical integration. While structural designs remain relatively consistent, propulsion methods vary significantly—ranging from mechanical linkages and flapping fins to pneumatic or hybrid actuation systems, each with distinct trade-offs in autonomy, control, and biomimicry.
-        <p>
-        Recognizing these design patterns, our team adopted the proven dome-and-cylinder structure to ensure both stability and efficiency in water. Building on this foundation, the next stage of the design process focused on evaluating different propulsion concepts—such as thrusters, mechanical fins, and pneumatic silicone actuators—to identify the most feasible and ecologically compatible solution for JellyBot.
-    </p>
-    <section id="section-2">
-    <h2>2. Concept Selection </h2>
-    <p>
-      In the development of our jellyfish-inspired soft robotic prototype, three propulsion concepts were evaluated: (A) thruster propellers, (B) mechanical linkages with fins, and (C) pneumatic silicone actuation. All concepts as seen in figure 3 shared a similar structural design consisting of a cylindrical housing to contain the electronics and a dome enclosure for the camera, but differed primarily in their propulsion mechanisms.
-    <p>
-      <strong>Concept A: Thrusters/Propellers</strong><p>
-      Standard underwater propulsion using propellers. This method is simple, widely proven, and provides strong thrust. However, it is noisy and potentially disruptive to sensitive marine ecosystems, reducing its suitability for ecological monitoring.
-    <p>
-      <strong>Concept B: Mechanical Linkages with Fins</strong><p>
-      Actuation achieved through mechanical linkages driving rigid or semi-rigid fins. This approach provides directional control and higher maneuverability compared to passive soft structures. However, it introduces added complexity in waterproofing moving joints, as well as potential mechanical wear and friction issues.
-    <p>
-      <strong>Concept C: Pneumatic Silicone Actuators</strong><p>
-      Soft silicone tentacles actuated by pressurized air to generate pulsatile movement similar to natural jellyfish propulsion. This method is highly biomimetic, energy-efficient in low-speed cruising, and safe for marine life due to its soft interaction with the environment. It also offers quieter operation, making it more eco-friendly for coral reef monitoring.
-    <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/conceptselection.png?raw=true" alt="Concept Selection" style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 3.</b> Concept Generation</p> 
-      </div>
-    <p>  
-      <strong>Evaluation Criteria</strong><p>
-      The following six criteria were selected to reflect project objectives and practical constraints:
-    
-	<p> 
-	<ul>
-    <li>Biomimicry (25%) – how closely the propulsion resembles jellyfish swimming.</li>
-	<li>Manufacturability (20%) – ease of prototyping and fabrication.</li>
-    <li>Power Comsumption (15%) – electrical power required for operation, where lower consumption indicates better energy efficiency and longer endurance.</li>
-    <li>Eco-friendliness (15%) – impact on marine ecosystems (noise, turbulence, safety).</li>
-    <li>Control Complexity (10%) – difficulty of implementation and actuation.</li>
-	<li>Cost Savings (10%) – estimated material and production cost.</li>
-	</ul>
-
-    <p>
-    Weights were assigned according to the priorities of the JellyBot project, with <strong>Biomimicry</strong> receiving the highest emphasis (25%) to ensure the selected concept closely mirrors natural jellyfish locomotion and minimizes ecological disturbance. <strong>Manufacturability</strong> (20%) was similarly prioritized to ensure the design can be realistically produced using the available fabrication tools, materials, and prototyping capabilities.
-	<p>
-	<strong>Eco-friendliness</strong> and <strong>Power consumption</strong> were given equal consideration, reflecting the need for a sustainable, low-impact system that can operate efficiently during extended underwater missions. <strong>Control Complexity</strong> and <strong>Cost Savings</strong> were included with moderate weights to balance technical feasibility and resource constraints.
-	<p>
-	Overall, this weighting approach ensures the selected mechanism provides strong functional performance while remaining practical, efficient, and suitable for long-term deployment in sensitive marine environments.
-    <p>
-      <table border="1" cellspacing="0" cellpadding="5">
-      <thead>
-        <tr>
-          <th>Concept</th>
-          <th>Selection Criteria</th>
-          <th>A: Thrusters/Propellers</th>
-          <th>B: Mechanical Linkages (Fins)</th>
-          <th>C: Soft Biomimetic Actuators</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td rowspan="6">-</td>
-          <td>Biomimicry (25%)</td>
-          <td>1</td>
-          <td>3</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Manufacturability (20%)</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>Power Consumption (15%)</td>
-          <td>3</td>
-          <td>3</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>Eco-friendliness (15%)</td>
-          <td>2</td>
-          <td>4</td>
-          <td>5</td>
-        </tr>
-        <tr>
-          <td>Control Complexity (10%)</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td>Cost Savings (10%)</td>
-          <td>2</td>
-          <td>3</td>
-          <td>4</td>
-        </tr>
-        <tr>
-          <td colspan="2"><strong>Weighted Total</strong></td>
-          <td>1.80</td>
-          <td>3.00</td>
-          <td>4.20</td>
-        </tr>
-      </tbody>
-    </table>
-		<p class="figure-caption"style="text-align: center;"><b>Table 1.</b> Concept Evaluation</p> 
-<p>
-    (<strong>Soft Biomimetic Actuation</strong>) was identified from Table 1 as the most suitable approach, achieving the highest weighted score of 4.20. This concept provides the best balance across biomimicry, manufacturability, power consumption, and eco-friendliness, making it ideal for replicating natural jellyfish propulsion in a sustainable and cost-effective manner. While moderate refinement may be required for the control and fabrication processes, these challenges are outweighed by its superior biomimetic performance and low environmental impact. Moreover, the silicone-based pneumatic actuation system offers low power consumption and significant cost advantages over traditional propulsion methods, ensuring that JellyBot remains both energy-efficient and environmentally safe for long-duration reef monitoring operations.
-<p>
-   <section id="section-3">
-    <h2>3. Housing Material Selection</h2>
-    <p>
-     For the first prototype of the jellyfish-inspired soft robot, the primary goal was to test the feasibility of the concept — specifically, to validate the movement, waterproofing, and integration of the pneumatic system. As such, the housing material selection focused on cost-effective, readily available, and easy-to-fabricate materials rather than final production-grade components.
-      <p>
-      <strong>Material Options Considered</strong><p>
-      <strong>Acrylic:</strong>
-      Acrylic was initially considered due to its excellent optical clarity
-    (<strong>≈ 92% light transmission</strong>), making it attractive for camera
-    housings and visual inspection windows. Acrylic has a relatively low density
-    (<strong>≈ 1.18 g/cm³</strong>), the lowest among the materials evaluated.
-    However, this low density leads to high buoyancy, which would require
-    additional ballast to achieve neutral buoyancy. Acrylic is also mechanically
-    brittle and <strong>prone to cracking</strong> if drilled, fastened, or
-    handled incorrectly. Its common bonding method (solvent welding) can weaken
-    over long-term water exposure or under pressure variation, reducing long-term
-    reliability for underwater housings.<p>
-      <strong>Aluminum Alloy:</strong>
-      Aluminum was evaluated for its high mechanical strength and rigidity
-    (<strong>tensile strength ≈ 290 MPa</strong>). It has a much higher density
-    (<strong>≈ 2.70 g/cm³</strong>), which increases the robot's weight and
-    complicates buoyancy management. In marine environments, aluminum is
-    susceptible to corrosion unless treated with protective coatings or
-    anodization, which increases cost and maintenance. Fabrication of aluminum
-    parts typically requires machining, increasing prototype production time and
-    expense — making it less suitable for rapid iterative development.<p>
-
-      <strong>Polyvinyl Chloride (PVC):</strong>
-      PVC was selected as the primary material for Prototype 1 because it provides
-    a balanced combination of properties useful for early-stage underwater
-    prototypes. PVC is lightweight relative to metals (<strong>≈ 1.4 g/cm³</strong>),
-    corrosion-resistant, and exhibits reliable waterproof characteristics.
-    Standard PVC plumbing components are pressure-rated (commonly in the
-    multiple-bar range), are inexpensive, and are widely available in a variety
-    of fittings that simplify watertight construction. PVC is easy to cut, drill,
-    and seal with silicone or O-rings, enabling fast, low-cost fabrication and
-    modular assembly for iterative testing. Its cylindrical geometry also
-    integrates well with the jellyfish-inspired form and dome enclosure.<p>
-      <strong>Final Selection</strong><p>
-       For Prototype 1, <strong>PVC</strong> was chosen as the housing material because
-    it offers the best trade-off between weight, waterproof reliability,
-    manufacturability, and cost. Acrylic — despite its optical advantages and
-    lowest density — proved <em>too buoyant</em> for a compact underwater robot
-    and is susceptible to cracking under mechanical stress, making it unsuitable
-    for the structural demands of an enclosure. Aluminum was discarded as it is
-    comparatively heavy, requires corrosion protection and machining, and would
-    complicate rapid prototyping.
-  </p>
-  <p>
-    PVC provides a practical middle ground that reduces buoyancy-management
-    challenges while remaining affordable, easy to assemble, and modular for
-    iterative prototyping. This choice allowed the team to focus on validating
-    propulsion, waterproofing, and electronics integration without the added
-    complexity of extensive machining or ballast adjustments.
-  </p>
-    </p>
-    <section id="section-4">
-    <h2>4. Designing of Prototype 1</h2>
-    <p>
-    The initial design of Prototype 1 was developed with the goal of creating a jellyfish-inspired soft robot (Jellybot) capable of underwater propulsion and environmental observation. The concept draws inspiration from the natural locomotion of jellyfish, which move by contracting and relaxing their bell to generate thrust. The robot’s propulsion system is powered by pneumatic silicone tentacles, enabling a soft, pulsating motion that closely mimics biological jellyfish swimming for efficient and eco-friendly movement underwater.
-    <p>
-    <strong>Housing and Structural Design</strong><p>
-    
-    For the first prototype, the body structure was fabricated using PVC pipe rather than 3D-printed materials. Earlier trials with 3D-printed parts revealed persistent leakage issues at layer boundaries, which compromised waterproofing and structural reliability. PVC was therefore selected for its superior watertight integrity, cost-effectiveness, and ease of modification. The cylindrical PVC housing provides a robust enclosure for internal electronics, including the pneumatic system, battery, and control circuits. Its smooth interior also facilitates sealing with silicone and O-rings, ensuring the protection of electronic components during submersion.
-    <p>
-    A clear acrylic dome was mounted on the top section to house the onboard camera, offering an unobstructed field of view for potential surveillance and coral monitoring applications. The modular design of the housing enables straightforward assembly, maintenance, and replacement of components, which is essential for iterative testing. Figure 4 shows a CAD design of Prototype 1.
-    
-	<img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/jellycad.png?raw=true" alt="Jellybot CAD Design"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-    <p class="figure-caption" style="text-align: center;"><b>Figure 4.</b> Prototype 1 CAD</p> 
-	</div>
-	
-		<p><strong>Tentacle and Flap Design</strong><p>
-    
-    The propulsion system employs eight pneumatic silicone tentacles attached symmetrically around the lower base of the PVC housing. Each tentacle is fabricated using a custom-designed mold based on proven research approaches (Wang et al., 2020; FludoJelly, 2019), featuring internal chambers that expand under air pressure to simulate the contraction of jellyfish arms.
-    <p>
-    To unify these tentacles into a coordinated propulsion unit, a flexible silicone flap was cast around their base. This flap acts as a bell-like membrane, connecting all tentacles while maintaining flexibility. During inflation, the tentacles expand outward, and the flap deforms slightly to push water downward, generating upward thrust. The flap was produced by pouring Ecoflex 30 silicone—chosen for its flexibility and durability—between the spaces of the tentacles up to a 2 mm thickness. Unlike the tentacles, the flap does not transmit air pressure directly; rather, it enhances fluid displacement and smoothens the pulsation motion during actuation.
-    <p>
-      
-    
-    
-    <section id="sub-section-4a">
-    <h3 class="subsection" style="margin-top:40px;">4.1 Designing of Silicone Tentacles Mold</h3>
-    <p>
-      The tentacle mold was designed based on a geometry widely adopted in soft robotic research to emulate the pulsating motion of jellyfish propulsion. To maintain design consistency and fabrication efficiency, the same mold design from earlier iterations was reused. The mold consists of multiple internal air chambers arranged radially, enabling distributed pressurization that produces smooth and symmetrical bending upon inflation. This design mimics the contraction of jellyfish bells, providing efficient and biomimetic underwater propulsion. Furthermore, this mold configuration has been validated in prior research, where similar soft pneumatic structures were shown to produce efficient thrust generation and adaptive flexibility (Wang et al., 2020; FludoJelly, 2019). These references reinforce the reliability of our chosen mold design, confirming its suitability for underwater locomotion applications inspired by biological systems.
-    <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/tentaclemold.png?raw=true" alt="Silicone Tentacle Mold"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 5.</b> Tentacles Mold CAD</p> 
-    <p>
-      The molds shown in Figure 5 were 3D printed to ensure dimensional accuracy, then sealed to prevent air leakage during silicone casting. This approach allowed for reliable and repeatable fabrication of tentacles with optimal flexibility, durability, and actuation efficiency, forming the foundation for subsequent propulsion testing in the Jellybot prototype.
-
-    </p>
-
-    <section id="sub-section-4b">
-    <h3 class="subsection" style="margin-top:40px;">4.2 Designing of Tentacles Flap Mold</h3>
-    <p>
-     To achieve smooth and synchronized propulsion for the Jellybot, a custom tentacle flap mold was designed to form the connecting membrane between the individual tentacles. The purpose of this mold was to replicate the bell-like contraction mechanism observed in real jellyfish, where a soft elastic flap unites the tentacles to produce a collective pulsating motion that generates thrust as seen in Figure 6.
-		<img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/jellybell.png?raw=true" alt="How Jellyfish Movement Works"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 6.</b> Jellyfish Propulsion Principles</p> 
-		
-    <p>
-    The mold was designed such that the silicone tentacles are positioned radially on a circular base mold, leaving small gaps between each tentacle. Once all tentacles were secured in position, a thin layer of silicone mixture was poured into the interstitial spaces, creating a flexible membrane that acts as a flap or bell structure. This membrane serves as a unifying actuator surface—when air pressure is applied to the internal chambers of each tentacle, the membrane flexes inward, mimicking the contraction of a jellyfish bell and expelling water downward to propel the robot upward. The Tentacle Flap Mold CAD can be seen in Figure 7.
-	
-		<img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/flapmold.png?raw=true" alt="Flap Mold"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 7.</b> Tentacles Flap Mold</p> 
-      
-    <p>
-    This design approach was inspired by prior research on soft robotic jellyfish propulsion systems, which demonstrated that integrating flexible silicone membranes between actuated appendages enhances hydrodynamic efficiency and allows for smoother deformation cycles. Studies such as Wang et al. (2020) and FludoJelly by Ghorbani et al. (2019) have shown that soft pneumatic composites with continuous membrane structures produce biomimetic fluid interactions and improved thrust performance compared to discrete tentacle configurations.
-      <p>
-      By following this principle, the designed mold not only simplifies the assembly process but also improves the fluid continuity of motion, reducing drag while maintaining flexibility. The resulting flap layer thus plays a critical role in achieving efficient propulsion and more natural, jellyfish-like swimming dynamics.
-
-    </p>
-      
-    <section id="sub-section-4c">
-    <h3 class="subsection" style="margin-top:40px;">4.3 Designing Flap Clamp</h3>
-    <p>
-     To ensure proper attachment between the tentacles, the silicone propulsion flap, and the main PVC housing, a flap clamp system was designed. The clamp serves as a mechanical interface that securely fastens the flexible silicone components to the rigid PVC structure without causing slippage during operation.
-      
-    <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/flapclamp.png?raw=true" alt="Flap Clamp"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 8.</b> Tentacles Flap Clamp</p> 
-      
-     <p>
-    The clamp design consists of two interlocking parts — a top and a bottom ring — which are fastened together around the edge of the PVC pipe as seen in Figure 9. During assembly, the tentacle base and silicone flap layer are positioned between these two clamp sections. When tightened, the clamp applies uniform pressure along the circumference, holding the silicone components firmly in place. This prevents unwanted detachment or deformation during underwater actuation.
-
-     <p>
-       <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/doubleflapclamp.png?raw=true" alt="Double Flap Clamp"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		 <p class="figure-caption"style="text-align: center;"><b>Figure 9.</b> Tentacles Flap Clamp on Housing</p> 
-
-     <p>
-    The need for this clamp arose from the elastic and deformable nature of the silicone material used in the tentacles and flap. Without adequate mechanical restraint, the silicone tends to stretch and slip from its mounting point due to internal air pressure changes during actuation and hydrodynamic forces in water. The flap clamp resolves this by providing a secure, non-invasive connection that does not puncture or damage the silicone, preserving its flexibility and waterproofing integrity.
-
-
-    </p>
-    <section id="section-5">
-    <h2>5. Silicone Casting</h2>
-    <p>
-      Before proceeding with the silicone casting stage, the design and preparation of the tentacle and flap components were carefully planned to ensure optimal flexibility, durability, and watertight performance. Accurate 3D-printed molds were developed to capture the fine structural details of the Jellybot’s soft components, with smooth internal surfaces to prevent imperfections that could compromise flexibility or cause air leakage during actuation. The selection of silicone materials was equally important, as different hardness levels directly influence the movement and strength of the final structure. Softer silicones provide smoother, more natural bending motion, while stiffer formulations offer better shape retention and resistance to tearing under repeated pressurization. Therefore, the chosen silicone blends for the tentacles and flap were optimized to replicate the lifelike motion of a jellyfish while maintaining sufficient structural stability during operation. Once the molds were cleaned and fully prepared, the process advanced to the silicone casting stage, where the tentacles and flap were fabricated using the selected silicone mixtures. <p>
-    
-    <section id="sub-section-5a">
-    <h3 class="subsection" style="margin-top:40px;">5.1 Silicone Casting for Tentacles</h3>
-    <p>
-    Once the mold was successfully 3D printed and cleaned, the next stage involved preparing the silicone mixture for tentacle casting. All support residues from printing were carefully removed to ensure smooth internal surfaces, as any imperfections could affect both flexibility and airtightness of the final cast. For the fabrication of the tentacles, a custom silicone blend was used, consisting of 50% Smooth-On Ecoflex 00-30 and 50% Dragon Skin 20. This combination was selected to achieve an optimal balance between softness and mechanical durability, resulting in tentacles that were both flexible enough for smooth actuation and robust enough to withstand repeated pressurization cycles.
-    <p>
-    To begin casting, equal parts (1:1 ratio) of Part A and Part B from each silicone component were precisely measured and mixed thoroughly to ensure homogeneity and minimize bubble formation. The blended silicone was then slowly poured into the mold cavities to prevent trapped air within the internal chambers. To avoid leakage during curing, the mold was sealed with tape along its seams and gently tapped to release residual air pockets. The filled molds were left to cure undisturbed at room temperature for 24 hours. After curing, the tentacles were carefully demolded, inspected for air voids, and trimmed where necessary.
-    <p>
-    Each cured tentacle was then prepared for pneumatic actuation by manually creating a small inlet hole at the designated air channel point. A silicone-compatible tube was inserted and sealed securely for testing. Upon gradual pressurization using an air pump, the tentacles displayed smooth, pulsating deformations similar to jellyfish bell contractions — confirming proper internal geometry and airtight casting. Only tentacles that demonstrated uniform inflation and no leakage were retained for assembly onto the jellyfish body structure.
-    <p>
-
-    <section id="sub-section-5b">
-    <h3 class="subsection" style="margin-top:40px;">5.2 Silicone Casting for Flap</h3>
-    <p>
-    For the fabrication of the connecting flap that links all eight tentacles, Smooth-On Ecoflex 30 silicone was selected as the casting material. This material was chosen for its high flexibility and elasticity, allowing the flap to mimic the natural bell structure of a jellyfish. The flexibility of Ecoflex 30 enables the flap to deform smoothly during tentacle actuation, creating a gentle pushing motion in the surrounding water that contributes to the jellyfish-like propulsion effect.
-    <p>
-    During the casting process, all eight tentacles were arranged symmetrically around the circular base mold to ensure balanced movement during expansion. With the tentacles securely positioned, the Ecoflex 30 mixture (Part A and Part B in a 1:1 ratio) was carefully mixed to achieve a uniform consistency and minimize trapped air bubbles. The mixed silicone was then poured into the spaces between each tentacle, filling the mold to a thickness of approximately 2 mm.
-    <p>
-    The resulting flap does not serve as the main structure for transmitting air pressure but instead acts as a flexible connecting membrane that unifies the tentacles into a cohesive bell-like form. When the tentacles expand and contract, the flap assists in pushing water downward, helping to generate thrust and enhance the propulsion efficiency of the Jellybot.
-
-    <section id="section-6">
-    <h2>6. Housing Fabrication</h2>
-    <p>
-    The housing for Prototype 1 was fabricated using a PVC pipe as the main structural body due to its excellent waterproofing capability, mechanical strength, and ease of modification. The fabrication process began by cutting the PVC tube to the required length using a precision saw, followed by filing and sanding the edges to remove burrs and ensure a smooth finish for safe handling and proper sealing.
-    <p>
-     <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/housingfab.png?raw=true" alt="Housing Fabrication"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 10.</b> Housing Fabrication</p> 
-      
-    <p>
-      A circular opening was then cut on the top end of the PVC tube to mount the acrylic dome, which serves as the transparent enclosure for the onboard camera. The dome was secured in place using stainless steel screws, ensuring a firm mechanical connection. To achieve a watertight seal, silicone sealant was applied around the dome’s edge and screw joints, preventing any leakage during underwater operation.
-    <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/topcap.png?raw=true" alt="Top Cap"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 11.</b> Top Cap of Housing</p> 
-      
-    <p> 
-      Additional holes were drilled along the PVC housing to accommodate wire feedthroughs and pneumatic connectors required for the tentacle actuation system. Each connector and cable entry point was carefully sealed with silicone to maintain full waterproof integrity.
-    <p> 
-      During this process, the team consulted with members of NUS Bumblebee, a student underwater robotics team, to gain insights into effective waterproofing techniques. Based on their advice, cable glands were used and silicone sealant was applied as a temporary measure, since ordering specialized wire penetrators from Blue Robotics would take time. 
-    <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/bottomcap.png?raw=true" alt="Bottom Cap"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 12.</b> Bottom Cap of Housing</p> 
-      
-    <p> 
-    This approach allowed the prototype to remain watertight for testing purposes, while the use of marine-grade wire penetrators has been identified as a key improvement for the next prototype iteration to ensure long-term waterproof reliability.
-    <p>  
-    This fabrication approach provides a robust, modular, and waterproof housing capable of protecting the internal electronics from underwater pressure and moisture. The use of PVC not only ensures mechanical stability but also allows for easy modification and re-sealing during iterative testing and design improvements.
-    
-    <section id="section-7">
-    <h2>7. Waterproof Test</h2>
-    <p>
-    To evaluate the watertightness of the Jellybot housing, two verification methods were performed: the positive pressure test and the submersion test. These tests were selected to complement each other, with the positive pressure test serving as a rapid non-destructive screening method and the submersion test providing confirmation under realistic operating conditions.
-    <p>
-
-    <section id="sub-section-7a">
-    <h3 class="subsection" style="margin-top:40px;">7.1 Methodology</h3>
-  <p>
-    To evaluate the watertightness of the Jellybot housing, two verification methods were performed:
-    (1) <strong>Positive Pressure Test</strong> and (2) <strong>Submersion Test</strong>.
-    These complementary methods were selected to ensure comprehensive assessment — with the positive pressure test serving as a
-    <em>non-destructive preliminary check</em> and the submersion test simulating <em>real underwater operating conditions</em>.
-  </p>
-
-  <h4>Positive Pressure Test</h4>
-  <p>
-    The sealed housing was slightly pressurized using external air. A soap-water solution was applied along all sealing interfaces,
-    including the joints between the PVC pipe, acrylic dome, and end covers as seen in Figure 13. The presence of continuous air bubbles indicated potential
-    leak paths. This test allowed rapid identification of major leaks without exposing the internal cavity to water, ensuring a safe
-    preliminary evaluation before full immersion.
-  </p>
-      <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/positivetest.png?raw=true" alt="Positive Pressure Test"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		  <p class="figure-caption"style="text-align: center;"><b>Figure 13.</b> Positive Pressure Test</p> 
-      
-    <p> 
-
-  <h4>Submersion Test</h4>
-  <p>
-    After passing the pressure test, the housing was submerged in a container of water mixed with red dye to aid leak visualization.
-    The assembly was weighted to ensure full coverage and observed for air bubbles escaping from the seals. A dry paper towel was placed
-    inside as a moisture indicator. Following 10–30 minutes of immersion as seen in Figure 14, the housing was removed, dried externally, and opened to check
-    for any water ingress or condensation. These two methods collectively provided an effective means to validate waterproofing integrity
-    and detect both rapid and slow leakage paths.
-  </p>
-      <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/submersiontest.png?raw=true" alt="Submersion Test"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		  <p class="figure-caption"style="text-align: center;"><b>Figure 14.</b> Submersion Test</p> 
-      
-    <p> 
-
-  <section id="sub-section-7b">
-  <h3 class="subsection" style="margin-top:40px;">7.2 Results and Shortcomings</h3>
-  <p>
-    <strong>Positive Pressure Test:</strong> When high air pressure was applied, bubbles were observed forming around the screw areas as seen in Figure 15,
-    indicating small air leaks. Under lower manual pressure, no bubbles appeared. However, upon opening the cap, water droplets were found
-    near the dome and screw region. It remained unclear whether these droplets resulted from condensation or actual water ingress.
-  </p>
-    <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/positivetestresult.png?raw=true" alt="Positive Pressure Test Result"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 15.</b> Positive Pressure Test Results</p> 
-      
-    <p> 
-  <p>
-    <strong>Submersion Test:</strong> After 10 minutes of immersion in dyed water, the paper towel inside was fully wet and stained red,
-    confirming water ingress into the housing. Disassembly revealed that the black O-ring failed to provide an effective seal—it appeared
-    to absorb moisture rather than repel it. Leakage points were concentrated around screw holes and the primary O-ring interface.
-  </p>
-    <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/submersiontestresult.png?raw=true" alt="Submersion Test Result"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 16.</b> Submersion Test Results</p> 
-      
-    <p> 
-  <p>
-    These findings suggest that while the prototype provided partial sealing, the current sealing method was insufficient for maintaining
-    waterproof performance during underwater operation.
-  </p>
-
-  <section id="sub-section-7c">
-  <h3 class="subsection" style="margin-top:40px;">7.3 Improvements Made</h3>
-  <ul>
-    <li>
-      <strong>Improved O-ring Integration:</strong> Install dedicated O-rings under each screw head to prevent leaks through fastening points.
-      Replace the existing O-ring with <em>marine-grade silicone</em> or <em>EPDM rubber</em> variants that resist water absorption.
-    </li>
-    <li>
-      <strong>Enhanced Sealant Application:</strong> Apply <em>marine-grade silicone sealant</em> along all gaps between the dome, PVC tube,
-      and end caps. Seal screw holes, wire connectors, and threaded joints with <em>gasket sealant</em> to eliminate micro-leakage paths.
-    </li>
-    <li>
-      <strong>Connector Waterproofing:</strong> Based on consultation with <em>NUS Bumblebee</em>, cable glands were adopted and sealed with
-      silicone as a temporary solution. For the next prototype, implement <em>Blue Robotics wire penetrators</em> for long-term,
-      professional-grade waterproofing.
-    </li>
-    <li>
-      <strong>Verification Testing:</strong> Repeat both pressure and submersion tests using the updated design. Conduct extended submersion
-      (up to 30 minutes) to verify performance over prolonged exposure.
-    </li>
-  </ul>
-
-  <p>
-    After applying these improvements, a follow-up submersion test was conducted for 10 minutes with red dye. The interior remained
-    completely dry, confirming that the enhanced sealing approach successfully achieved a <strong>fully waterproof enclosure</strong> and
-    a substantial improvement over the original design.
-  </p>
-    <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/improvedwaterproofresult.png?raw=true" alt="Improved Waterproof Test Results"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 17.</b> Improved Waterproofing Test Results</p> 
-      
-    <p> 
-</section>
-
-  <section id="section-8">
-  <h2>8. Pain Points and Future Implementations</h2>
-
-  <section id="sub-section-8a">
-  <h3 class="subsection" style="margin-top:40px;">8.1 Improved Waterproof Housign Design</h3><p>
-  <strong>Problem:</strong><p>
-  The current PVC housing design requires frequent resealing with silicone to maintain waterproof integrity. This manual sealing process is time-consuming, inconsistent, and prone to human error, resulting in potential leakage during underwater operations. The current approach also makes disassembly and reassembly difficult, limiting ease of maintenance and long-term durability.
-  <p> 
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/housingproblem.png?raw=true" alt="Housing Issue"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-	  <p class="figure-caption"style="text-align: center;"><b>Figure 18.</b> Prototype 1</p> 
-      
-    <p>
-  <strong>Future Improvement:</strong><p>
-  To enhance reliability and simplify maintenance, a marine-grade waterproof enclosure will be adopted in future iterations. This enclosure will feature predefined sealing interfaces and an IP-rated waterproof design to ensure consistent and complete sealing. By integrating standardized seals and fittings, the new housing design will provide 100% sealing reliability and allow for easier assembly and disassembly. Additionally, the improved design will enhance long-term usability and durability for extended underwater operations.
-  <p>
-    
-  <section id="sub-section-8b">
-  <h3 class="subsection" style="margin-top:40px;">8.2 Internal Electronics Organization</h3> <p>
-
-  <strong>Problem:</strong><p>
-  The current internal electronics setup within the housing is loosely arranged and lacks a proper mounting framework. This disorganized layout increases the risk of wire disconnection or component shifting during operation, potentially leading to electrical instability or system failure. Furthermore, the absence of a structured layout makes troubleshooting and component replacement more time-consuming.
-  <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/electricalhousingproblem.png?raw=true" alt="electrical housing"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-	  <p class="figure-caption"style="text-align: center;"><b>Figure 19.</b> Current Electrical Organization</p> 
-      
-    <p>
-  <strong>Future Improvement:</strong><p>
-  To address these issues, a dedicated internal mounting frame or tray will be designed to securely hold all electrical and electronic components in place. Each module will be firmly bolted or fixed to the frame, ensuring stability and protection from mechanical stress. The implementation of a structured internal layout will also improve wire management, reduce clutter, and enhance overall system reliability. This organized setup will not only prevent accidental disconnections but also simplify maintenance and troubleshooting for future prototypes.
-  <p>
-
-  <section id="sub-section-8c">
-  <h3 class="subsection" style="margin-top:40px;">8.3 Tentacle Tube Conncetion</h3> <p>
-
-  <strong>Problem:</strong><p>
-  During operation, the air tubes connecting to the silicone tentacles frequently came loose due to the lack of a secure attachment mechanism. This issue not only reduced propulsion efficiency but also required frequent maintenance to reseat or reseal the tubes. The unreliable tube connection resulted in inconsistent air pressure delivery, affecting the tentacle’s actuation performance and overall system reliability.
-  <p>
-      <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/tubetentacleproblem.png?raw=true" alt="tentacle tubing"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-	  <p class="figure-caption"style="text-align: center;"><b>Figure 20.</b> Pneumatic Tube Leak</p> 
-      
-    <p>
-    
-  <strong>Future Improvement:</strong><p>
-  To enhance air-tightness and durability, future iterations will integrate the pneumatic tubing directly into the silicone tentacle mold during fabrication. This embedded design will eliminate the need for external connections, reducing the risk of air leakage. Additionally, a reinforced connector interface featuring a mechanical locking mechanism will be developed to provide a more secure and reliable connection between the tubing and the tentacle base. These improvements will significantly enhance the system’s overall performance, reduce maintenance time, and ensure consistent pneumatic operation.
-  <p>
-  
-  <section id="sub-section-8d">
-  <h3 class="subsection" style="margin-top:40px;">8.4 Silicone Casting Process</h3> <p>
-
-  <strong>Problem:</strong><p>
-   In the current prototype, inconsistent inflation behavior was observed among the tentacles during actuation. This issue stemmed from variations in silicone mixing ratios, curing duration, and mold handling techniques. As a result, each tentacle exhibited different elasticity and inflation responses, leading to uneven propulsion performance and reduced overall system efficiency.
-    <p>
-      
-    <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/ballooningproblem.png?raw=true" alt="Tentacles Ballooning"  style="display: block; margin: 20px auto; width: 60%; height: auto;">
-		<p class="figure-caption"style="text-align: center;"><b>Figure 21.</b> Tentacles Balooning</p> 
-      
-    <p>
-    
-  <strong>Future Improvement:</strong><p>
-  To address these inconsistencies, a standardized silicone casting formula and fabrication process will be established. This includes defining fixed mixing ratios, controlled curing times, and uniform mold preparation procedures. By maintaining consistent material properties and casting conditions, each tentacle will achieve similar elasticity and deformation characteristics. These improvements will ensure smoother, more balanced propulsion performance while minimizing fabrication errors and rework time.
-    <p>
-
-  <section id="references">
-  <h2>References</h2>
-    <ul>
-    <li>Wang, S., Qiao, Z., Li, Z., Zhang, Y., Cheng, A., Zhu, B., Yue, X., Chen, Y., Wong, T.‑W., & Li, G. (2025). Jellyfish‑Inspired Soft Robot Driven by Pneumatic Bistable Actuators. Soft Robotics, 12(1), 1‑12. https://www.liebertpub.com/doi/10.1089/soro.2023.0212</li>
-	<li>Joshi, A., Kulkarni, A., & Tadesse, Y. (2019). FludoJelly: Experimental study on jellyfish-like soft robot enabled by soft pneumatic composite (SPC). Robotics, 8(3), 56. https://www.mdpi.com/2218-6581/8/3/56</li>
-    <li>Yu, J., Xiao, J., Li, X., & Wang, W. (2016). Towards a miniature self-propelled jellyfish-like swimming robot. International Journal of Advanced Robotic Systems, 13(5), 1-9. https://www.researchgate.net/figure/Mechanical-configuration-of-the-robotic-jellyfish_fig1_309276436</li>
-    </ul>
-  
-  </main>
-
-  <!-- Footer -->
-  <footer style ="background-color: black;">
-    <p style="text-align:center; color:white;">© 2025 Jellybot Project — Mechanical Subsystem by Afham</p>
-  </footer>
-
-</body>
-</html>
+    /* ─── SIDEBAR / TOC ─────────────────────────────── */
+    .sidebar {
+      position: sticky;
+      top: 100px;
