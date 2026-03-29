@@ -65,7 +65,6 @@
     .logo span { color: var(--accent); }
 
     nav { display: flex; gap: 40px; }
-
     nav a {
       font-family: 'DM Mono', monospace;
       font-size: 0.72em;
@@ -101,31 +100,21 @@
       overflow: hidden;
       padding: 0 60px 64px;
     }
-
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pic05.jpg?raw=true');
       background-size: cover;
       background-position: center;
       opacity: 0.2;
       filter: saturate(0.5) brightness(0.7);
     }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background:
         radial-gradient(ellipse 70% 50% at 20% 80%, rgba(77,184,212,0.1) 0%, transparent 70%),
         linear-gradient(to bottom, rgba(6,12,22,0.3) 0%, rgba(6,12,22,0.0) 30%, rgba(6,12,22,0.85) 100%);
     }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      animation: fadeUp 1s ease 0.2s both;
-    }
-
+    .hero-content { position: relative; z-index: 2; animation: fadeUp 1s ease 0.2s both; }
     .hero-eyebrow {
       font-family: 'DM Mono', monospace;
       font-size: 0.68em;
@@ -135,7 +124,6 @@
       margin-bottom: 20px;
       display: block;
     }
-
     .hero h1 {
       font-family: 'Cormorant Garamond', serif;
       font-size: clamp(3em, 7vw, 5.5em);
@@ -143,38 +131,21 @@
       line-height: 1.0;
       color: var(--text);
     }
-
     .hero h1 em { font-style: italic; color: var(--accent); }
-
     .hero-sub {
-      font-size: 1em;
-      font-weight: 200;
-      color: var(--muted);
-      margin-top: 20px;
-      letter-spacing: 0.03em;
-      max-width: 55ch;
+      font-size: 1em; font-weight: 200; color: var(--muted);
+      margin-top: 20px; letter-spacing: 0.03em; max-width: 55ch;
     }
-
     .hero-author {
       margin-top: 24px;
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
+      display: inline-flex; align-items: center; gap: 10px;
       font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
-      letter-spacing: 0.15em;
-      color: var(--muted);
-      text-transform: uppercase;
+      font-size: 0.65em; letter-spacing: 0.15em;
+      color: var(--muted); text-transform: uppercase;
     }
-
     .hero-author::before {
-      content: '';
-      display: block;
-      width: 24px;
-      height: 1px;
-      background: var(--accent);
+      content: ''; display: block; width: 24px; height: 1px; background: var(--accent);
     }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -190,325 +161,289 @@
       padding: 60px 60px 120px;
     }
 
-    /* ─── SIDEBAR / TOC ─────────────────────────────── */
+    /* ─── SIDEBAR ────────────────────────────────────── */
     .sidebar {
-      position: sticky;
-      top: 100px;
-      align-self: start;
+      position: sticky; top: 100px; align-self: start;
       padding-right: 40px;
       border-right: 1px solid var(--glass-border);
     }
-
     .toc-label {
       font-family: 'DM Mono', monospace;
-      font-size: 0.6em;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-      display: block;
+      font-size: 0.6em; letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; display: block;
     }
-
-    .toc-list {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 2px;
-    }
-
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
     .toc-list a {
-      display: block;
-      padding: 8px 12px;
-      font-size: 0.8em;
-      font-weight: 300;
-      color: var(--muted);
-      text-decoration: none;
-      border-radius: 3px;
-      border-left: 2px solid transparent;
-      transition: all 0.2s ease;
-      line-height: 1.4;
+      display: block; padding: 8px 12px;
+      font-size: 0.8em; font-weight: 300;
+      color: var(--muted); text-decoration: none;
+      border-radius: 3px; border-left: 2px solid transparent;
+      transition: all 0.2s ease; line-height: 1.4;
     }
-
-    .toc-list a:hover,
-    .toc-list a.active {
-      color: var(--accent);
-      border-left-color: var(--accent);
-      background: var(--accent-dim);
+    .toc-list a:hover, .toc-list a.active {
+      color: var(--accent); border-left-color: var(--accent); background: var(--accent-dim);
     }
-
-    .toc-list li.sub > a {
-      padding-left: 24px;
-      font-size: 0.75em;
-    }
-
-    .toc-divider {
-      height: 1px;
-      background: var(--glass-border);
-      margin: 12px 0;
-    }
+    .toc-list li.sub > a { padding-left: 24px; font-size: 0.75em; }
 
     /* ─── MAIN CONTENT ──────────────────────────────── */
-    .content {
-      padding-left: 60px;
-    }
+    .content { padding-left: 60px; }
 
     /* ─── SECTION BLOCKS ────────────────────────────── */
     .doc-section {
       margin-bottom: 80px;
-      opacity: 0;
-      transform: translateY(20px);
+      opacity: 0; transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
     }
-
-    .doc-section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
+    .doc-section.visible { opacity: 1; transform: translateY(0); }
     .section-num {
       font-family: 'DM Mono', monospace;
-      font-size: 0.62em;
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      margin-bottom: 10px;
-      display: block;
+      font-size: 0.62em; letter-spacing: 0.25em;
+      color: var(--accent); margin-bottom: 10px; display: block;
     }
-
     .doc-section h2 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 2em;
-      font-weight: 300;
-      color: var(--text);
-      margin-bottom: 8px;
-      line-height: 1.15;
+      font-size: 2em; font-weight: 300;
+      color: var(--text); margin-bottom: 8px; line-height: 1.15;
     }
-
     .section-rule {
-      width: 48px;
-      height: 2px;
+      width: 48px; height: 2px;
       background: linear-gradient(to right, var(--accent), transparent);
       margin-bottom: 28px;
     }
-
     .doc-section h3 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.5em;
-      font-weight: 300;
-      color: var(--text);
-      margin: 48px 0 8px;
+      font-size: 1.5em; font-weight: 300;
+      color: var(--text); margin: 48px 0 8px;
     }
-
     .subsection-rule {
-      width: 32px;
-      height: 1px;
-      background: var(--accent);
-      opacity: 0.5;
-      margin-bottom: 20px;
+      width: 32px; height: 1px;
+      background: var(--accent); opacity: 0.5; margin-bottom: 20px;
     }
-
     .doc-section p {
-      font-size: 0.93em;
-      font-weight: 300;
-      color: var(--muted);
-      line-height: 1.85;
-      margin-bottom: 16px;
-      max-width: 72ch;
+      font-size: 0.93em; font-weight: 300;
+      color: var(--muted); line-height: 1.85;
+      margin-bottom: 16px; max-width: 72ch;
     }
-
     .doc-section p a {
-      color: var(--accent);
-      text-decoration: none;
+      color: var(--accent); text-decoration: none;
       border-bottom: 1px solid rgba(77,184,212,0.3);
       transition: border-color 0.2s;
     }
-
     .doc-section p a:hover { border-color: var(--accent); }
 
-    /* ─── CALLOUT BOXES ─────────────────────────────── */
+    /* ─── CALLOUTS ──────────────────────────────────── */
     .callout {
       border-left: 2px solid var(--accent);
       background: var(--accent-dim);
       border-radius: 0 4px 4px 0;
-      padding: 18px 24px;
-      margin: 24px 0;
+      padding: 18px 24px; margin: 24px 0;
     }
-
     .callout-title {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 8px;
+      font-size: 0.65em; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 8px;
     }
-
-    .callout p {
-      margin-bottom: 0 !important;
-      font-size: 0.88em !important;
-    }
-
+    .callout p { margin-bottom: 0 !important; font-size: 0.88em !important; }
     .callout ul {
-      margin: 0;
-      padding-left: 1.4em;
-      font-size: 0.88em;
-      color: var(--muted);
-      font-weight: 300;
-      line-height: 1.8;
+      margin: 0; padding-left: 1.4em;
+      font-size: 0.88em; color: var(--muted);
+      font-weight: 300; line-height: 1.8;
     }
-
-    .callout-warn {
-      border-left-color: #e8a44a;
-      background: rgba(232,164,74,0.08);
-    }
+    .callout-warn { border-left-color: #e8a44a; background: rgba(232,164,74,0.08); }
     .callout-warn .callout-title { color: #e8a44a; }
 
     /* ─── TABLES ────────────────────────────────────── */
-    .table-wrap {
-      overflow-x: auto;
-      margin: 28px 0;
-    }
-
-    .styled-table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 0.82em;
-    }
-
+    .table-wrap { overflow-x: auto; margin: 28px 0; }
+    .styled-table { width: 100%; border-collapse: collapse; font-size: 0.82em; }
     .styled-table th {
-      background: rgba(77,184,212,0.12);
-      color: var(--accent);
+      background: rgba(77,184,212,0.12); color: var(--accent);
       font-family: 'DM Mono', monospace;
-      font-size: 0.75em;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-weight: 400;
-      padding: 12px 16px;
-      text-align: left;
+      font-size: 0.75em; letter-spacing: 0.12em; text-transform: uppercase;
+      font-weight: 400; padding: 12px 16px; text-align: left;
       border-bottom: 1px solid rgba(77,184,212,0.3);
     }
-
     .styled-table td {
-      padding: 11px 16px;
-      color: var(--muted);
-      font-weight: 300;
-      border-bottom: 1px solid var(--glass-border);
-      vertical-align: top;
+      padding: 11px 16px; color: var(--muted);
+      font-weight: 300; border-bottom: 1px solid var(--glass-border); vertical-align: top;
     }
-
     .styled-table tr:hover td { background: var(--glass); }
-
-    .styled-table td:first-child {
-      color: var(--text);
-      font-weight: 400;
-    }
-
-    .styled-table td strong,
-    .styled-table th strong { font-weight: 600; }
-
+    .styled-table td:first-child { color: var(--text); font-weight: 400; }
+    .styled-table td strong, .styled-table th strong { font-weight: 600; }
     .highlight-row td {
       background: rgba(77,184,212,0.07);
-      color: var(--accent) !important;
-      font-weight: 500 !important;
+      color: var(--accent) !important; font-weight: 500 !important;
     }
 
-    .figure-caption {
+    /* ─── SHARED CAPTION STYLE ──────────────────────── */
+    /*
+     * figcaption (under images) and .tbl-caption (under tables)
+     * share identical typography so everything looks consistent.
+     */
+    figcaption,
+    .tbl-caption {
       font-family: 'DM Mono', monospace;
       font-size: 0.65em;
       letter-spacing: 0.1em;
       color: rgba(232,237,245,0.35);
       text-align: center;
-      margin-top: 12px;
-      padding-bottom: 32px;
+      margin-top: 10px;
+      display: block;
     }
+    .tbl-caption { margin-top: -14px; margin-bottom: 28px; }
 
-    /* ─── STAT HIGHLIGHT ────────────────────────────── */
-    .stat-row {
+    /* ─── FIGURE / IMAGE SYSTEM ─────────────────────── */
+    /*
+     * Every image is: <figure class="img-fig [img-single]">
+     *                   <div class="img-frame" data-caption="…"><img></div>
+     *                   <figcaption>…</figcaption>
+     *                 </figure>
+     *
+     * Caption always lives OUTSIDE .img-frame so it is
+     * never "inside" the image regardless of layout.
+     */
+
+    .img-fig {
       display: flex;
-      gap: 24px;
+      flex-direction: column;
       margin: 28px 0;
-      flex-wrap: wrap;
     }
 
-    .stat-box {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 4px;
-      padding: 20px 28px;
-      flex: 1;
-      min-width: 140px;
-    }
-
-    .stat-box .stat-val {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2em;
-      font-weight: 300;
-      color: var(--accent);
-      line-height: 1;
-      display: block;
-    }
-
-    .stat-box .stat-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6em;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      color: var(--muted);
-      margin-top: 6px;
-      display: block;
-    }
-
-    /* ─── IMAGES ────────────────────────────────────── */
+    /* The clickable photo box */
     .img-frame {
-      margin: 28px 0;
       border: 1px solid var(--glass-border);
       border-radius: 6px;
       overflow: hidden;
       background: var(--surface);
+      cursor: zoom-in;
+      position: relative;
+      flex-shrink: 0;
     }
+
+    /* Expand icon that appears on hover */
+    .img-frame::after {
+      content: '⤢';
+      position: absolute;
+      bottom: 10px; right: 12px;
+      font-size: 1em;
+      color: rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.5);
+      border-radius: 4px;
+      padding: 2px 7px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      line-height: 1.6;
+    }
+    .img-frame:hover::after { opacity: 1; }
 
     .img-frame img {
       width: 100%;
       display: block;
+      transition: transform 0.35s ease;
     }
+    .img-frame:hover img { transform: scale(1.025); }
 
-    .img-pair {
+    /* Grid layouts — figures inside grids have no extra vertical margin */
+    .img-grid-3 {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
       gap: 16px;
       margin: 28px 0;
     }
-
-    .img-pair .img-frame { margin: 0; }
-
-    .img-single {
-      margin: 28px auto;
-      max-width: 80%;
+    .img-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
     }
+    .img-grid-3 .img-fig,
+    .img-grid-2 .img-fig { margin: 0; }
+
+    /* Centred single image */
+    .img-single {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ─── STAT BOXES ────────────────────────────────── */
+    .stat-row { display: flex; gap: 24px; margin: 28px 0; flex-wrap: wrap; }
+    .stat-box {
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 4px; padding: 20px 28px; flex: 1; min-width: 140px;
+    }
+    .stat-box .stat-val {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2em; font-weight: 300; color: var(--accent);
+      line-height: 1; display: block;
+    }
+    .stat-box .stat-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--muted); margin-top: 6px; display: block;
+    }
+
+    /* ─── LIGHTBOX ──────────────────────────────────── */
+    #lightbox {
+      display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(4,9,18,0.93);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      gap: 18px;
+      cursor: zoom-out;
+    }
+    #lightbox.open { display: flex; }
+
+    #lightbox img {
+      max-width: 90vw;
+      max-height: 82vh;
+      object-fit: contain;
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      box-shadow: 0 8px 60px rgba(0,0,0,0.8);
+      animation: lbIn 0.2s ease both;
+      cursor: default;
+    }
+    @keyframes lbIn {
+      from { opacity: 0; transform: scale(0.93); }
+      to   { opacity: 1; transform: scale(1); }
+    }
+
+    #lightbox-caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7em; letter-spacing: 0.15em;
+      color: var(--muted); text-align: center;
+      max-width: 70ch;
+    }
+
+    #lightbox-close {
+      position: fixed; top: 24px; right: 32px;
+      font-size: 1.8em; line-height: 1;
+      color: var(--muted); background: none; border: none;
+      cursor: pointer; transition: color 0.2s;
+    }
+    #lightbox-close:hover { color: var(--accent); }
 
     /* ─── FOOTER ────────────────────────────────────── */
     footer {
       padding: 40px 60px;
       background: var(--deep);
       border-top: 1px solid var(--glass-border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      display: flex; justify-content: space-between; align-items: center;
     }
-
     .footer-logo {
       font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2em;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-      color: var(--muted);
+      font-size: 1.2em; font-weight: 300;
+      letter-spacing: 0.15em; color: var(--muted);
     }
     .footer-logo span { color: var(--accent); }
-
     footer p {
       font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
-      letter-spacing: 0.1em;
-      color: var(--muted);
+      font-size: 0.65em; letter-spacing: 0.1em; color: var(--muted);
     }
 
     /* ─── RESPONSIVE ────────────────────────────────── */
@@ -518,18 +453,24 @@
       .content { padding-left: 0; }
       header { padding: 16px 32px; }
     }
-
     @media (max-width: 640px) {
       header { padding: 14px 20px; }
       nav { gap: 20px; }
       .hero { padding: 0 24px 48px; }
-      .img-pair { grid-template-columns: 1fr; }
+      .img-grid-3, .img-grid-2 { grid-template-columns: 1fr; }
       .img-single { max-width: 100%; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
     }
   </style>
 </head>
 <body>
+
+  <!-- Lightbox overlay -->
+  <div id="lightbox" role="dialog" aria-modal="true" aria-label="Image lightbox">
+    <button id="lightbox-close" aria-label="Close lightbox">✕</button>
+    <img id="lightbox-img" src="" alt="">
+    <p id="lightbox-caption"></p>
+  </div>
 
   <!-- Navigation -->
   <header id="site-header">
@@ -563,15 +504,15 @@
       <ul class="toc-list" id="toc">
         <li><a href="#section-1">1. Overview</a></li>
         <li><a href="#section-2">2. Electrical System</a></li>
-        <li class="sub"><a href="#sub-2a">2.1 Component Specifications</a></li>
+        <li class="sub"><a href="#sub-2a">2.1 Component Specs</a></li>
         <li class="sub"><a href="#sub-2b">2.2 Power Profiles</a></li>
         <li><a href="#section-3">3. Wiring Diagrams</a></li>
-        <li><a href="#section-4">4. Tests & Results</a></li>
+        <li><a href="#section-4">4. Tests &amp; Results</a></li>
         <li class="sub"><a href="#sub-4a">4.1 Pump Configuration</a></li>
         <li class="sub"><a href="#sub-4b">4.2 Velocity Analysis</a></li>
         <li class="sub"><a href="#sub-4c">4.3 Depth Stability</a></li>
         <li class="sub"><a href="#sub-4d">4.4 Conclusion</a></li>
-        <li><a href="#section-5">5. Battery & Endurance</a></li>
+        <li><a href="#section-5">5. Battery &amp; Endurance</a></li>
         <li><a href="#section-6">6. Future Work</a></li>
       </ul>
     </aside>
@@ -579,7 +520,7 @@
     <!-- Main Content -->
     <main class="content">
 
-      <!-- Section 1: Overview -->
+      <!-- ── Section 1 ─────────────────────────────── -->
       <div class="doc-section" id="section-1">
         <span class="section-num">01</span>
         <h2>Overview</h2>
@@ -607,7 +548,7 @@
         </div>
       </div>
 
-      <!-- Section 2: Electrical System -->
+      <!-- ── Section 2 ─────────────────────────────── -->
       <div class="doc-section" id="section-2">
         <span class="section-num">02</span>
         <h2>Electrical System</h2>
@@ -626,59 +567,17 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Microcontroller / SBC</td>
-                <td>Raspberry Pi 5</td>
-                <td>Raspberry Pi 5</td>
-                <td>Raspberry Pi 5</td>
-                <td>Raspberry Pi 5</td>
-              </tr>
-              <tr>
-                <td>Flight Controller</td>
-                <td>—</td>
-                <td>—</td>
-                <td>BlueOS Navigator</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Actuators (Pumps)</td>
-                <td>4× DC Air Pumps</td>
-                <td>2× DC Air Pumps</td>
-                <td>2× DC Air Pumps</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Actuators (Valves)</td>
-                <td>4× Solenoid Valves</td>
-                <td>2× Solenoid Valves</td>
-                <td>2× Solenoid Valves</td>
-                <td>—</td>
-              </tr>
-              <tr>
-                <td>Power Regulation</td>
-                <td>1× Step-Down</td>
-                <td>1× Step-Down</td>
-                <td>1× Step-Down</td>
-                <td>1× Step-Down</td>
-              </tr>
-              <tr>
-                <td>User Interface</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>7″ LCD Screen</td>
-              </tr>
-              <tr>
-                <td>Input Device</td>
-                <td>—</td>
-                <td>—</td>
-                <td>—</td>
-                <td>PS4 Controller</td>
-              </tr>
+              <tr><td>Microcontroller / SBC</td><td>Raspberry Pi 5</td><td>Raspberry Pi 5</td><td>Raspberry Pi 5</td><td>Raspberry Pi 5</td></tr>
+              <tr><td>Flight Controller</td><td>—</td><td>—</td><td>BlueOS Navigator</td><td>—</td></tr>
+              <tr><td>Actuators (Pumps)</td><td>4× DC Air Pumps</td><td>2× DC Air Pumps</td><td>2× DC Air Pumps</td><td>—</td></tr>
+              <tr><td>Actuators (Valves)</td><td>4× Solenoid Valves</td><td>2× Solenoid Valves</td><td>2× Solenoid Valves</td><td>—</td></tr>
+              <tr><td>Power Regulation</td><td>1× Step-Down</td><td>1× Step-Down</td><td>1× Step-Down</td><td>1× Step-Down</td></tr>
+              <tr><td>User Interface</td><td>—</td><td>—</td><td>—</td><td>7″ LCD Screen</td></tr>
+              <tr><td>Input Device</td><td>—</td><td>—</td><td>—</td><td>PS4 Controller</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 1 — System Configuration Comparison</p>
+        <span class="tbl-caption">Table 1 — System Configuration Comparison</span>
 
         <h3 id="sub-2b">2.2 Power Profiles</h3>
         <div class="subsection-rule"></div>
@@ -695,40 +594,15 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>DRV8840 Motor Driver</td>
-                <td>12 V</td>
-                <td>3 A</td>
-                <td>36.0 W</td>
-              </tr>
-              <tr>
-                <td>12 V DC Air Pump</td>
-                <td>12 V</td>
-                <td>0.5 A</td>
-                <td>6.0 W</td>
-              </tr>
-              <tr>
-                <td>12 V Solenoid Valve</td>
-                <td>12 V</td>
-                <td>0.1 A</td>
-                <td>1.2 W</td>
-              </tr>
-              <tr>
-                <td>Raspberry Pi 5</td>
-                <td>5 V</td>
-                <td>5.0 A</td>
-                <td>25.0 W</td>
-              </tr>
-              <tr>
-                <td>BlueOS Navigator</td>
-                <td>5 V</td>
-                <td>0.2 A</td>
-                <td>1.0 W</td>
-              </tr>
+              <tr><td>DRV8840 Motor Driver</td><td>12 V</td><td>3 A</td><td>36.0 W</td></tr>
+              <tr><td>12 V DC Air Pump</td><td>12 V</td><td>0.5 A</td><td>6.0 W</td></tr>
+              <tr><td>12 V Solenoid Valve</td><td>12 V</td><td>0.1 A</td><td>1.2 W</td></tr>
+              <tr><td>Raspberry Pi 5</td><td>5 V</td><td>5.0 A</td><td>25.0 W</td></tr>
+              <tr><td>BlueOS Navigator</td><td>5 V</td><td>0.2 A</td><td>1.0 W</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 2 — Individual Component Specifications</p>
+        <span class="tbl-caption">Table 2 — Individual Component Specifications</span>
 
         <div class="table-wrap">
           <table class="styled-table">
@@ -742,64 +616,50 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>System 1 — 4-Pump</td>
-                <td>4</td>
-                <td>7.4 A</td>
-                <td>88.8 W</td>
-                <td>2.7 hr</td>
-              </tr>
-              <tr>
-                <td>System 2 — 2-Pump (Open Loop)</td>
-                <td>2</td>
-                <td>6.2 A</td>
-                <td>74.4 W</td>
-                <td>3.2 hr</td>
-              </tr>
+              <tr><td>System 1 — 4-Pump</td><td>4</td><td>7.4 A</td><td>88.8 W</td><td>2.7 hr</td></tr>
+              <tr><td>System 2 — 2-Pump (Open Loop)</td><td>2</td><td>6.2 A</td><td>74.4 W</td><td>3.2 hr</td></tr>
               <tr class="highlight-row">
-                <td><strong>System 3 — 2-Pump + BlueOS ✓</strong></td>
-                <td>2</td>
-                <td>6.4 A</td>
-                <td>76.8 W</td>
-                <td>3.1 hr</td>
+                <td><strong>System 3 — 2-Pump + BlueOS ✓</strong></td><td>2</td><td>6.4 A</td><td>76.8 W</td><td>3.1 hr</td>
               </tr>
-              <tr>
-                <td>On-Board Station (Pelican Case)</td>
-                <td>—</td>
-                <td>5.0 A</td>
-                <td>25.0 W</td>
-                <td>4.0 hr</td>
-              </tr>
+              <tr><td>On-Board Station (Pelican Case)</td><td>—</td><td>5.0 A</td><td>25.0 W</td><td>4.0 hr</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 3 — System Power Profiles and Endurance (12 V, 20 000 mAh battery)</p>
+        <span class="tbl-caption">Table 3 — System Power Profiles and Endurance (12 V, 20 000 mAh battery)</span>
       </div>
 
-      <!-- Section 3: Wiring Diagrams -->
+      <!-- ── Section 3: Wiring Diagrams ────────────── -->
       <div class="doc-section" id="section-3">
         <span class="section-num">03</span>
         <h2>Wiring Diagrams</h2>
         <div class="section-rule"></div>
-        <p>Wiring diagrams were produced for all three system configurations. Each configuration shares a common power regulation stage but differs in the number of pump and valve branches on the 12 V actuation rail.</p>
+        <p>Wiring diagrams were produced for all three system configurations. Each configuration shares a common power regulation stage but differs in the number of pump and valve branches on the 12 V actuation rail. Click any diagram to view it full screen.</p>
 
-        <div class="img-pair">
-          <div class="img-frame">
-            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 1 (4-Pump)" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 1 — System 1 (4-Pump)</p>
-          </div>
-          <div class="img-frame">
-            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 2 (2-Pump)" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 2 — System 2 (2-Pump)</p>
-          </div>
-          <div class="img-frame">
-            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 3 (Adopted)" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 3 — System 3 (Adopted)</p>
-          </div>
+        <div class="img-grid-3">
+          <figure class="img-fig">
+            <div class="img-frame" data-caption="Figure 1 — Wiring Diagram, System 1 (4-Pump)">
+              <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 1 (4-Pump)" loading="lazy">
+            </div>
+            <figcaption>Figure 1 — System 1 (4-Pump)</figcaption>
+          </figure>
+
+          <figure class="img-fig">
+            <div class="img-frame" data-caption="Figure 2 — Wiring Diagram, System 2 (2-Pump)">
+              <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 2 (2-Pump)" loading="lazy">
+            </div>
+            <figcaption>Figure 2 — System 2 (2-Pump)</figcaption>
+          </figure>
+
+          <figure class="img-fig">
+            <div class="img-frame" data-caption="Figure 3 — Wiring Diagram, System 3 (Adopted)">
+              <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 3 (Adopted)" loading="lazy">
+            </div>
+            <figcaption>Figure 3 — System 3 (Adopted)</figcaption>
+          </figure>
         </div>
       </div>
 
-      <!-- Section 4: Tests & Results -->
+      <!-- ── Section 4 ──────────────────────────────── -->
       <div class="doc-section" id="section-4">
         <span class="section-num">04</span>
         <h2>Tests &amp; Results</h2>
@@ -813,28 +673,37 @@
         <div class="subsection-rule"></div>
         <p>To demonstrate that a 2-pump configuration can match the steady-state performance of a 4-pump system, both setups were evaluated at maximum actuation. A maximum bend angle of ~71° was confirmed using HX710 pressure sensing at 206 kPa — sufficient to overcome hydrostatic pressure beyond 5 m depth.</p>
 
-        <div class="img-pair" style="grid-template-columns: 1fr 1fr;">
-          <div class="img-frame">
-            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Pressure_Reading.png?raw=true" alt="Pressure sensor readings" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 4 — HX710 Pressure Sensor Output (206 kPa at Max Bend)</p>
-          </div>
-          <div class="img-frame">
-            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Required_Pressure.png?raw=true" alt="Bend angle graph comparison" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 5 — Bend Angle vs Time for 4-Pump and 2-Pump Systems</p>
-          </div>
+        <div class="img-grid-2">
+          <figure class="img-fig">
+            <div class="img-frame" data-caption="Figure 4 — HX710 Pressure Sensor Output (206 kPa at Max Bend)">
+              <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Pressure_Reading.png?raw=true" alt="HX710 pressure sensor output" loading="lazy">
+            </div>
+            <figcaption>Figure 4 — HX710 Pressure Sensor Output (206 kPa at Max Bend)</figcaption>
+          </figure>
+
+          <figure class="img-fig">
+            <div class="img-frame" data-caption="Figure 5 — Required Pressure at Depth vs Achieved">
+              <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Required_Pressure.png?raw=true" alt="Required pressure at depth chart" loading="lazy">
+            </div>
+            <figcaption>Figure 5 — Required Pressure at Depth vs Achieved</figcaption>
+          </figure>
         </div>
 
         <p>The bend angle tracking software was used to monitor deformation underwater in real time. Both configurations were driven until reaching steady-state at 71°, but with differing transient behaviour.</p>
 
-        <div class="img-single img-frame">
-          <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Angle_softwaer.png?raw=true" alt="4 pump vs 2 pump bend angle graph" loading="lazy">
-        </div>
-        <p class="figure-caption">Figure 6 - Bend angle tracking software (Underwater)</p>
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 6 — Bend Angle Tracking Software (Underwater)">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Angle_softwaer.png?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 6 — Bend Angle Tracking Software (Underwater)</figcaption>
+        </figure>
 
-        <div class="img-single img-frame">
-          <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_4pump_2pump.png?raw=true" alt="4 pump vs 2 pump bend angle graph" loading="lazy">
-        </div>
-        <p class="figure-caption">Figure 7 — 4-Pump Bend Angle Response (τ ≈ 0.45 s) & 2-Pump Bend Angle Response (τ ≈ 1.1 s)</p>
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 7 — 4-Pump (τ ≈ 0.45 s) vs 2-Pump (τ ≈ 1.1 s) Bend Angle Response">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_4pump_2pump.png?raw=true" alt="4-pump vs 2-pump bend angle response graph" loading="lazy">
+          </div>
+          <figcaption>Figure 7 — 4-Pump (τ ≈ 0.45 s) vs 2-Pump (τ ≈ 1.1 s) Bend Angle Response</figcaption>
+        </figure>
 
         <p>Both systems achieved steady-state at 71°. The 4-pump system reached it in 0.7 s (τ ≈ 0.45 s), while the 2-pump system reached it in 1.4 s (τ ≈ 1.1 s, measured at 63.2% of steady-state = 45.1°). The slower 2-pump response introduces a natural dampening effect that proves advantageous for depth stability.</p>
 
@@ -842,12 +711,10 @@
           <div class="callout-title">Key Finding</div>
           <p>Both configurations reach the same steady-state bend angle (71°). The difference lies in the transient response: 4-pump reaches steady-state in 0.7 s vs 1.4 s for 2-pump. The 2-pump system's higher time constant τ provides a mechanical low-pass filter, suppressing abrupt buoyancy shifts that degrade imaging quality.</p>
         </div>
-
         <div class="callout">
           <div class="callout-title">Shortcomings</div>
           <p>The slower 2-pump actuation reduces peak propulsion speed. Silicone material compliance limits further bending beyond the current maximum pressure, and inconsistencies in silicone mixture can affect repeatability.</p>
         </div>
-
         <div class="callout">
           <div class="callout-title">Future Improvements</div>
           <p>Implement a hybrid control logic: operate on 2 pumps for precision hover/detection mode and reserve 4-pump capacity for high-thrust/extraction mode. Standardise the silicone mixture and test alternative formulations for improved compliance.</p>
@@ -876,19 +743,13 @@
               <tr><td>Run 4</td><td>2.92</td><td>9.60</td></tr>
               <tr><td>Run 5</td><td>2.92</td><td>9.80</td></tr>
               <tr class="highlight-row">
-                <td><strong>Average (Mean)</strong></td>
-                <td><strong>3.05 cm/s</strong></td>
-                <td><strong>9.66 cm/s</strong></td>
+                <td><strong>Average (Mean)</strong></td><td><strong>3.05 cm/s</strong></td><td><strong>9.66 cm/s</strong></td>
               </tr>
-              <tr>
-                <td>Standard Deviation (σ)</td>
-                <td>±0.14</td>
-                <td>±0.24</td>
-              </tr>
+              <tr><td>Standard Deviation (σ)</td><td>±0.14</td><td>±0.24</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 4 — Comparative Velocity Analysis of Jellybot Propulsion</p>
+        <span class="tbl-caption">Table 4 — Comparative Velocity Analysis of Jellybot Propulsion</span>
 
         <p>The 2-pump system's σ = 0.14 indicates a high level of consistency across cycles. While the 4-pump configuration offers superior raw speed (10.0 cm/s peak), it proved unsuitable for high-resolution coral reef imaging — at 10.0 cm/s, surge velocity introduces motion blur and reduces the window for stable visual detection.</p>
       </div>
@@ -922,7 +783,7 @@
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 5 — Depth Deviation Comparison During Active Depth Control</p>
+        <span class="tbl-caption">Table 5 — Depth Deviation Comparison During Active Depth Control</span>
 
         <p>The 2-pump system's slower time constant (τ) effectively acts as a "dampener," allowing finer granular control over buoyancy. This reduction in vertical jitter is essential for maintaining the constant focal length required for automated coral detection algorithms. A higher τ describes a more sluggish but smoother system — in the coral reef context, this is a feature, not a limitation.</p>
 
@@ -948,19 +809,17 @@
           <div class="callout-title">Mission-Specific Stability</div>
           <p>The higher time constant of the 2-pump setup provides a mechanical "low-pass filter" effect, dampening abrupt buoyancy shifts. This stability is critical for capturing high-resolution, blur-free imagery of coral reefs.</p>
         </div>
-
         <div class="callout">
           <div class="callout-title">Logistical &amp; Thermal Efficiency</div>
           <p>Reducing the pump count significantly improved the volumetric efficiency within the waterproof Pelican housing. This allowed for better airflow and heat dissipation for the dual-Raspberry Pi setup, preventing thermal throttling during extended missions.</p>
         </div>
-
         <div class="callout">
           <div class="callout-title">Extended Operational Endurance</div>
           <p>System 3 optimises power draw to 76.8 W, extending mission runtime to 3.1 hours — a 15% improvement in total survey area per deployment compared to the 2.7-hour limit of the 4-pump system.</p>
         </div>
       </div>
 
-      <!-- Section 5: Battery & Endurance -->
+      <!-- ── Section 5 ──────────────────────────────── -->
       <div class="doc-section" id="section-5">
         <span class="section-num">05</span>
         <h2>Battery &amp; Power Endurance</h2>
@@ -978,41 +837,22 @@
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>System 1</td>
-                <td>4 Pumps — High Thrust</td>
-                <td>88.8</td>
-                <td>2.7</td>
-              </tr>
-              <tr>
-                <td>System 2</td>
-                <td>2 Pumps — Open Loop / No Control</td>
-                <td>74.4</td>
-                <td>3.2</td>
-              </tr>
+              <tr><td>System 1</td><td>4 Pumps — High Thrust</td><td>88.8</td><td>2.7</td></tr>
+              <tr><td>System 2</td><td>2 Pumps — Open Loop / No Control</td><td>74.4</td><td>3.2</td></tr>
               <tr class="highlight-row">
-                <td><strong>System 3 ✓</strong></td>
-                <td>2 Pumps + BlueOS Flight Navigator</td>
-                <td>76.8</td>
-                <td>3.1</td>
+                <td><strong>System 3 ✓</strong></td><td>2 Pumps + BlueOS Flight Navigator</td><td>76.8</td><td>3.1</td>
               </tr>
-              <tr>
-                <td>Pelican Case (Station)</td>
-                <td>Surface Station / On-board Logic</td>
-                <td>25.0</td>
-                <td>4.0</td>
-              </tr>
+              <tr><td>Pelican Case (Station)</td><td>Surface Station / On-board Logic</td><td>25.0</td><td>4.0</td></tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 6 — Comparative Power Profiles and Operational Endurance</p>
+        <span class="tbl-caption">Table 6 — Comparative Power Profiles and Operational Endurance</span>
 
         <p>While System 2 offers maximum theoretical runtime (3.2 hr), System 3 was adopted as the final architecture. The BlueOS Flight Navigator adds only 2.4 W (a negligible 6-minute reduction in runtime) while providing the critical computational overhead for depth-stability algorithms, real-time video feedback, and live telemetry.</p>
-
         <p>The On-Board Pelican Case at 4.0-hour battery life comfortably exceeds the Jellybot's 3.1-hour endurance, ensuring the surface station remains operational throughout the full deployment, recovery, and data-offloading phases.</p>
       </div>
 
-      <!-- Section 6: Future Work -->
+      <!-- ── Section 6 ──────────────────────────────── -->
       <div class="doc-section" id="section-6">
         <span class="section-num">06</span>
         <h2>Future Work</h2>
@@ -1041,42 +881,66 @@
   </footer>
 
   <script>
-    // ── Header shrink ──
-    const header = document.getElementById('site-header');
+    /* ── Header shrink on scroll ── */
+    const hdr = document.getElementById('site-header');
     window.addEventListener('scroll', () => {
-      if (window.scrollY > 60) {
-        header.style.background = 'rgba(6,12,22,0.97)';
-        header.style.padding = '14px 60px';
-      } else {
-        header.style.background = '';
-        header.style.padding = '';
-      }
+      hdr.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : '';
+      hdr.style.padding    = window.scrollY > 60 ? '14px 60px' : '';
     }, { passive: true });
 
-    // ── Scroll reveal ──
-    const revealObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
-      });
-    }, { threshold: 0.06 });
-    document.querySelectorAll('.doc-section').forEach(el => revealObserver.observe(el));
+    /* ── Scroll reveal ── */
+    const reveal = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.06 }
+    );
+    document.querySelectorAll('.doc-section').forEach(el => reveal.observe(el));
 
-    // ── Active TOC highlight ──
-    const sections = document.querySelectorAll('.doc-section[id]');
+    /* ── Active TOC highlight ── */
     const tocLinks = document.querySelectorAll('#toc a');
-
-    const tocObserver = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
+    const tocObs = new IntersectionObserver(entries => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
           tocLinks.forEach(a => a.classList.remove('active'));
-          const active = document.querySelector(`#toc a[href="#${entry.target.id}"]`);
-          if (active) active.classList.add('active');
+          const a = document.querySelector(`#toc a[href="#${e.target.id}"]`);
+          if (a) a.classList.add('active');
         }
       });
     }, { rootMargin: '-20% 0px -70% 0px' });
+    document.querySelectorAll('.doc-section[id]').forEach(s => tocObs.observe(s));
 
-    sections.forEach(s => tocObserver.observe(s));
+    /* ── Lightbox ── */
+    const lb      = document.getElementById('lightbox');
+    const lbImg   = document.getElementById('lightbox-img');
+    const lbCap   = document.getElementById('lightbox-caption');
+    const lbClose = document.getElementById('lightbox-close');
+
+    function openLb(src, caption) {
+      lbImg.src = src;
+      lbImg.alt = caption;
+      lbCap.textContent = caption;
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeLb() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      /* delay src clear until animation ends */
+      setTimeout(() => { lbImg.src = ''; }, 250);
+    }
+
+    /* Attach click to every .img-frame */
+    document.querySelectorAll('.img-frame').forEach(frame => {
+      frame.addEventListener('click', () => {
+        const img = frame.querySelector('img');
+        openLb(img.src, frame.dataset.caption || img.alt || '');
+      });
+    });
+
+    lbClose.addEventListener('click', e => { e.stopPropagation(); closeLb(); });
+    lb.addEventListener('click', closeLb);
+    /* Prevent clicks on the image itself from closing the lightbox */
+    lbImg.addEventListener('click', e => e.stopPropagation());
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLb(); });
   </script>
-
 </body>
 </html>
