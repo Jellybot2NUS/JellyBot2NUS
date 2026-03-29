@@ -347,6 +347,15 @@
       font-size: 0.88em !important;
     }
 
+    .callout ul {
+      margin: 0;
+      padding-left: 1.4em;
+      font-size: 0.88em;
+      color: var(--muted);
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
     .callout-warn {
       border-left-color: #e8a44a;
       background: rgba(232,164,74,0.08);
@@ -391,6 +400,15 @@
     .styled-table td:first-child {
       color: var(--text);
       font-weight: 400;
+    }
+
+    .styled-table td strong,
+    .styled-table th strong { font-weight: 600; }
+
+    .highlight-row td {
+      background: rgba(77,184,212,0.07);
+      color: var(--accent) !important;
+      font-weight: 500 !important;
     }
 
     .figure-caption {
@@ -455,7 +473,7 @@
 
     .img-pair {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 16px;
       margin: 28px 0;
     }
@@ -464,7 +482,7 @@
 
     .img-single {
       margin: 28px auto;
-      max-width: 70%;
+      max-width: 80%;
     }
 
     /* ─── FOOTER ────────────────────────────────────── */
@@ -531,7 +549,7 @@
     <div class="hero-content">
       <span class="hero-eyebrow">Subsystem Report · Jellybot 2025</span>
       <h1>Electrical<br><em>Subsystem</em></h1>
-      <p class="hero-sub">Designing and powering Jellybot with efficient energy distribution and precise actuation control</p>
+      <p class="hero-sub">Multi-tier power and control architecture for underwater coral reef surveillance — balancing actuation stability, endurance, and precision depth control.</p>
       <div class="hero-author">By Darrel</div>
     </div>
   </section>
@@ -545,298 +563,472 @@
       <ul class="toc-list" id="toc">
         <li><a href="#section-1">1. Overview</a></li>
         <li><a href="#section-2">2. Electrical System</a></li>
-        <li><a href="#section-3">3. Wiring Diagram</a></li>
+        <li class="sub"><a href="#sub-2a">2.1 Component Specifications</a></li>
+        <li class="sub"><a href="#sub-2b">2.2 Power Profiles</a></li>
+        <li><a href="#section-3">3. Wiring Diagrams</a></li>
         <li><a href="#section-4">4. Tests & Results</a></li>
-        <li class="sub"><a href="#sub-section-4a">4.1 Pressure Testing</a></li>
-        <li class="sub"><a href="#sub-section-4b">4.2 Pressure at Depths</a></li>
-        <li class="sub"><a href="#sub-section-4c">4.3 Bending Angle</a></li>
-        <li class="sub"><a href="#sub-section-4d">4.4 Pressure vs Angle</a></li>
-        <li class="sub"><a href="#sub-section-4e">4.5 Key Takeaways</a></li>
-        <li><a href="#section-5">5. Future Improvements</a></li>
+        <li class="sub"><a href="#sub-4a">4.1 Pump Configuration</a></li>
+        <li class="sub"><a href="#sub-4b">4.2 Velocity Analysis</a></li>
+        <li class="sub"><a href="#sub-4c">4.3 Depth Stability</a></li>
+        <li class="sub"><a href="#sub-4d">4.4 Conclusion</a></li>
+        <li><a href="#section-5">5. Battery & Endurance</a></li>
+        <li><a href="#section-6">6. Future Work</a></li>
       </ul>
     </aside>
 
     <!-- Main Content -->
     <main class="content">
 
-      <!-- Section 1 -->
+      <!-- Section 1: Overview -->
       <div class="doc-section" id="section-1">
         <span class="section-num">01</span>
-        <h2>Overview of the Electrical System</h2>
+        <h2>Overview</h2>
         <div class="section-rule"></div>
-        <p>The electrical subsystem provides and regulates power throughout Jellybot, supporting reliable operation of its actuation and control components. It coordinates the operation of pumps, valves, and control electronics to manage airflow and ensure consistent actuation behaviour.</p>
-        <p>Designed to maintain stable voltage and current under varying loads, the subsystem incorporates essential safety and protection features to ensure durability and dependable performance during testing and operation.</p>
+        <p>The electrical subsystem of the Jellybot is a multi-tier power and communication architecture designed to bridge high-current actuation with precision digital control. At its core, the system regulates power for a dual-Raspberry Pi configuration, coordinating the Master–Slave communication required for remote underwater surveillance.</p>
+        <p>To meet the specific demands of coral reef monitoring, the subsystem prioritises <strong>actuation stability</strong> over raw thrust. It integrates a <strong>BlueOS Flight Navigator</strong> with a 2-pump and 2-solenoid valve array, allowing for a dampened response characterised by a time constant τ. This configuration ensures that the electrical load remains optimised at <strong>76.8 W</strong>, extending mission endurance to <strong>3.1 hours</strong>.</p>
+
+        <div class="stat-row">
+          <div class="stat-box">
+            <span class="stat-val">76.8W</span>
+            <span class="stat-label">Optimised Power Draw</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">3.1hr</span>
+            <span class="stat-label">Mission Endurance</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">±2cm</span>
+            <span class="stat-label">Depth Precision</span>
+          </div>
+          <div class="stat-box">
+            <span class="stat-val">71°</span>
+            <span class="stat-label">Max Bend Angle</span>
+          </div>
+        </div>
       </div>
 
-      <!-- Section 2 -->
+      <!-- Section 2: Electrical System -->
       <div class="doc-section" id="section-2">
         <span class="section-num">02</span>
         <h2>Electrical System</h2>
         <div class="section-rule"></div>
-        <p>In accordance with our <a href="report.html#spec-3a"><strong>design specifications (3a)</strong></a>, the electrical subsystem was developed to operate within a 12–24 V tethered power supply and a maximum system load of approximately 30 W. The final design utilises two 12 V motors delivering an airflow rate of 0.6 L/min each, resulting in a combined maximum power consumption of 32 W.</p>
+        <p>Three main system configurations were evaluated before arriving at the adopted design. Each configuration differs in the number of actuator pumps and whether a flight controller is integrated, directly affecting power consumption, endurance, and control authority.</p>
 
-        <div class="stat-row">
-          <div class="stat-box">
-            <span class="stat-val">32W</span>
-            <span class="stat-label">Total Power Draw</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-val">335g</span>
-            <span class="stat-label">Total Component Mass</span>
-          </div>
-          <div class="stat-box">
-            <span class="stat-val">12–24V</span>
-            <span class="stat-label">Supply Range</span>
-          </div>
+        <div class="table-wrap" id="sub-2a">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>System Component</th>
+                <th>System 1 (4-Pump)</th>
+                <th>System 2 (2-Pump)</th>
+                <th>System 3 (Adopted)</th>
+                <th>On-Board Station</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Microcontroller / SBC</td>
+                <td>Raspberry Pi 5</td>
+                <td>Raspberry Pi 5</td>
+                <td>Raspberry Pi 5</td>
+                <td>Raspberry Pi 5</td>
+              </tr>
+              <tr>
+                <td>Flight Controller</td>
+                <td>—</td>
+                <td>—</td>
+                <td>BlueOS Navigator</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Actuators (Pumps)</td>
+                <td>4× DC Air Pumps</td>
+                <td>2× DC Air Pumps</td>
+                <td>2× DC Air Pumps</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Actuators (Valves)</td>
+                <td>4× Solenoid Valves</td>
+                <td>2× Solenoid Valves</td>
+                <td>2× Solenoid Valves</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <td>Power Regulation</td>
+                <td>1× Step-Down</td>
+                <td>1× Step-Down</td>
+                <td>1× Step-Down</td>
+                <td>1× Step-Down</td>
+              </tr>
+              <tr>
+                <td>User Interface</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>7″ LCD Screen</td>
+              </tr>
+              <tr>
+                <td>Input Device</td>
+                <td>—</td>
+                <td>—</td>
+                <td>—</td>
+                <td>PS4 Controller</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        <p class="figure-caption">Table 1 — System Configuration Comparison</p>
+
+        <h3 id="sub-2b">2.2 Power Profiles</h3>
+        <div class="subsection-rule"></div>
+        <p>Each component's voltage, current, and power draw were characterised individually before computing total system loads. All pump and valve connections run in parallel on a 12 V supply rail.</p>
 
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
               <tr>
                 <th>Component</th>
-                <th>Mass</th>
-                <th>Dimensions</th>
-                <th>Voltage & Current</th>
-                <th>Power</th>
+                <th>Voltage</th>
+                <th>Max / Peak Current</th>
+                <th>Max Power (P)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Arduino UNO</td>
-                <td>25 g</td>
-                <td>68.6 × 53.4 mm</td>
-                <td>5 V, 20 mA/pin</td>
-                <td>0.25 W</td>
+                <td>DRV8840 Motor Driver</td>
+                <td>12 V</td>
+                <td>3 A</td>
+                <td>36.0 W</td>
               </tr>
               <tr>
-                <td>AM3030HPM Mini Pump (×2)</td>
-                <td>170 g</td>
-                <td>70 × 30 × 30 mm</td>
-                <td>12 V, 380 mA</td>
-                <td>4.56 W</td>
+                <td>12 V DC Air Pump</td>
+                <td>12 V</td>
+                <td>0.5 A</td>
+                <td>6.0 W</td>
               </tr>
               <tr>
-                <td>L298N Motor Driver (×2)</td>
-                <td>50 g</td>
-                <td>43 × 43 × 27 mm</td>
-                <td>Motor: 5–35 V, 2 A · Logic: 4.5–7 V</td>
-                <td>25 W (max)</td>
+                <td>12 V Solenoid Valve</td>
+                <td>12 V</td>
+                <td>0.1 A</td>
+                <td>1.2 W</td>
               </tr>
               <tr>
-                <td>Electric Solenoid Valve (×2)</td>
-                <td>90 g</td>
-                <td>20 × 39 × 16 mm</td>
-                <td>12 V, 0.3 A</td>
-                <td>2.5 W</td>
+                <td>Raspberry Pi 5</td>
+                <td>5 V</td>
+                <td>5.0 A</td>
+                <td>25.0 W</td>
+              </tr>
+              <tr>
+                <td>BlueOS Navigator</td>
+                <td>5 V</td>
+                <td>0.2 A</td>
+                <td>1.0 W</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 1 — System Components & Specifications</p>
-      </div>
-
-      <!-- Section 3 -->
-      <div class="doc-section" id="section-3">
-        <span class="section-num">03</span>
-        <h2>Wiring Diagram</h2>
-        <div class="section-rule"></div>
-        <p>The electrical system consists of two air pumps, two solenoid valves, an Arduino microcontroller, and two motor drivers. The motor drivers control both the pumps and solenoids, enabling precise timing and coordination of airflow. The solenoid valves regulate the direction of air — either channeling it into the silicone tentacles for inflation or releasing it to atmosphere for deflation.</p>
-        <p>This setup allows the Arduino to manage the inflation-deflation cycle automatically, ensuring consistent pressure control and repeatable actuation behaviour during testing.</p>
-        <div class="img-frame">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/wiring_diagram_boxed.png?raw=true" alt="Wiring Diagram" loading="lazy">
-        </div>
-        <p class="figure-caption">Figure 1 — Wiring Diagram of our Setup</p>
-      </div>
-
-      <!-- Section 4 -->
-      <div class="doc-section" id="section-4">
-        <span class="section-num">04</span>
-        <h2>Tests & Results</h2>
-        <div class="section-rule"></div>
-        <p>To ensure compliance with our design specifications for pneumatic actuation, we are currently conducting tentacle pressure and bending tests. These tests evaluate the system's ability to generate sufficient internal pressure and produce the required bending deformation in the silicone tentacles. Specifically, we are verifying that the tentacles achieve the target pressure range of 120–170 kPa <a href="report.html#spec-2a"><strong>design specifications (2a)</strong></a> without rupture and demonstrate stable pressure cycling behaviour.</p>
-        <p>Additionally, we are assessing the pulse frequency performance, ensuring actuation follows the required 0.16–0.25 Hz range (4–6 s period) as specified in <a href="report.html#spec-2b"><strong>design specifications (2b)</strong></a>, where silicone tentacles are expected to reach maximum deformation within 2–3 seconds and peak pressure at approximately 2 seconds.</p>
-        <p>The testing scope includes examining the effect of using one versus two pumps on inflation performance, characterising the relationship between internal air pressure and bending angle, and verifying pressure buildup, equilibrium behaviour, and actuation speed.</p>
-      </div>
-
-      <!-- Sub 4.1 -->
-      <div class="doc-section" id="sub-section-4a">
-        <h3>4.1 Pressure Testing for Optimal Actuation</h3>
-        <div class="subsection-rule"></div>
-        <p>A series of controlled tests were carried out to identify the optimal internal pressure required for the pneumatic actuators to achieve maximum expansion and responsive bending. Various configurations were evaluated by adjusting the supply voltage and altering the number of active DC air pumps and solenoid valves. Internal pressure was recorded using a digital barometric sensor integrated into the actuator chamber.</p>
+        <p class="figure-caption">Table 2 — Individual Component Specifications</p>
 
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
               <tr>
                 <th>Configuration</th>
-                <th>Voltage</th>
-                <th>Pressure Measured</th>
-                <th>Max Bend Angle</th>
+                <th>Qty (Pumps)</th>
+                <th>Total Max Current</th>
+                <th>Total Max Power</th>
+                <th>Endurance (20 Ah)</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>1 DC Motor</td>
-                <td>5 V</td>
-                <td>683 hPa</td>
+                <td>System 1 — 4-Pump</td>
+                <td>4</td>
+                <td>7.4 A</td>
+                <td>88.8 W</td>
+                <td>2.7 hr</td>
+              </tr>
+              <tr>
+                <td>System 2 — 2-Pump (Open Loop)</td>
+                <td>2</td>
+                <td>6.2 A</td>
+                <td>74.4 W</td>
+                <td>3.2 hr</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>System 3 — 2-Pump + BlueOS ✓</strong></td>
+                <td>2</td>
+                <td>6.4 A</td>
+                <td>76.8 W</td>
+                <td>3.1 hr</td>
+              </tr>
+              <tr>
+                <td>On-Board Station (Pelican Case)</td>
                 <td>—</td>
-              </tr>
-              <tr>
-                <td>1 DC Motor</td>
-                <td>12 V</td>
-                <td>917 hPa</td>
-                <td>41°</td>
-              </tr>
-              <tr>
-                <td>2 DC Motors</td>
-                <td>12 V</td>
-                <td>1173 hPa</td>
-                <td>57°</td>
+                <td>5.0 A</td>
+                <td>25.0 W</td>
+                <td>4.0 hr</td>
               </tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 2 — Recorded Test Results with Different Parameters</p>
+        <p class="figure-caption">Table 3 — System Power Profiles and Endurance (12 V, 20 000 mAh battery)</p>
+      </div>
 
-        <div class="img-frame">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/pressure_graph.png?raw=true" alt="Pressure Graph" loading="lazy">
+      <!-- Section 3: Wiring Diagrams -->
+      <div class="doc-section" id="section-3">
+        <span class="section-num">03</span>
+        <h2>Wiring Diagrams</h2>
+        <div class="section-rule"></div>
+        <p>Wiring diagrams were produced for all three system configurations. Each configuration shares a common power regulation stage but differs in the number of pump and valve branches on the 12 V actuation rail.</p>
+
+        <div class="img-pair">
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 1 (4-Pump)" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 1 — System 1 (4-Pump)</p>
+          </div>
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 2 (2-Pump)" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 2 — System 2 (2-Pump)</p>
+          </div>
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_wriing_1.jpg?raw=true" alt="Wiring Diagram — System 3 (Adopted)" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 3 — System 3 (Adopted)</p>
+          </div>
         </div>
-        <p class="figure-caption">Figure 2 — Pressure Produced by Different Number of Pumps vs Time Taken</p>
+      </div>
+
+      <!-- Section 4: Tests & Results -->
+      <div class="doc-section" id="section-4">
+        <span class="section-num">04</span>
+        <h2>Tests &amp; Results</h2>
+        <div class="section-rule"></div>
+        <p>To determine the optimal configuration for the coral detection mission, two key tests were conducted: a pump configuration test evaluating actuation performance at the target 71° bend angle, and an energy consumption test quantifying mission endurance across all configurations.</p>
+      </div>
+
+      <!-- Sub 4.1 -->
+      <div class="doc-section" id="sub-4a">
+        <h3>4.1 Pump Configuration — 2 vs 4 Pumps</h3>
+        <div class="subsection-rule"></div>
+        <p>To demonstrate that a 2-pump configuration can match the steady-state performance of a 4-pump system, both setups were evaluated at maximum actuation. A maximum bend angle of ~71° was confirmed using HX710 pressure sensing at 206 kPa — sufficient to overcome hydrostatic pressure beyond 5 m depth.</p>
+
+        <div class="img-pair" style="grid-template-columns: 1fr 1fr;">
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_Pressure_Reading.png?raw=true" alt="Pressure sensor readings" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 4 — HX710 Pressure Sensor Output (206 kPa at Max Bend)</p>
+          </div>
+          <div class="img-frame">
+            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_Required_Pressure.png?raw=true" alt="Bend angle graph comparison" loading="lazy">
+            <p class="figure-caption" style="padding-top:0;">Figure 5 — Bend Angle vs Time for 4-Pump and 2-Pump Systems</p>
+          </div>
+        </div>
+
+        <p>The bend angle tracking software was used to monitor deformation underwater in real time. Both configurations were driven until reaching steady-state at 71°, but with differing transient behaviour.</p>
+
+        <div class="img-single img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_Angle_softwaer.png?raw=true" alt="4 pump vs 2 pump bend angle graph" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 6 - Bend angle tracking software (Underwater)</p>
+
+        <div class="img-single img-frame">
+          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_4pump_2pump.png?raw=true" alt="4 pump vs 2 pump bend angle graph" loading="lazy">
+        </div>
+        <p class="figure-caption">Figure 7 — 4-Pump Bend Angle Response (τ ≈ 0.45 s) & 2-Pump Bend Angle Response (τ ≈ 1.1 s)</p>
+
+        <p>Both systems achieved steady-state at 71°. The 4-pump system reached it in 0.7 s (τ ≈ 0.45 s), while the 2-pump system reached it in 1.4 s (τ ≈ 1.1 s, measured at 63.2% of steady-state = 45.1°). The slower 2-pump response introduces a natural dampening effect that proves advantageous for depth stability.</p>
 
         <div class="callout callout-warn">
           <div class="callout-title">Key Finding</div>
-          <p>Comparing to the target 120–170 kPa pressure range, our tests achieved only 117.3 kPa. Increasing the number of pumps does not linearly double output pressure — it primarily increases airflow rate, leading to faster inflation rather than proportionally higher maximum pressure.</p>
+          <p>Both configurations reach the same steady-state bend angle (71°). The difference lies in the transient response: 4-pump reaches steady-state in 0.7 s vs 1.4 s for 2-pump. The 2-pump system's higher time constant τ provides a mechanical low-pass filter, suppressing abrupt buoyancy shifts that degrade imaging quality.</p>
         </div>
 
         <div class="callout">
           <div class="callout-title">Shortcomings</div>
-          <p>Pressure measurements exhibited an immediate jump, making it difficult to capture gradual rises in the inflation profile. Inconsistencies in the silicone mixture caused uneven mechanical properties, resulting in excessive inflation and localised ballooning, increasing rupture risk.</p>
+          <p>The slower 2-pump actuation reduces peak propulsion speed. Silicone material compliance limits further bending beyond the current maximum pressure, and inconsistencies in silicone mixture can affect repeatability.</p>
         </div>
 
         <div class="callout">
           <div class="callout-title">Future Improvements</div>
-          <p>Separate pump outputs into independent channels per tentacle rather than a shared line. Experiment with alternative silicone formulations beyond pure Ecoflex 00-30 to better balance elasticity and structural stability.</p>
+          <p>Implement a hybrid control logic: operate on 2 pumps for precision hover/detection mode and reserve 4-pump capacity for high-thrust/extraction mode. Standardise the silicone mixture and test alternative formulations for improved compliance.</p>
         </div>
       </div>
 
       <!-- Sub 4.2 -->
-      <div class="doc-section" id="sub-section-4b">
-        <h3>4.2 Pressure at Different Depths</h3>
+      <div class="doc-section" id="sub-4b">
+        <h3>4.2 Velocity Analysis</h3>
         <div class="subsection-rule"></div>
-        <p>To determine the pressure required to overcome ambient water pressure at various depths, a table was compiled showing the necessary tentacle pressures. It is evident that our maximum recorded pressure of 1173 hPa is sufficient only for surface-level operation (0 m). With reference to <a href="report.html#spec-1a"><strong>design specifications (1a)</strong></a>, which require operation in shallow reef zones up to 5 m depth, the current pneumatic system does not yet meet the full depth requirement.</p>
+        <p>Five test runs were recorded for each configuration to characterise horizontal propulsion velocity. The 4-pump system achieved significantly higher peak speed, but this came at the cost of stability for close-range imaging.</p>
 
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
               <tr>
-                <th>Depth (m)</th>
-                <th>Hydrostatic Pressure (kPa)</th>
-                <th>Absolute Pressure (kPa)</th>
-                <th>Pressure to Bend (kPa)</th>
+                <th>Test Run</th>
+                <th>2-Pump Configuration (cm/s)</th>
+                <th>4-Pump Configuration (cm/s)</th>
               </tr>
             </thead>
             <tbody>
-              <tr><td>0</td><td>0.00</td><td>101.3</td><td>117.3</td></tr>
-              <tr><td>1</td><td>10.06</td><td>111.36</td><td>127.36</td></tr>
-              <tr><td>2</td><td>20.11</td><td>121.41</td><td>137.41</td></tr>
-              <tr><td>3</td><td>30.17</td><td>131.47</td><td>147.47</td></tr>
-              <tr><td>4</td><td>40.22</td><td>141.52</td><td>157.52</td></tr>
-              <tr><td>5</td><td>50.28</td><td>151.58</td><td>167.58</td></tr>
+              <tr><td>Run 1</td><td>3.20</td><td>10.00</td></tr>
+              <tr><td>Run 2</td><td>3.18</td><td>9.50</td></tr>
+              <tr><td>Run 3</td><td>3.01</td><td>9.40</td></tr>
+              <tr><td>Run 4</td><td>2.92</td><td>9.60</td></tr>
+              <tr><td>Run 5</td><td>2.92</td><td>9.80</td></tr>
+              <tr class="highlight-row">
+                <td><strong>Average (Mean)</strong></td>
+                <td><strong>3.05 cm/s</strong></td>
+                <td><strong>9.66 cm/s</strong></td>
+              </tr>
+              <tr>
+                <td>Standard Deviation (σ)</td>
+                <td>±0.14</td>
+                <td>±0.24</td>
+              </tr>
             </tbody>
           </table>
         </div>
-        <p class="figure-caption">Table 3 — Required Pressure at Different Depths</p>
+        <p class="figure-caption">Table 4 — Comparative Velocity Analysis of Jellybot Propulsion</p>
+
+        <p>The 2-pump system's σ = 0.14 indicates a high level of consistency across cycles. While the 4-pump configuration offers superior raw speed (10.0 cm/s peak), it proved unsuitable for high-resolution coral reef imaging — at 10.0 cm/s, surge velocity introduces motion blur and reduces the window for stable visual detection.</p>
       </div>
 
       <!-- Sub 4.3 -->
-      <div class="doc-section" id="sub-section-4c">
-        <h3>4.3 Bending Angle of Actuators</h3>
+      <div class="doc-section" id="sub-4c">
+        <h3>4.3 Depth Stability &amp; Precision</h3>
         <div class="subsection-rule"></div>
-        <p>A series of controlled experiments were conducted to evaluate the bending angle of the silicone tentacles and investigate how the number of active pumps influences both bending angle and actuation dynamics, in accordance with pulse frequency requirements <strong>(design specifications 2b)</strong> where maximum deformation is expected within 2–3 seconds and peak pressure at approximately 2 seconds.</p>
+        <p>A critical requirement for underwater surveillance is the ability to hover at a fixed altitude. During active depth-control tests, the following depth oscillations were observed for each configuration:</p>
 
-        <div class="img-pair">
-          <div class="img-frame">
-            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/zero_degree.png?raw=true" alt="Tentacles at origin" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 3 — Tentacles at Origin (0°)</p>
-          </div>
-          <div class="img-frame">
-            <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/max_degree.png?raw=true" alt="Tentacles at max bend" loading="lazy">
-            <p class="figure-caption" style="padding-top:0;">Figure 4 — Tentacles at Max Bend</p>
-          </div>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>Depth Deviation (Δd)</th>
+                <th>Operational Impact</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>4 Pumps</td>
+                <td>±8 cm</td>
+                <td>High instability; unsuitable for close-range macro photography.</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>2 Pumps (System 3)</strong></td>
+                <td><strong>±2 cm</strong></td>
+                <td>High precision; allows stable, focused imaging of coral structures.</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
+        <p class="figure-caption">Table 5 — Depth Deviation Comparison During Active Depth Control</p>
 
-        <div class="img-single img-frame">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/1_pump_bend.png?raw=true" alt="1 pump bend" loading="lazy">
-        </div>
-        <p class="figure-caption">Figure 5 — Bending Angle of 1 Pump with Respect to Time</p>
-
-        <div class="img-single img-frame">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/2_pump_bend.png?raw=true" alt="2 pump bend" loading="lazy">
-        </div>
-        <p class="figure-caption">Figure 6 — Bending Angle of 2 Pumps with Respect to Time</p>
-
-        <div class="callout callout-warn">
-          <div class="callout-title">Key Finding</div>
-          <p>With 1 pump the tentacles achieved a maximum bend angle of 41° in 1 second; with 2 pumps, 57° in 1.2 seconds. The bending angle peaks at around the same time internal pressure reaches its maximum. Comparing to the target 4–6 s period per cycle, our tests achieved only a 1–2 s period.</p>
-        </div>
+        <p>The 2-pump system's slower time constant (τ) effectively acts as a "dampener," allowing finer granular control over buoyancy. This reduction in vertical jitter is essential for maintaining the constant focal length required for automated coral detection algorithms. A higher τ describes a more sluggish but smoother system — in the coral reef context, this is a feature, not a limitation.</p>
 
         <div class="callout">
-          <div class="callout-title">Shortcomings</div>
-          <p>Material compliance of the silicone limits further bending beyond a certain pressure. Thicker silicone produces smaller bend angles due to higher stiffness. Inconsistencies in silicone mixture can lead to localised ballooning and rupture risk.</p>
-        </div>
-
-        <div class="callout">
-          <div class="callout-title">Future Improvements</div>
-          <p>Standardise the silicone mixture to reduce variability in mechanical properties. Test different silicone thicknesses and alternative formulations for larger bend angles with structural integrity. Systematically measure Jellybot displacement at each bend angle for improved control.</p>
+          <div class="callout-title">Time Constant Interpretation</div>
+          <p>A <strong>lower τ</strong> (4-pump, τ ≈ 0.45 s) indicates a fast system reaching target displacement rapidly — ideal for propulsion but causing aggressive, jerky movements that make depth control difficult. A <strong>higher τ</strong> (2-pump, τ ≈ 1.1 s) produces a smoother buoyancy transition, filtering out high-frequency jitter and enabling tighter depth precision.</p>
         </div>
       </div>
 
       <!-- Sub 4.4 -->
-      <div class="doc-section" id="sub-section-4d">
-        <h3>4.4 Comparison of Pressure vs Bend Angle</h3>
+      <div class="doc-section" id="sub-4d">
+        <h3>4.4 Conclusion</h3>
         <div class="subsection-rule"></div>
-        <p>We analyse the relationship between internal pneumatic pressure and the resulting bend angle of the silicone tentacles. By plotting pressure versus bend angle, we characterise how variations in actuation pressure translate into mechanical deformation — providing insight into tentacle responsiveness, pump configuration influence, and material property limits.</p>
-
-        <div class="img-single img-frame">
-          <img src="https://github.com/JellyBotNUS/JellyBotNUS.github.io/blob/main/images/Comparison_P_A.png?raw=true" alt="Non-linear pressure vs angle comparison" loading="lazy">
-        </div>
-        <p class="figure-caption">Figure 7 — Non-linear Comparison of Pressure vs Bend Angle</p>
-
-        <div class="callout">
-          <div class="callout-title">Conclusion</div>
-          <p>A non-linear relationship was observed between internal pressure and bending angle. The tentacle resists bending at low pressures, then bends rapidly after a certain threshold, finally saturating at a maximum angle. The nonlinear behaviour means simple open-loop pressure commands are unreliable; control gains must adapt or incorporate feedback mechanisms to maintain accuracy. Understanding this relationship is essential for predicting actuation performance and developing effective control strategies.</p>
-        </div>
-      </div>
-
-      <!-- Sub 4.5 -->
-      <div class="doc-section" id="sub-section-4e">
-        <h3>4.5 Key Takeaways</h3>
-        <div class="subsection-rule"></div>
-
-        <div class="callout">
-          <div class="callout-title">Lessons Learnt</div>
-          <p>Pressure governs stiffness, but flow rate governs actuation speed. Increasing the number of pumps does not directly double the pressure — pneumatic pressure is not additive; it only increases airflow rate, meaning faster inflation but not proportionally higher maximum pressure. The material compliance of the silicone also limits further bending beyond a certain pressure, with thicker silicone resulting in smaller bend angles due to higher stiffness.</p>
-        </div>
 
         <div class="callout callout-warn">
-          <div class="callout-title">Shortcomings</div>
-          <p>Measurements show an immediate pressure jump, making it hard to capture gradual rises in pressure recording. Inconsistency in the silicone mixture causes a tendency for excessive inflation, resulting in ballooning and increasing the risk of rupturing.</p>
+          <div class="callout-title">Comparative Summary</div>
+          <p>The 4-pump system offered a superior time constant (τ = 0.45 s) and peak mean velocity of 10 cm/s, but induced high-magnitude depth jitter of ±8 cm. The 2-pump System 3 architecture achieved a stable mean velocity of 3.05 cm/s and reduced depth oscillations to ±2 cm — a 4× improvement in depth precision.</p>
+        </div>
+
+        <p>The adoption of the 2-pump configuration (System 3) is justified by three key engineering factors:</p>
+
+        <div class="callout">
+          <div class="callout-title">Mission-Specific Stability</div>
+          <p>The higher time constant of the 2-pump setup provides a mechanical "low-pass filter" effect, dampening abrupt buoyancy shifts. This stability is critical for capturing high-resolution, blur-free imagery of coral reefs.</p>
         </div>
 
         <div class="callout">
-          <div class="callout-title">Future Improvements</div>
-          <p>Separate pump outputs to independent tentacle channels instead of combining them. Test with different silicone material mixtures, as current prototypes use pure Ecoflex 00-30. Test the displacement of Jellybot for each bend angle and record the distance it moves with respect to bending angle.</p>
+          <div class="callout-title">Logistical &amp; Thermal Efficiency</div>
+          <p>Reducing the pump count significantly improved the volumetric efficiency within the waterproof Pelican housing. This allowed for better airflow and heat dissipation for the dual-Raspberry Pi setup, preventing thermal throttling during extended missions.</p>
+        </div>
+
+        <div class="callout">
+          <div class="callout-title">Extended Operational Endurance</div>
+          <p>System 3 optimises power draw to 76.8 W, extending mission runtime to 3.1 hours — a 15% improvement in total survey area per deployment compared to the 2.7-hour limit of the 4-pump system.</p>
         </div>
       </div>
 
-      <!-- Section 5 -->
+      <!-- Section 5: Battery & Endurance -->
       <div class="doc-section" id="section-5">
         <span class="section-num">05</span>
-        <h2>Future Improvements</h2>
+        <h2>Battery &amp; Power Endurance</h2>
         <div class="section-rule"></div>
-        <p>To enhance the performance of the pneumatic system, future iterations could incorporate higher air-flow pumps to achieve faster and more consistent tentacle actuation. Coupling this with an improved control algorithm would allow finer timing adjustments, ensuring smoother and more precise movements.</p>
-        <p>Additionally, integrating feedback sensors directly into the tentacles would provide real-time pressure data, enabling the system to dynamically monitor and adjust internal pressure. This closed-loop approach would improve reliability, prevent over-inflation, and allow the tentacles to achieve the desired bending more accurately.</p>
+        <p>To determine the optimal configuration for the coral detection mission, four electrical power profiles were evaluated using a 12 V, 20 000 mAh battery. The primary metrics were power draw (Watts) and operational endurance (Hours).</p>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Configuration</th>
+                <th>Description</th>
+                <th>Power (W)</th>
+                <th>Endurance (hr)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>System 1</td>
+                <td>4 Pumps — High Thrust</td>
+                <td>88.8</td>
+                <td>2.7</td>
+              </tr>
+              <tr>
+                <td>System 2</td>
+                <td>2 Pumps — Open Loop / No Control</td>
+                <td>74.4</td>
+                <td>3.2</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>System 3 ✓</strong></td>
+                <td>2 Pumps + BlueOS Flight Navigator</td>
+                <td>76.8</td>
+                <td>3.1</td>
+              </tr>
+              <tr>
+                <td>Pelican Case (Station)</td>
+                <td>Surface Station / On-board Logic</td>
+                <td>25.0</td>
+                <td>4.0</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="figure-caption">Table 6 — Comparative Power Profiles and Operational Endurance</p>
+
+        <p>While System 2 offers maximum theoretical runtime (3.2 hr), System 3 was adopted as the final architecture. The BlueOS Flight Navigator adds only 2.4 W (a negligible 6-minute reduction in runtime) while providing the critical computational overhead for depth-stability algorithms, real-time video feedback, and live telemetry.</p>
+
+        <p>The On-Board Pelican Case at 4.0-hour battery life comfortably exceeds the Jellybot's 3.1-hour endurance, ensuring the surface station remains operational throughout the full deployment, recovery, and data-offloading phases.</p>
+      </div>
+
+      <!-- Section 6: Future Work -->
+      <div class="doc-section" id="section-6">
+        <span class="section-num">06</span>
+        <h2>Future Work</h2>
+        <div class="section-rule"></div>
+        <p>Future iterations will implement a <strong>hybrid control logic</strong>. By utilising the space-saving and thermal benefits discovered in this phase, the system can be engineered to operate on 2 pumps for precision "Hover/Detection Mode" while reserving 4-pump capacity for a "High-Thrust/Extraction Mode."</p>
+        <p>This dual-state capability, backed by the mathematical models derived in this report, will ensure the Jellybot remains a versatile tool for long-term underwater environmental monitoring. Integrating feedback sensors directly into the tentacles would further provide real-time pressure data, enabling dynamic monitoring and closed-loop pressure control to prevent over-inflation.</p>
+
+        <div class="callout">
+          <div class="callout-title">Planned Improvements</div>
+          <ul>
+            <li>Hybrid 2/4-pump mode switching for hover vs. extraction missions</li>
+            <li>Closed-loop pressure feedback via in-tentacle sensors</li>
+            <li>Standardised silicone formulations beyond pure Ecoflex 00-30</li>
+            <li>Systematic displacement measurement per bend angle for improved control mapping</li>
+          </ul>
+        </div>
       </div>
 
     </main>
