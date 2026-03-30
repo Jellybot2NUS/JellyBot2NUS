@@ -622,11 +622,101 @@
           </table>
         </div>
       </div>
+      
+      
+      
+      
       <div class="doc-section" id="section-5">
         <span class="section-num">05</span>
-        <h2>Future Iterations</h2>
+        <h2>Advanced Fabrication: Prototype 2 Components</h2>
         <div class="section-rule"></div>
-        <p>Outline what you would change in the mechanical design for version 2.0. Perhaps lighter materials or a more streamlined profile?</p>
+        <p>This section details the physical assembly and specialized fabrication techniques used to realize the Prototype 2 design. The focus was on ensuring that every mechanical interface was robust enough to handle the pressures and vibrations of an underwater environment.</p>
+
+        <h3 id="sub-5a">5.1 Installation and Integration of Cable Penetrators</h3>
+        <div class="subsection-rule"></div>
+        <p>To resolve the leakage and "wicking" issues identified in Phase I, Blue Robotics mechanical compression penetrators were integrated into the aluminum end-caps.</p>
+
+         <h3 id="sub-5a-1">5.1.1 Installation of Electrical Cable Penetrators</h3>
+        <div class="callout">
+          <p><strong>Component Preparation:</strong> The tether cable was stripped to expose individual wire cores. By stripping the outer jacket before the "throat" of the penetrator, the seal forms directly against the wire insulation, preventing water from traveling through gaps in the cable jacket.</p>
+          <p><strong>Assembly Process:</strong> Penetrators were threaded into the end-cap using internal O-rings for a face-seal. The internal "Shoulder" compresses the cable to create a permanent hermetic barrier.</p>
+        </div>
+
+        <h3 id="sub-5a-2">5.1.2 Custom Modification: Pneumatic "Bulkhead" Penetrators</h3>
+        <p>Because no dedicated pneumatic penetrator exists for this platform, the team developed a custom hybrid solution by modifying an industrial-grade <strong>Pneumatic Barbed Bulkhead Connector</strong>.</p>
+        <ul>
+            <li><strong>The Innovation:</strong> The Blue Robotics penetrator bolt was used as a high-pressure sealing chassis.</li>
+            <li><strong>The Process:</strong> An industrial pneumatic coupling was precision-fitted into the penetrator throat. The silicone pneumatic tube was treated as the "cable," locked securely by the internal compression mechanism.</li>
+            <li><strong>Result:</strong> A robust, watertight air-path that facilitates high-pressure pneumatic actuation in a submerged environment.</li>
+        </ul>
+
+        <h3 id="sub-5b">5.2 Optimized Silicone Casting (Tentacles &amp; Flap)</h3>
+        <div class="subsection-rule"></div>
+        <p>The fabrication process for the soft actuators was overhauled to prioritize chemical bonding and structural uniformity, resolving previous inconsistent propulsion issues.</p>
+        
+        <h3 id="sub-5b-1">5.2.1 Material Homogeneity and Bonding</h3>
+        <p> Prototype 2 transitioned to a <strong>fully silicone-based pneumatic circuit</strong>. By using silicone tubing to match the tentacles, the adhesive creates a "cohesive bond," effectively fusing the components into a single airtight unit and increasing pressure tolerance.</p>
+
+        <h3 id="sub-5b-2">5.2.2 Standardized Casting Formula</h3>
+        <p>A strict 1:1 mixing ratio of <strong>Ecoflex 00-30</strong> and <strong>Dragon Skin 20</strong> was maintained.
+            <ul>
+                <li><strong>Degasification:</strong> Silicone was placed in a vacuum chamber to remove microscopic air bubbles that could lead to rupture under pressure.</li>
+                <li><strong>Mold Preparation:</strong> 3D-printed molds were treated with release agents to preserve intricate internal chambers during demolding.</li>
+            </ul>
+        </p>
+
+        <h3 id="sub-5b-3">5.2.3 Integrated Tube-to-Mold Casting</h3>
+        <p>The team refined the assembly for the tentacle-to-tube interface to ensure the supply tubes were permanently anchored within the tentacle base. This "cold weld" effect creates a high-strength chemical interlock capable of withstanding the internal pressures of high-frequency pulsing.</p>
+
+        <h3 id="sub-5c">5.3 Internal Tray Assembly</h3>
+        <div class="subsection-rule"></div>
+        <p>The internal structural backbone consists of vertical aluminum rails and 3D-printed mounting plates, providing a rigid framework that slides directly into the acrylic tube.</p>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Feature</th>
+                <th>Design Implementation</th>
+                <th>Engineering Benefit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Space-Frame Construction</td>
+                <td>Aluminum rails + 3D-printed plates.</td>
+                <td>Protects electronics from mechanical shock.</td>
+              </tr>
+              <tr>
+                <td>Component Organization</td>
+                <td>Grid of mounting points for pumps/batteries.</td>
+                <td>Prevents shifting of the Center of Gravity (CoG).</td>
+              </tr>
+              <tr>
+                <td>Wire Management</td>
+                <td>Aligned circular base plates.</td>
+                <td>Reduces wire fatigue and prevents accidental disconnection.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h3 id="sub-5d">5.4 Fabrication of Flap Clamp 2.0</h3>
+        <div class="subsection-rule"></div>
+        <p>The Flap Clamp was 3D-printed using <strong>PLA</strong> for its high rigidity. As the stainless steel bolts are tightened, the PLA rings squeeze the silicone against the acrylic tube, creating a high-friction "clamp-down" effect that anchors the module without permanent adhesives.</p>
+
+        <h3 id="sub-5e">5.5 Fabrication of Ruggedized Ground Control Station (GCS)</h3>
+        <div class="subsection-rule"></div>
+        <p>A custom Portable GCS was developed to allow real-time monitoring in wet field environments where standard laptops are impractical.</p>
+        
+        <div class="callout">
+          <div class="callout-title">GCS Technical Specifications</div>
+          <ul>
+            <li><strong>Housing:</strong> IP67-rated Pelican-style case with high-density foam chassis.</li>
+            <li><strong>Processing:</strong> Raspberry Pi central computer for low-latency video and control.</li>
+            <li><strong>Interface:</strong> 7-inch LCD screen and wireless PS4-style controller.</li>
+            <li><strong>Power:</strong> Autonomous 12V rechargeable battery with external toggle switch.</li>
+          </ul>
+        </div>
       </div>
 
     </main>
