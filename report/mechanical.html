@@ -301,17 +301,18 @@
     }
 
     /* ─── CALLOUT BOXES ─────────────────────────────── */
-    .callout {
-      border-left: 2px solid var(--accent);
-      background: var(--accent-dim);
-      padding: 18px 24px;
-      margin: 24px 0;
-      border-radius: 0 4px 4px 0;
+    .callout p, .callout ul {
+      font-family: 'Outfit', sans-serif; /* This makes the body match the report */
+      font-size: 0.9em;                 /* Slightly smaller than main text */
+      color: var(--muted);              /* Keeps the "note" look */
+      line-height: 1.6;
     }
-
+    
+    /* If you want the title to also match the report font */
     .callout-title {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
+      font-family: 'Outfit', sans-serif; /* Change this from DM Mono */
+      font-weight: 600;                 /* Make it bold since it's a title */
+      font-size: 0.7em;
       text-transform: uppercase;
       color: var(--accent);
       margin-bottom: 8px;
