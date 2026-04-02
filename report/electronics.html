@@ -625,7 +625,6 @@
         <ul>
           <li>Listens to the H264 UDP stream at <code>127.0.0.1:5600</code>. GStreamer decodes via <code>avdec_h264</code>; decoded frames pass into OpenCV's <code>VideoCapture</code>.</li>
           <li>A <strong>background thread</strong> continuously buffers the latest frame so the <code>/capture</code> endpoint never blocks.</li>
-          <li>Build pipeline: <code>docker buildx build --platform linux/arm/v7</code> on Mac → <code>docker save</code> → <code>scp</code> → <code>docker load</code> → <code>docker compose up</code>.</li>
         </ul>
 
         <h4>Dependencies</h4>
@@ -735,7 +734,7 @@ Flask API (Port 8084)
 
         <div class="callout callout-warn">
           <div class="callout-title">The Problem</div>
-          <p>ArduPilot's IMU assumes the board is mounted face-up. Mounting it vertically means gravity is sensed on the wrong axis, making all attitude readings incorrect by default.</p>
+          <p>Unlike conventional ROVs, Jellybot does not have a dedicated nose as the front. Additionally, ArduPilot's IMU assumes the board is mounted face-up. Mounting it vertically means gravity is sensed on the wrong axis, making all attitude readings incorrect by default.</p>
         </div>
 
         <p>ArduPilot provides the <code>AHRS_ORIENTATION</code> parameter to remap IMU axes. After determining the Navigator's installed orientation, this was set to <strong>Pitch90 (value 25)</strong>, correcting for the 90° pitch offset.</p>
@@ -757,8 +756,8 @@ Flask API (Port 8084)
         </div>
 
         <div class="callout callout-warn">
-          <div class="callout-title">Known Limitation — Depth Sensor Calibration</div>
-          <p>The Bar02 measures depth by detecting the difference in water pressure relative to atmospheric pressure at power-on. Because the ROV was primarily tested in air or at the water surface, the sensor could not be properly calibrated — there was insufficient water column above it to generate a measurable pressure differential. Reliable depth readings require the sensor to be fully submerged to at least 20–30 cm, where the water pressure is stable and consistent.</p>
+          <div class="callout-title">Known Limitation — Depth Sensor Spiking</div>
+          <p>During pool testing, the Bar02 read correctly at zero before submersion, but spiked erratically when submerged rather than giving a stable depth reading. This is likely caused by <strong>dynamic pressure</strong> from wave action and water turbulence hitting the sensor face directly. The sensor cannot distinguish between static water pressure (which increases gradually with depth) and the sudden impact pressure from moving water.</p>
         </div>
         
         <hr class="sub-divider"/>
@@ -773,13 +772,13 @@ Flask API (Port 8084)
         <div class="section-rule"></div>
 
         <h3>6.1 Introduction &amp; Motivation</h3>
-        <p>Jellybot's camera system consists of a <strong>Blue Robotics USB Low-Light Camera</strong> sealed behind a <strong>clear polycarbonate acrylic dome port</strong>. While essential for waterproofing, the dome introduces a refractive air–glass–water interface that can distort imagery.</p>
-        <p>For a system whose core task is visual identification of coral bleaching — a colour- and texture-sensitive problem — uncharacterised optical distortion poses a direct risk to detection reliability. Three objectives structure this work:</p>
+        <p>Jellybot's camera system consists of a <strong>Blue Robotics USB Low-Light Camera</strong> sealed behind a <strong>clear acrylic dome port</strong>. The dome introduces a refractive air–glass–water interface that can distort imagery.</p>
+        <p>For a system whose core task is visual inspection of coral bleaching, uncharacterised optical distortion poses a direct risk to detection reliability. Three objectives structure this work:</p>
         <ol>
           <li>Quantify geometric distortion introduced by the dome port, in air and underwater.</li>
           <li>Characterise spatial sharpness degradation across the field of view (centre, edges, corners).</li>
-          <li>Evaluate auxiliary lighting effects on underwater image quality.</li>
-        </ol>
+          <li>Evaluate colour visibility and underwater image quality.</li>
+          </ol>
 
         <div class="table-wrap">
           <table class="styled-table">
@@ -790,12 +789,12 @@ Flask API (Port 8084)
                 <td><span class="badge badge-done">✓ Complete</span></td>
               </tr>
               <tr>
-                <td>2</td><td>Water</td><td>Dome optics underwater (distortion + sharpness + chromatic aberration)</td>
-                <td><span class="badge badge-wip">⟳ In Progress</span></td>
+                <td>2</td><td>Water</td><td>Dome optics underwater (distortion + sharpness)</td>
+                <td><span class="badge badge-done">✓ Complete</span></td>
               </tr>
               <tr>
-                <td>3</td><td>Water</td><td>Auxiliary lighting (colour accuracy, UCIQE, noise)</td>
-                <td><span class="badge badge-todo">Upcoming</span></td>
+                <td>3</td><td>Water</td><td>Colour visibility (colour accuracy, UCIQE)</td>
+                <td><span class="badge badge-done">✓ Complete</span></td>
               </tr>
             </tbody>
           </table>
@@ -804,16 +803,15 @@ Flask API (Port 8084)
 
         <h3>6.2 Methodology</h3>
         <h4>Calibration Target</h4>
-        <p>All geometric tests use a <strong>printed and laminated A4 checkerboard</strong> — 9 × 6 inner corners, 30 mm squares. A physically printed target is mandatory; digital displays introduce their own deformation. The target occupies 40–60% of the frame so distortion is measured across the full FOV including edges and corners.</p>
+        <p>All geometric tests use a <strong>printed and laminated A4 checkerboard</strong> — 9 × 6 inner corners, 30 mm squares. The target occupies 40–60% of the frame so distortion is measured across the full FOV including edges and corners.</p>
 
         <h4>Capture Setup</h4>
-        <p>Two lamps at 45° angles minimise specular reflections. Tripod feet are marked for reproducibility. Each session captures 20 structured shots (centre, shifted, tilted, corner regions, near/far). Two sessions per scenario: <em>with dome</em> and <em>without</em>.</p>
+        <p>Two sessions per scenario: <em>with dome</em> and <em>without</em>.</p>
 
-        <h4>Distortion Pipeline (Scenarios 1 &amp; 2)</h4>
+        <h4>Distortion (Scenarios 1 &amp; 2)</h4>
         <p><strong>Step 1 — Corner Detection</strong></p>
         <pre><code>cv2.findChessboardCorners()   # Coarse detection
 cv2.cornerSubPix()            # Sub-pixel refinement</code></pre>
-        <p>Minimum 15/20 accepted images enforced per session.</p>
 
         <p><strong>Step 2 — Camera Calibration</strong></p>
         <pre><code>cv2.calibrateCamera()</code></pre>
@@ -821,12 +819,9 @@ cv2.cornerSubPix()            # Sub-pixel refinement</code></pre>
 
         <p><strong>Step 3 — Sharpness Mapping</strong></p>
         <pre><code>laplacian_var = cv2.Laplacian(roi, cv2.CV_64F).var()</code></pre>
-        <p>Higher variance = sharper. Percentage sharpness reduction computed per zone (centre / edges / corners).</p>
-
-        <p><strong>Step 4 — Chromatic Aberration</strong> (Scenario 2 only) — In water, refractive index mismatch at the dome–water interface causes wavelength-dependent refraction, measured as lateral offset between R and B channels along detected edges.</p>
-
-        <h4>Lighting Pipeline (Scenario 3)</h4>
-        <p>Coral reef print replaces the checkerboard. Evaluated using <strong>UCIQE</strong> (Underwater Colour Image Quality Evaluation — combining chroma, saturation, and contrast), per-channel RGB histograms, noise level, and vignetting.</p>
+        
+        <h4>Colour Detection (Scenario 3)</h4>
+        <p>Coral reef print replaces the checkerboard. Evaluated using <strong>UCIQE</strong> (Underwater Colour Image Quality Evaluation) and per-channel RGB histograms.</p>
 
         <h3>6.3 Results &amp; Analysis</h3>
         <h4>Scenario 1 — Dome Optics in Air</h4>
