@@ -375,14 +375,38 @@
 
   <div class="page-body">
 
+    <!-- ══════════════════════════════════════════ -->
+    <!-- TABLE OF CONTENTS                               -->
+    <!-- ══════════════════════════════════════════ -->
+
     <aside class="sidebar">
       <span class="toc-label">Contents</span>
       <ul class="toc-list" id="toc">
         <li><a href="#section-1">1. Overview</a></li>
-        <li><a href="#section-2">2. Structural Design</a></li>
-        <li><a href="#section-3">3. Material Selection</a></li>
-        <li><a href="#section-4">4. CAD & Fabrication</a></li>
-        <li><a href="#section-5">5. Future Iterations</a></li>
+        <li><a href="#section-2">2. Hardware</a></li>
+        <li class="sub"><a href="#section-2">↳ Sensors & Actuators</a></li>
+        <li class="sub"><a href="#section-2">↳ Sensors & Actuators</a></li>
+        <li><a href="#section-3">3. Software Stack</a></li>
+        <li class="sub"><a href="#section-3">↳ BlueOS & MAVLink</a></li>
+        <li class="sub"><a href="#section-3">↳ Motor Extension</a></li>
+        <li class="sub"><a href="#section-3">↳ Capture Extension</a></li>
+        <li><a href="#section-4">4. Pneumatic Actuation</a></li>
+        <li class="sub"><a href="#section-4">↳ Architecture</a></li>
+        <li class="sub"><a href="#section-4">↳ Wiring</a></li>
+        <li class="sub"><a href="#section-4">↳ PS4 Interface</a></li>
+        <li><a href="#section-5">5. Component Config</a></li>
+        <li class="sub"><a href="#section-5">↳ AHRS & IMU</a></li>
+        <li class="sub"><a href="#section-5">↳ Bar02 Depth</a></li>
+        <li class="sub"><a href="#section-5">↳ Leak Sensors</a></li>
+        <li class="sub"><a href="#section-5">↳ Battery</a></li>
+        <li><a href="#section-6">6. Camera Characterisation</a></li>
+        <li class="sub"><a href="#section-6">↳ Methodology</a></li>
+        <li class="sub"><a href="#section-6">↳ Results</a></li>
+        <li><a href="#section-7">7. 3D Visualiser</a></li>
+        <li><a href="#section-8">8. Pool Test</a></li>
+        <li><a href="#section-9">9. Engineering Decisions</a></li>
+        <li><a href="#section-10">10. Summary & Pending</a></li>
+        <li><a href="#section-11">11. References</a></li>
       </ul>
     </aside>
 
@@ -406,9 +430,20 @@
 
       <div class="doc-section" id="section-2">
         <span class="section-num">02</span>
-        <h2>Structural Design</h2>
+        <h2>Hardware</h2>
         <div class="section-rule"></div>
-        <p>Insert details about the design of the housing, the tentacle attachment points, and the waterproof sealing mechanisms. You can reference specific design constraints here.</p>
+        <p>The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream:</p>
+        <ul>
+        <li>To provide a user control interface [design specification 3b], the Playstation 4 Controller was selected.</li>
+        <li>To measure distance to obstacles [design specification 4a], the SEN0311 Ultrasonic Sensor was selected.</li>
+        <li>To provide orientation [design specification 4b], the MPU6050 IMU was selected.</li>
+        <li>To provide heading information [design specification 4c], the HMC5883L Magnetometer was selected.</li>
+        <li>To provide real-time visual feedback for monitoring and analysis [design specification 4d], the Raspberry Pi Camera Module V2 was selected.</li>
+        <li>To coordinate communication between all onboard sensors [design specification 5], the Raspberry Pi 5 was selected.</li>
+        </ul>
+        
+        <h3>2.1 Sensors and Actuators</h3>
+
 
         <div class="callout">
           <div class="callout-title">Design Philosophy</div>
