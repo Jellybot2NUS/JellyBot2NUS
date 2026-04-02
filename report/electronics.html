@@ -519,10 +519,7 @@
         <span class="section-num">01</span>
         <h2>Overview</h2>
         <div class="section-rule"></div>
-        <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
-        <p>The software stack runs on <strong>BlueOS</strong> [a Docker-based middleware operating system] with <strong>ArduSub 4.5.3 STABLE</strong> providing firmware-level sensor fusion. Communication between subsystems uses the <strong>MAVLink</strong> protocol, translated to HTTP/JSON by <strong>MAVLink2REST</strong>, enabling browser-based tools and custom extensions for live sensor data.</p>
-        <p>The major contribution of the electronics subsystem this semester is driven by the characterisation of optical distortion introduced by the dome and customising BlueOS Docker extensions.</p>
-      </div>
+        <p>The major contributions of the electronics subsystem this semester are: the <strong>pneumatic actuation</strong> of the jellyfish ROV's silicone flaps using two DC pump motors and two 3-way solenoid valves, driven by a custom BlueOS Docker extension over I²C; <strong>camera system characterisation</strong> to quantify optical distortion introduced by the dome port, and a <strong>3D orientation visualiser</strong> BlueOS extension providing real-time roll, pitch, and yaw feedback.</p>
 
       <!-- ══════════════════════════════════════════ -->
       <!-- 2. HARDWARE                               -->
@@ -532,6 +529,8 @@
         <span class="section-num">02</span>
         <h2>Hardware</h2>
         <div class="section-rule"></div>
+        <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
+
 
         <h3 id="sensors-actuators">2.1 Sensors and Actuators</h3>
         <p>The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream:</p>
@@ -572,6 +571,8 @@
         <span class="section-num">03</span>
         <h2>Software Stack</h2>
         <div class="section-rule"></div>
+        <p>The software stack runs on <strong>BlueOS</strong> [a Docker-based middleware operating system] with <strong>ArduSub 4.5.3 STABLE</strong> providing firmware-level sensor fusion. Communication between subsystems uses the <strong>MAVLink</strong> protocol, translated to HTTP/JSON by <strong>MAVLink2REST</strong>, enabling browser-based tools and custom extensions for live sensor data.</p>
+
 
         <h3>3.1 BlueOS, ArduSub &amp; MAVLink</h3>
         <div class="table-wrap">
