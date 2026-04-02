@@ -855,9 +855,46 @@ Flask API (Port 8084)
         <h4>Analysis &amp; </h4>
           <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. 
           For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
+        
+        <h3>6.3 Scenario 2 — Dome Optics in Water</h3>
+        
+        <div class="callout">
+          <div class="callout-title">Hypothesis</div>
+          <p>In a different medium (water), refraction becomes a new contributing factor. The greater refractive index difference between water and the acrylic dome compared to air is expected to increase geometric distortion and further degrade sharpness relative to the air baseline established in Scenario 1.</p>
+        </div>
+        
+        <h4>Purpose</h4>
+        <p>Investigate the effect of water-induced refraction on geometric distortion and sharpness when the dome port is submerged, using the air baseline from Scenario 1 as a reference.</p>
+        
+        <h4>Objective</h4>
+        <p>Quantify geometric distortion and sharpness degradation introduced by the dome  underwater, using the same checkerboard methodology as Scenario 1 for direct comparison.</p>
+        
+        <h4>Subject</h4>
+        <p>Printed and laminated A4 checkerboard — 9×6 inner corners, 30 mm squares (OpenCV standard).</p>
+        
+        <h4>Comparison</h4>
+        <p>Checkerboard image captured with the acrylic dome in different mediums.</p>
+        
+        <h4>Target Limitation</h4>
+        <p>Refraction-induced geometric distortion.</p>
+        
+        <h4>Metrics</h4>
+        <ul>
+          <li>Geometric distortion (radial + tangential distortion coefficients via OpenCV <code>calibrateCamera</code>)</li>
+          <li> Sharpness/resolution (Laplacian variance across the FOV)</li>
+        </ul>
+
+
 
 
         
+        
+        <h4>Results &amp; Analysis</h4>
+        <div class="callout callout-warn">
+          <div class="callout-title">Pending</div>
+          <p>Underwater checkerboard capture session in progress. Results and analysis will be populated upon completion.</p>
+        </div>
+                
 
         
         <h4>Scenario 2 — Dome Optics in Water</h4>
