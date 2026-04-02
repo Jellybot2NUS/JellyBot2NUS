@@ -801,29 +801,33 @@ Flask API (Port 8084)
         </div>
         <span class="caption">Table 8 — Camera Characterisation Scenarios</span>
 
-        <h3>6.2 Methodology</h3>
-        <h4>Calibration Target</h4>
-        <p>All geometric tests use a <strong>printed and laminated A4 checkerboard</strong> — 9 × 6 inner corners, 30 mm squares. The target occupies 40–60% of the frame so distortion is measured across the full FOV including edges and corners.</p>
 
-        <h4>Capture Setup</h4>
-        <p>Two sessions per scenario: <em>with dome</em> and <em>without</em>.</p>
-
-        <h4>Distortion (Scenarios 1 &amp; 2)</h4>
-        <p><strong>Step 1 — Corner Detection</strong></p>
-        <pre><code>cv2.findChessboardCorners()   # Coarse detection
-cv2.cornerSubPix()            # Sub-pixel refinement</code></pre>
-
-        <p><strong>Step 2 — Camera Calibration</strong></p>
-        <pre><code>cv2.calibrateCamera()</code></pre>
-        <p>Yields intrinsic matrix and distortion coefficients <code>[k1, k2, p1, p2, k3]</code>. Sign: <code>k1 &lt; 0</code> → barrel distortion; <code>k1 &gt; 0</code> → pincushion. Dome effect: <code>Δk1 = k1_dome − k1_nodome</code>.</p>
-
-        <p><strong>Step 3 — Sharpness Mapping</strong></p>
-        <pre><code>laplacian_var = cv2.Laplacian(roi, cv2.CV_64F).var()</code></pre>
+        <h3>6.2 Scenario 1 — Dome Optics on Land (Air Baseline)</h3>
         
-        <h4>Colour Detection (Scenario 3)</h4>
-        <p>Coral reef print replaces the checkerboard. Evaluated using <strong>UCIQE</strong> (Underwater Colour Image Quality Evaluation) and per-channel RGB histograms.</p>
-
-        <h3>6.3 Results &amp; Analysis</h3>
+        <div class="callout">
+          <div class="callout-title">Hypothesis</div>
+          <p>The dome port will introduce measurable barrel or pincushion distortion and a reduction in sharpness, particularly at the periphery, compared to the no-dome baseline.</p>
+        </div>
+        
+        <h4>Purpose</h4>
+        <p>Establish a baseline characterisation of the optical distortions introduced by the dome port when the camera is used in air. This serves as the reference condition for direct comparison with Scenario 2 (in water).</p>
+        
+        <h4>Objective</h4>
+        <p>Quantify geometric distortion and sharpness degradation caused by the dome port, using a structured checkerboard target and OpenCV camera calibration.</p>
+        
+        <h4>Subject</h4>
+        <p>Printed and laminated A4 checkerboard — 9×6 inner corners, 30 mm squares (OpenCV standard). Lamination is required for surface flatness; hand-drawn is not acceptable.</p>
+        
+        <h4>Comparison</h4>
+        <p>Checkerboard image captured with and without the acrylic dome, in air.</p>
+        
+        <h4>Metrics</h4>
+        <ul>
+          <li>Geometric distortion (radial + tangential distortion coefficients via OpenCV <code>calibrateCamera</code>)</li>
+          <li> Sharpness/resolution (Laplacian variance across the FOV)</li>
+        </ul>
+        
+        <h4>Results &amp; Analysis</h4>
         <h4>Scenario 1 — Dome Optics in Air</h4>
         <p>Both sessions (dome and no-dome) achieved <strong>15/15 accepted images</strong>, confirming reliable corner detection.</p>
 
