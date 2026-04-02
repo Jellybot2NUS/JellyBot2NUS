@@ -738,8 +738,8 @@
 
         <div class="callout callout-warn">
           <div class="callout-title">Key Finding</div>
-            <h3>Steady State</h3><p>Steady state refers to the final, stable equilibrium the system reaches once all transient movement and acceleration have settled. In this experiment, it represents the maximum capacity of the mechanical bend under the provided hydraulic pressure. The identical values show that the number of pumps does not affect the ultimate physical limit of the tentacles. Whether using 2 pumps or 4, both the system possesses the same geometric "reach," it only differs in the time taken to reach there.</p>
-            <h3>Time Constant (τ)</h3><p>The time constant (τ) is a measure of the system’s responsiveness. It tells us how quickly the system reacts to an input to reach its destination. Specifically, τ represents the time taken to reach approximately 63.2% of the steady-state value. The 4-pump system is significantly faster and more agile, making it suitable for applications requiring rapid repositioning. However, the higher τ of the 2-pump system acts as a mechanical low-pass filter. This "sluggishness" is an advantage for imaging because it dampens the response, smoothing out sudden buoyancy shifts or vibrations that would otherwise cause motion blur or unstable footage in the 4-pump configuration.</p>
+            <h4>Steady State</h4><p>Steady state refers to the final, stable equilibrium the system reaches once all transient movement and acceleration have settled. In this experiment, it represents the maximum capacity of the mechanical bend under the provided hydraulic pressure. The identical values show that the number of pumps does not affect the ultimate physical limit of the tentacles. Whether using 2 pumps or 4, both the system possesses the same geometric "reach," it only differs in the time taken to reach there.</p>
+            <h4>Time Constant (τ)</h4><p>The time constant (τ) is a measure of the system’s responsiveness. It tells us how quickly the system reacts to an input to reach its destination. Specifically, τ represents the time taken to reach approximately 63.2% of the steady-state value. The 4-pump system is significantly faster and more agile, making it suitable for applications requiring rapid repositioning. However, the higher τ of the 2-pump system acts as a mechanical low-pass filter. This "sluggishness" is an advantage for imaging because it dampens the response, smoothing out sudden buoyancy shifts or vibrations that would otherwise cause motion blur or unstable footage in the 4-pump configuration.</p>
         </div>
       </div>
 
@@ -781,6 +781,13 @@
         <h3>4.3 Depth Stability &amp; Precision</h3>
         <div class="subsection-rule"></div>
         <p>A critical requirement for underwater surveillance is the ability to hover at a fixed altitude. During active depth-control tests, the following depth oscillations were observed for each configuration:</p>
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 7 — 4-Pump (τ ≈ 0.45 s) vs 2-Pump (τ ≈ 1.1 s) Bend Angle Response">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/change_d.jpg?raw=true" alt="4-pump vs 2-pump bend angle response graph" loading="lazy">
+          </div>
+          <figcaption>Figure 8 — Change in D illustrated</figcaption>
+        </figure>
 
         <div class="table-wrap">
           <table class="styled-table">
@@ -879,16 +886,18 @@
         <span class="section-num">06</span>
         <h2>Future Work</h2>
         <div class="section-rule"></div>
+        <!--
         <p>Future iterations will implement a <strong>hybrid control logic</strong>. By utilising the space-saving and thermal benefits discovered in this phase, the system can be engineered to operate on 2 pumps for precision "Hover/Detection Mode" while reserving 4-pump capacity for a "High-Thrust/Extraction Mode."</p>
         <p>This dual-state capability, backed by the mathematical models derived in this report, will ensure the Jellybot remains a versatile tool for long-term underwater environmental monitoring. Integrating feedback sensors directly into the tentacles would further provide real-time pressure data, enabling dynamic monitoring and closed-loop pressure control to prevent over-inflation.</p>
+        -->
 
         <div class="callout">
-          <div class="callout-title">Planned Improvements</div>
+          <div class="callout-title">Future Improvements</div>
           <ul>
-            <li>Hybrid 2/4-pump mode switching for hover vs. extraction missions</li>
-            <li>Closed-loop pressure feedback via in-tentacle sensors</li>
-            <li>Standardised silicone formulations beyond pure Ecoflex 00-30</li>
-            <li>Systematic displacement measurement per bend angle for improved control mapping</li>
+            <li>Hybrid 2/4-Pump Switching: Automated logic for precision hovering vs. high-power extraction missions.</li>
+            <li>Independent Multi-Tentacle Control: Individualized actuation for complex, non-linear underwater maneuvering.</li>
+            <li>Embedded Closed-Loop Feedback: Real-time pressure and bend-angle sensors integrated into every tentacle for autonomous correction.</li>
+            <li>Active Thermal Management: Advanced heat-sinking and ventilation to support continuous 3.1hr+ mission profiles.</li>
           </ul>
         </div>
       </div>
