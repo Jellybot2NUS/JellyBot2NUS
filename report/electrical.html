@@ -384,6 +384,30 @@
       color: var(--muted); margin-top: 6px; display: block;
     }
 
+        /* ─── FIGURES TOC ───────────────────────────────── */
+    .figures-toc {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 6px;
+      padding: 28px 32px;
+      margin: 28px 0;
+    }
+    .figures-toc-title {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em; letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px; display: block;
+    }
+    .figures-toc-list { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+    .figures-toc-list li {
+      display: flex; gap: 12px;
+      font-size: 0.8em; font-weight: 300;
+      color: var(--muted); line-height: 1.5;
+    }
+    .figures-toc-list li span:first-child {
+      font-family: 'DM Mono', monospace;
+      color: var(--accent); min-width: 72px; flex-shrink: 0;
+    }
+
     /* ─── LIGHTBOX ──────────────────────────────────── */
     #lightbox {
       display: none;
