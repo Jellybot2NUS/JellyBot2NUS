@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Testing | Jellybot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --accent-glow: rgba(77,184,212,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      transition: padding 0.3s ease;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 40px; }
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--text); }
+
+    .hero {
+      position: relative;
+      min-height: 55vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 60px 72px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: var(--surface);
+      opacity: 0.2;
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3em, 7vw, 5.5em);
+      font-weight: 300;
+      line-height: 1.0;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    .page-body {
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 60px 120px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      padding-right: 40px;
+      border-right: 1px solid var(--glass-border);
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .toc-list a {
+      font-size: 0.8em;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .toc-list a:hover { color: var(--accent); }
+
+    .content { padding-left: 60px; }
+    .doc-section { margin-bottom: 80px; }
+    .doc-section h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2em;
+      font-weight: 300;
+      margin-bottom: 20px;
+    }
+    .section-rule { width: 48px; height: 2px; background: var(--accent); margin-bottom: 28px; }
+
+    .img-fig { margin: 28px 0; text-align: center; }
+    .img-frame { border: 1px solid var(--glass-border); border-radius: 6px; background: var(--surface); padding: 10px; margin-bottom: 10px; }
+    .img-frame img { max-width: 100%; height: auto; display: block; margin: 0 auto; }
+    figcaption { font-family: 'DM Mono', monospace; font-size: 0.7em; color: var(--muted); text-transform: uppercase; }
+
+    .table-wrap { overflow-x: auto; margin: 28px 0; }
+    .styled-table { width: 100%; border-collapse: collapse; font-size: 0.85em; }
+    .styled-table th { background: rgba(77,184,212,0.1); color: var(--accent); padding: 12px; text-align: left; border-bottom: 1px solid var(--accent); }
+    .styled-table td { padding: 12px; border-bottom: 1px solid var(--glass-border); color: var(--muted); }
+
+    .callout { border-left: 2px solid var(--accent); background: var(--accent-dim); padding: 20px; margin: 24px 0; }
+
+    footer { padding: 40px 60px; border-top: 1px solid var(--glass-border); text-align: center; color: var(--muted); font-size: 0.8em; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="#" class="logo">Jelly<span>bot</span></a>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#">About</a>
+      <a href="#">Report</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>Phase II<br><em>Testing & Verification</em></h1>
+      <div style="font-family: 'DM Mono', monospace; font-size: 0.7em; margin-top: 20px; color: var(--accent);">SUB-SYSTEM PERFORMANCE REPORT</div>
+    </div>
+  </section>
+
+  <div class="page-body">
+    <aside class="sidebar">
+      <ul class="toc-list">
+        <li><a href="#overview">Overview</a></li>
+        <li><a href="#buoyancy">Negative Buoyancy</a></li>
+        <li><a href="#buoyancy-tests">Buoyancy Tests</a></li>
+        <li><a href="#propulsion">Propulsion Tests</a></li>
+        <li><a href="#depth-control">Depth Control</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+      <div class="doc-section" id="overview">
+        <h2>Overview</h2>
+        <div class="section-rule"></div>
+        <p>During Phase I of the JellyBot project, JellyBot 1.0 demonstrated its ability to remain neutrally buoyant under water and also displayed potential in its upwards propulsion as per the critical functions, Buoyancy and Propulsion respectively. However, from these testings, we discovered certain shortcomings which we would rectify and overcome in Phase II.</p>
+        <p>Phase II focuses on the practicality of our project which is the ability for underwater surveillance. To achieve this, 4 properties of JellyBot 2.0 must be verified:</p>
+        <ul>
+          <li>1) JellyBot 2.0 must descend to desired depths without manual assistance (Achieved through its Negative Buoyancy property)</li>
+          <li>2) JellyBot 2.0 is able to achieve upward propulsion</li>
+          <li>3) JellyBot 2.0 is able to achieve depth control for the purpose of capturing visual data</li>
+          <li>4) JellyBot 2.0 is able to propel horizontally</li>
+        </ul>
+        <p>As such, 4 different types of tests were conducted, to verify the above 4 properties.</p>
+      </div>
+
+      <div class="doc-section" id="buoyancy">
+        <h2>Achieving Negative Buoyancy</h2>
+        <div class="section-rule"></div>
+        <figure class="img-fig">
+          <div class="img-frame">http://googleusercontent.com/image_content/256
+
+</div>
+          <figcaption>Figure 1. Buoyancy Concept</figcaption>
+        </figure>
+        <p>Negative Buoyancy is achieved when the downward force also known as Weight is greater than the upward force also known as Buoyant Force. <strong>W > Fb</strong></p>
+
+        <h3>Mass of JellyBot 2.0</h3>
+        <p>1) Mass of Battery pack with mounting devices, Flight Navigator and Camera = <strong>530g</strong></p>
+        <p>2) Mass of Voltage step down device with 2x Solenoid Valve = <strong>57.5g</strong></p>
+        <p>3) Mass of 2x Pneumatic Pump, 2x Motor Driver Board, I2C Driver = <strong>217g</strong></p>
+        <p>4) Mass of Base with 5m tether cable = 900.5g - 160g (Brass weights) = <strong>740.5g</strong></p>
+        <p>5) Mass of Cylinder body with acrylic dome = <strong>677.5g</strong></p>
+        <p>6) Mass of 2x Flap Clamp = 2 x 59.5g = <strong>119g</strong></p>
+        <p>7) Mass of Flap with 8x Tentacles = <strong>503.5g</strong></p>
+        <p>8) Mass of Weights = [2 x 50g] + [4 x (20g + 10g)] = <strong>220g</strong></p>
+        
+        <div class="callout">
+          <p><strong>Total mass</strong> = 530g + 57.5g + 217g + 740.5g + 677.5g + 119g + 503.5g + 220g = <strong>3065g (3.065kg)</strong></p>
+          <p><strong>Weight (W)</strong> = mg = 3.065 x 9.81 ≈ <strong>30.07N</strong></p>
+        </div>
+
+        <h3>Volume of water displaced by JellyBot 2.0</h3>
+        <p>1) Volume of flap (annulus) ≈ 187.09cm³</p>
+        <p>2) Volume of 8x Tentacles = 304cm³</p>
+        <p>3) Volume of Housing ≈ 2349.51cm³</p>
+        <p>4) Volume of Dome ≈ 217.45cm³</p>
+        <p>5) Volume of 2x Flap Bracket ≈ 95.97cm³</p>
+        <p>6) Volume of exposed screws (M10, M14, Connectors, O2 Sensor) ≈ 40.48cm³</p>
+        
+        <div class="callout">
+          <p><strong>Total Displaced Volume</strong> ≈ <strong>3194.5cm³</strong></p>
+          <p><strong>Buoyant Force (Fb)</strong> = p x g x v ≈ <strong>31.34N</strong></p>
+          <p>Result: JellyBot 2.0 is naturally Positively Buoyant as W < Fb (30.07N < 31.34N)</p>
+        </div>
+
+        <p><strong>Additional Mass Required for Negative Buoyancy:</strong> To sink, an additional ~130g is theoretically needed for neutral buoyancy. Testing identified <strong>400g</strong> of added mass as the optimal balance for sinking (3.33cm/s) while remaining light enough to propel upwards.</p>
+      </div>
+
+      <div class="doc-section" id="buoyancy-tests">
+        <h2>Buoyancy Test Results</h2>
+        <div class="section-rule"></div>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Test</th>
+                <th>Configuration</th>
+                <th>Observation</th>
+                <th>Result</th>
+                <th>Remarks</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Dry Mass - 3.065kg</td>
+                <td>Floats on water</td>
+                <td>Positively Buoyant</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Added 0.25kg (Theory)</td>
+                <td>Floats on water</td>
+                <td>Positively Buoyant</td>
+                <td>-</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Added 0.5kg</td>
+                <td>Sinks to bottom</td>
+                <td>Negatively Buoyant</td>
+                <td>Sinks at 7.5cm/s; Too heavy to propel.</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Added 0.4kg</td>
+                <td>Sinks to bottom</td>
+                <td>Slightly Negatively Buoyant</td>
+                <td>Sinks at 3.33cm/s; Able to propel upward.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="doc-section" id="propulsion">
+        <h2>Propulsion Tests (Vertical Movement)</h2>
+        <div class="section-rule"></div>
+        <p>Tests were conducted at BeeX Lab to verify upward velocity consistency with a 400g external mass.</p>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Iteration</th>
+                <th>Distance (cm)</th>
+                <th>Time (s)</th>
+                <th>Velocity (cm/s)</th>
+                <th>Horizontal Drift</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1st</td>
+                <td>32</td>
+                <td>10</td>
+                <td>3.2</td>
+                <td>11cm</td>
+              </tr>
+              <tr>
+                <td>2nd</td>
+                <td>35</td>
+                <td>11</td>
+                <td>3.18</td>
+                <td>7cm</td>
+              </tr>
+              <tr>
+                <td>3rd</td>
+                <td>34</td>
+                <td>11</td>
+                <td>3.01</td>
+                <td>6cm</td>
+              </tr>
+              <tr>
+                <td>Average</td>
+                <td>-</td>
+                <td>-</td>
+                <td><strong>3.05 cm/s</strong></td>
+                <td>-</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p><strong>Findings:</strong> The prototype demonstrated repeatable thrust. Horizontal drift (6-11cm) suggests minor imbalances in mass distribution or asymmetric thrust.</p>
+      </div>
+
+      <div class="doc-section" id="depth-control">
+        <h2>Depth Control Tests</h2>
+        <div class="section-rule"></div>
+        <p>Conducted at NUS Swimming Pool (2m depth). The target was to maintain depth within ±5cm error.</p>
+        <div class="callout">
+          <p><strong>Test Summary:</strong></p>
+          <ul>
+            <li>Test 1: Hovered between 50cm - 55cm. (Pass)</li>
+            <li>Test 2: Hovered between 53cm - 57cm. (Pass)</li>
+            <li>Test 4: Hovered between 48cm - 56cm. (Pass)</li>
+          </ul>
+        </div>
+        <p>JellyBot 2.0 successfully remained within the specified error tolerances during manual depth control sessions.</p>
+      </div>
+    </main>
+  </div>
+
+  <footer>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2026 Jellybot Project — Performance & Testing Report</p>
+  </footer>
+
+</body>
+</html>
