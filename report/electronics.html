@@ -432,7 +432,9 @@
         <span class="section-num">02</span>
         <h2>Hardware</h2>
         <div class="section-rule"></div>
+        
         <h3>2.1 Sensors and Actuators</h3>
+        
         <p>The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream:</p>
         <ul><ul style="color: var(--muted); font-size: 0.95em; font-weight: 300; line-height: 1.85; padding-left: 20px; margin: 16px 0;">
         <li>To provide a user control interface [design specification 3b], the Playstation 4 Controller was selected.</li>
@@ -443,6 +445,29 @@
         <li>To coordinate communication between all onboard sensors [design specification 5], the Raspberry Pi 5 was selected.</li>
         </ul>
         
+          
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr><th>Component</th><th>Model / Detail</th><th>Role</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Main Computer</td><td>Raspberry Pi 4 Model B</td><td>Runs BlueOS and Docker extensions</td></tr>
+              <tr><td>Flight Controller</td><td>Blue Robotics Navigator HAT</td><td>IMU, magnetometer, ADC, I²C hub</td></tr>
+              <tr><td>PWM Expander</td><td>PCA9685 (I²C, 0x40)</td><td>Drives all 4 motor/solenoid channels</td></tr>
+              <tr><td>Motor Drivers</td><td>2× Dual H-Bridge</td><td>Independently drives motor + solenoid per flap</td></tr>
+              <tr><td>Pump Motors</td><td>2× DC Pump Motors</td><td>Pressurises silicone flaps</td></tr>
+              <tr><td>Solenoid Valves</td><td>2× 3-Way Solenoid Valves</td><td>Controls inflation and venting</td></tr>
+              <tr><td>Depth/Pressure Sensor</td><td>Bar02 (MS5837, Blue Robotics)</td><td>I²C depth sensing via Navigator I²C port</td></tr>
+              <tr><td>Leak Sensor Probes</td><td>SOS Leak Sensor × 2</td><td>Connected to LEAK ports on Navigator PCB</td></tr>
+              <tr><td>Camera</td><td>Blue Robotics 1080P USB Camera</td><td>Onboard video feed and still capture</td></tr>
+              <tr><td>Servo Gimbal</td><td>Blue Robotics Servo</td><td>Camera tilt (±45°)</td></tr>
+              <tr><td>Power Sense Module</td><td>Blue Robotics Power Sense</td><td>Battery voltage and current monitoring</td></tr>
+              <tr><td>Battery</td><td>12V 20,000 mAh Li-Ion</td><td>Powers motors and Navigator</td></tr>
+              <tr><td>Controller</td><td>PS4 DualShock 4</td><td>Wireless operator input via Mac</td></tr>
+            </tbody>
+          </table>
+        </div>
 
 
         <div class="callout">
