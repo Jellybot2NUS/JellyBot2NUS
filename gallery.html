@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Jellybot BTS</title>
+  <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS -->
+  <style>
+    /* Specific Gallery Styles */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+      padding: 40px 0;
+    }
+
+    .media-card {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      border-radius: 8px;
+      overflow: hidden;
+      transition: transform 0.3s ease;
+    }
+
+    .media-card:hover {
+      transform: scale(1.02);
+      border-color: var(--accent);
+    }
+
+    .media-card video, .media-card img {
+      width: 100%;
+      display: block;
+      aspect-ratio: 16/9;
+      object-fit: cover;
+    }
+
+    .media-info {
+      padding: 15px;
+    }
+
+    .media-info span {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7em;
+      color: var(--accent);
+      text-transform: uppercase;
+    }
+
+    .media-info h4 {
+      font-family: 'Outfit', sans-serif;
+      font-size: 0.9em;
+      margin-top: 5px;
+      color: var(--text);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Use your existing Header -->
+  <header id="site-header">
+    <a href="../index.html" class="logo">Jelly<span>bot</span></a>
+    <nav>
+      <a href="../index.html">Home</a>
+      <a href="../about.html">About</a>
+      <a href="../contact.html">Contact</a>
+      <a href="../report/report.html">Report</a>
+    </nav>
+  </header>
+
+  <section class="hero" style="min-height: 40vh;">
+    <div class="hero-content">
+      <span class="hero-eyebrow">Visual Evidence</span>
+      <h1>Testing <em>Archive</em></h1>
+      <p class="hero-sub">Raw footage and documentation from our 2026 field trials and lab assembly.</p>
+    </div>
+  </section>
+
+  <div class="content-wrap">
+    
+    <div class="gallery-grid">
+      <!-- Example Video Card -->
+      <div class="media-card">
+        <video controls>
+          <source src="videos/propulsion_test.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <div class="media-info">
+          <span>Testing · Propulsion</span>
+          <h4>Phase II: Upward Thrust Trials</h4>
+        </div>
+      </div>
+
+      <!-- Example Image Card -->
+      <div class="media-card">
+        <img src="images/assembly_bts.jpg" alt="Assembly process">
+        <div class="media-info">
+          <span>Behind the Scenes</span>
+          <h4>Internal Mounting Tray Assembly</h4>
+        </div>
+      </div>
+
+      <!-- Add more cards as needed -->
+    </div>
+
+  </div>
+
+  <footer>
+    <p>© 2026 Jellybot Project · Gallery Archive</p>
+  </footer>
+
+</body>
+</html>
