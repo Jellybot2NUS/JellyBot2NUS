@@ -555,11 +555,63 @@
 
        <h3 id="sub-4a-3">4.1.3 Material Selection (Cast Acrylic)</h3> 
         <p>The team opted for Cast Acrylic over Aluminum for three primary reasons:</p>
-        <ul>
-            <li><strong>Visual Verification:</strong> Allows for real-time inspection of internal electronics and "Red Dye" moisture indicators.</li>
-            <li><strong>Surveillance Integration:</strong> 92% light transmission provides an unobstructed 360° field of view for the camera system.</li>
-            <li><strong>Corrosion Resistance:</strong> Naturally immune to saltwater, reducing long-term maintenance.</li>
-        </ul>
+        <p>
+            Blue Robotics provides two primary material options for the cylindrical housing: <strong>6061 Aluminum</strong> and <strong>Cast Acrylic</strong>. While Aluminum offers higher depth ratings, the team opted for the Cast Acrylic version to prioritize the specific surveillance and testing requirements of the JellyBot project.
+        </p>
+        
+        <div class="table-wrap">
+            <table class="styled-table">
+                <thead>
+                    <tr>
+                        <th>Feature</th>
+                        <th>Cast Acrylic (Selected)</th>
+                        <th>6061 Aluminum</th>
+                        <th>Engineering Rationale</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Transparency</strong></td>
+                        <td>High (92% Transmission)</td>
+                        <td>Opaque</td>
+                        <td>Essential for 360° camera surveillance and internal visual inspection.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Visual Testing</strong></td>
+                        <td>Real-time Monitoring</td>
+                        <td>External Only</td>
+                        <td>Allows for immediate detection of "Red Dye" moisture indicators.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Corrosion</strong></td>
+                        <td>Naturally Immune</td>
+                        <td>Requires Anodizing</td>
+                        <td>Acrylic is inert in saltwater, reducing long-term maintenance needs.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Thermal Transfer</strong></td>
+                        <td>Low</td>
+                        <td>High</td>
+                        <td>Aluminum dissipates heat better, but JellyBot’s low-power electronics do not require a heat sink.</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Buoyancy</strong></td>
+                        <td>Near Neutral</td>
+                        <td>Negative (Heavy)</td>
+                        <td>Acrylic aids in achieving neutral buoyancy for the soft-propulsion system.</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="callout">
+            <div class="callout-title">Functional Advantages of Acrylic</div>
+            <ul>
+                <li><strong>Visual Verification:</strong> Unlike the opaque aluminum housing, the acrylic tube allows for real-time visual inspection of the internal electronics and moisture indicators during waterproof testing.</li>
+                <li><strong>Surveillance Integration:</strong> The 92% light transmission is essential for the onboard camera system, providing an unobstructed 360° field of view for coral reef monitoring.</li>
+                <li><strong>Corrosion Resistance:</strong> By selecting acrylic, the team eliminated the risk of galvanic corrosion or pitting, ensuring the housing remains structurally sound over multiple deployment cycles.</li>
+            </ul>
+        </div>
 
         <h3 id="sub-4b">4.2 Design and Integration of Prototype 2</h3>
         <div class="subsection-rule"></div>
@@ -569,9 +621,7 @@
           <p>Before designing any internal or external attachments, the Blue Robotics 4-inch Series Enclosure was modeled in a 3D CAD environment to serve as the foundational structural datum for the entire project. This digital representation provided a high-precision fixed reference that informed every subsequent design decision, ensuring that all custom-fabricated components would interface seamlessly with the industrial hardware. By accurately modeling the 4-inch internal diameter of the cast acrylic tube, the team was able to establish strict volumetric constraints, which were essential for sizing the modular internal mounting tray to achieve a perfect "sliding fit" without mechanical interference. Furthermore, importing the specific geometry of the aluminum end-caps allowed for the precise mapping of the O-ring grooves and pre-drilled penetrator ports, guaranteeing that the sealing interfaces remained uncompromised. Finally, the CAD model served as a critical tool for optical verification; by simulating the camera’s placement within the transparent housing, the team confirmed that the Field of View (FOV) would remain entirely unobstructed by the internal structural rails or the complex network of pneumatic tubing required for actuation.</p>
          
        <h3 id="sub-4b-2">4.2.2 Designing of Tentacles</h3> 
-        <div class="callout">
           <p>The internal geometry of the pneumatic tentacles was reused to maintain the validated bending moment. However, the inlet ports were modified to accommodate <strong>silicone tubing</strong>, allowing for the cohesive molecular bonding required for high-pressure airtight integrity.</p>
-        </div>
 
         <h3 id="sub-4b-3">4.2.3 Designing of Flap Clamp 2.0</h3>
         <p>The Flap Clamp was redesigned to serve as the mechanical bridge between the soft "bell" and the rigid housing without requiring permanent, destructive modifications to the end-caps.</p>
