@@ -831,45 +831,82 @@
           <table class="styled-table">
             <thead>
               <tr>
-                <th>Performance Metric</th>
-                <th class="highlight-col">2-Pump Configuration</th>
+                <th>Performance Metric & Definition</th>
+                <th class="highlight-col">2-Pump (Adopted)</th>
                 <th>4-Pump Configuration</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td>Steady-State Angle (°)</td>
+                <td>
+                  <strong>Steady-State Angle (°)</strong><br>
+                  <small>Max bend capacity at peak pressure. (Equal = same power)</small>
+                </td>
                 <td class="highlight-col">71°</td>
                 <td>71°</td>
               </tr>
               <tr>
-                <td>Time to Steady State (s)</td>
+                <td>
+                  <strong>Time to Steady State (s)</strong><br>
+                  <small>Lower = reaches max bend faster; Higher = slower ramp-up.</small>
+                </td>
                 <td class="highlight-col">1.4 s</td>
                 <td>0.7 s</td>
               </tr>
               <tr>
-                <td>Time Constant (τ) (s)</td>
+                <td>
+                  <strong>Time Constant (τ) (s)</strong><br>
+                  <small>Lower = agile/responsive; Higher = sluggish/stable (filters noise).</small>
+                </td>
                 <td class="highlight-col">1.1 s</td>
                 <td>0.45 s</td>
               </tr>
               <tr>
-                <td>Max Propulsion Speed (cm/s)</td>
+                <td>
+                  <strong>Max Propulsion Speed (cm/s)</strong><br>
+                  <small>Higher = faster travel; Lower = precise crawling.</small>
+                </td>
                 <td class="highlight-col">3.2 cm/s</td>
                 <td>10.0 cm/s</td>
               </tr>
               <tr>
-                <td>Standard Deviation (SD)</td>
+                <td>
+                  <strong>Standard Deviation (SD)</strong><br>
+                  <small>Lower = better repeatability; Higher = inconsistent performance.</small>
+                </td>
                 <td class="highlight-col">0.14</td>
                 <td>0.24</td>
               </tr>
               <tr class="highlight-row">
-                <td><strong>Depth Deviation (Δd)</strong></td>
+                <td>
+                  <strong>Depth Deviation (Δd)</strong><br>
+                  <small>Lower = stable hovering; Higher = shaky/unstable for imaging.</small>
+                </td>
                 <td class="highlight-col"><strong>±2 cm</strong></td>
                 <td><strong>±8 cm</strong></td>
               </tr>
             </tbody>
           </table>
         </div>
+        
+        <style>
+          .highlight-col {
+            background: rgba(77, 184, 212, 0.12) !important;
+            border-left: 1px solid rgba(77, 184, 212, 0.2);
+            border-right: 1px solid rgba(77, 184, 212, 0.2);
+          }
+          th.highlight-col {
+            background: rgba(77, 184, 212, 0.2) !important;
+            color: var(--accent) !important;
+          }
+          .styled-table td small {
+            display: block;
+            font-size: 0.85em;
+            color: var(--muted);
+            line-height: 1.2;
+            margin-top: 4px;
+          }
+        </style>
         
         <style>
           /* Add this to your existing <style> block */
