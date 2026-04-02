@@ -594,7 +594,71 @@
  
         <hr class="sub-divider"/>
 
-
+<h3>3.2 Motor Control Extension (<code>blueos-motori2c-extension</code>)</h3>
+        <p>A custom BlueOS Docker extension drives the pneumatic actuation system. A <strong>Flask REST API</strong> (<code>main.py</code>) runs inside a Docker container on <strong>port 8084</strong>, communicating with the PCA9685 over I²C Bus 6 using <code>smbus2</code>. PWM duty cycle maps linearly: <strong>0–100% ≈ 0–12V</strong> motor output.</p>
+ 
+        <h4>Key API Endpoints</h4>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Endpoint</th><th>Method</th><th>Function</th></tr></thead>
+            <tbody>
+              <tr><td><code>/motor/&lt;ch&gt;/speed</code></td><td>POST</td><td>Set channel speed (0–100%)</td></tr>
+              <tr><td><code>/motor/status</code></td><td>GET</td><td>Check PCA9685 connection status</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 3 — Motor Control Extension API Endpoints</span>
+        <p>Motor electrical noise intermittently causes <code>OSError 5</code> on the I²C bus. The API handles this with <strong>3 retry attempts at 10 ms intervals</strong>. Both custom extensions auto-start on boot via a <strong>systemd service</strong> with a 15-second delay to allow BlueOS core services to fully initialise.</p>
+ 
+        <hr class="sub-divider"/>
+ 
+        <h3>3.3 Camera Capture Extension (<code>blueos-capture-extension</code>)</h3>
+        <p>A second BlueOS Docker extension captures still images from the live underwater camera stream, exposing a simple HTTP endpoint for triggering image saves.</p>
+ 
+        <h4>Data Flow</h4>
+        <pre><code>BlueOS Camera → H264 UDP Stream (127.0.0.1:5600)
+    → GStreamer Pipeline (avdec_h264 decode)
+    → OpenCV (buffer latest frame in background thread)
+    → Flask /capture endpoint (port 8080)
+    → Saves .jpg to /userdata/ (volume-mounted to Pi filesystem)</code></pre>
+        <span class="caption">Figure 1 — Camera Capture Extension Data Flow</span>
+ 
+        <h4>Implementation</h4>
+        <ul>
+          <li>Listens to the H264 UDP stream at <code>127.0.0.1:5600</code>. GStreamer decodes via <code>avdec_h264</code>; decoded frames pass into OpenCV's <code>VideoCapture</code>.</li>
+          <li>A <strong>background thread</strong> continuously buffers the latest frame so the <code>/capture</code> endpoint never blocks.</li>
+          <li>Build pipeline: <code>docker buildx build --platform linux/arm/v7</code> on Mac → <code>docker save</code> → <code>scp</code> → <code>docker load</code> → <code>docker compose up</code>.</li>
+        </ul>
+ 
+        <h4>Dependencies</h4>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Dependency</th><th>Purpose</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr><td>Flask</td><td>HTTP server for <code>/capture</code></td><td>Port 8080</td></tr>
+              <tr><td>GStreamer + <code>gstreamer1.0-libav</code></td><td>H264 stream decoding</td><td>Required for <code>avdec_h264</code></td></tr>
+              <tr><td>OpenCV (<code>cv2</code>)</td><td>Frame reading and <code>.jpg</code> encoding</td><td>Requires dynamic <code>.so</code> symlink at runtime</td></tr>
+              <tr><td>NumPy</td><td>Required by OpenCV</td><td>Pinned to <code>&lt;2</code> — version conflict with apt OpenCV</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 4 — Camera Capture Extension Dependencies</span>
+ 
+        <h4>Challenges &amp; Resolutions</h4>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Challenge</th><th>Root Cause</th><th>Resolution</th></tr></thead>
+            <tbody>
+              <tr><td><code>avdec_h264</code> not found</td><td>Missing <code>gstreamer1.0-libav</code></td><td>Added to <code>apt-get install</code> in Dockerfile</td></tr>
+              <tr><td><code>ModuleNotFoundError: cv2</code></td><td>OpenCV <code>.so</code> not on Python path</td><td>Used <code>find</code> to locate and created dynamic symlink</td></tr>
+              <tr><td>NumPy import error</td><td>NumPy not installed before <code>import cv2</code></td><td>Reordered pip installs</td></tr>
+              <tr><td>NumPy version conflict</td><td>NumPy 2.x incompatible with apt OpenCV</td><td>Pinned NumPy to <code>&lt;2</code></td></tr>
+              <tr><td>Docker Compose warning</td><td>Obsolete <code>version: '3'</code> field</td><td>Removed the field entirely</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 5 — Camera Capture Extension Challenges &amp; Resolutions</span>
+      </div>
 
 
 
