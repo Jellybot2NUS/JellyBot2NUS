@@ -705,19 +705,41 @@
           <figcaption>Figure 7 — 4-Pump (τ ≈ 0.45 s) vs 2-Pump (τ ≈ 1.1 s) Bend Angle Response</figcaption>
         </figure>
 
-        <p>Both systems achieved steady-state at 71°. The 4-pump system reached it in 0.7 s (τ ≈ 0.45 s), while the 2-pump system reached it in 1.4 s (τ ≈ 1.1 s, measured at 63.2% of steady-state = 45.1°). The slower 2-pump response introduces a natural dampening effect that proves advantageous for depth stability.</p>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>System Parameter</th>
+                <th>2-Pump Configuration</th>
+                <th>4-Pump Configuration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Steady-State Angle (Degree)</td>
+                <td>71°</td>
+                <td>71°</td>
+              </tr>
+              <tr>
+                <td>Time to Steady State (Seconds)</td>
+                <td>1.4 s</td>
+                <td>0.7 s</td>
+              </tr>
+              <tr class="highlight-row">
+                <td>Time Constant ($\tau$) (Seconds)</td>
+                <td>1.1 s</td>
+                <td>0.45 s</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <p>Both systems achieved steady-state at 71°. The 4-pump system reached it in 0.7 s (τ ≈ 0.45 s), while the 2-pump system reached it in 1.4 s (τ ≈ 1.1 s, measured at 63.2% of steady-state = 45.1°).</p>
 
         <div class="callout callout-warn">
           <div class="callout-title">Key Finding</div>
-          <p>Both configurations reach the same steady-state bend angle (71°). The difference lies in the transient response: 4-pump reaches steady-state in 0.7 s vs 1.4 s for 2-pump. The 2-pump system's higher time constant τ provides a mechanical low-pass filter, suppressing abrupt buoyancy shifts that degrade imaging quality.</p>
-        </div>
-        <div class="callout">
-          <div class="callout-title">Shortcomings</div>
-          <p>The slower 2-pump actuation reduces peak propulsion speed. Silicone material compliance limits further bending beyond the current maximum pressure, and inconsistencies in silicone mixture can affect repeatability.</p>
-        </div>
-        <div class="callout">
-          <div class="callout-title">Future Improvements</div>
-          <p>Implement a hybrid control logic: operate on 2 pumps for precision hover/detection mode and reserve 4-pump capacity for high-thrust/extraction mode. Standardise the silicone mixture and test alternative formulations for improved compliance.</p>
+            <h3>Steady State</h3><p>Steady state refers to the final, stable equilibrium the system reaches once all transient movement and acceleration have settled. In this experiment, it represents the absolute "destination" or maximum capacity of the mechanical bend under the provided hydraulic pressure. The identical values show that the number of pumps does not affect the ultimate physical limit or the range of motion. Both systems are equally powerful in terms of their static capability; whether you use 2 pumps or 4, the system possesses the same geometric "reach," it only differs in the time taken to reach there.</p>
+            <h3>Time Constant (τ)</h3><p>The time constant (τ) is a measure of the system’s responsiveness. It tells us how quickly the system reacts to an input to reach its destination. Specifically, τ represents the time taken to reach approximately 63.2% of the steady-state value. The 4-pump system is significantly faster and more agile, making it suitable for applications requiring rapid repositioning. However, the higher τ of the 2-pump system acts as a mechanical low-pass filter. This "sluggishness" is an advantage for imaging because it dampens the response, smoothing out sudden buoyancy shifts or vibrations that would otherwise cause motion blur or unstable footage in the 4-pump configuration.</p>
         </div>
       </div>
 
@@ -751,7 +773,7 @@
         </div>
         <span class="tbl-caption">Table 4 — Comparative Velocity Analysis of Jellybot Propulsion</span>
 
-        <p>The 2-pump system's σ = 0.14 indicates a high level of consistency across cycles. While the 4-pump configuration offers superior raw speed (10.0 cm/s peak), it proved unsuitable for high-resolution coral reef imaging — at 10.0 cm/s, surge velocity introduces motion blur and reduces the window for stable visual detection.</p>
+        <p>The 2-pump system's σ = 0.14 indicates a high level of consistency across cycles. While the 4-pump configuration offers superior raw speed (10.0 cm/s peak), it proved unsuitable for high-resolution coral reef imaging — at 10.0 cm/s, surge velocity introduces motion blur and reduces the window for stable visual detection. Furthermore, the high-volume displacement of 4 pumps causes excessive vertical lift, making the robot prone to "overshooting" its target depth during actuation.</p>
       </div>
 
       <!-- Sub 4.3 -->
