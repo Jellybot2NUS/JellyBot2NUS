@@ -912,14 +912,42 @@
           </table>
         </div>
 
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 13 — Fully Assembled and Wired Internal Mounting Tray">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/assembledtray.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 13 — Fully Assembled and Wired Internal Mounting Tray</figcaption>
+        </figure>
+
         <h3 id="sub-5d">5.4 Fabrication of Flap Clamp 2.0</h3>
         <div class="subsection-rule"></div>
         <p>The Flap Clamp was 3D-printed using <strong>PLA</strong> for its high rigidity. As the stainless steel bolts are tightened, the PLA rings squeeze the silicone against the acrylic tube, creating a high-friction "clamp-down" effect that anchors the module without permanent adhesives.</p>
 
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 14 — 3D Printed Flap Clamp">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/3dclamp.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 14 — 3D Printed Flap Clamp</figcaption>
+        </figure>
+        
         <h3 id="sub-5e">5.5 Fabrication of Ruggedized Ground Control Station (GCS)</h3>
         <div class="subsection-rule"></div>
-        <p>A custom Portable GCS was developed to allow real-time monitoring in wet field environments where standard laptops are impractical.</p>
-        
+        <p>To transition JellyBot from lab-based testing to field operations, a custom Portable Ground Control Station (GCS) was developed. This unit serves as the primary operator interface, allowing for real-time surveillance monitoring and robot control in wet or high-glare environments where a standard laptop would be impractical.</p>
+
+        <h3 id="sub-5e-1">5.5.1 Structural Housing and Cost Effective Design</h3>
+        <ul>
+            <li><strong>Foam-Base Integration:</strong> To minimize fabrication costs while maintaining structural integrity, the team utilized a high-density Pick-and-Pluck foam as the primary internal chassis. The foam was custom-contoured to cradle the electronic components, providing a lightweight yet secure mounting method that protects the hardware from mechanical shock during transport.</li>
+            <li><strong>Power Management:</strong> An external toggle switch was installed on the side of the case, allowing for rapid power-up. The unit is fully autonomous, powered by an internal 12V rechargeable battery, eliminating the need for external AC power cords near the water's edge.</li>
+          </ul>
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 15 — Fabrication of GCS">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/internalgcs.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 15 — Fabrication of GCS</figcaption>
+        </figure>
+
+        <h3 id="sub-5e-2">5.5.2 System Architecture and Interface</h3>
         <div class="callout">
           <div class="callout-title">GCS Technical Specifications</div>
           <ul>
@@ -930,6 +958,23 @@
           </ul>
         </div>
       </div>
+
+
+        <h3 id="sub-5e-3">5.5.3 Operational Advantages</h3>
+        <p>By building this GCS, the team achieved a "Mission Control" in a single box:</p>
+        <ul>
+            <li><strong>Environmental Resilience:</strong> The case protects the Raspberry Pi and monitor from salt spray and humidity.</li>
+            <li><strong>Rapid Deployment:</strong> Screen, computer, and battery are pre-wired into the foam base, the system can be deployed in under 60 seconds.</li>
+            <li><strong>Portability:<strong> The compact form factor allows the operator to carry the entire control system and the robot’s power supply in one hand, which is essential for remote coral reef survey sites.</li>
+          </ul>
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 16 — Assembled Jellybot GCS">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/gcswithbot.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 16 — Assembled Jellybot GCS</figcaption>
+        </figure>
+        
 
         <div class="doc-section" id="section-6">
         <span class="section-num">06</span>
@@ -951,22 +996,50 @@
         <p>Before installing any electronics, the primary structural seals of the Blue Robotics enclosure were tested. The acrylic dome and the aluminum end-cap were tested independently for 10 minutes. By using Red Dye in the water and dry tissue paper inside, the team confirmed that the dual-radial O-rings provided a perfect seal.</p>
         <p><strong>Result:</strong> No dye ingress or moisture was detected on the tissue indicators.</p>
 
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 17 — Housing Waterproof Test">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/housingwaterproof.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 17 — Housing Waterproof Test</figcaption>
+        </figure>
+
         <h3 id="sub-6c">6.3 Phase II: Electrical Cable Penetrator Verification</h3>
         <div class="subsection-rule"></div>
         <p>The next stage involved testing the mechanical compression of the electrical tether interface. The cable was stripped and installed into the penetrator as per Section 5.1.1. The assembly was submerged at 1 meter.</p>
         <p><strong>Objective:</strong> To ensure that the "Shoulder" and "Throat" geometry of the penetrator effectively compressed the cable jacket to prevent water "wicking."</p>
         <p><strong>Result:</strong> The internal wiring remained 100% dry, validating the transition from makeshift glands to professional penetrators.</p>
 
+          <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 18 — Housing Waterproof Test with Cable Penetrator">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/housingwithcable.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 18 — Housing Waterproof Test with Cable Penetrator</figcaption>
+        </figure>
+          
         <h3 id="sub-6d">6.4 Phase III: Custom Pneumatic Penetrator & Pressure Testing</h3>
         <div class="subsection-rule"></div>
         <p>Because the pneumatic penetrator was a custom modification (Section 5.1.2), it required an additional Positive Pressure Test before submersion. During the first air-pressure test, minor bubbling was observed at the threaded interface of the industrial barbed coupling.</p>
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 19 — Bubbles were Formed with Positive Pressure Test">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/bubble.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 19 — Bubbles were Formed with Positive Pressure Test</figcaption>
+        </figure>
         <p><strong>Corrective Action:</strong> Teflon Tape was applied to the threads to ensure a gas-tight seal. Once the air-leaks were resolved, the pneumatic penetrator was submerged at 1 meter. The combination of the Blue Robotics bolt and the modified coupling successfully blocked all water ingress.</p>
 
+          <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 20 — Submersion Test with Added Teflon Tape">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/pneumaticwaterproof.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 20 — Submersion Test with Added Teflon Tape</figcaption>
+        </figure>
+          
         <h3 id="sub-6e">6.5 Phase IV: Final Integrated Prototype Test (1.0m Depth)</h3>
         <div class="subsection-rule"></div>
         <p>The final stage of verification involved submerging the fully assembled JellyBot to simulate a real-world surveillance mission. Unlike the previous sub-assembly tests, this phase included the installation of the Internal Mounting Tray, the pneumatic pumps, and the control electronics.</p>
         <p>The robot was fully sealed with the 3D-printed Flap Clamp and soft bell attached. The internal tray was populated with all components to ensure the Center of Gravity (CoG) was realistic, and the tether was connected to the Ground Control Station (GCS). The entire prototype was submerged in a test tank at a depth of 1.0 meter for a duration of 10 minutes.</p>
 
+          
         <div class="table-wrap">
             <table class="styled-table">
                 <thead>
@@ -1006,6 +1079,13 @@
             </table>
         </div>
         <p style="font-size: 0.9em; margin-top: 5px;"><em>Table 3: Summary of Final Integration Results</em></p>
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 21 — Final Intergration Waterproof">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/integratedwaterproof.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 21 — Final Intergration Waterproof</figcaption>
+        </figure>
 
         <div class="callout">
             <div class="callout-title">Verification Conclusion</div>
