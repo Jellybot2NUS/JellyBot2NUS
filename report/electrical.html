@@ -827,6 +827,75 @@
         <h3>4.4 Conclusion</h3>
         <div class="subsection-rule"></div>
 
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Performance Metric</th>
+                <th class="highlight-col">2-Pump Configuration</th>
+                <th>4-Pump Configuration</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Steady-State Angle (°)</td>
+                <td class="highlight-col">71°</td>
+                <td>71°</td>
+              </tr>
+              <tr>
+                <td>Time to Steady State (s)</td>
+                <td class="highlight-col">1.4 s</td>
+                <td>0.7 s</td>
+              </tr>
+              <tr>
+                <td>Time Constant (τ) (s)</td>
+                <td class="highlight-col">1.1 s</td>
+                <td>0.45 s</td>
+              </tr>
+              <tr>
+                <td>Max Propulsion Speed (cm/s)</td>
+                <td class="highlight-col">3.2 cm/s</td>
+                <td>10.0 cm/s</td>
+              </tr>
+              <tr>
+                <td>Standard Deviation (SD)</td>
+                <td class="highlight-col">0.14</td>
+                <td>0.24</td>
+              </tr>
+              <tr class="highlight-row">
+                <td><strong>Depth Deviation (Δd)</strong></td>
+                <td class="highlight-col"><strong>±2 cm</strong></td>
+                <td><strong>±8 cm</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        
+        <style>
+          /* Add this to your existing <style> block */
+          .highlight-col {
+            background: rgba(77, 184, 212, 0.15) !important; /* Slightly stronger tint */
+            border-left: 1px solid rgba(77, 184, 212, 0.3);
+            border-right: 1px solid rgba(77, 184, 212, 0.3);
+            color: var(--text) !important;
+          }
+          
+          /* Ensures the header in the highlighted column looks distinct */
+          th.highlight-col {
+            background: rgba(77, 184, 212, 0.25) !important;
+            color: var(--accent) !important;
+          }
+        </style>
+        
+        <div class="callout">
+          <div class="callout-title">Technical Definitions & Notes</div>
+          <p><strong>Steady State:</strong> Represents the maximum achievable bend angle of the tentacles when subjected to maximum pneumatic pressure. It indicates the physical limit of the system's deformation.</p>
+          <p><strong>Time to Steady State:</strong> The duration required to reach the maximum bend at peak pressure. A higher value means the system takes longer to fully actuate, while a lower value indicates a rapid transition to full pressure.</p>
+          <p><strong>Time Constant (τ):</strong> A measure of responsiveness representing the speed to reach 63.2% of steady state. A lower τ signifies a faster response (agile), while a higher τ indicates a slower, more "sluggish" response that provides mechanical damping.</p>
+          <p><strong>Standard Deviation (SD):</strong> Indicates the <em>repeatability</em> of the system. A lower SD (as seen in the 2-pump setup) proves that the bot performs consistently across multiple test runs with minimal variance.</p>
+          <p><strong>Depth Deviation:</strong> Measures the accuracy of the bot while <em>hovering at a specific altitude</em>. The ±2 cm deviation in the 2-pump system highlights its superior stability for delicate tasks like coral macro-photography.</p>
+        </div>
+
         <div class="callout callout-warn">
           <div class="callout-title">Comparative Summary</div>
           <p>The 4-pump system offered a superior time constant (τ = 0.45 s) and peak mean velocity of 10 cm/s, but induced high-magnitude depth jitter of ±8 cm. The 2-pump System 3 architecture achieved a stable mean velocity of 3.05 cm/s and reduced depth oscillations to ±2 cm — a 4× improvement in depth precision.</p>
