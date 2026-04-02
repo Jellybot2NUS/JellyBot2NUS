@@ -503,12 +503,13 @@
       </div>
     </section>
 
+<!--Features-->
     <section class="report-section" id="section-6">
       <span class="section-label">06</span>
       <h2>Features and Specifications</h2>
       <div class="section-rule"></div>
-      <div class="table-container">
-        <table>
+      <div class="table-wrap">
+        <table class="styled-table">
           <thead>
             <tr>
               <th>Category</th>
@@ -518,12 +519,63 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td>Operating Parameters</td><td>Working Depth</td><td>5 m</td><td>Most coral targets ≤5 m; shallow reef zone</td></tr>
-            <tr><td>Operating Parameters</td><td>Pressure Tolerance</td><td>>0.5 bar</td><td>Safety margin at 5 m depth</td></tr>
-            <tr><td>Actuation</td><td>Tentacles Pressure</td><td>120 - 170 kPa</td><td>Sufficient deformation without rupture</td></tr>
-            <tr><td>Actuation</td><td>Pulse Frequency</td><td>0.16 - 0.25 Hz</td><td>Silicone tentacles reach max formation at 2s-3s</td></tr>
-            <tr><td>Sensing Suite</td><td>Camera</td><td>30 - 60 fps</td><td>Live navigation feedback and surveillance</td></tr>
-            <tr><td>Computation</td><td>Microcontroller</td><td>32-bit ARM Cortex-M4</td><td>Processing for sensor fusion and closed-loop actuation</td></tr>
+            <tr>
+              <td rowspan="3">Operating Parameters</td>
+              <td>Working Depth</td>
+              <td>2 m – 5 m</td>
+              <td>Targets shallow reef zones where visibility is optimal (~2 m).</td>
+            </tr>
+            <tr>
+              <td>Pressure Tolerance</td>
+              <td>> 1.2 atm</td>
+              <td>Includes 1 atm surface pressure + 0.2 atm safety margin at depth.</td>
+            </tr>
+            <tr>
+              <td>Buoyancy</td>
+              <td>Neutral at 2 m</td>
+              <td>Negative until 2 m to allow dynamic movement for coral observation.</td>
+            </tr>
+    
+            <tr>
+              <td rowspan="3">Actuation</td>
+              <td>Tentacles Pressure</td>
+              <td>117 – 137 kPa</td>
+              <td>Sufficient deformation for movement without risking structural rupture.</td>
+            </tr>
+            <tr>
+              <td>Velocity</td>
+              <td>≥ 5 cm/s</td>
+              <td>Optimized for safe, slow-speed surveillance and observation.</td>
+            </tr>
+            <tr>
+              <td>Depth Control</td>
+              <td>± 10% Reading</td>
+              <td>Active regulation to maintain stable upright positioning and pitch/yaw.</td>
+            </tr>
+    
+            <tr>
+              <td rowspan="2">Power & Control</td>
+              <td>System Power</td>
+              <td>~30 W (Electronics)</td>
+              <td>Tethered 12V, 3A for motor controller and 5V, 3A for Raspberry Pi 5.</td>
+            </tr>
+            <tr>
+              <td>Surface Control</td>
+              <td>Pelican Case Hub</td>
+              <td>Integrated monitor and joystick with button debouncing for Jellybot input.</td>
+            </tr>
+    
+            <tr>
+              <td rowspan="2">Sensing Suite</td>
+              <td>IMU (6 DOF)</td>
+              <td>Gyroscope / IMU</td>
+              <td>Provides heading data for tentacle segments and stabilization.</td>
+            </tr>
+            <tr>
+              <td>Camera</td>
+              <td>Raspberry Pi Camera</td>
+              <td>Used for distortion testing and image quality (light vs. no light).</td>
+            </tr>
           </tbody>
         </table>
       </div>
