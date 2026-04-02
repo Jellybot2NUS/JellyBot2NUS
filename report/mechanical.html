@@ -300,6 +300,81 @@
       max-width: 72ch;
     }
 
+        /* ─── FIGURE / IMAGE SYSTEM ─────────────────────── */
+    /*
+     * Every image is: <figure class="img-fig [img-single]">
+     *                   <div class="img-frame" data-caption="…"><img></div>
+     *                   <figcaption>…</figcaption>
+     *                 </figure>
+     *
+     * Caption always lives OUTSIDE .img-frame so it is
+     * never "inside" the image regardless of layout.
+     */
+
+    .img-fig {
+      display: flex;
+      flex-direction: column;
+      margin: 28px 0;
+    }
+
+    /* The clickable photo box */
+    .img-frame {
+      border: 1px solid var(--glass-border);
+      border-radius: 6px;
+      overflow: hidden;
+      background: var(--surface);
+      cursor: zoom-in;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    /* Expand icon that appears on hover */
+    .img-frame::after {
+      content: '⤢';
+      position: absolute;
+      bottom: 10px; right: 12px;
+      font-size: 1em;
+      color: rgba(255,255,255,0.7);
+      background: rgba(0,0,0,0.5);
+      border-radius: 4px;
+      padding: 2px 7px;
+      opacity: 0;
+      transition: opacity 0.2s ease;
+      pointer-events: none;
+      line-height: 1.6;
+    }
+    .img-frame:hover::after { opacity: 1; }
+
+    .img-frame img {
+      width: 100%;
+      display: block;
+      transition: transform 0.35s ease;
+    }
+    .img-frame:hover img { transform: scale(1.025); }
+
+    /* Grid layouts — figures inside grids have no extra vertical margin */
+    .img-grid-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .img-grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin: 28px 0;
+    }
+    .img-grid-3 .img-fig,
+    .img-grid-2 .img-fig { margin: 0; }
+
+    /* Centred single image */
+    .img-single {
+      max-width: 80%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
     /* ─── CALLOUT BOXES ─────────────────────────────── */
 
      .callout {
@@ -429,6 +504,14 @@
        <h3 id="sub-2a">2.1 Concept Selection and Prototype 1 Design</h3>
         <div class="subsection-rule"></div>
         <p>Following an evaluation of various propulsion methods, Concept C: Pneumatic Silicone Actuators was selected for its high biomimicry and low ecological impact. Prototype 1 was constructed using a cylindrical PVC pipe as the main structural body and a clear acrylic dome for the camera housing. The design prioritized cost-effectiveness and rapid iterative testing over industrial-grade depth ratings.</p>
+        
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 1 — Prototype 1">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/prototype1.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 1 — Prototype 1</figcaption>
+        </figure>
+
         <p>The propulsion system consisted of eight custom-cast silicone tentacles (a 50/50 blend of Ecoflex 00-30 and Dragon Skin 20) unified by a 2mm thick silicone flap. A mechanical flap clap was developed to interface these soft components with the rigid PVC housing, ensuring the assembly could withstand the internal air pressure changes required for pulsing movement</p>
 
       <h3 id="sub-2b">2.2 Key Technical Findings (Phase I "Pain Points")</h3>
@@ -526,7 +609,15 @@
        
        <h3 id="sub-3b-2">3.2.2 High-Pressure Sealing and Modularity</h3>
         <p>To resolve the leakage issues from Phase I, makeshift glands were replaced with Mechanical Compression Penetrators. This upgrade eliminates the "manual sealing back-and-forth" and allows for a modular system where cables can be adjusted without damaging the pressure hull.</p>
-         <p>As seen from the figure, the makeshift glands and silicone sealants were replaced with Mechanical Compression Penetrators. These utilize a specific Head, Shoulder, and Throat geometry to compress the cable jacket, creating a hermetic seal.</p>
+
+          <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 2 — Cable Penetrator Visualization">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/headshoulderthroat.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 2 — Cable Penetrator Visualization</figcaption>
+        </figure>
+       
+       <p>As seen from the figure, the makeshift glands and silicone sealants were replaced with Mechanical Compression Penetrators. These utilize a specific Head, Shoulder, and Throat geometry to compress the cable jacket, creating a hermetic seal.</p>
        
         <h3 id="sub-3b-3">3.2.3 Material Homogeneity in Pneumatics</h3>
         <p>A critical failure in Prototype 1 was the air leak caused by bonding dissimilar materials (plastic tubing to silicone tentacles). In Prototype 2, the system was redesigned to be entirely silicone-based. By using chemically identical materials for both the tubes and the actuators, the silicone adhesive creates a cohesive molecular bond. This "cold weld" ensures that the pneumatic interface remains airtight even under the high internal pressures required for forceful bell contractions.</p>
@@ -545,7 +636,14 @@
         <h3 id="sub-4a">4.1 Selection of Outsourced Housing</h3>
         <div class="subsection-rule"></div>
         <p>The selection of the Blue Robotics platform was a strategic decision driven by risk mitigation and the need for a pre-verified underwater environment.</p>
-        
+
+          <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 3 — Blue Robotics Housing">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/blueroboticshousings.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 3 — Blue Robotics Housing</figcaption>
+        </figure>
+       
        <h3 id="sub-4a-1"> 4.1.1 Risk Mitigation and R&D Efficiency</h3> 
         <p>By outsourcing to a pre-verified industrial solution, the team avoided extensive independent hydrostatic testing. Market research revealed that designing a custom pressure vessel in-house would have consumed a significant portion of the semester, detracting from the focus on complex soft-actuator interfaces.</p>
 
@@ -619,7 +717,14 @@
 
         <h3 id="sub-4b-1">4.2.1 Housing CAD</h3> 
           <p>Before designing any internal or external attachments, the Blue Robotics 4-inch Series Enclosure was modeled in a 3D CAD environment to serve as the foundational structural datum for the entire project. This digital representation provided a high-precision fixed reference that informed every subsequent design decision, ensuring that all custom-fabricated components would interface seamlessly with the industrial hardware. By accurately modeling the 4-inch internal diameter of the cast acrylic tube, the team was able to establish strict volumetric constraints, which were essential for sizing the modular internal mounting tray to achieve a perfect "sliding fit" without mechanical interference. Furthermore, importing the specific geometry of the aluminum end-caps allowed for the precise mapping of the O-ring grooves and pre-drilled penetrator ports, guaranteeing that the sealing interfaces remained uncompromised. Finally, the CAD model served as a critical tool for optical verification; by simulating the camera’s placement within the transparent housing, the team confirmed that the Field of View (FOV) would remain entirely unobstructed by the internal structural rails or the complex network of pneumatic tubing required for actuation.</p>
-         
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 4 — 4 Inch Housing CAD">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/4housing.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 4 — 4 Inch Housing CAD</figcaption>
+        </figure>
+       
        <h3 id="sub-4b-2">4.2.2 Designing of Tentacles</h3> 
           <p>The internal geometry of the pneumatic tentacles was reused to maintain the validated bending moment. However, the inlet ports were modified to accommodate <strong>silicone tubing</strong>, allowing for the cohesive molecular bonding required for high-pressure airtight integrity.</p>
 
@@ -631,12 +736,33 @@
             <li><strong>Ease of Adjustment:</strong> Allows the propulsion module to be rotated or shifted to fine-tune the Center of Gravity (CoG) and thrust alignment without tools.</li>
         </ul>
 
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 5 — Flap Clamp 2 CAD">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/flapclamp2.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 5 — Flap Clamp 2 CAD</figcaption>
+        </figure>
+
         <h3 id="sub-4b-4">4.2.4 Designing of Modular Mounting Tray</h3>
         <p>To resolve the disorganized layout of Phase I, a custom <strong>Modular Mounting Tray</strong> was designed as the central structural backbone for the internal electronics.</p>
 
+          <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 6 — Modular Tray CAD">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/modulartray.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 6 — Modular Tray CAD</figcaption>
+        </figure>
+       
        <h3 id="sub-4b-5">4.2.5 Integrated CAD System Assembly</h3>
         <p>The Integrated CAD System Assembly served as the final digital validation phase, where all custom-designed sub-components were virtually mated to the primary Blue Robotics 4-inch Series housing. The primary objective of this stage was to conduct a comprehensive spatial fit check to ensure that the internal mounting tray, the eight-tentacle actuator array, and the 3D-printed flap clamp functioned together as a cohesive unit. By visualizing the "Digital Twin" of the Prototype 2 design, the team was able to confirm that the internal components cleared the O-ring sealing zones and that the external clamp provided the necessary 360° coverage without interfering with the end-cap hardware. This pre-fabrication review allowed the team to verify all mechanical clearances and spatial orientations in a virtual environment, providing the confidence required to proceed with the physical fabrication and 3D printing of the final components.</p>
-        
+
+       <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 7 — Prototype 2 CAD">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/fullcad.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 7 — Prototype 2 CAD</figcaption>
+        </figure>
+       
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
@@ -689,7 +815,20 @@
         <p>For the power and data tether, standard Blue Robotics Mechanical Compression Penetrators were used.</p>
         <div class="callout">
           <p><strong>Component Preparation:</strong> The tether cable was carefully stripped to expose the individual internal wire cores. This step is critical; by stripping the outer jacket before it enters the "throat" of the penetrator, the mechanical seal is formed directly against the wire insulation, preventing water from traveling through the gaps in the outer cable jacket.</p>
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 8 — Cable Penetrator">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/cablepenetrator.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 8 — Cable Penetrator</figcaption>
+        </figure>
           <p><strong>Assembly Process:</strong>  The penetrators were threaded into the pre-drilled ports of the end-cap. As shown in the figure, the internal O-ring provides a face-seal against the cap, while the internal "Shoulder" of the penetrator compresses the cable to create a hermetic barrier.</p>
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 9 — Cable Penetrator with Base">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/cablepenetratorwithbase.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 9 — Cable Penetrator with Base</figcaption>
+        </figure>
+          
           <p><strong>Result:</strong>  This assembly method eliminates the need for messy silicone sealants and allows for the tether to be adjusted or replaced without compromising the waterproof integrity of the main housing.</p>
         </div>
 
@@ -701,6 +840,13 @@
             <li><strong>Result:</strong>  This innovation provided a robust, watertight air-path, using the reliable O-ring sealing of the Blue Robotics system to facilitate high-pressure pneumatic actuation in a submerged environment.</li>
         </ul>
 
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 10 — Pneumatic Bulkhead Penetrators">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/pneumaticbulkhead.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 10 — Pneumatic Bulkhead Penetrators</figcaption>
+        </figure>
+
         <h3 id="sub-5b">5.2 Optimized Silicone Casting (Tentacles &amp; Flap)</h3>
         <div class="subsection-rule"></div>
         <p>The fabrication process for the soft actuators was overhauled to prioritize chemical bonding and structural uniformity, resolving previous inconsistent propulsion issues.</p>
@@ -708,6 +854,13 @@
         <h3 id="sub-5b-1">5.2.1 Material Homogeneity and Bonding</h3>
         <p> Prototype 2 transitioned to a <strong>fully silicone-based pneumatic circuit</strong>. By using silicone tubing to match the tentacles, the adhesive creates a "cohesive bond," effectively fusing the components into a single airtight unit and increasing pressure tolerance.</p>
 
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 11 — Chemical Bond">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/chemicalbond.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 11 — Chemical Bond</figcaption>
+        </figure>
+        
         <h3 id="sub-5b-2">5.2.2 Standardized Casting Formula</h3>
         <p>A strict 1:1 mixing ratio of <strong>Ecoflex 00-30</strong> and <strong>Dragon Skin 20</strong> was maintained.
             <ul>
@@ -722,6 +875,14 @@
         <h3 id="sub-5c">5.3 Internal Tray Assembly</h3>
         <div class="subsection-rule"></div>
         <p>The internal structural backbone consists of vertical aluminum rails and 3D-printed mounting plates, providing a rigid framework that slides directly into the acrylic tube.</p>
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure 12 — 3D Printed Modular Tray">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/3dtray.jpg?raw=true" alt="Bend angle tracking software" loading="lazy">
+          </div>
+          <figcaption>Figure 12 — 3D Printed Modular Tray</figcaption>
+        </figure>
+        
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
