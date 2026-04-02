@@ -532,19 +532,24 @@
             </tr>
     
             <tr>
-              <td rowspan="2">Actuation</td>
+              <td rowspan="3">Actuation</td>
               <td>Tentacles Pressure</td>
               <td>167.576 kPa</td>
               <td>Calculated maximum pressure required to overcome hydrostatic resistance at 5 m depth.</td>
             </tr>
             <tr>
               <td>Velocity</td>
-              <td>> 2.5 cm/s</td>
+              <td>~ 2.5 cm/s</td>
               <td>Maintains steady progression for survey accuracy and video stability.</td>
+            </tr>
+            <tr>
+              <td>Directional control</td>
+              <td>Up / Down / Left / Right</td>
+              <td>For system correction control and extended survey capabilities.</td>
             </tr>
     
             <tr>
-              <td rowspan="2">Power & Control</td>
+              <td rowspan="3">Power & Control</td>
               <td>Power System</td>
               <td>12V / 20A (240W)</td>
               <td>High-capacity battery target to support 1-hour mission endurance for both Jellybot and On-board station.</td>
@@ -554,17 +559,22 @@
               <td>Pelican Case Hub</td>
               <td>Centralized control unit featuring integrated monitor, joystick, and data logging capabilities.</td>
             </tr>
+            <tr>
+              <td>Communication Protocol</td>
+              <td>2 - 5m communication established</td>
+              <td>Ensuring stable communication is established between surface control and Jellybot for visual feed.</td>
+            </tr>
     
             <tr>
               <td rowspan="2">Sensing Suite</td>
               <td>IMU (6 DOF)</td>
               <td>Gyroscope / IMU</td>
-              <td>Provides heading data for tentacle segments and stabilization.</td>
+              <td>Provides heading data such as row/pitch/yaw for tentacle segments and stabilization.</td>
             </tr>
             <tr>
               <td>Camera</td>
-              <td>Raspberry Pi Camera</td>
-              <td>Used for distortion testing and image quality (light vs. no light).</td>
+              <td>Underwater Camera</td>
+              <td>Used for distortion testing and image quality.</td>
             </tr>
           </tbody>
         </table>
