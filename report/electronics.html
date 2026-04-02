@@ -827,7 +827,7 @@ Flask API (Port 8084)
           <li> Sharpness/resolution (Laplacian variance across the FOV)</li>
         </ul>
         
-        <h4>Results &amp;</h4>
+        <h4>Results</h4>
         
         <div class="table-wrap">
           <table class="styled-table">
@@ -852,7 +852,7 @@ Flask API (Port 8084)
         </div>
         <span class="caption">Table 9 — Scenario 1 Spatial Sharpness Results</span>
 
-        <h4>Analysis &amp; </h4>
+        <h4>Analysis</h4>
           <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. 
           For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
         
@@ -884,7 +884,34 @@ Flask API (Port 8084)
           <li> Sharpness/resolution (Laplacian variance across the FOV)</li>
         </ul>
 
-
+        <h4>Results</h4>
+        
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Condition</th><th>k1</th></tr></thead>
+            <tbody>
+              <tr><td>Dome in air (baseline)</td><td>−0.006274</td></tr>
+              <tr><td>Dome in water</td><td>−0.045948</td></tr>
+              <tr><td><strong>Δk1 (water effect)</strong></td><td><strong>−0.039674</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Zone</th><th>Sharpness Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>Centre</td><td>88%</td></tr>
+              <tr><td>Edges</td><td>69%</td></tr>
+              <tr><td>Corners</td><td>49%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 10 — Scenario 2 Spatial Sharpness Results</span>
+        
+        <h4>Analysis</h4>
+          <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. 
+          For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
+        
 
 
         
