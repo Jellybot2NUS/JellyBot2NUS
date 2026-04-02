@@ -92,11 +92,11 @@
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
-      min-height: 55vh; /* Keep your height */
+      min-height: 55vh;
       display: flex;
       flex-direction: column;
       justify-content: flex-end;
-      padding: 120px 60px 72px; /* ADD 120px to the TOP padding to account for header */
+      padding: 120px 60px 72px;
       overflow: hidden;
     }
 
@@ -121,7 +121,7 @@
     .hero-content {
       position: relative;
       z-index: 2;
-      margin-top: auto; /* Ensures content stays at the bottom of the flex container */
+      margin-top: auto;
       animation: fadeUp 1s ease 0.2s both;
     }
 
@@ -246,8 +246,7 @@
       opacity: 0;
       transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
-      scroll-margin-top: 120px;   /* added */
-
+      scroll-margin-top: 120px;
     }
 
     .doc-section.visible {
@@ -278,8 +277,7 @@
       color: var(--text);
       margin-bottom: 12px;
       margin-top: 28px;
-      scroll-margin-top: 120px;   /* added this */
-
+      scroll-margin-top: 120px;
     }
     .doc-section h4 {
       font-family: 'DM Mono', monospace;
@@ -333,14 +331,14 @@
       margin-bottom: 24px;
       display: block;
     }
-    
+
     /* ─── CALLOUT WARN VARIANT ──────────────────────── */
     .callout-warn {
       border-left-color: #f59e0b;
       background: rgba(245,158,11,0.08);
     }
     .callout-warn .callout-title { color: #f59e0b; }
-    
+
     /* ─── TABLES ────────────────────────────────────── */
     .table-wrap { overflow-x: auto; margin: 28px 0; }
 
@@ -365,7 +363,7 @@
       border-bottom: 1px solid var(--glass-border);
       color: var(--muted);
     }
-    
+
     /* ─── TABLES (td strong) ────────────────────────── */
     .styled-table td strong { color: var(--text); }
 
@@ -381,6 +379,7 @@
     .badge-done { background: rgba(110,231,183,0.12); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.3); }
     .badge-wip  { background: rgba(251,191,36,0.1);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
     .badge-todo { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--glass-border); }
+
     /* ─── CODE BLOCKS ───────────────────────────────── */
     pre {
       background: rgba(255,255,255,0.03);
@@ -390,7 +389,7 @@
       padding: 20px 24px;
       overflow-x: auto;
       margin: 16px 0 24px;
-    }  
+    }
     pre code {
       font-family: 'DM Mono', monospace;
       font-size: 0.8em;
@@ -431,7 +430,6 @@
       border-top: 1px solid var(--glass-border);
       margin: 36px 0;
     }
-    
 
     /* ─── FOOTER ────────────────────────────────────── */
     footer {
@@ -478,7 +476,7 @@
   <div class="page-body">
 
     <!-- ══════════════════════════════════════════ -->
-    <!-- TABLE OF CONTENTS                               -->
+    <!-- TABLE OF CONTENTS                         -->
     <!-- ══════════════════════════════════════════ -->
 
     <aside class="sidebar">
@@ -512,10 +510,11 @@
     </aside>
 
     <main class="content">
+
       <!-- ══════════════════════════════════════════ -->
       <!-- 1. OVERVIEW                               -->
       <!-- ══════════════════════════════════════════ -->
-      
+
       <div class="doc-section" id="section-1">
         <span class="section-num">01</span>
         <h2>Overview</h2>
@@ -533,8 +532,8 @@
         <span class="section-num">02</span>
         <h2>Hardware</h2>
         <div class="section-rule"></div>
-        
-        <h3 id="sensors-actuators">2.1 Sensors and Actuators</h3>        
+
+        <h3 id="sensors-actuators">2.1 Sensors and Actuators</h3>
         <p>The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream:</p>
         <li>To provide a user control interface [design specification 3b], the Playstation 4 Controller was selected.</li>
         <li>To measure depth [design specification 4a], the Blue Robotics Bar02 Sensor was selected.</li>
@@ -542,8 +541,7 @@
         <li>To provide real-time visual feedback for monitoring and analysis [design specification 4d], the Blue Robotics Low-Light USB Camera was selected.</li>
         <li>To coordinate communication between all onboard sensors [design specification 5], the Raspberry Pi 4 was selected.</li>
         </ul>
-        
-          
+
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
@@ -591,12 +589,12 @@
         </div>
         <span class="caption">Table 2 — Software Stack Summary</span>
         <p>The system is accessible from a topside MacBook at <code>192.168.2.2</code> via Ethernet. After an ArduPilot restart, manually pressing "Start Autopilot" in BlueOS is required to restore QGroundControl connectivity.</p>
- 
+
         <hr class="sub-divider"/>
 
-<h3>3.2 Motor Control Extension (<code>blueos-motori2c-extension</code>)</h3>
+        <h3>3.2 Motor Control Extension (<code>blueos-motori2c-extension</code>)</h3>
         <p>A custom BlueOS Docker extension drives the pneumatic actuation system. A <strong>Flask REST API</strong> (<code>main.py</code>) runs inside a Docker container on <strong>port 8084</strong>, communicating with the PCA9685 over I²C Bus 6 using <code>smbus2</code>. PWM duty cycle maps linearly: <strong>0–100% ≈ 0–12V</strong> motor output.</p>
- 
+
         <h4>Key API Endpoints</h4>
         <div class="table-wrap">
           <table class="styled-table">
@@ -609,12 +607,12 @@
         </div>
         <span class="caption">Table 3 — Motor Control Extension API Endpoints</span>
         <p>Motor electrical noise intermittently causes <code>OSError 5</code> on the I²C bus. The API handles this with <strong>3 retry attempts at 10 ms intervals</strong>. Both custom extensions auto-start on boot via a <strong>systemd service</strong> with a 15-second delay to allow BlueOS core services to fully initialise.</p>
- 
+
         <hr class="sub-divider"/>
- 
+
         <h3>3.3 Camera Capture Extension (<code>blueos-capture-extension</code>)</h3>
         <p>A second BlueOS Docker extension captures still images from the live underwater camera stream, exposing a simple HTTP endpoint for triggering image saves.</p>
- 
+
         <h4>Data Flow</h4>
         <pre><code>BlueOS Camera → H264 UDP Stream (127.0.0.1:5600)
     → GStreamer Pipeline (avdec_h264 decode)
@@ -622,14 +620,14 @@
     → Flask /capture endpoint (port 8080)
     → Saves .jpg to /userdata/ (volume-mounted to Pi filesystem)</code></pre>
         <span class="caption">Figure 1 — Camera Capture Extension Data Flow</span>
- 
+
         <h4>Implementation</h4>
         <ul>
           <li>Listens to the H264 UDP stream at <code>127.0.0.1:5600</code>. GStreamer decodes via <code>avdec_h264</code>; decoded frames pass into OpenCV's <code>VideoCapture</code>.</li>
           <li>A <strong>background thread</strong> continuously buffers the latest frame so the <code>/capture</code> endpoint never blocks.</li>
           <li>Build pipeline: <code>docker buildx build --platform linux/arm/v7</code> on Mac → <code>docker save</code> → <code>scp</code> → <code>docker load</code> → <code>docker compose up</code>.</li>
         </ul>
- 
+
         <h4>Dependencies</h4>
         <div class="table-wrap">
           <table class="styled-table">
@@ -643,7 +641,7 @@
           </table>
         </div>
         <span class="caption">Table 4 — Camera Capture Extension Dependencies</span>
- 
+
         <h4>Challenges &amp; Resolutions</h4>
         <div class="table-wrap">
           <table class="styled-table">
@@ -660,22 +658,388 @@
         <span class="caption">Table 5 — Camera Capture Extension Challenges &amp; Resolutions</span>
       </div>
 
-
-
-        
-
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 4. PNEUMATIC ACTUATION                    -->
+      <!-- ══════════════════════════════════════════ -->
       <div class="doc-section" id="section-4">
         <span class="section-num">04</span>
-        <h2>CAD & Fabrication</h2>
+        <h2>Pneumatic Actuation System</h2>
         <div class="section-rule"></div>
-        <p>Detail the modeling process (SolidWorks, Fusion 360) and the fabrication methods (3D printing, casting) used to create the mechanical parts.</p>
+        <p>The pneumatic actuation system inflates and vents the silicone flaps by controlling two DC pump motors and two 3-way solenoid valves via the PCA9685 over I²C. Each flap pair has an independent motor (pressurisation) and solenoid (direction control), allowing coordinated or per-flap operation.</p>
+
+        <h3>4.1 System Architecture</h3>
+        <pre><code>PS4 Controller (Mac)
+       │
+   controller.py
+       │  HTTP REST
+       ▼
+Flask API (Port 8084)
+[blueos-motori2c-extension]
+       │
+   smbus2 / I²C Bus 6
+       ▼
+   PCA9685 (0x40)
+   ┌───────────────────────────────┐
+   │ Ch0 → H-Bridge 1 Channel A   │ → Motor 1 (Pump)
+   │ Ch1 → H-Bridge 1 Channel B   │ → Solenoid 1
+   │ Ch2 → H-Bridge 2 Channel A   │ → Motor 2 (Pump)
+   │ Ch3 → H-Bridge 2 Channel B   │ → Solenoid 2
+   └───────────────────────────────┘</code></pre>
+        <span class="caption">Figure 2 — Pneumatic Actuation System Architecture</span>
+
+        <h3>4.2 Wiring &amp; Connections</h3>
+        <h4>I²C Interface</h4>
+        <p>The Navigator exposes I²C Bus 6 via a JST GH 4-pin connector. The PCA9685 uses standard 2.54 mm headers. A JST GH cable was stripped and crimped to 2.54 mm pin headers to bridge the two.</p>
+
+        <h4>Motor Driver Layout</h4>
+        <ul>
+          <li><strong>Channel A (OUT1/OUT2)</strong> → DC Pump Motor</li>
+          <li><strong>Channel B (OUT3/OUT4)</strong> → 3-Way Solenoid Valve</li>
+        </ul>
+
+        <h4>Solenoid Valve Behaviour</h4>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>State</th><th>Pin Connection</th><th>Effect</th></tr></thead>
+            <tbody>
+              <tr><td>Powered</td><td>Pin 1 ↔ Pin 2</td><td>Inflate — pump pressurises flap</td></tr>
+              <tr><td>Unpowered</td><td>Pin 1 ↔ Pin 3</td><td>Vent to atmosphere — flap deflates</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 6 — Solenoid Valve State Logic</span>
+
+        <div class="callout">
+          <div class="callout-title">Safety</div>
+          <p>Valve release on emergency stop is <strong>instantaneous and mechanical</strong> — no software delay. The solenoid vents automatically when de-energised.</p>
+        </div>
+
+        <h3>4.3 PS4 Controller Interface</h3>
+        <p>The <code>controller.py</code> script runs on a Mac and sends HTTP requests to the Pi's Flask API. Button mappings were determined empirically.</p>
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Button</th><th>Action</th></tr></thead>
+            <tbody>
+              <tr><td><strong>L1</strong></td><td>Pulse Flap Pair 1 (0.7 s)</td></tr>
+              <tr><td><strong>R1</strong></td><td>Pulse Flap Pair 2 (0.7 s)</td></tr>
+              <tr><td><strong>Square</strong></td><td>Activate Pair 1 (1 s)</td></tr>
+              <tr><td><strong>Triangle</strong></td><td>Activate Pair 2 (1 s)</td></tr>
+              <tr><td><strong>X</strong></td><td>Activate both pairs simultaneously (1 s)</td></tr>
+              <tr><td><strong>L2</strong></td><td>Trap air — Pair 1: motor runs 1 s then off, solenoid holds</td></tr>
+              <tr><td><strong>R2</strong></td><td>Trap air — Pair 2: motor runs 1 s then off, solenoid holds</td></tr>
+              <tr><td><strong>O</strong></td><td>Emergency Stop — instantaneous valve release + motor cutoff, resets all locks</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 7 — PS4 Controller Button Mappings</span>
+        <p>The L2/R2 trap-air sequence engages a one-press lock that holds the solenoid closed. The lock can only be reset by pressing <strong>O</strong>.</p>
+
+        <h4>Camera Gimbal</h4>
+        <p>The camera is mounted in a Blue Robotics servo gimbal. PWM range: 1000–1900 µs (inverted mapping) — 1000 µs = +45°, 1900 µs = −45°, neutral at 1450 µs. A <code>servo_neutral.py</code> script is saved at <code>/home/pi/</code> for quick gimbal centring.</p>
       </div>
 
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 5. COMPONENT CONFIGURATION                -->
+      <!-- ══════════════════════════════════════════ -->
       <div class="doc-section" id="section-5">
         <span class="section-num">05</span>
-        <h2>Future Iterations</h2>
+        <h2>Component Configuration</h2>
         <div class="section-rule"></div>
-        <p>Outline what you would change in the mechanical design for version 2.0. Perhaps lighter materials or a more streamlined profile?</p>
+
+        <h3>5.1 AHRS Orientation &amp; Accelerometer Calibration</h3>
+        <p>Because Jellybot is a <strong>vertical cylinder</strong>, the Navigator is mounted upright inside the enclosure — a significant deviation from the default flat/horizontal orientation assumed by ArduPilot.</p>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">The Problem</div>
+          <p>ArduPilot's IMU assumes the board is mounted face-up. Mounting it vertically means gravity is sensed on the wrong axis, making all attitude readings incorrect by default.</p>
+        </div>
+
+        <p>ArduPilot provides the <code>AHRS_ORIENTATION</code> parameter to remap IMU axes. After determining the Navigator's installed orientation, this was set to <strong>Pitch90 (value 25)</strong>, correcting for the 90° pitch offset.</p>
+
+        <h4>Accelerometer Calibration</h4>
+        <p>Performed via QGroundControl's Sensors tab (6-position procedure). The <strong>GPIO pins on the Navigator were used as a fixed reference point</strong> for identifying the "nose" direction during each step.</p>
+
+        <h4>Compass Calibration (Pending)</h4>
+        <p>Requires physically tumbling the ROV through many orientations while connected. The Ethernet tether constrains tumbling range and introduces magnetic interference. Planned workaround: connect via <strong>WiFi hotspot from a phone</strong>.</p>
+
+        <div class="callout">
+          <div class="callout-title">Note</div>
+          <p>At ±90° pitch orientations, gimbal lock is expected to affect roll readings. This is a mathematical property of Euler angles, not a calibration error.</p>
+        </div>
+
+        <hr class="sub-divider"/>
+
+        <h3>5.2 Bar02 Depth/Pressure Sensor Integration</h3>
+        <p>The Bar02 connects to one of the two I²C ports on the Navigator via JST GH cable (3.3V, SCL, SDA, GND — no level converter required). The <code>BARO_PROBE_EXT</code> parameter must be enabled to activate the MS5837 driver, followed by a reboot.</p>
+
+        <h4>Depth Calculation</h4>
+        <pre><code>Depth = (Pressure − Atmospheric Pressure) / (Fluid Density × Gravity)</code></pre>
+        <p>Fluid density can be adjusted via <code>EK3_DENSITY</code> for fresh vs. salt water.</p>
+
+        <h4>Zeroing Behaviour</h4>
+        <p>At every power-on, ArduPilot records the current atmospheric pressure as the 0 m reference. Powering on indoors introduces an offset equal to the indoor-to-surface pressure difference.</p>
+
+        <div class="callout">
+          <div class="callout-title">Correct Calibration Procedure</div>
+          <p>Float Jellybot at the water surface, then run Barometer calibration in QGroundControl (Vehicle Setup → Sensors). This re-zeros the depth reference without requiring a reboot.</p>
+        </div>
+
+        <p>Large depth reading jumps at the water surface are caused by the sensor face intermittently breaking the surface. Readings stabilise once submerged to ~20–30 cm. The Navigator's internal MS5611 barometer is sealed inside the enclosure — it is not usable for depth sensing.</p>
+
+        <hr class="sub-divider"/>
+
+        <h3>5.3 Leak Sensor Integration</h3>
+        <p>Two SOS leak sensor probes connect to the dedicated <strong>LEAK ports</strong> on the Navigator PCB — simple digital GPIO reads (wet/dry logic). Each probe tip contains a blue porous sponge; two electrical contacts are bridged when wet, triggering an ArduSub leak event.</p>
+        <p>ArduSub can be configured via QGroundControl's Safety tab to warn or automatically surface on leak detection. With the Navigator's built-in logic set to "Low when dry", no additional configuration is needed. Probes should be placed near cable penetrators, O-ring seals, and at the lowest point of the enclosure.</p>
+
+        <hr class="sub-divider"/>
+
+        <h3>5.4 Battery Monitoring</h3>
+        <p>A Blue Robotics Power Sense Module sits inline on the POWER port (JST GH 6-pin) between the battery and the Navigator, measuring voltage and current continuously.</p>
+        <p><strong>QGroundControl — Power Config:</strong> Monitor set to "Analog Voltage and Current", capacity 20,000 mAh, 3S, minimum arming voltage 0.0V (ArduPilot not used for motor arming). Live battery voltage and remaining capacity display in Cockpit, calculated by accumulating current draw against the 20,000 mAh capacity.</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 6. CAMERA CHARACTERISATION                -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="doc-section" id="section-6">
+        <span class="section-num">06</span>
+        <h2>Camera System Characterisation</h2>
+        <div class="section-rule"></div>
+
+        <h3>6.1 Introduction &amp; Motivation</h3>
+        <p>Jellybot's camera system consists of a <strong>Blue Robotics USB Low-Light Camera</strong> sealed behind a <strong>clear polycarbonate acrylic dome port</strong>. While essential for waterproofing, the dome introduces a refractive air–glass–water interface that can distort imagery.</p>
+        <p>For a system whose core task is visual identification of coral bleaching — a colour- and texture-sensitive problem — uncharacterised optical distortion poses a direct risk to detection reliability. Three objectives structure this work:</p>
+        <ol>
+          <li>Quantify geometric distortion introduced by the dome port, in air and underwater.</li>
+          <li>Characterise spatial sharpness degradation across the field of view (centre, edges, corners).</li>
+          <li>Evaluate auxiliary lighting effects on underwater image quality.</li>
+        </ol>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Scenario</th><th>Environment</th><th>Focus</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>1</td><td>Air</td><td>Dome optics baseline (distortion + sharpness)</td>
+                <td><span class="badge badge-done">✓ Complete</span></td>
+              </tr>
+              <tr>
+                <td>2</td><td>Water</td><td>Dome optics underwater (distortion + sharpness + chromatic aberration)</td>
+                <td><span class="badge badge-wip">⟳ In Progress</span></td>
+              </tr>
+              <tr>
+                <td>3</td><td>Water</td><td>Auxiliary lighting (colour accuracy, UCIQE, noise)</td>
+                <td><span class="badge badge-todo">Upcoming</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 8 — Camera Characterisation Scenarios</span>
+
+        <h3>6.2 Methodology</h3>
+        <h4>Calibration Target</h4>
+        <p>All geometric tests use a <strong>printed and laminated A4 checkerboard</strong> — 9 × 6 inner corners, 30 mm squares. A physically printed target is mandatory; digital displays introduce their own deformation. The target occupies 40–60% of the frame so distortion is measured across the full FOV including edges and corners.</p>
+
+        <h4>Capture Setup</h4>
+        <p>Two lamps at 45° angles minimise specular reflections. Tripod feet are marked for reproducibility. Each session captures 20 structured shots (centre, shifted, tilted, corner regions, near/far). Two sessions per scenario: <em>with dome</em> and <em>without</em>.</p>
+
+        <h4>Distortion Pipeline (Scenarios 1 &amp; 2)</h4>
+        <p><strong>Step 1 — Corner Detection</strong></p>
+        <pre><code>cv2.findChessboardCorners()   # Coarse detection
+cv2.cornerSubPix()            # Sub-pixel refinement</code></pre>
+        <p>Minimum 15/20 accepted images enforced per session.</p>
+
+        <p><strong>Step 2 — Camera Calibration</strong></p>
+        <pre><code>cv2.calibrateCamera()</code></pre>
+        <p>Yields intrinsic matrix and distortion coefficients <code>[k1, k2, p1, p2, k3]</code>. Sign: <code>k1 &lt; 0</code> → barrel distortion; <code>k1 &gt; 0</code> → pincushion. Dome effect: <code>Δk1 = k1_dome − k1_nodome</code>.</p>
+
+        <p><strong>Step 3 — Sharpness Mapping</strong></p>
+        <pre><code>laplacian_var = cv2.Laplacian(roi, cv2.CV_64F).var()</code></pre>
+        <p>Higher variance = sharper. Percentage sharpness reduction computed per zone (centre / edges / corners).</p>
+
+        <p><strong>Step 4 — Chromatic Aberration</strong> (Scenario 2 only) — In water, refractive index mismatch at the dome–water interface causes wavelength-dependent refraction, measured as lateral offset between R and B channels along detected edges.</p>
+
+        <h4>Lighting Pipeline (Scenario 3)</h4>
+        <p>Coral reef print replaces the checkerboard. Evaluated using <strong>UCIQE</strong> (Underwater Colour Image Quality Evaluation — combining chroma, saturation, and contrast), per-channel RGB histograms, noise level, and vignetting.</p>
+
+        <h3>6.3 Results &amp; Analysis</h3>
+        <h4>Scenario 1 — Dome Optics in Air</h4>
+        <p>Both sessions (dome and no-dome) achieved <strong>15/15 accepted images</strong>, confirming reliable corner detection.</p>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Condition</th><th>k1</th></tr></thead>
+            <tbody>
+              <tr><td>No dome (baseline)</td><td>−0.xxxx <em style="opacity:0.5">(insert value)</em></td></tr>
+              <tr><td>With dome</td><td>−0.xxxx <em style="opacity:0.5">(insert value)</em></td></tr>
+              <tr><td><strong>Δk1 (dome effect)</strong></td><td><strong>−0.0001</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Zone</th><th>Sharpness Reduction</th></tr></thead>
+            <tbody>
+              <tr><td>Centre</td><td>~30%</td></tr>
+              <tr><td>Edges</td><td>~39%</td></tr>
+              <tr><td>Corners</td><td>~58%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 9 — Scenario 1 Spatial Sharpness Results</span>
+
+        <div class="callout">
+          <div class="callout-title">Key Finding — Scenario 1</div>
+          <p>In air, the dome port's primary impact is not distortion (Δk1 = −0.0001, negligible) but spatially-varying sharpness loss — most severe at corners (−58%), consistent with off-axis spherical dome aberrations.</p>
+        </div>
+
+        <h4>Scenario 2 — Dome Optics in Water</h4>
+        <p>Results pending — capture session in progress. Expected: increased |Δk1|, greater corner sharpness degradation, and measurable chromatic aberration at the dome–water interface.</p>
+
+        <h4>Scenario 3 — Auxiliary Lighting in Water</h4>
+        <p>Pending completion of Scenario 2.</p>
+
+        <h3>6.4 Future Work</h3>
+        <ol>
+          <li>Scenario 2 completion — Underwater checkerboard capture and full analysis.</li>
+          <li>Scenario 3 completion — Auxiliary lighting characterisation with coral reef print.</li>
+          <li>Live undistortion — Pre-computed remap tables via <code>cv2.initUndistortRectifyMap()</code> for real-time onboard correction.</li>
+          <li>Coral bleaching pipeline integration — Corrected camera feeds the downstream classification system.</li>
+        </ol>
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 7. 3D VISUALISER                          -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="doc-section" id="section-7">
+        <span class="section-num">07</span>
+        <h2>3D Orientation Visualiser</h2>
+        <div class="section-rule"></div>
+        <p>A custom BlueOS extension provides real-time visual representation of Jellybot's orientation — addressing the lack of visual feedback inherent to operating an upright cylinder underwater.</p>
+
+        <h4>What It Does</h4>
+        <p>A 3D model of Jellybot (cylindrical body, dome top, animated tentacles) renders in the browser; its roll, pitch, and yaw mirror the actual vehicle's live orientation.</p>
+
+        <h4>How It Works</h4>
+        <ul>
+          <li>Every 100 ms, the extension polls MAVLink2REST at <code>/mavlink/vehicles/1/components/1/messages/ATTITUDE</code>.</li>
+          <li>Roll, pitch, yaw (radians, NED frame) map to Three.js axes: Pitch → X, −Yaw → Y, Roll → Z.</li>
+          <li>Linear interpolation (lerp) smoothing prevents jittery motion.</li>
+          <li>HUD overlay shows roll/pitch/yaw in degrees with bar indicators.</li>
+          <li>Green ● Live / red ● No Signal pill shows connection status.</li>
+          <li>Manual drag-to-rotate overrides the live feed for inspection.</li>
+        </ul>
+
+        <h4>Deployment</h4>
+        <p>Packaged as a Docker image, pushed to Docker Hub, installed via BlueOS Extension Manager (Kraken). Registers as a sidebar service via the <code>register_service</code> API on startup. Served via nginx, which also proxies MAVLink2REST to avoid CORS issues. Delivered as plain HTML (Three.js) for compatibility with phone and iPad access.</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 8. POOL TEST                              -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="doc-section" id="section-8">
+        <span class="section-num">08</span>
+        <h2>Pool Test &amp; Video Recording</h2>
+        <div class="section-rule"></div>
+        <p>A pool test was conducted with the team to validate the overall system. Video was recorded via <strong>Cockpit's Video Library</strong> widget, which saves recordings as <code>.mkv</code> files alongside <code>.ass</code> telemetry subtitle files containing time-stamped sensor data overlaid on the footage.</p>
+
+        <h4>Playback Notes</h4>
+        <ul>
+          <li><code>.mkv</code> files require <strong>VLC</strong> (not QuickTime).</li>
+          <li>Telemetry overlay: VLC → Subtitles → Add Subtitle File → select the <code>.ass</code> file.</li>
+          <li>For permanent burn-in: HandBrake can encode the subtitle into a <code>.mp4</code> with the overlay baked in.</li>
+        </ul>
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 9. ENGINEERING DECISIONS                  -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="doc-section" id="section-9">
+        <span class="section-num">09</span>
+        <h2>Key Engineering Decisions</h2>
+        <div class="section-rule"></div>
+
+        <h4>Why not use ArduPilot GPIO or Servo PWM for motor control?</h4>
+        <p>ArduPilot's "GPIO" channel mode is a software label only — the physical pins remain PCA9685 I²C outputs. Servo PWM (50 Hz, 1000–2000 µs) encodes <em>position</em>, not duty cycle, making it incompatible with H-bridge motor control. Driving the PCA9685 directly via <code>smbus2</code> was the correct approach.</p>
+
+        <h4>Independent H-Bridge Drivers</h4>
+        <p>The initial design used a single driver with motors and solenoids in parallel per channel. This was revised to <strong>two independent drivers</strong> to give individual control over each motor and solenoid, enabling the trap-air sequence and precise per-flap operation.</p>
+
+        <div class="callout callout-warn">
+          <div class="callout-title">Lesson Learned — Wiring Verification</div>
+          <p>A motor/solenoid channel swap caused partial failures (individual commands failed; "all channels" worked). This highlighted the importance of empirically verifying wiring rather than relying on assumed pin mappings.</p>
+        </div>
+
+        <h4>Component Securing</h4>
+        <p>Tape-based mounting failed under motor and valve vibration. The final securing method uses <strong>hose clamps</strong> around motor bodies and <strong>epoxy putty</strong> at PCB corners — no bracket redesigns needed, reliable mechanical retention achieved.</p>
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 10. SUMMARY & PENDING                     -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="doc-section" id="section-10">
+        <span class="section-num">10</span>
+        <h2>Summary &amp; Pending Work</h2>
+        <div class="section-rule"></div>
+        <p>This semester's electronics work established the full sensing, actuation, and software extension stack for Jellybot. The Navigator-based sensor platform, pneumatic flap actuation system, camera capture extension, 3D orientation visualiser, and dome port characterisation collectively provide the foundation for reliable underwater operation and downstream computer vision tasks.</p>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Compass calibration</td>
+                <td><span class="badge badge-todo">Pending</span></td>
+                <td>Requires wireless connection; planned via phone WiFi hotspot</td>
+              </tr>
+              <tr>
+                <td>MAVLink2REST port confirmation</td>
+                <td><span class="badge badge-todo">Pending</span></td>
+                <td>Default 6040; to be verified on live deployment</td>
+              </tr>
+              <tr>
+                <td>Bar02 validation (submerged)</td>
+                <td><span class="badge badge-wip">Partial</span></td>
+                <td>Surface instability observed; confirm stable at 20–30 cm</td>
+              </tr>
+              <tr>
+                <td>Camera Scenario 2 (underwater)</td>
+                <td><span class="badge badge-wip">In Progress</span></td>
+                <td>Checkerboard capture and chromatic aberration analysis pending</td>
+              </tr>
+              <tr>
+                <td>Camera Scenario 3 (auxiliary lighting)</td>
+                <td><span class="badge badge-todo">Upcoming</span></td>
+                <td>Dependent on Scenario 2 completion</td>
+              </tr>
+              <tr>
+                <td>Live undistortion pipeline</td>
+                <td><span class="badge badge-todo">Upcoming</span></td>
+                <td>Requires Scenarios 1 &amp; 2 coefficients; <code>cv2.initUndistortRectifyMap()</code></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 10 — Pending Work</span>
+      </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 11. REFERENCES                            -->
+      <!-- ══════════════════════════════════════════ -->
+      <div class="doc-section" id="section-11">
+        <span class="section-num">11</span>
+        <h2>References</h2>
+        <div class="section-rule"></div>
+        <ol>
+          <li><p>Blue Robotics. (2024). <em>Navigator Flight Controller Documentation.</em> Blue Robotics. https://bluerobotics.com</p></li>
+          <li><p>Blue Robotics. (2024). <em>Bar02 Ultra-High Resolution 10m Depth/Pressure Sensor.</em> Blue Robotics.</p></li>
+          <li><p>ArduPilot Development Team. (2024). <em>ArduSub Documentation — Parameters and Sensor Configuration.</em> https://www.ardusub.com</p></li>
+          <li><p>Blue Robotics. (2024). <em>BlueOS Documentation.</em> https://blueos.cloud</p></li>
+          <li><p>OpenCV Team. (2024). <em>Camera Calibration and 3D Reconstruction.</em> OpenCV Documentation. https://docs.opencv.org</p></li>
+          <li><p>Yang, M., Sowmya, A. (2015). An underwater color image quality evaluation metric. <em>IEEE Transactions on Image Processing, 24</em>(12), 6062–6071.</p></li>
+        </ol>
       </div>
 
     </main>
@@ -683,7 +1047,7 @@
 
   <footer>
     <span class="footer-logo">Jelly<span>bot</span></span>
-    <p>© 2025 Jellybot Project — Mechanical Subsystem</p>
+    <p style="color:var(--muted);font-size:0.85em;">© 2025 Jellybot Project — Electronics &amp; Control Subsystem (Semester 2) by Wallace Wee</p>
   </footer>
 
   <script>
