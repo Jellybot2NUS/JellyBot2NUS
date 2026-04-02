@@ -376,11 +376,11 @@
     <aside class="sidebar">
       <span class="toc-label">Contents</span>
       <ul class="toc-list" id="toc">
-        <li><a href="#section-1">1. Overview</a></li>
-        <li><a href="#section-2">2. Structural Design</a></li>
-        <li><a href="#section-3">3. Material Selection</a></li>
-        <li><a href="#section-4">4. CAD & Fabrication</a></li>
-        <li><a href="#section-5">5. Future Iterations</a></li>
+        <li><a href="#section-1">1. System Overview</a></li>
+        <li><a href="#section-2">2. Negative Buoyancy Analysis</a></li>
+        <li><a href="#section-3">3. Buoyancy Verification</a></li>
+        <li><a href="#section-4">4. Propulsion Performance</a></li>
+        <li><a href="#section-5">5. Depth Control Analysis</a></li>
       </ul>
     </aside>
 
@@ -390,65 +390,110 @@
         <span class="section-num">01</span>
         <h2>System Overview</h2>
         <div class="section-rule"></div>
-        <p>The mechanical subsystem serves as the physical body of Jellybot, designed to withstand hydrostatic pressure while maintaining the flexibility required for pulsatile propulsion.</p>
-        <p>Replace this text with your specific mechanical overview. Discuss the body structure, how it houses the internal components, and the overall dimensions.</p>
+        <p>During Phase l of the JellyBot project, JellyBot 1.0 demonstrated its ability to remain neutrally buoyant under water and also displayed potential in its upwards propulsion as per the critical functions, Buoyancy and Propulsion respectively. However, from these testings, we discovered certain shortcomings which we would rectify and overcome in Phase ll </p> 
+        <p>Phase ll focuses on the practicality of our project which is the ability for underwater surveillance. To achieve this, 4 properties of JellyBot 2.0 must be verified:</p>
+        <ol>
+            <li>JellyBot 2.0 must descend to desired depths without manual assistance (Achieved through its Negative Buoyancy property)</li>
+            <li>JellyBot 2.0 is able to achieve upward propulsion</li>
+            <li>JellyBot 2.0 is able to achieve depth control for the purpose of capturing visual data</li>
+            <li>JellyBot 2.0 is able to propel horizontally</li>
+        </ol>
+
+          <p>As such, 4 different types of tests were conducted, to verify the above 4 properties.</p>
       </div>
 
       <div class="doc-section" id="section-2">
         <span class="section-num">02</span>
         <h2>Structural Design</h2>
         <div class="section-rule"></div>
-        <p>Insert details about the design of the housing, the tentacle attachment points, and the waterproof sealing mechanisms. You can reference specific design constraints here.</p>
-
+      
         <div class="callout">
-          <div class="callout-title">Design Philosophy</div>
-          <p>Discuss the biomimetic inspiration behind the mechanical form here. How does it mimic a real jellyfish?</p>
+          <div class="callout-title">Achieving Negative Buoyancy</div>
+          <p>Negative Buoyancy is achieved when the downward Weight (W) exceeds the upward Buoyant Force (Fb).</p>
         </div>
       </div>
 
-      <div class="doc-section" id="section-3">
-        <span class="section-num">03</span>
-        <h2>Material Selection</h2>
-        <div class="section-rule"></div>
-        <p>Discuss the use of soft materials like silicone (e.g., Ecoflex) and rigid components for the main body housing.</p>
+      div class="callout">
+          <div class="callout-title">Mass Calculation</div>
+          <p>The total dry mass of JellyBot 2.0 is 3065g (3.065kg). At standard gravity, Weight is calculated as:</p>
+          <p style="font-family: 'DM Mono', monospace; color: var(--text); font-size: 1.1em; margin-top: 10px;">W = mg ≈ 30.07N</p>
+        </div>
 
+        <p>The total displaced volume of JellyBot 2.0 is approximately 3194.5cm³. This results in a natural Buoyant Force (Fb) of 31.34N. Since W < Fb, the robot is naturally positively buoyant.[cite: 1]</p>
+
+        <div class="callout">
+            <div class="callout-title">Refinement for Mission Success</div>
+            <p>Theoretical neutral buoyancy required 130g of additional mass. Testing determined that 400g of added mass was the optimal threshold to achieve negative buoyancy (sinking at 3.33cm/s) while retaining the ability to propel upwards.[cite: 1]</p>
+        </div>
+      </div>
+
+
+     <div class="doc-section" id="section-3">
+        <span class="section-num">03</span>
+        <h2>Buoyancy Verification Results</h2>
+        <div class="section-rule"></div>
         <div class="table-wrap">
           <table class="styled-table">
             <thead>
               <tr>
-                <th>Material</th>
-                <th>Properties</th>
-                <th>Application</th>
+                <th>Test #</th>
+                <th>Configuration</th>
+                <th>Observation</th>
+                <th>Result</th>
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Silicone (Ecoflex 00-30)</td>
-                <td>High Elasticity</td>
-                <td>Pneumatic Tentacles</td>
-              </tr>
-              <tr>
-                <td>Acrylic / PLA</td>
-                <td>Rigid / Waterproof</td>
-                <td>Electronics Housing</td>
-              </tr>
+              <tr><td>1</td><td>Dry Mass (3065g)</td><td>Floats on water</td><td>Positively Buoyant[cite: 1]</td></tr>
+              <tr><td>2</td><td>Added 250g</td><td>Floats on water</td><td>Positively Buoyant[cite: 1]</td></tr>
+              <tr><td>4</td><td>Added 500g</td><td>Sinks at 7.5cm/s</td><td>Negatively Buoyant (Too heavy)[cite: 1]</td></tr>
+              <tr><td>5</td><td>Added 400g</td><td>Sinks at 3.33cm/s</td><td>Optimal Negative Buoyancy[cite: 1]</td></tr>
             </tbody>
           </table>
+        </div>
+        <div class="callout-warn callout" style="border-left-color: #e8a44a; background: rgba(232,164,74,0.08);">
+            <div class="callout-title" style="color: #e8a44a;">Environmental Shortcoming</div>
+            <p>Tests were conducted in freshwater (1g/cm³). Ocean deployment (1.025g/cm³) will require masses exceeding 400g due to higher water density.[cite: 1]</p>
         </div>
       </div>
 
       <div class="doc-section" id="section-4">
         <span class="section-num">04</span>
-        <h2>CAD & Fabrication</h2>
+        <h2>Propulsion Performance</h2>
         <div class="section-rule"></div>
-        <p>Detail the modeling process (SolidWorks, Fusion 360) and the fabrication methods (3D printing, casting) used to create the mechanical parts.</p>
+        <p>Upward propulsion was verified through five iterations in a test tank to determine velocity consistency and lateral stability.[cite: 1]</p>
+
+        
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr>
+                <th>Metric</th>
+                <th>Average Result</th>
+                <th>Variation Range</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Vertical Velocity</td><td>3.05 cm/s</td><td>2.92 – 3.20 cm/s[cite: 1]</td></tr>
+              <tr><td>Horizontal Drift</td><td>7.2 cm</td><td>6.0 – 11.0 cm[cite: 1]</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>While vertical thrust is repeatable, the consistent horizontal drift suggests a minor system imbalance, likely due to asymmetric mass distribution or thrust instability.[cite: 1]</p>
       </div>
 
       <div class="doc-section" id="section-5">
         <span class="section-num">05</span>
-        <h2>Future Iterations</h2>
+        <h2>Vertical Depth Control Analysis</h2>
         <div class="section-rule"></div>
-        <p>Outline what you would change in the mechanical design for version 2.0. Perhaps lighter materials or a more streamlined profile?</p>
+        <p>To ensure high-quality visual data collection, JellyBot must maintain depth within a ±5cm tolerance. Trials at 0.5m depths confirmed mission success.[cite: 1]</p>
+
+        <div class="callout">
+            <div class="callout-title">Control Verification</div>
+            <p>During 10-second trials, JellyBot 2.0 successfully hovered within the required range. Trial 1 fluctuated between 50cm and 55cm, remaining within design specifications.[cite: 1]</p>
+        </div>
+
+        <p><strong>Operational Limitation:</strong> Currently, depth control is passive (manual). The depth sensor suffers from calibration issues underwater, requiring manual controller inputs from an operator receiving surface commands.[cite: 1]</p>
       </div>
 
     </main>
