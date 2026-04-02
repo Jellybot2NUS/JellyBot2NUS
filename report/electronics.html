@@ -909,33 +909,18 @@ Flask API (Port 8084)
         <span class="caption">Table 10 — Scenario 2 Spatial Sharpness Results</span>
         
         <h4>Analysis</h4>
-          <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. 
-          For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
+          <p>The results partially support the hypothesis. Being underwater introduced significantly more barrel distortion than in air, with Δk1 shifting from −0.000102 in Scenario 1 to −0.039674. This confirms the hypothesis that water refraction has an effect on image geometry. However, unlike
+            scenario 1, only 6 pictures were taken (in contrast to 15). [to shift this to improvements]. The sharpness results was expected to be similar to scenario 1, with the centre having the least sharpness loss. However, here the pattern is reversed: the centre degraded the most 
+            (88%) while the corners degraded the least (49%). This does not support what we visually see and expect optically, since dome should cause more blurring towards the corners rather than the centre. Therefore, scenario 2 sharpness numbers are not reliable as optical measurements and should not be directly 
+            compared against Scenario 1.</p>
         
 
-
-        
-        
-        <h4>Results &amp; Analysis</h4>
-        <div class="callout callout-warn">
-          <div class="callout-title">Pending</div>
-          <p>Underwater checkerboard capture session in progress. Results and analysis will be populated upon completion.</p>
-        </div>
-                
-
-        
-        <h4>Scenario 2 — Dome Optics in Water</h4>
-        <p>Results pending — capture session in progress. Expected: increased |Δk1|, greater corner sharpness degradation, and measurable chromatic aberration at the dome–water interface.</p>
-
-        <h4>Scenario 3 — Auxiliary Lighting in Water</h4>
-        <p>Pending completion of Scenario 2.</p>
+        <h4>Scenario 3 — Colour Visibility in Water</h4>
+        <p>Pending Upload</p>
 
         <h3>6.4 Future Work</h3>
         <ol>
-          <li>Scenario 2 completion — Underwater checkerboard capture and full analysis.</li>
-          <li>Scenario 3 completion — Auxiliary lighting characterisation with coral reef print.</li>
-          <li>Live undistortion — Pre-computed remap tables via <code>cv2.initUndistortRectifyMap()</code> for real-time onboard correction.</li>
-          <li>Coral bleaching pipeline integration — Corrected camera feeds the downstream classification system.</li>
+          <li>To be Uploaded</li>
         </ol>
       </div>
 
@@ -974,13 +959,7 @@ Flask API (Port 8084)
         <div class="section-rule"></div>
         <p>A pool test was conducted with the team to validate the overall system. Video was recorded via <strong>Cockpit's Video Library</strong> widget, which saves recordings as <code>.mkv</code> files alongside <code>.ass</code> telemetry subtitle files containing time-stamped sensor data overlaid on the footage.</p>
 
-        <h4>Playback Notes</h4>
-        <ul>
-          <li><code>.mkv</code> files require <strong>VLC</strong> (not QuickTime).</li>
-          <li>Telemetry overlay: VLC → Subtitles → Add Subtitle File → select the <code>.ass</code> file.</li>
-          <li>For permanent burn-in: HandBrake can encode the subtitle into a <code>.mp4</code> with the overlay baked in.</li>
-        </ul>
-      </div>
+
 
       <!-- ══════════════════════════════════════════ -->
       <!-- 9. ENGINEERING DECISIONS                  -->
@@ -996,13 +975,6 @@ Flask API (Port 8084)
         <h4>Independent H-Bridge Drivers</h4>
         <p>The initial design used a single driver with motors and solenoids in parallel per channel. This was revised to <strong>two independent drivers</strong> to give individual control over each motor and solenoid, enabling the trap-air sequence and precise per-flap operation.</p>
 
-        <div class="callout callout-warn">
-          <div class="callout-title">Lesson Learned — Wiring Verification</div>
-          <p>A motor/solenoid channel swap caused partial failures (individual commands failed; "all channels" worked). This highlighted the importance of empirically verifying wiring rather than relying on assumed pin mappings.</p>
-        </div>
-
-        <h4>Component Securing</h4>
-        <p>Tape-based mounting failed under motor and valve vibration. The final securing method uses <strong>hose clamps</strong> around motor bodies and <strong>epoxy putty</strong> at PCB corners — no bracket redesigns needed, reliable mechanical retention achieved.</p>
       </div>
 
       <!-- ══════════════════════════════════════════ -->
@@ -1012,47 +984,8 @@ Flask API (Port 8084)
         <span class="section-num">10</span>
         <h2>Summary &amp; Pending Work</h2>
         <div class="section-rule"></div>
-        <p>This semester's electronics work established the full sensing, actuation, and software extension stack for Jellybot. The Navigator-based sensor platform, pneumatic flap actuation system, camera capture extension, 3D orientation visualiser, and dome port characterisation collectively provide the foundation for reliable underwater operation and downstream computer vision tasks.</p>
+        <p>To be Uploaded</p>
 
-        <div class="table-wrap">
-          <table class="styled-table">
-            <thead><tr><th>Item</th><th>Status</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr>
-                <td>Compass calibration</td>
-                <td><span class="badge badge-todo">Pending</span></td>
-                <td>Requires wireless connection; planned via phone WiFi hotspot</td>
-              </tr>
-              <tr>
-                <td>MAVLink2REST port confirmation</td>
-                <td><span class="badge badge-todo">Pending</span></td>
-                <td>Default 6040; to be verified on live deployment</td>
-              </tr>
-              <tr>
-                <td>Bar02 validation (submerged)</td>
-                <td><span class="badge badge-wip">Partial</span></td>
-                <td>Surface instability observed; confirm stable at 20–30 cm</td>
-              </tr>
-              <tr>
-                <td>Camera Scenario 2 (underwater)</td>
-                <td><span class="badge badge-wip">In Progress</span></td>
-                <td>Checkerboard capture and chromatic aberration analysis pending</td>
-              </tr>
-              <tr>
-                <td>Camera Scenario 3 (auxiliary lighting)</td>
-                <td><span class="badge badge-todo">Upcoming</span></td>
-                <td>Dependent on Scenario 2 completion</td>
-              </tr>
-              <tr>
-                <td>Live undistortion pipeline</td>
-                <td><span class="badge badge-todo">Upcoming</span></td>
-                <td>Requires Scenarios 1 &amp; 2 coefficients; <code>cv2.initUndistortRectifyMap()</code></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <span class="caption">Table 10 — Pending Work</span>
-      </div>
 
       <!-- ══════════════════════════════════════════ -->
       <!-- 11. REFERENCES                            -->
