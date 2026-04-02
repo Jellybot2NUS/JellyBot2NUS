@@ -279,6 +279,14 @@
       margin-bottom: 12px;
       margin-top: 28px;
     }
+    .doc-section h4 {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin: 24px 0 10px;
+    }
 
     .section-rule {
       width: 48px;
@@ -313,7 +321,24 @@
       margin-bottom: 8px;
       letter-spacing: 0.15em;
     }
-
+    /* ─── CAPTION ───────────────────────────────────── */
+    .caption {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      opacity: 0.7;
+      margin-bottom: 24px;
+      display: block;
+    }
+    
+    /* ─── CALLOUT WARN VARIANT ──────────────────────── */
+    .callout-warn {
+      border-left-color: #f59e0b;
+      background: rgba(245,158,11,0.08);
+    }
+    .callout-warn .callout-title { color: #f59e0b; }
+    
     /* ─── TABLES ────────────────────────────────────── */
     .table-wrap { overflow-x: auto; margin: 28px 0; }
 
@@ -338,6 +363,73 @@
       border-bottom: 1px solid var(--glass-border);
       color: var(--muted);
     }
+    
+    /* ─── TABLES (td strong) ────────────────────────── */
+    .styled-table td strong { color: var(--text); }
+
+    /* ─── STATUS BADGES ─────────────────────────────── */
+    .badge {
+      display: inline-block;
+      font-family: 'DM Mono', monospace;
+      font-size: 0.7em;
+      padding: 3px 9px;
+      border-radius: 3px;
+      letter-spacing: 0.05em;
+    }
+    .badge-done { background: rgba(110,231,183,0.12); color: #6ee7b7; border: 1px solid rgba(110,231,183,0.3); }
+    .badge-wip  { background: rgba(251,191,36,0.1);  color: #fbbf24; border: 1px solid rgba(251,191,36,0.3); }
+    .badge-todo { background: rgba(255,255,255,0.05); color: var(--muted); border: 1px solid var(--glass-border); }
+    /* ─── CODE BLOCKS ───────────────────────────────── */
+    pre {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid var(--glass-border);
+      border-left: 2px solid rgba(77,184,212,0.4);
+      border-radius: 0 4px 4px 0;
+      padding: 20px 24px;
+      overflow-x: auto;
+      margin: 16px 0 24px;
+    }  
+    pre code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.8em;
+      color: rgba(232,237,245,0.75);
+      line-height: 1.7;
+      background: none;
+      border: none;
+      padding: 0;
+    }
+    p code, li code, td code {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.82em;
+      background: rgba(77,184,212,0.08);
+      border: 1px solid rgba(77,184,212,0.2);
+      border-radius: 3px;
+      padding: 1px 6px;
+      color: var(--accent);
+    }
+
+    /* ─── LISTS ─────────────────────────────────────── */
+    .doc-section ul,
+    .doc-section ol {
+      padding-left: 1.4rem;
+      margin-bottom: 16px;
+    }
+    .doc-section li {
+      font-size: 0.95em;
+      font-weight: 300;
+      color: var(--muted);
+      margin: 6px 0;
+      line-height: 1.7;
+    }
+    .doc-section li strong { color: var(--text); }
+
+    /* ─── DIVIDER ───────────────────────────────────── */
+    .sub-divider {
+      border: none;
+      border-top: 1px solid var(--glass-border);
+      margin: 36px 0;
+    }
+    
 
     /* ─── FOOTER ────────────────────────────────────── */
     footer {
@@ -443,7 +535,6 @@
         <h3>2.1 Sensors and Actuators</h3>
         
         <p>The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream:</p>
-        <ul style="color: var(--muted); font-size: 0.95em; font-weight: 300; line-height: 1.85; padding-left: 20px; margin: 16px 0;">
         <li>To provide a user control interface [design specification 3b], the Playstation 4 Controller was selected.</li>
         <li>To measure depth [design specification 4a], the Blue Robotics Bar02 Sensor was selected.</li>
         <li>To provide orientation [design specification 4b], the Blue Robotics Flight Navigator was selected.</li>
