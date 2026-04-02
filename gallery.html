@@ -1,17 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery | Jellybot BTS</title>
-  <link rel="stylesheet" href="style.css"> <!-- Link to your existing CSS -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Mono:wght@300;400&family=Outfit:wght@200;300;400;500&display=swap" rel="stylesheet">
+
   <style>
-    /* Specific Gallery Styles */
-    .gallery-grid {
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --ink: #0a0f1a;
+      --deep: #060c16;
+      --surface: #0e1828;
+      --glass: rgba(255,255,255,0.04);
+      --glass-border: rgba(255,255,255,0.08);
+      --text: #e8edf5;
+      --muted: rgba(232,237,245,0.5);
+      --accent: #4db8d4;
+      --accent-dim: rgba(77,184,212,0.12);
+      --accent-glow: rgba(77,184,212,0.3);
+      --seafoam: #6ee7c7;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: var(--deep);
+      color: var(--text);
+      overflow-x: hidden;
+      line-height: 1.7;
+    }
+
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: var(--deep); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+
+    /* ─── NAV ───────────────────────────────────────── */
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 20px 60px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(6,12,22,0.97) 0%, transparent 100%);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: all 0.3s ease;
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.6em;
+      font-weight: 300;
+      letter-spacing: 0.15em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .logo span { color: var(--accent); }
+
+    nav { display: flex; gap: 40px; }
+    nav a {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.72em;
+      font-weight: 300;
+      text-transform: uppercase;
+      color: var(--muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    nav a:hover { color: var(--text); }
+
+    /* ─── HERO ──────────────────────────────────────── */
+    .hero {
+      position: relative;
+      min-height: 45vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 120px 60px 72px;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background-image: url('https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
+      background-size: cover;
+      background-position: center;
+      opacity: 0.15;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, transparent 0%, rgba(6,12,22,1) 100%);
+    }
+
+    .hero-content { position: relative; z-index: 2; animation: fadeUp 1s ease both; }
+    .hero-eyebrow {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.68em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+      display: block;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5em, 6vw, 4em);
+      font-weight: 300;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+
+    /* ─── LAYOUT ────────────────────────────────────── */
+    .page-body {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-      gap: 20px;
-      padding: 40px 0;
+      grid-template-columns: 260px 1fr;
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 60px 60px 120px;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 100px;
+      align-self: start;
+      padding-right: 40px;
+      border-right: 1px solid var(--glass-border);
+    }
+
+    .toc-label {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.6em;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 24px;
+      display: block;
+    }
+
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
+    .toc-list a {
+      display: block;
+      padding: 8px 12px;
+      font-size: 0.8em;
+      color: var(--muted);
+      text-decoration: none;
+      border-left: 2px solid transparent;
+      transition: all 0.2s ease;
+    }
+    .toc-list a:hover, .toc-list a.active {
+      color: var(--accent);
+      border-left-color: var(--accent);
+      background: var(--accent-dim);
+    }
+
+    /* ─── CONTENT ───────────────────────────────────── */
+    .content { padding-left: 60px; }
+
+    .doc-section {
+      margin-bottom: 100px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.6s ease;
+    }
+    .doc-section.visible { opacity: 1; transform: translateY(0); }
+
+    .section-num {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.62em;
+      letter-spacing: 0.25em;
+      color: var(--accent);
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2em; font-weight: 300; margin-bottom: 8px; }
+    .section-rule { width: 48px; height: 2px; background: linear-gradient(to right, var(--accent), transparent); margin-bottom: 32px; }
+
+    /* ─── GALLERY SYSTEM ────────────────────────────── */
+    .media-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 24px;
+      margin-top: 32px;
     }
 
     .media-card {
@@ -19,93 +198,188 @@
       border: 1px solid var(--glass-border);
       border-radius: 8px;
       overflow: hidden;
-      transition: transform 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .media-card:hover {
-      transform: scale(1.02);
       border-color: var(--accent);
+      background: var(--accent-dim);
+      transform: translateY(-5px);
     }
 
-    .media-card video, .media-card img {
+    .media-box {
       width: 100%;
-      display: block;
       aspect-ratio: 16/9;
+      background: var(--surface);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .media-box video, .media-box img {
+      width: 100%;
+      height: 100%;
       object-fit: cover;
+      display: block;
     }
 
-    .media-info {
-      padding: 15px;
-    }
-
-    .media-info span {
+    .media-info { padding: 20px; }
+    .media-tag {
       font-family: 'DM Mono', monospace;
-      font-size: 0.7em;
+      font-size: 0.65em;
       color: var(--accent);
       text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 8px;
+      display: block;
+    }
+    .media-info h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2em;
+      font-weight: 400;
+      color: var(--text);
+      line-height: 1.3;
     }
 
-    .media-info h4 {
-      font-family: 'Outfit', sans-serif;
-      font-size: 0.9em;
-      margin-top: 5px;
-      color: var(--text);
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 1024px) {
+      .page-body { grid-template-columns: 1fr; padding: 40px 32px; }
+      .sidebar { display: none; }
+      .content { padding-left: 0; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Use your existing Header -->
   <header id="site-header">
-    <a href="../index.html" class="logo">Jelly<span>bot</span></a>
+    <a href="index.html" class="logo">Jelly<span>bot</span></a>
     <nav>
-      <a href="../index.html">Home</a>
-      <a href="../about.html">About</a>
-      <a href="../contact.html">Contact</a>
-      <a href="../report/report.html">Report</a>
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="report/report.html">Report</a>
+      <a href="gallery.html" style="color: var(--text);">Gallery</a>
     </nav>
   </header>
 
-  <section class="hero" style="min-height: 40vh;">
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
-      <span class="hero-eyebrow">Visual Evidence</span>
-      <h1>Testing <em>Archive</em></h1>
-      <p class="hero-sub">Raw footage and documentation from our 2026 field trials and lab assembly.</p>
+      <span class="hero-eyebrow">Visual Documentation</span>
+      <h1>Testing & <em>Archive</em></h1>
+      <p class="hero-sub" style="max-width: 60ch; color: var(--muted); font-size: 1em; font-weight: 200;">Behind-the-scenes footage of our 2026 development cycle, lab assembly, and field verification trials.</p>
     </div>
   </section>
 
-  <div class="content-wrap">
-    
-    <div class="gallery-grid">
-      <!-- Example Video Card -->
-      <div class="media-card">
-        <video controls>
-          <source src="videos/propulsion_test.mp4" type="video/mp4">
-          Your browser does not support the video tag.
-        </video>
-        <div class="media-info">
-          <span>Testing · Propulsion</span>
-          <h4>Phase II: Upward Thrust Trials</h4>
+  <div class="page-body">
+
+    <aside class="sidebar">
+      <span class="toc-label">Filter</span>
+      <ul class="toc-list" id="toc">
+        <li><a href="#section-videos">Development Videos</a></li>
+        <li><a href="#section-photos">Component Photos</a></li>
+        <li><a href="#section-field">Sea Trials</a></li>
+      </ul>
+    </aside>
+
+    <main class="content">
+
+      <!-- VIDEO SECTION -->
+      <section class="doc-section" id="section-videos">
+        <span class="section-num">01</span>
+        <h2>Work <em>Footage</em></h2>
+        <div class="section-rule"></div>
+        
+        <div class="media-grid">
+          
+          <!-- VIDEO CARD 1 -->
+          <div class="media-card">
+            <div class="media-box">
+              <video controls poster="images/thumb1.jpg">
+                <source src="videos/propulsion_test.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+              </video>
+            </div>
+            <div class="media-info">
+              <span class="media-tag">Verification · Propulsion</span>
+              <h4>Phase II: Vertical Thrust and Pulsation Stability</h4>
+            </div>
+          </div>
+
+          <!-- VIDEO CARD 2 -->
+          <div class="media-card">
+            <div class="media-box">
+              <video controls>
+                <source src="videos/assembly_timelapse.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="media-info">
+              <span class="media-tag">Assembly · Mechanical</span>
+              <h4>Modular Mounting Tray Integration Timelapse</h4>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </section>
 
-      <!-- Example Image Card -->
-      <div class="media-card">
-        <img src="images/assembly_bts.jpg" alt="Assembly process">
-        <div class="media-info">
-          <span>Behind the Scenes</span>
-          <h4>Internal Mounting Tray Assembly</h4>
+      <!-- PHOTO SECTION -->
+      <section class="doc-section" id="section-photos">
+        <span class="section-num">02</span>
+        <h2>Detailed <em>Exhibits</em></h2>
+        <div class="section-rule"></div>
+        
+        <div class="media-grid">
+
+          <!-- PHOTO CARD 1 -->
+          <div class="media-card">
+            <div class="media-box">
+              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/fullcad.jpg?raw=true" alt="Exhibit A">
+            </div>
+            <div class="media-info">
+              <span class="media-tag">Component · CAD</span>
+              <h4>Prototype 2: Digital Twin Validation</h4>
+            </div>
+          </div>
+
+          <!-- PHOTO CARD 2 -->
+          <div class="media-card">
+            <div class="media-box">
+              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/mechanical/assembledtray.jpg?raw=true" alt="Exhibit B">
+            </div>
+            <div class="media-info">
+              <span class="media-tag">Mechanical · Internal</span>
+              <h4>Wired Structural Framework (Pre-Deployment)</h4>
+            </div>
+          </div>
+
         </div>
-      </div>
+      </section>
 
-      <!-- Add more cards as needed -->
-    </div>
-
+    </main>
   </div>
 
   <footer>
-    <p>© 2026 Jellybot Project · Gallery Archive</p>
+    <span class="footer-logo">Jelly<span>bot</span></span>
+    <p>© 2026 Jellybot Project · Visual Archive</p>
   </footer>
+
+  <script>
+    // Header shrink logic
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
+      header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+    }, { passive: true });
+
+    // Reveal logic
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.doc-section').forEach(el => observer.observe(el));
+  </script>
 
 </body>
 </html>
