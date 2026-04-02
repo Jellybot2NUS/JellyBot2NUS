@@ -366,8 +366,8 @@
     <div class="hero-content">
       <span class="hero-eyebrow">Subsystem Report · Electronics</span>
       <h1>Electronics<br><em>Subsystem</em></h1>
-      <p class="hero-sub">Embedded Control System and Signal Processing</p>
-      <div class="hero-author">By [Your Name]</div>
+      <p class="hero-sub">Navigator-based sensing, pneumatic actuation, camera characterisation, and custom BlueOS extensions for underwater operation</p>
+      <div class="hero-author">By Wallace Wee</div>
     </div>
   </section>
 
@@ -385,14 +385,22 @@
     </aside>
 
     <main class="content">
-
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 1. OVERVIEW                               -->
+      <!-- ══════════════════════════════════════════ -->
+      
       <div class="doc-section" id="section-1">
         <span class="section-num">01</span>
-        <h2>System Overview</h2>
+        <h2>Overview</h2>
         <div class="section-rule"></div>
-        <p>The mechanical subsystem serves as the physical body of Jellybot, designed to withstand hydrostatic pressure while maintaining the flexibility required for pulsatile propulsion.</p>
-        <p>Replace this text with your specific mechanical overview. Discuss the body structure, how it houses the internal components, and the overall dimensions.</p>
+        <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
+        <p>The software stack runs on <strong>BlueOS</strong> [a Docker-based middleware operating system] with <strong>ArduSub 4.5.3 STABLE</strong> providing firmware-level sensor fusion. Communication between subsystems uses the <strong>MAVLink</strong> protocol, translated to HTTP/JSON by <strong>MAVLink2REST</strong>, enabling browser-based tools and custom extensions for live sensor data.</p>
+        <p>The major contribution of the electronics subsystem this semester is driven by the characterisation of optical distortion introduced by the dome and customising BlueOS Docker extensions.   custom BlueOS Docker extension over I²C.</p>
       </div>
+
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 2. HARDWARE                               -->
+      <!-- ══════════════════════════════════════════ -->
 
       <div class="doc-section" id="section-2">
         <span class="section-num">02</span>
