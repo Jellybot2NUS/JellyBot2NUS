@@ -567,39 +567,38 @@
         <span class="caption">Table 1 — Hardware Component Overview</span>
       </div>
 
-
-
-
+      <!-- ══════════════════════════════════════════ -->
+      <!-- 3. SOFTWARE STACK                         -->
+      <!-- ══════════════════════════════════════════ -->
       <div class="doc-section" id="section-3">
         <span class="section-num">03</span>
-        <h2>Material Selection</h2>
+        <h2>Software Stack</h2>
         <div class="section-rule"></div>
-        <p>Discuss the use of soft materials like silicone (e.g., Ecoflex) and rigid components for the main body housing.</p>
 
+        <h3>3.1 BlueOS, ArduSub &amp; MAVLink</h3>
         <div class="table-wrap">
           <table class="styled-table">
-            <thead>
-              <tr>
-                <th>Material</th>
-                <th>Properties</th>
-                <th>Application</th>
-              </tr>
-            </thead>
+            <thead><tr><th>Layer</th><th>Component</th><th>Role</th></tr></thead>
             <tbody>
-              <tr>
-                <td>Silicone (Ecoflex 00-30)</td>
-                <td>High Elasticity</td>
-                <td>Pneumatic Tentacles</td>
-              </tr>
-              <tr>
-                <td>Acrylic / PLA</td>
-                <td>Rigid / Waterproof</td>
-                <td>Electronics Housing</td>
-              </tr>
+              <tr><td>Firmware</td><td>ArduSub 4.5.3 STABLE</td><td>Sensor fusion, attitude estimation, depth sensing</td></tr>
+              <tr><td>OS / Middleware</td><td>BlueOS (Docker-based)</td><td>Service orchestration, web UI, extension management</td></tr>
+              <tr><td>Protocol Bridge</td><td>MAVLink2REST</td><td>Translates MAVLink binary → HTTP/JSON (port 6040)</td></tr>
+              <tr><td>Message Routing</td><td>MAVLink Router</td><td>Routes MAVLink between ArduSub and network clients</td></tr>
+              <tr><td>GCS (browser)</td><td>Cockpit</td><td>Pilot interface, video feed, telemetry widgets</td></tr>
+              <tr><td>Config / Calibration</td><td>QGroundControl</td><td>Sensor calibration, parameter configuration</td></tr>
             </tbody>
           </table>
         </div>
-      </div>
+        <span class="caption">Table 2 — Software Stack Summary</span>
+        <p>The system is accessible from a topside MacBook at <code>192.168.2.2</code> via Ethernet. After an ArduPilot restart, manually pressing "Start Autopilot" in BlueOS is required to restore QGroundControl connectivity.</p>
+ 
+        <hr class="sub-divider"/>
+
+
+
+
+
+        
 
       <div class="doc-section" id="section-4">
         <span class="section-num">04</span>
