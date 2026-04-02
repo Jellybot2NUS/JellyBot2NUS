@@ -806,7 +806,7 @@ Flask API (Port 8084)
         
         <div class="callout">
           <div class="callout-title">Hypothesis</div>
-          <p>The dome port will introduce measurable barrel or pincushion distortion and a reduction in sharpness, particularly at the periphery, compared to the no-dome baseline.</p>
+          <p>The dome port will introduce barrel distortion and a reduction in sharpness. However, the effects should be minimal as the medium (air) remains constant. </p>
         </div>
         
         <h4>Purpose</h4>
@@ -816,7 +816,7 @@ Flask API (Port 8084)
         <p>Quantify geometric distortion and sharpness degradation caused by the dome port, using a structured checkerboard target and OpenCV camera calibration.</p>
         
         <h4>Subject</h4>
-        <p>Printed and laminated A4 checkerboard — 9×6 inner corners, 30 mm squares (OpenCV standard). Lamination is required for surface flatness; hand-drawn is not acceptable.</p>
+        <p>Printed and laminated A4 checkerboard: 9×6 inner corners, 30 mm squares (OpenCV standard). </p>
         
         <h4>Comparison</h4>
         <p>Checkerboard image captured with and without the acrylic dome, in air.</p>
@@ -827,17 +827,15 @@ Flask API (Port 8084)
           <li> Sharpness/resolution (Laplacian variance across the FOV)</li>
         </ul>
         
-        <h4>Results &amp; Analysis</h4>
-        <h4>Scenario 1 — Dome Optics in Air</h4>
-        <p>Both sessions (dome and no-dome) achieved <strong>15/15 accepted images</strong>, confirming reliable corner detection.</p>
-
+        <h4>Results &amp;</h4>
+        
         <div class="table-wrap">
           <table class="styled-table">
             <thead><tr><th>Condition</th><th>k1</th></tr></thead>
             <tbody>
-              <tr><td>No dome (baseline)</td><td>−0.xxxx <em style="opacity:0.5">(insert value)</em></td></tr>
-              <tr><td>With dome</td><td>−0.xxxx <em style="opacity:0.5">(insert value)</em></td></tr>
-              <tr><td><strong>Δk1 (dome effect)</strong></td><td><strong>−0.0001</strong></td></tr>
+              <tr><td>No dome (baseline)</td><td>−0.006172</td></tr>
+              <tr><td>With dome</td><td>−0.006274</td></tr>
+              <tr><td><strong>Δk1 (dome effect)</strong></td><td><strong>−0.000102</strong></td></tr>
             </tbody>
           </table>
         </div>
@@ -846,19 +844,22 @@ Flask API (Port 8084)
           <table class="styled-table">
             <thead><tr><th>Zone</th><th>Sharpness Reduction</th></tr></thead>
             <tbody>
-              <tr><td>Centre</td><td>~30%</td></tr>
-              <tr><td>Edges</td><td>~39%</td></tr>
-              <tr><td>Corners</td><td>~58%</td></tr>
+              <tr><td>Centre</td><td>30%</td></tr>
+              <tr><td>Edges</td><td>39%</td></tr>
+              <tr><td>Corners</td><td>58%</td></tr>
             </tbody>
           </table>
         </div>
         <span class="caption">Table 9 — Scenario 1 Spatial Sharpness Results</span>
 
-        <div class="callout">
-          <div class="callout-title">Key Finding — Scenario 1</div>
-          <p>In air, the dome port's primary impact is not distortion (Δk1 = −0.0001, negligible) but spatially-varying sharpness loss — most severe at corners (−58%), consistent with off-axis spherical dome aberrations.</p>
-        </div>
+        <h4>Analysis &amp; </h4>
+          <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. 
+          For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
 
+
+        
+
+        
         <h4>Scenario 2 — Dome Optics in Water</h4>
         <p>Results pending — capture session in progress. Expected: increased |Δk1|, greater corner sharpness degradation, and measurable chromatic aberration at the dome–water interface.</p>
 
