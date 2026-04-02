@@ -193,6 +193,7 @@
       margin-bottom: 80px;
       opacity: 0; transform: translateY(20px);
       transition: opacity 0.6s ease, transform 0.6s ease;
+      scroll-margin-top: 120px;
     }
     .doc-section.visible { opacity: 1; transform: translateY(0); }
     .section-num {
@@ -514,6 +515,7 @@
         <li class="sub"><a href="#sub-4d">4.4 Conclusion</a></li>
         <li><a href="#section-5">5. Battery &amp; Endurance</a></li>
         <li><a href="#section-6">6. Future Work</a></li>
+        <li><a href="#figures-list">7. List of Figures</a></li>
       </ul>
     </aside>
 
@@ -685,7 +687,7 @@
             <div class="img-frame" data-caption="Figure 5 — Required Pressure at Depth vs Achieved">
               <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/1_Required_Pressure.png?raw=true" alt="Required pressure at depth chart" loading="lazy">
             </div>
-            <figcaption>Figure 5 — Required Pressure at Depth vs Achieved</figcaption>
+            <figcaption>Figure 5 — Required Pressure at Depth</figcaption>
           </figure>
         </div>
 
@@ -732,13 +734,14 @@
               </tr>
             </tbody>
           </table>
+          <span class="tbl-caption">Table 4 — 4-pump & 2-pump data</span>
         </div>
 
         <p>Both systems achieved steady-state at 71°. The 4-pump system reached it in 0.7 s (τ ≈ 0.45 s), while the 2-pump system reached it in 1.4 s (τ ≈ 1.1 s, measured at 63.2% of steady-state = 45.1°).</p>
 
         <div class="callout callout-warn">
           <div class="callout-title">Key Finding</div>
-            <h4>Steady State</h4><p>Steady state refers to the final, stable equilibrium the system reaches once all transient movement and acceleration have settled. In this experiment, it represents the maximum capacity of the mechanical bend under the provided hydraulic pressure. The identical values show that the number of pumps does not affect the ultimate physical limit of the tentacles. Whether using 2 pumps or 4, both the system possesses the same geometric "reach," it only differs in the time taken to reach there.</p>
+            <h4>Steady State</h4><p>Steady state refers to the final, stable equilibrium the system reaches once all transient movement and acceleration have settled. In this experiment, it represents the maximum capacity of the mechanical bend under the provided hydraulic pressure. The identical values show that the number of pumps does not affect the ultimate physical limit of the tentacles. Whether using 2 pumps or 4, both the system possesses the same geometric "reach," it only differs in the time taken to reach there.</p><br>
             <h4>Time Constant (τ)</h4><p>The time constant (τ) is a measure of the system’s responsiveness. It tells us how quickly the system reacts to an input to reach its destination. Specifically, τ represents the time taken to reach approximately 63.2% of the steady-state value. The 4-pump system is significantly faster and more agile, making it suitable for applications requiring rapid repositioning. However, the higher τ of the 2-pump system acts as a mechanical low-pass filter. This "sluggishness" is an advantage for imaging because it dampens the response, smoothing out sudden buoyancy shifts or vibrations that would otherwise cause motion blur or unstable footage in the 4-pump configuration.</p>
         </div>
       </div>
@@ -771,7 +774,7 @@
             </tbody>
           </table>
         </div>
-        <span class="tbl-caption">Table 4 — Comparative Velocity Analysis of Jellybot Propulsion</span>
+        <span class="tbl-caption">Table 5 — Comparative Velocity Analysis of Jellybot Propulsion</span>
 
         <p>The 2-pump system's σ = 0.14 indicates a high level of consistency across cycles. While the 4-pump configuration offers superior raw speed (10.0 cm/s peak), it proved unsuitable for high-resolution coral reef imaging — at 10.0 cm/s, surge velocity introduces motion blur and reduces the window for stable visual detection. Furthermore, the high-volume displacement of 4 pumps causes excessive vertical lift, making the robot prone to "overshooting" its target depth during actuation.</p>
       </div>
@@ -812,7 +815,7 @@
             </tbody>
           </table>
         </div>
-        <span class="tbl-caption">Table 5 — Depth Deviation Comparison During Active Depth Control</span>
+        <span class="tbl-caption">Table 6 — Depth Deviation Comparison During Active Depth Control</span>
 
         <p>The 2-pump system's slower time constant (τ) effectively acts as a "dampener," allowing finer granular control over buoyancy. This reduction in vertical jitter is essential for maintaining the constant focal length required for automated coral detection algorithms. A higher τ describes a more sluggish but smoother system which in the coral reef context, this is a feature, not a limitation.</p>
 
@@ -887,6 +890,7 @@
               </tr>
             </tbody>
           </table>
+          <span class="tbl-caption">Table 7 — Conclusion of Data</span>
         </div>
         
         <style>
@@ -995,6 +999,33 @@
             <li>Independent Multi-Tentacle Control: Individualized actuation for complex, non-linear underwater maneuvering.</li>
             <li>Embedded Closed-Loop Feedback: Real-time pressure and bend-angle sensors integrated into every tentacle for autonomous correction.</li>
             <li>Active Thermal Management: Advanced heat-sinking and ventilation to support continuous 3.1hr+ mission profiles.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Section 7 -->
+      <div class="doc-section" id="figures-list">
+        <span class="section-num">Appendix</span>
+        <h2>List of Figures</h2>
+        <div class="section-rule"></div>
+        <div class="figures-toc">
+          <span class="figures-toc-title">Content of Figures</span>
+          <ul class="figures-toc-list">
+            <li><span>Figure 1.</span><span>Wiring Diagram — System 1 (4-Pump)</span></li>
+            <li><span>Figure 2.</span><span>Wiring Diagram — System 2 (2-Pump)</span></li>
+            <li><span>Figure 3.</span><span>Wiring Diagram — System 3 (Adopted)</span></li>
+            <li><span>Figure 4.</span><span>HX710 Pressure Sensor Output (206 kPa at Max Bend)</span></li>
+            <li><span>Figure 5.</span><span>Required Pressure at Depth</span></li>
+            <li><span>Figure 6.</span><span>Bend Angle Tracking Software (Underwater)</span></li>
+            <li><span>Figure 7.</span><span>4-Pump (τ ≈ 0.45 s) vs 2-Pump (τ ≈ 1.1 s) Bend Angle Response</span></li>
+            <li><span>Figure 8.</span><span>Change in D illustrated</span></li>
+            <li><span>Table 1.</span><span>System Configuration Comparison</span></li>
+            <li><span>Table 2.</span><span>Individual Component Specifications</span></li>
+            <li><span>Table 3.</span><span>System Power Profiles and Endurance (12 V, 20 000 mAh battery)</span></li>
+            <li><span>Table 4.</span><span>4-pump & 2-pump data</span></li>
+            <li><span>Table 5.</span><span>Comparative Velocity Analysis of Jellybot Propulsion</span></li>
+            <li><span>Table 6.</span><span>Depth Deviation Comparison During Active Depth Control</span></li>
+            <li><span>Table 7.</span><span>Conclusion of Data</span></li>
           </ul>
         </div>
       </div>
