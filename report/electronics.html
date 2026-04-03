@@ -674,6 +674,14 @@
         <h3>3.2 Camera Capture Extension (<code>blueos-capture-extension</code>)</h3>
         <p>A second BlueOS Docker extension captures still images from the live underwater camera stream, exposing a simple HTTP endpoint for triggering image saves.</p>
 
+
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure — Camera Capture Extension UI (blueos.local:8080)">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/capture_extension_ui.png?raw=true" alt="Camera capture extension UI showing Status: READY and Capture Image button">
+          </div>
+          <figcaption>Figure — Camera Capture Extension UI (blueos.local:8080)</figcaption>
+        </figure>
+
         <h4>Data Flow</h4>
         <pre><code>BlueOS Camera → H264 UDP Stream (127.0.0.1:5600)
     → GStreamer Pipeline (avdec_h264 decode)
@@ -682,26 +690,10 @@
     → Saves .jpg to /userdata/ (volume-mounted to Pi filesystem)</code></pre>
         <span class="caption">Figure 1 — Camera Capture Extension Data Flow</span>
 
-        <h4>Implementation</h4>
-        <ul>
-          <li>Listens to the H264 UDP stream at <code>127.0.0.1:5600</code>. GStreamer decodes via <code>avdec_h264</code>; decoded frames pass into OpenCV's <code>VideoCapture</code>.</li>
-          <li>A <strong>background thread</strong> continuously buffers the latest frame so the <code>/capture</code> endpoint never blocks.</li>
-        </ul>
-
-        <h4>Dependencies</h4>
-        <div class="table-wrap">
-          <table class="styled-table">
-            <thead><tr><th>Dependency</th><th>Purpose</th><th>Notes</th></tr></thead>
-            <tbody>
-              <tr><td>Flask</td><td>HTTP server for <code>/capture</code></td><td>Port 8080</td></tr>
-              <tr><td>GStreamer + <code>gstreamer1.0-libav</code></td><td>H264 stream decoding</td><td>Required for <code>avdec_h264</code></td></tr>
-              <tr><td>OpenCV (<code>cv2</code>)</td><td>Frame reading and <code>.jpg</code> encoding</td><td>Requires dynamic <code>.so</code> symlink at runtime</td></tr>
-              <tr><td>NumPy</td><td>Required by OpenCV</td><td>Pinned to <code>&lt;2</code> — version conflict with apt OpenCV</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <span class="caption">Table 4 — Camera Capture Extension Dependencies</span>
-      </div>
+      <h4>Implementation</h4>
+      <ul>
+        <li>This extension was used to capture the raw checkerboard images used in <strong>Camera Characterisation Scenario 1</strong>.</li>
+      </ul>
 
       <!-- 4. PNEUMATIC ACTUATION -->
       <div class="doc-section" id="section-4">
