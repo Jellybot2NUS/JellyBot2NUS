@@ -600,10 +600,15 @@
         <span class="section-num">03</span>
         <h2>Software Stack</h2>
         <div class="section-rule"></div>
-        <p>Jellybot's software stack is organised into three distinct layers. At the bottom, the <strong>Flight Controller Board</strong> runs <strong>ArduSub 4.5.3 STABLE</strong>. It is the autopilot firmware responsible for sensor fusion, attitude estimation, and depth sensing. 
-          Above it, the <strong>Onboard Computer</strong> (Raspberry Pi 4) runs <strong>BlueOS</strong>, a Docker-based operating system that orchestrates services, manages <strong>custom extensions</strong>strong>, and bridges communication between layers using the <strong>MAVLink</strong> protocol. 
-          At the top, the <strong>Ground Control Station</strong> runs <strong>Cockpit</strong> for the pilot interface and <strong>QGroundControl</strong> for sensor calibration and parameter configuration, communicating with the vehicle over Ethernet.</p>
+        <p>Jellybot's software stack is organised into three distinct layers. </p>
+          <ul>
+            
+          <li>At the bottom, the <strong>Flight Controller Board</strong> runs <strong>ArduSub 4.5.3 STABLE</strong>. It is the autopilot firmware responsible for sensor fusion, attitude estimation, and depth sensing. </li>
+          <li>Above it, the <strong>Onboard Computer</strong> (Raspberry Pi 4) runs <strong>BlueOS</strong>, a Docker-based operating system that orchestrates services, manages <strong>custom extensions</strong>strong>, and bridges communication between layers using the <strong>MAVLink</strong> protocol. </li>
+          <li>At the top, the <strong>Ground Control Station</strong> runs <strong>Cockpit</strong> for the pilot interface and <strong>QGroundControl</strong> for sensor calibration and parameter configuration, communicating with the vehicle over Ethernet.</li>
+          </ul>
 
+        
         <figure class="img-fig img-single">
           <div class="img-frame" data-caption="Figure — BlueOS Software Stack Architecture">
             <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/software_stack.png?raw=true" alt="BlueOS software stack architecture diagram">
@@ -631,9 +636,25 @@
         <hr class="sub-divider"/>
 
         <h3>3.1 Motor Control Extension (<code>blueos-motori2c-extension</code>)</h3>
-        <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> — a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors. This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction. To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.</p>
 
-        <p>The operator-side <code>controller.py</code> script runs on the Mac and reads PS4 button inputs. When a button is pressed, it sends an <strong>HTTP POST request</strong> to the Flask API running inside the Docker container on <strong>port 8084</strong> of the Pi — for example, <code>POST /motor/0/speed</code> with a <code>percent</code> value. The Flask server receives the request and calls <code>set_pwm()</code>, which writes the corresponding duty cycle to the PCA9685 register for that channel over I²C. If the I²C write fails due to motor electrical noise, the function automatically retries up to <strong>3 times at 10 ms intervals</strong> before raising an error.</p>
+        <div class="callout callout-warn">
+          <div class="callout-title">The Problem</div>
+            <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors. 
+            This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction. 
+            To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.</p>
+        </div>
+
+
+        
+        <div class="callout">
+          <div class="callout-title">How it works</div>
+          <p>The operator-side <code>controller.py</code> script runs on the Mac and reads PS4 button inputs. When a button is pressed, it sends an <strong>HTTP POST request</strong> to the Flask API running inside the Docker container on <strong>port 8084</strong> of the Pi.
+             The Flask server receives the request and calls <code>set_pwm()</code>, which writes the corresponding duty cycle to the PCA9685 register for that channel over I²C. 
+            If the I²C write fails due to motor electrical noise, the function automatically retries up to <strong>3 times at 10 ms intervals</strong> before raising an error.</p>
+        </div>
+        
+        
+
 
         <h4>Key API Endpoints</h4>
         <div class="table-wrap">
