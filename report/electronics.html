@@ -652,6 +652,26 @@
              The Flask server receives the request and calls <code>set_pwm()</code>, which writes the corresponding duty cycle to the PCA9685 register for that channel over I²C. 
             If the I²C write fails due to motor electrical noise, the function automatically retries up to <strong>3 times at 10 ms intervals</strong> before raising an error.</p>
         </div>
+
+        <h4>System Architecture</h4>
+        <figure class="img-fig img-single">
+          <div class="img-frame" data-caption="Figure — Motor Configuration">
+            <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/motor_wiring_diagram.svg?raw=true" alt="Jellybot Motor Architecture Diagram">
+          </div>
+          <figcaption>Figure — Jellybot Motor Architecture Diagram</figcaption>
+        </figure>
+
+
+
+        <h4>Verification with Multimeter</h4>
+        <video controls style="width: 100%; max-width: 800px; border-radius: 4px; margin: 20px 0; border: 1px solid var(--glass-border);">
+          <source src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/motor_testing.mp4?raw=true" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+        <span class="caption">Figure — Motor Control Extension Testing</span>
+        <p>Prior to attaching the system to the silicone flaps, a <strong>multimeter was used to verify the output voltages</strong>, confirming that the PCA9685 was correctly driving the motor drivers.
+          The voltage readings shown are below 12V as the PWM duty cycle was not set to 100% during testing.</p>
+        
         
         
 
@@ -669,6 +689,14 @@
         <span class="caption">Table 3 — Motor Control Extension API Endpoints</span>
         <p>Motor electrical noise intermittently causes <code>OSError 5</code> on the I²C bus. The API handles this with <strong>3 retry attempts at 10 ms intervals</strong>. Both custom extensions auto-start on boot via a <strong>systemd service</strong> with a 15-second delay to allow BlueOS core services to fully initialise.</p>
 
+
+
+
+
+
+
+
+        
         <hr class="sub-divider"/>
 
         <h3>3.2 Camera Capture Extension (<code>blueos-capture-extension</code>)</h3>
@@ -698,53 +726,24 @@
 
         
         <h3>3.3 Pneumatic Actuation &amp; Controller Interface</h3>
-                <p>The pneumatic actuation system inflates and vents the silicone flaps by controlling two DC pump motors and two 3-way solenoid valves via the PCA9685 over I²C. Each flap pair has an independent motor (pressurisation) and solenoid (direction control), allowing coordinated or per-flap operation.</p>
+          <p>The <code>controller.py</code> script runs on the topside Ground Control Unit and sends HTTP POST requests to the Flask API on the Pi, which in turn drives the PCA9685 over I²C to control two DC pump motors and two 3-way solenoid valves. 
+            Each flap pair has an independent motor (pressurisation) and solenoid (direction control), allowing coordinated or per-flap operation.</p>        
+
+
         
-                <h4>System Architecture</h4>
-                <pre><code>PS4 Controller (Mac)
-               │
-           controller.py
-               │  HTTP REST
-               ▼
-        Flask API (Port 8084)
-        [blueos-motori2c-extension]
-               │
-           smbus2 / I²C Bus 6
-               ▼
-           PCA9685 (0x40)
-           ┌───────────────────────────────┐
-           │ Ch0 → H-Bridge 1 Channel A   │ → Motor 1
-           │ Ch1 → H-Bridge 1 Channel B   │ → Solenoid 1
-           │ Ch2 → H-Bridge 2 Channel A   │ → Motor 2
-           │ Ch3 → H-Bridge 2 Channel B   │ → Solenoid 2
-           └───────────────────────────────┘</code></pre>
-                <span class="caption">Figure 2 — Pneumatic Actuation System Architecture</span>
+
+
+
+
+
+
+
+
         
-                <h4>I²C Interface</h4>
-                <p>The Navigator exposes I²C Bus 6 via a JST GH 4-pin connector. The PCA9685 uses standard 2.54 mm headers. A JST GH cable was stripped and crimped to 2.54 mm pin headers to bridge the two.</p>
-        
-                <h4>Motor Driver Layout</h4>
-                <ul>
-                  <li><strong>Channel A (OUT1/OUT2)</strong> → DC Pump Motor</li>
-                  <li><strong>Channel B (OUT3/OUT4)</strong> → 3-Way Solenoid Valve</li>
-                </ul>
-        
-                <h4>Solenoid Valve Behaviour</h4>
-                <div class="table-wrap">
-                  <table class="styled-table">
-                    <thead><tr><th>State</th><th>Pin Connection</th><th>Effect</th></tr></thead>
-                    <tbody>
-                      <tr><td>Powered</td><td>Pin 1 ↔ Pin 2</td><td>Inflate — pump pressurises flap</td></tr>
-                      <tr><td>Unpowered</td><td>Pin 1 ↔ Pin 3</td><td>Vent to atmosphere — flap deflates</td></tr>
-                    </tbody>
-                  </table>
-                </div>
-                <span class="caption">Table 5 — Solenoid Valve State Logic</span>
-        
-                <div class="callout">
-                  <div class="callout-title">Safety</div>
-                  <p>Valve release on emergency stop is <strong>instantaneous and mechanical</strong> — no software delay. The solenoid vents automatically when de-energised.</p>
-                </div>
+          <h4>I²C Interface</h4>
+          <p>The Navigator exposes I²C Bus 6 via a JST GH 4-pin connector. The PCA9685 uses standard 2.54 mm headers. A JST GH cable was stripped and crimped to 2.54 mm pin headers to bridge the two.</p>
+
+
         
                 <h4>PS4 Controller Button Mappings</h4>
                 <p>The <code>controller.py</code> script runs on the topside GCS and sends HTTP requests to the Pi's Flask API.</p>
@@ -765,6 +764,28 @@
                 </div>
                 <span class="caption">Table 6 — PS4 Controller Button Mappings</span>
                 <p>The L2/R2 trap-air sequence engages a one-press lock that holds the solenoid closed. The lock can only be reset by pressing <strong>O</strong>.</p>
+
+                <div class="callout">
+                  <div class="callout-title">Safety</div>
+                  <p>Valve release on emergency stop is <strong>instantaneous and mechanical</strong> — no software delay. The solenoid vents automatically when de-energised.</p>
+                </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
               </div>  
 
@@ -784,80 +805,7 @@
 
 
         
-      <!-- 4. PNEUMATIC ACTUATION -->
-      <div class="doc-section" id="section-4">
-        <span class="section-num">04</span>
-        <h2>Pneumatic Actuation System</h2>
-        <div class="section-rule"></div>
-        <p>The pneumatic actuation system inflates and vents the silicone flaps by controlling two DC pump motors and two 3-way solenoid valves via the PCA9685 over I²C. Each flap pair has an independent motor (pressurisation) and solenoid (direction control), allowing coordinated or per-flap operation.</p>
 
-        <h3>4.1 System Architecture</h3>
-        <pre><code>PS4 Controller (Mac)
-       │
-   controller.py
-       │  HTTP REST
-       ▼
-Flask API (Port 8084)
-[blueos-motori2c-extension]
-       │
-   smbus2 / I²C Bus 6
-       ▼
-   PCA9685 (0x40)
-   ┌───────────────────────────────┐
-   │ Ch0 → H-Bridge 1 Channel A   │ → Motor 1
-   │ Ch1 → H-Bridge 1 Channel B   │ → Solenoid 1
-   │ Ch2 → H-Bridge 2 Channel A   │ → Motor 2
-   │ Ch3 → H-Bridge 2 Channel B   │ → Solenoid 2
-   └───────────────────────────────┘</code></pre>
-        <span class="caption">Figure 2 — Pneumatic Actuation System Architecture</span>
-
-        <h3>4.2 Wiring &amp; Connections</h3>
-        <h4>I²C Interface</h4>
-        <p>The Navigator exposes I²C Bus 6 via a JST GH 4-pin connector. The PCA9685 uses standard 2.54 mm headers. A JST GH cable was stripped and crimped to 2.54 mm pin headers to bridge the two.</p>
-
-        <h4>Motor Driver Layout</h4>
-        <ul>
-          <li><strong>Channel A (OUT1/OUT2)</strong> → DC Pump Motor</li>
-          <li><strong>Channel B (OUT3/OUT4)</strong> → 3-Way Solenoid Valve</li>
-        </ul>
-
-        <h4>Solenoid Valve Behaviour</h4>
-        <div class="table-wrap">
-          <table class="styled-table">
-            <thead><tr><th>State</th><th>Pin Connection</th><th>Effect</th></tr></thead>
-            <tbody>
-              <tr><td>Powered</td><td>Pin 1 ↔ Pin 2</td><td>Inflate — pump pressurises flap</td></tr>
-              <tr><td>Unpowered</td><td>Pin 1 ↔ Pin 3</td><td>Vent to atmosphere — flap deflates</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <span class="caption">Table 6 — Solenoid Valve State Logic</span>
-
-        <div class="callout">
-          <div class="callout-title">Safety</div>
-          <p>Valve release on emergency stop is <strong>instantaneous and mechanical</strong> — no software delay. The solenoid vents automatically when de-energised.</p>
-        </div>
-
-        <h3>4.3 PS4 Controller Interface</h3>
-        <p>The <code>controller.py</code> script runs on topside GCS and sends HTTP requests to the Pi's Flask API.</p>
-        <div class="table-wrap">
-          <table class="styled-table">
-            <thead><tr><th>Button</th><th>Action</th></tr></thead>
-            <tbody>
-              <tr><td><strong>L1</strong></td><td>Pulse Flap Pair 1 (0.7 s)</td></tr>
-              <tr><td><strong>R1</strong></td><td>Pulse Flap Pair 2 (0.7 s)</td></tr>
-              <tr><td><strong>Square</strong></td><td>Activate Pair 1 (1 s)</td></tr>
-              <tr><td><strong>Triangle</strong></td><td>Activate Pair 2 (1 s)</td></tr>
-              <tr><td><strong>X</strong></td><td>Activate both pairs simultaneously (1 s)</td></tr>
-              <tr><td><strong>L2</strong></td><td>Trap air — Pair 1: motor runs 1 s then off, solenoid holds</td></tr>
-              <tr><td><strong>R2</strong></td><td>Trap air — Pair 2: motor runs 1 s then off, solenoid holds</td></tr>
-              <tr><td><strong>O</strong></td><td>Emergency Stop — instantaneous valve release + motor cutoff, resets all locks</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <span class="caption">Table 7 — PS4 Controller Button Mappings</span>
-        <p>The L2/R2 trap-air sequence engages a one-press lock that holds the solenoid closed. The lock can only be reset by pressing <strong>O</strong>.</p>
-      </div>
 
       <!-- 5. COMPONENT CONFIGURATION -->
       <div class="doc-section" id="section-5">
