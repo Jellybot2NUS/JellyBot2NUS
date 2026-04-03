@@ -916,8 +916,78 @@ Flask API (Port 8084)
             compared against Scenario 1.</p>
         
 
-        <h4>Scenario 3 — Colour Visibility in Water</h4>
-        <p>Pending Upload</p>
+        <h3>Scenario 3 — Colour Visibility in Water</h3>
+        <div class="callout">
+        <div class="callout-title">Hypothesis</div>
+        <p>The camera system will retain sufficient colour information across all three 
+        channels (R, G, B) to distinguish coral features underwater, despite the 
+        expected attenuation of red wavelengths in water. Image quality as measured 
+        by UCIQE will fall within an acceptable range for underwater imaging.</p>
+        </div>
+        
+        <h4>Purpose</h4>
+        <p>Evaluate whether Jellybot's camera can capture meaningful colour 
+        information underwater, and assess the overall image 
+        quality.</p>
+        
+        <h4>Objective</h4>
+        <p>Quantify image quality (UCIQE), noise, and per-channel colour response (R, G, B) 
+        from underwater captures of a laminated coral reef print.</p>
+        
+        <h4>Subject</h4>
+        <p>Printed and laminated A4 coral reef image, submerged and photographed through 
+        the acrylic dome underwater.</p>
+        
+        <h4>Metrics</h4>
+        <ul>
+          <li>Image quality (UCIQE — Underwater Colour Image Quality Evaluation)</li>
+          <li>Noise (Gaussian residual method, per R/G/B channel)</li>
+          <li>RGB channel analysis (mean and standard deviation per channel)</li>
+        </ul>
+        <h4>Results</h4>
+
+        <div class="table-wrap">
+          <table class="styled-table">
+            <thead>
+              <tr><th>Image</th><th>UCIQE</th><th>Mean R</th><th>Mean G</th><th>Mean B</th><th>Noise (overall)</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>Coral_Centre</td><td>0.5182</td><td>91.4</td><td>142.9</td><td>152.1</td><td>2.3475</td></tr>
+              <tr><td>Coral_Close</td><td>0.5742</td><td>94.4</td><td>138.8</td><td>136.9</td><td>2.3271</td></tr>
+              <tr><td>Coral_Down</td><td>0.6185</td><td>101.8</td><td>111.8</td><td>111.0</td><td>2.0080</td></tr>
+              <tr><td>Coral_Left</td><td>0.5732</td><td>100.6</td><td>148.1</td><td>134.3</td><td>2.1863</td></tr>
+              <tr><td>Coral_Right</td><td>0.5835</td><td>94.4</td><td>146.6</td><td>132.0</td><td>2.4474</td></tr>
+              <tr><td>Coral_Up</td><td>0.5767</td><td>110.4</td><td>162.7</td><td>153.6</td><td>1.9193</td></tr>
+              <tr><td><strong>Mean</strong></td><td><strong>0.5741</strong></td><td><strong>98.8</strong></td><td><strong>141.8</strong></td><td><strong>136.7</strong></td><td><strong>2.2059</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <span class="caption">Table 11 — Scenario 3 Image Quality and RGB Channel Results</span>
+
+        <h4>Analysis</h4>
+        <p>The results support the hypothesis. 5 out of 6 images fall within the 
+        accepted UCIQE good quality range of 0.55–0.65, with a mean score of 0.5741. 
+        This indicates that Jellybot's camera system produces images of acceptable 
+        quality for underwater use without auxiliary lighting.</p>
+        
+        <p>The RGB channel analysis shows a consistent pattern across all captures — 
+        red channel mean (98.8) is noticeably lower than green (141.8) and blue (136.7). 
+        This is the expected underwater light attenuation signature, where water absorbs 
+        red wavelengths more readily than green and blue. Importantly, the red channel 
+        is not lost — a mean of 98.8 out of 255 indicates meaningful red signal is 
+        still being captured. This is particularly relevant to coral bleaching detection, 
+        where the colour shift from the warm tones of healthy coral to the pale white of 
+        bleached coral relies on the camera being able to distinguish red channel 
+        variation. Noise levels were consistently low across all images (mean 2.21), 
+        suggesting the camera is not introducing significant random artefacts that would 
+        obscure fine colour differences.</p>
+        
+        <p>It should be noted that these captures were taken of a laminated print rather 
+        than real coral, and under ambient pool lighting rather than natural reef 
+        conditions. The results therefore demonstrate the system's capability as a 
+        proxy, and real-world performance on actual coral reef scenes may differ.</p>
+
+                
 
         <h3>6.4 Future Work</h3>
         <ol>
