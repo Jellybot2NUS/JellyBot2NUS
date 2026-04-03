@@ -35,10 +35,6 @@
       line-height: 1.7;
     }
 
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: var(--deep); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
-
     /* ─── NAV ───────────────────────────────────────── */
     header {
       position: fixed;
@@ -77,55 +73,37 @@
     nav a:hover { color: var(--text); }
 
     /* ─── ENHANCED LIGHTBOX ──────────────────────────── */
-      #lightbox {
-        display: none;
-        position: fixed; inset: 0; z-index: 999;
-        background: rgba(4,9,18,0.96);
-        backdrop-filter: blur(15px);
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-      }
-      
-      #lightbox.open { display: flex; }
-      
-      #lightbox-img {
-        max-width: 85vw;
-        max-height: 75vh;
-        object-fit: contain;
-        border-radius: 8px;
-        box-shadow: 0 0 50px rgba(0,0,0,0.5);
-      }
-      
-      /* Nav Buttons */
-      .lb-nav {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: var(--glass);
-        border: 1px solid var(--glass-border);
-        color: white;
-        padding: 20px;
-        cursor: pointer;
-        font-size: 1.5em;
-        border-radius: 50%;
-        transition: all 0.3s;
-      }
-      
-      .lb-nav:hover { background: var(--accent); color: var(--ink); }
-      #lb-prev { left: 30px; }
-      #lb-next { right: 30px; }
-      
-      #lightbox-counter {
-        font-family: 'DM Mono', monospace;
-        color: var(--accent);
-        margin-top: 15px;
-        font-size: 0.8em;
-      }
-    /* Hide the data list from the main view */
-    .hidden-assets {
+    #lightbox {
       display: none;
+      position: fixed; inset: 0; z-index: 999;
+      background: rgba(4,9,18,0.96);
+      backdrop-filter: blur(15px);
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
     }
+    #lightbox.open { display: flex; }
+    #lightbox-img {
+      max-width: 85vw;
+      max-height: 75vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 0 50px rgba(0,0,0,0.5);
+    }
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: var(--glass); border: 1px solid var(--glass-border);
+      color: white; padding: 20px; cursor: pointer;
+      font-size: 1.5em; border-radius: 50%; transition: all 0.3s;
+    }
+    .lb-nav:hover { background: var(--accent); color: var(--ink); }
+    #lb-prev { left: 30px; }
+    #lb-next { right: 30px; }
+    #lightbox-counter {
+      font-family: 'DM Mono', monospace; color: var(--accent);
+      margin-top: 15px; font-size: 0.8em;
+    }
+    .hidden-assets { display: none; }
 
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
@@ -137,36 +115,23 @@
       padding: 120px 60px 72px;
       overflow: hidden;
     }
-
     .hero-bg {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background-image: url('https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/backgroundimage.jpg?raw=true');
-      background-size: cover;
-      background-position: center;
-      opacity: 0.15;
+      background-size: cover; background-position: center; opacity: 0.15;
     }
-
     .hero-overlay {
-      position: absolute;
-      inset: 0;
+      position: absolute; inset: 0;
       background: linear-gradient(to bottom, transparent 0%, rgba(6,12,22,1) 100%);
     }
-
     .hero-content { position: relative; z-index: 2; animation: fadeUp 1s ease both; }
     .hero-eyebrow {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.68em;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 20px;
-      display: block;
+      font-family: 'DM Mono', monospace; font-size: 0.68em;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 20px; display: block;
     }
     .hero h1 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5em, 6vw, 4em);
-      font-weight: 300;
+      font-family: 'Cormorant Garamond', serif; font-size: clamp(2.5em, 6vw, 4em); font-weight: 300;
     }
     .hero h1 em { font-style: italic; color: var(--accent); }
 
@@ -178,118 +143,57 @@
       margin: 0 auto;
       padding: 60px 60px 120px;
     }
-
     .sidebar {
-      position: sticky;
-      top: 100px;
-      align-self: start;
-      padding-right: 40px;
-      border-right: 1px solid var(--glass-border);
+      position: sticky; top: 100px; align-self: start;
+      padding-right: 40px; border-right: 1px solid var(--glass-border);
     }
-
     .toc-label {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.6em;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      color: var(--accent);
-      margin-bottom: 24px;
-      display: block;
+      font-family: 'DM Mono', monospace; font-size: 0.6em;
+      letter-spacing: 0.3em; text-transform: uppercase;
+      color: var(--accent); margin-bottom: 24px; display: block;
     }
-
     .toc-list { list-style: none; display: flex; flex-direction: column; gap: 2px; }
     .toc-list a {
-      display: block;
-      padding: 8px 12px;
-      font-size: 0.8em;
-      color: var(--muted);
-      text-decoration: none;
-      border-left: 2px solid transparent;
-      transition: all 0.2s ease;
+      display: block; padding: 8px 12px; font-size: 0.8em; color: var(--muted);
+      text-decoration: none; border-left: 2px solid transparent; transition: all 0.2s ease;
     }
     .toc-list a:hover, .toc-list a.active {
-      color: var(--accent);
-      border-left-color: var(--accent);
-      background: var(--accent-dim);
+      color: var(--accent); border-left-color: var(--accent); background: var(--accent-dim);
     }
 
     /* ─── CONTENT ───────────────────────────────────── */
     .content { padding-left: 60px; }
-
     .doc-section {
-      margin-bottom: 100px;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.6s ease;
+      margin-bottom: 100px; opacity: 0;
+      transform: translateY(20px); transition: all 0.6s ease;
     }
     .doc-section.visible { opacity: 1; transform: translateY(0); }
-
     .section-num {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.62em;
-      letter-spacing: 0.25em;
-      color: var(--accent);
-      margin-bottom: 10px;
-      display: block;
+      font-family: 'DM Mono', monospace; font-size: 0.62em;
+      letter-spacing: 0.25em; color: var(--accent); margin-bottom: 10px; display: block;
     }
-
     h2 { font-family: 'Cormorant Garamond', serif; font-size: 2.2em; font-weight: 300; margin-bottom: 8px; }
     .section-rule { width: 48px; height: 2px; background: linear-gradient(to right, var(--accent), transparent); margin-bottom: 32px; }
 
     /* ─── GALLERY SYSTEM ────────────────────────────── */
     .media-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
-      gap: 24px;
-      margin-top: 32px;
+      display: grid; grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 24px; margin-top: 32px;
     }
-
     .media-card {
-      background: var(--glass);
-      border: 1px solid var(--glass-border);
-      border-radius: 8px;
-      overflow: hidden;
-      transition: all 0.3s ease;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      border-radius: 8px; overflow: hidden; transition: all 0.3s ease; cursor: pointer;
     }
-
-    .media-card:hover {
-      border-color: var(--accent);
-      background: var(--accent-dim);
-      transform: translateY(-5px);
-    }
-
-    .media-box {
-      width: 100%;
-      aspect-ratio: 16/9;
-      background: var(--surface);
-      overflow: hidden;
-      position: relative;
-    }
-
-    .media-box video, .media-box img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
+    .media-card:hover { border-color: var(--accent); background: var(--accent-dim); transform: translateY(-5px); }
+    .media-box { width: 100%; aspect-ratio: 16/9; background: var(--surface); overflow: hidden; position: relative; }
+    .media-box video, .media-box img { width: 100%; height: 100%; object-fit: cover; display: block; }
     .media-info { padding: 20px; }
     .media-tag {
-      font-family: 'DM Mono', monospace;
-      font-size: 0.65em;
-      color: var(--accent);
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      margin-bottom: 8px;
-      display: block;
+      font-family: 'DM Mono', monospace; font-size: 0.65em;
+      color: var(--accent); text-transform: uppercase;
+      letter-spacing: 0.1em; margin-bottom: 8px; display: block;
     }
-    .media-info h4 {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 1.2em;
-      font-weight: 400;
-      color: var(--text);
-      line-height: 1.3;
-    }
+    .media-info h4 { font-family: 'Cormorant Garamond', serif; font-size: 1.2em; font-weight: 400; color: var(--text); line-height: 1.3; }
 
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
@@ -327,17 +231,15 @@
   </section>
 
   <div class="page-body">
-
     <aside class="sidebar">
       <span class="toc-label">Filter</span>
       <ul class="toc-list" id="toc">
         <li><a href="#section-videos">Footage</a></li>
-        <li><a href="#section-photos">BTS Photos</a></li>
+        <li><a href="#section-photos">Detailed Exhibits</a></li>
       </ul>
     </aside>
 
     <main class="content">
-
       <!-- VIDEO SECTION -->
       <section class="doc-section" id="section-videos">
         <span class="section-num">01</span>
@@ -345,8 +247,6 @@
         <div class="section-rule"></div>
         
         <div class="media-grid">
-          
-          <!-- VIDEO CARD 1 -->
           <div class="media-card">
             <div class="media-box">
               <video controls>
@@ -354,12 +254,11 @@
               </video>
             </div>
             <div class="media-info">
-              <span class="media-tag">Testing · User Jouney</span>
-              <h4>User Jounery</h4>
+              <span class="media-tag">Testing · User Journey</span>
+              <h4>User Journey</h4>
             </div>
           </div>
 
-          <!-- VIDEO CARD 2 -->
           <div class="media-card">
             <div class="media-box">
               <video controls>
@@ -367,12 +266,11 @@
               </video>
             </div>
             <div class="media-info">
-              <span class="media-tag">Testing · Horizonal Motion</span>
-              <h4>Horizonal Movement Test</h4>
+              <span class="media-tag">Testing · Horizontal Motion</span>
+              <h4>Horizontal Movement Test</h4>
             </div>
           </div>
 
-                 <!-- VIDEO CARD 3 -->
           <div class="media-card">
             <div class="media-box">
               <video controls>
@@ -385,7 +283,6 @@
             </div>
           </div>
 
-            <!-- VIDEO CARD 4 -->
           <div class="media-card">
             <div class="media-box">
               <video controls>
@@ -397,7 +294,6 @@
               <h4>Verification in Water Tank</h4>
             </div>
           </div>
-
         </div>
       </section>
 
@@ -406,78 +302,66 @@
         <span class="section-num">02</span>
         <h2>Detailed <em>Exhibits</em></h2>
         <div class="section-rule"></div>
-        
+
         <div class="media-grid">
+          <!-- CARD 1 -->
+          <div class="media-card gallery-trigger">
+            <div class="media-box">
+              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/testinggroup.jpg?raw=true" alt="Pool Test Cover">
+            </div>
+            <div class="media-info">
+              <span class="media-tag">BTS · Photo</span>
+              <h4>NUS Swimming Pool Test</h4>
+            </div>
+            <div class="hidden-assets">
+              <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/testinggroup.jpg?raw=true"></span>
+              <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true"></span>
+            </div>
+          </div>
 
-<!-- PHOTO SECTION -->
-<section class="doc-section" id="section-photos">
-  <span class="section-num">02</span>
-  <h2>Detailed <em>Exhibits</em></h2>
-  <div class="section-rule"></div>
+          <!-- CARD 2 -->
+          <div class="media-card gallery-trigger">
+            <div class="media-box">
+              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true" alt="Exhibit B">
+            </div>
+            <div class="media-info">
+              <span class="media-tag">BTS · Picture</span>
+              <h4>Equipment Setup Check</h4>
+            </div>
+            <div class="hidden-assets">
+              <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true"></span>
+            </div>
+          </div>
 
-  <div class="media-grid">
+          <!-- CARD 3 -->
+          <div class="media-card gallery-trigger">
+            <div class="media-box">
+              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/2man.jpg?raw=true" alt="Assembly">
+            </div>
+            <div class="media-info">
+              <span class="media-tag">BTS · Photo</span>
+              <h4>Assembling Jellybot</h4>
+            </div>
+            <div class="hidden-assets">
+              <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/2man.jpg?raw=true"></span>
+            </div>
+          </div>
 
-    <!-- PHOTO CARD 1: POOL TEST -->
-    <div class="media-card gallery-trigger" data-group="pool-test">
-      <div class="media-box">
-        <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/testinggroup.jpg?raw=true" alt="Pool Test Cover">
-      </div>
-      <div class="media-info">
-        <span class="media-tag">BTS · Photo</span>
-        <h4>NUS Swimming Pool Test</h4>
-      </div>
-      <div class="hidden-assets">
-        <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/testinggroup.jpg?raw=true"></span>
-        <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true"></span>
-      </div>
-    </div>
-
-    <!-- PHOTO CARD 2: POOL TEST B -->
-    <div class="media-card gallery-trigger" data-group="pool-test-alt">
-      <div class="media-box">
-        <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true" alt="Exhibit B">
-      </div>
-      <div class="media-info">
-        <span class="media-tag">BTS · Picture</span>
-        <h4>NUS Swimming Pool Test</h4>
-      </div>
-      <div class="hidden-assets">
-        <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true"></span>
-      </div>
-    </div>
-
-    <!-- PHOTO CARD 3: ASSEMBLY -->
-    <div class="media-card gallery-trigger" data-group="assembly">
-      <div class="media-box">
-        <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/2man.jpg?raw=true" alt="Assembly">
-      </div>
-      <div class="media-info">
-        <span class="media-tag">BTS · Photo</span>
-        <h4>Assembling Jellybot</h4>
-      </div>
-      <div class="hidden-assets">
-        <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/2man.jpg?raw=true"></span>
-      </div>
-    </div>
-
-    <!-- PHOTO CARD 4: GROUP PHOTO -->
-    <div class="media-card gallery-trigger" data-group="group">
-      <div class="media-box">
-        <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group.jpg?raw=true" alt="Group">
-      </div>
-      <div class="media-info">
-        <span class="media-tag">BTS · Photo</span>
-        <h4>Group Photo</h4>
-      </div>
-      <div class="hidden-assets">
-        <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group.jpg?raw=true"></span>
-      </div>
-    </div>
-
-
+          <!-- CARD 4 -->
+          <div class="media-card gallery-trigger">
+            <div class="media-box">
+              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group.jpg?raw=true" alt="Group">
+            </div>
+            <div class="media-info">
+              <span class="media-tag">BTS · Photo</span>
+              <h4>Team Group Photo</h4>
+            </div>
+            <div class="hidden-assets">
+              <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group.jpg?raw=true"></span>
+            </div>
+          </div>
         </div>
       </section>
-
     </main>
   </div>
 
@@ -486,86 +370,75 @@
     <p>© 2026 Jellybot Project · Visual Archive</p>
   </footer>
 
+  <div id="lightbox">
+    <button id="lightbox-close">✕</button>
+    <button id="lb-prev" class="lb-nav">‹</button>
+    <img id="lightbox-img" src="">
+    <button id="lb-next" class="lb-nav">›</button>
+    <div id="lightbox-counter">1 / 1</div>
+  </div>
+
   <script>
-    // --- 1. HEADER & REVEAL LOGIC ---
-const header = document.getElementById('site-header');
-window.addEventListener('scroll', () => {
-  header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
-  header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
-}, { passive: true });
+    // Header & Reveal Logic
+    const header = document.getElementById('site-header');
+    window.addEventListener('scroll', () => {
+      header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
+      header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+    }, { passive: true });
 
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-}, { threshold: 0.1 });
-document.querySelectorAll('.doc-section').forEach(el => observer.observe(el));
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.doc-section').forEach(el => observer.observe(el));
 
+    // Lightbox Logic
+    let currentGroup = [];
+    let currentIndex = 0;
+    const lightbox = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lightbox-img');
+    const lbCounter = document.getElementById('lightbox-counter');
 
-// --- 2. LIGHTBOX SCROLL LOGIC ---
-let currentGroup = [];
-let currentIndex = 0;
+    document.querySelectorAll('.gallery-trigger').forEach(card => {
+      card.addEventListener('click', () => {
+        currentGroup = Array.from(card.querySelectorAll('.hidden-assets span'))
+                            .map(span => span.dataset.src);
+        if (currentGroup.length > 0) {
+          currentIndex = 0;
+          updateLightbox();
+          lightbox.classList.add('open');
+          document.body.style.overflow = 'hidden';
+        }
+      });
+    });
 
-const lightbox = document.getElementById('lightbox');
-const lbImg = document.getElementById('lightbox-img');
-const lbCounter = document.getElementById('lightbox-counter');
-
-// This looks for any card with the class "gallery-trigger"
-document.querySelectorAll('.gallery-trigger').forEach(card => {
-  card.addEventListener('click', () => {
-    // Collect all the data-src URLs from the hidden-assets div inside this card
-    currentGroup = Array.from(card.querySelectorAll('.hidden-assets span'))
-                        .map(span => span.dataset.src);
-    
-    if (currentGroup.length > 0) {
-        currentIndex = 0;
-        updateLightbox();
-        lightbox.classList.add('open');
-        document.body.style.overflow = 'hidden'; // Prevent page scroll
+    function updateLightbox() {
+      lbImg.src = currentGroup[currentIndex];
+      lbCounter.textContent = `${currentIndex + 1} / ${currentGroup.length}`;
     }
-  });
-});
 
-function updateLightbox() {
-  lbImg.src = currentGroup[currentIndex];
-  lbCounter.textContent = `${currentIndex + 1} / ${currentGroup.length}`;
-}
+    document.getElementById('lb-next').onclick = (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex + 1) % currentGroup.length;
+      updateLightbox();
+    };
 
-// Navigation Logic
-document.getElementById('lb-next').onclick = (e) => {
-  e.stopPropagation();
-  currentIndex = (currentIndex + 1) % currentGroup.length;
-  updateLightbox();
-};
+    document.getElementById('lb-prev').onclick = (e) => {
+      e.stopPropagation();
+      currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+      updateLightbox();
+    };
 
-document.getElementById('lb-prev').onclick = (e) => {
-  e.stopPropagation();
-  currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
-  updateLightbox();
-};
+    document.getElementById('lightbox-close').onclick = () => {
+      lightbox.classList.remove('open');
+      document.body.style.overflow = '';
+    };
 
-// Close logic
-document.getElementById('lightbox-close').onclick = () => {
-    lightbox.classList.remove('open');
-    document.body.style.overflow = '';
-};
-
-// Close when clicking the dark background
-lightbox.onclick = (e) => {
-    if (e.target === lightbox) {
+    lightbox.onclick = (e) => {
+      if (e.target === lightbox) {
         lightbox.classList.remove('open');
         document.body.style.overflow = '';
-    }
-};
+      }
+    };
   </script>
-<div id="lightbox">
-  <button id="lightbox-close" style="position:fixed; top:20px; right:30px; background:none; border:none; color:white; font-size:2em; cursor:pointer;">✕</button>
-  
-  <button id="lb-prev" class="lb-nav">‹</button>
-  <img id="lightbox-img" src="">
-  <button id="lb-next" class="lb-nav">›</button>
-  
-  <div id="lightbox-counter">1 / 1</div>
-  <p id="lightbox-caption" style="color:var(--muted); margin-top:10px; font-family:'DM Mono';"></p>
-</div>
-  
 </body>
 </html>
