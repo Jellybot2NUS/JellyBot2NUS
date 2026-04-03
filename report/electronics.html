@@ -587,7 +587,7 @@
         <span class="section-num">03</span>
         <h2>Software Stack</h2>
         <div class="section-rule"></div>
-        <p>The software stack runs on <strong>BlueOS</strong> [a Docker-based middleware operating system] with <strong>ArduSub 4.5.3 STABLE</strong> providing firmware-level sensor fusion. Communication between subsystems uses the <strong>MAVLink</strong> protocol, translated to HTTP/JSON by <strong>MAVLink2REST</strong>, enabling browser-based tools and custom extensions for live sensor data.</p>
+        <p>Jellybot's software stack is organised into three distinct layers. At the bottom, the <strong>Flight Controller Board</strong> runs <strong>ArduSub 4.5.3 STABLE</strong> — the autopilot firmware responsible for sensor fusion, attitude estimation, and depth sensing. Above it, the <strong>Onboard Computer</strong> (Raspberry Pi 4) runs <strong>BlueOS</strong>, a Docker-based middleware operating system that orchestrates services, manages custom extensions, and bridges communication between layers using the <strong>MAVLink</strong> protocol — translated to HTTP/JSON by <strong>MAVLink2REST</strong>. At the top, the <strong>Control Station</strong> (Mac) runs <strong>Cockpit</strong> for the pilot interface and <strong>QGroundControl</strong> for sensor calibration and parameter configuration, communicating with the vehicle over Ethernet.</p>
 
         <img
           src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/software_stack.png?raw=true"
