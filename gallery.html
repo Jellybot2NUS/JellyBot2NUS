@@ -77,51 +77,55 @@
     nav a:hover { color: var(--text); }
 
     /* ─── ENHANCED LIGHTBOX ──────────────────────────── */
-#lightbox {
-  display: none;
-  position: fixed; inset: 0; z-index: 999;
-  background: rgba(4,9,18,0.96);
-  backdrop-filter: blur(15px);
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
-
-#lightbox.open { display: flex; }
-
-#lightbox-img {
-  max-width: 85vw;
-  max-height: 75vh;
-  object-fit: contain;
-  border-radius: 8px;
-  box-shadow: 0 0 50px rgba(0,0,0,0.5);
-}
-
-/* Nav Buttons */
-.lb-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: var(--glass);
-  border: 1px solid var(--glass-border);
-  color: white;
-  padding: 20px;
-  cursor: pointer;
-  font-size: 1.5em;
-  border-radius: 50%;
-  transition: all 0.3s;
-}
-
-.lb-nav:hover { background: var(--accent); color: var(--ink); }
-#lb-prev { left: 30px; }
-#lb-next { right: 30px; }
-
-#lightbox-counter {
-  font-family: 'DM Mono', monospace;
-  color: var(--accent);
-  margin-top: 15px;
-  font-size: 0.8em;
-}
+      #lightbox {
+        display: none;
+        position: fixed; inset: 0; z-index: 999;
+        background: rgba(4,9,18,0.96);
+        backdrop-filter: blur(15px);
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+      }
+      
+      #lightbox.open { display: flex; }
+      
+      #lightbox-img {
+        max-width: 85vw;
+        max-height: 75vh;
+        object-fit: contain;
+        border-radius: 8px;
+        box-shadow: 0 0 50px rgba(0,0,0,0.5);
+      }
+      
+      /* Nav Buttons */
+      .lb-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: var(--glass);
+        border: 1px solid var(--glass-border);
+        color: white;
+        padding: 20px;
+        cursor: pointer;
+        font-size: 1.5em;
+        border-radius: 50%;
+        transition: all 0.3s;
+      }
+      
+      .lb-nav:hover { background: var(--accent); color: var(--ink); }
+      #lb-prev { left: 30px; }
+      #lb-next { right: 30px; }
+      
+      #lightbox-counter {
+        font-family: 'DM Mono', monospace;
+        color: var(--accent);
+        margin-top: 15px;
+        font-size: 0.8em;
+      }
+    /* Hide the data list from the main view */
+    .hidden-assets {
+      display: none;
+    }
 
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
@@ -469,18 +473,74 @@
   </footer>
 
   <script>
-    // Header shrink logic
-    const header = document.getElementById('site-header');
-    window.addEventListener('scroll', () => {
-      header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
-      header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
-    }, { passive: true });
+    // --- 1. HEADER & REVEAL LOGIC ---
+const header = document.getElementById('site-header');
+window.addEventListener('scroll', () => {
+  header.style.background = window.scrollY > 60 ? 'rgba(6,12,22,0.97)' : 'transparent';
+  header.style.padding = window.scrollY > 60 ? '14px 60px' : '20px 60px';
+}, { passive: true });
 
-    // Reveal logic
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-    }, { threshold: 0.1 });
-    document.querySelectorAll('.doc-section').forEach(el => observer.observe(el));
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.doc-section').forEach(el => observer.observe(el));
+
+
+// --- 2. LIGHTBOX SCROLL LOGIC ---
+let currentGroup = [];
+let currentIndex = 0;
+
+const lightbox = document.getElementById('lightbox');
+const lbImg = document.getElementById('lightbox-img');
+const lbCounter = document.getElementById('lightbox-counter');
+
+// This looks for any card with the class "gallery-trigger"
+document.querySelectorAll('.gallery-trigger').forEach(card => {
+  card.addEventListener('click', () => {
+    // Collect all the data-src URLs from the hidden-assets div inside this card
+    currentGroup = Array.from(card.querySelectorAll('.hidden-assets span'))
+                        .map(span => span.dataset.src);
+    
+    if (currentGroup.length > 0) {
+        currentIndex = 0;
+        updateLightbox();
+        lightbox.classList.add('open');
+        document.body.style.overflow = 'hidden'; // Prevent page scroll
+    }
+  });
+});
+
+function updateLightbox() {
+  lbImg.src = currentGroup[currentIndex];
+  lbCounter.textContent = `${currentIndex + 1} / ${currentGroup.length}`;
+}
+
+// Navigation Logic
+document.getElementById('lb-next').onclick = (e) => {
+  e.stopPropagation();
+  currentIndex = (currentIndex + 1) % currentGroup.length;
+  updateLightbox();
+};
+
+document.getElementById('lb-prev').onclick = (e) => {
+  e.stopPropagation();
+  currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+  updateLightbox();
+};
+
+// Close logic
+document.getElementById('lightbox-close').onclick = () => {
+    lightbox.classList.remove('open');
+    document.body.style.overflow = '';
+};
+
+// Close when clicking the dark background
+lightbox.onclick = (e) => {
+    if (e.target === lightbox) {
+        lightbox.classList.remove('open');
+        document.body.style.overflow = '';
+    }
+};
   </script>
 <div id="lightbox">
   <button id="lightbox-close" style="position:fixed; top:20px; right:30px; background:none; border:none; color:white; font-size:2em; cursor:pointer;">✕</button>
