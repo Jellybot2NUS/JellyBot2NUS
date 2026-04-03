@@ -1,0 +1,123 @@
+<svg width="100%" viewBox="0 0 680 550" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+  <style>
+    text { font-family: sans-serif; fill: #4db8d4; }
+    .th { font-size: 14px; font-weight: 500; fill: #e8edf5; }
+    .ts { font-size: 12px; fill: rgba(232,237,245,0.6); }
+    .box-amber rect { fill: rgba(186,117,23,0.15); stroke: #BA7517; }
+    .box-purple rect { fill: rgba(83,74,183,0.15); stroke: #534AB7; }
+    .box-teal rect   { fill: rgba(15,110,86,0.15);  stroke: #0F6E56; }
+    .box-coral rect  { fill: rgba(153,60,29,0.15);  stroke: #993C1D; }
+    .box-pink rect   { fill: rgba(153,53,86,0.15);  stroke: #993556; }
+    .box-gray rect   { fill: rgba(95,94,90,0.15);   stroke: #5F5E5A; }
+    .arr { stroke: rgba(232,237,245,0.5); stroke-width: 1.5; fill: none; }
+    .lbl { font-size: 11px; fill: rgba(232,237,245,0.45); font-family: sans-serif; }
+  </style>
+</defs>
+
+<!-- Battery -->
+<g class="box-amber">
+  <rect x="20" y="40" width="130" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="85" y="58" text-anchor="middle" dominant-baseline="central">Battery</text>
+  <text class="ts" x="85" y="78" text-anchor="middle" dominant-baseline="central">12V 20Ah Li-Ion</text>
+</g>
+
+<!-- Power Sense -->
+<g class="box-amber">
+  <rect x="160" y="40" width="140" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="230" y="58" text-anchor="middle" dominant-baseline="central">Power Sense</text>
+  <text class="ts" x="230" y="78" text-anchor="middle" dominant-baseline="central">12V → 5V</text>
+</g>
+
+<!-- PS4 + GCU -->
+<g class="box-gray">
+  <rect x="440" y="40" width="210" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="545" y="58" text-anchor="middle" dominant-baseline="central">PS4 Controller + GCU</text>
+  <text class="ts" x="545" y="78" text-anchor="middle" dominant-baseline="central">Ethernet connection</text>
+</g>
+
+<!-- Pi + Navigator -->
+<g class="box-purple">
+  <rect x="180" y="140" width="260" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="310" y="158" text-anchor="middle" dominant-baseline="central">Pi 4 + Navigator HAT</text>
+  <text class="ts" x="310" y="178" text-anchor="middle" dominant-baseline="central">BlueOS / ArduSub / MAVLink2REST</text>
+</g>
+
+<!-- Camera -->
+<g class="box-teal">
+  <rect x="460" y="130" width="175" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="547" y="148" text-anchor="middle" dominant-baseline="central">Camera</text>
+  <text class="ts" x="547" y="168" text-anchor="middle" dominant-baseline="central">1080P USB</text>
+</g>
+
+<!-- Bar02 -->
+<g class="box-teal">
+  <rect x="460" y="200" width="175" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="547" y="218" text-anchor="middle" dominant-baseline="central">Bar02</text>
+  <text class="ts" x="547" y="238" text-anchor="middle" dominant-baseline="central">I²C Bus 6</text>
+</g>
+
+<!-- PCA9685 -->
+<g class="box-coral">
+  <rect x="70" y="280" width="160" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="150" y="298" text-anchor="middle" dominant-baseline="central">PCA9685</text>
+  <text class="ts" x="150" y="318" text-anchor="middle" dominant-baseline="central">PWM expander, I²C</text>
+</g>
+
+<!-- H-Bridge 1 -->
+<g class="box-coral">
+  <rect x="20" y="380" width="130" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="85" y="398" text-anchor="middle" dominant-baseline="central">H-Bridge 1</text>
+  <text class="ts" x="85" y="418" text-anchor="middle" dominant-baseline="central">Ch 0, 1</text>
+</g>
+
+<!-- H-Bridge 2 -->
+<g class="box-coral">
+  <rect x="190" y="380" width="130" height="56" rx="8" stroke-width="0.5"/>
+  <text class="th" x="255" y="398" text-anchor="middle" dominant-baseline="central">H-Bridge 2</text>
+  <text class="ts" x="255" y="418" text-anchor="middle" dominant-baseline="central">Ch 2, 3</text>
+</g>
+
+<!-- Motor 1 -->
+<g class="box-pink">
+  <rect x="10" y="472" width="90" height="36" rx="8" stroke-width="0.5"/>
+  <text class="th" x="55" y="490" text-anchor="middle" dominant-baseline="central">Motor 1</text>
+</g>
+
+<!-- Sol 1 -->
+<g class="box-pink">
+  <rect x="108" y="472" width="90" height="36" rx="8" stroke-width="0.5"/>
+  <text class="th" x="153" y="490" text-anchor="middle" dominant-baseline="central">Sol. 1</text>
+</g>
+
+<!-- Motor 2 -->
+<g class="box-pink">
+  <rect x="220" y="472" width="90" height="36" rx="8" stroke-width="0.5"/>
+  <text class="th" x="265" y="490" text-anchor="middle" dominant-baseline="central">Motor 2</text>
+</g>
+
+<!-- Sol 2 -->
+<g class="box-pink">
+  <rect x="318" y="472" width="90" height="36" rx="8" stroke-width="0.5"/>
+  <text class="th" x="363" y="490" text-anchor="middle" dominant-baseline="central">Sol. 2</text>
+</g>
+
+<!-- Arrows -->
+<line class="arr" marker-end="url(#arrow)" x1="150" y1="68" x2="160" y2="68"/>
+<path class="arr" marker-end="url(#arrow)" d="M 230 96 L 230 118 L 260 118 L 260 140"/>
+<path class="arr" marker-end="url(#arrow)" d="M 545 96 L 545 118 L 400 118 L 400 140"/>
+<text class="lbl" x="472" y="112" text-anchor="middle">HTTP REST</text>
+<line class="arr" marker-end="url(#arrow)" x1="440" y1="158" x2="460" y2="158"/>
+<path class="arr" marker-end="url(#arrow)" d="M 440 178 L 455 178 L 455 228 L 460 228"/>
+<path class="arr" marker-end="url(#arrow)" d="M 220 196 L 220 238 L 150 238 L 150 280"/>
+<text class="lbl" x="185" y="232" text-anchor="middle">I²C Bus 6</text>
+<path class="arr" marker-end="url(#arrow)" d="M 135 336 L 135 358 L 85 358 L 85 380"/>
+<path class="arr" marker-end="url(#arrow)" d="M 165 336 L 165 358 L 255 358 L 255 380"/>
+<path class="arr" marker-end="url(#arrow)" d="M 75 436 L 75 452 L 55 452 L 55 472"/>
+<path class="arr" marker-end="url(#arrow)" d="M 95 436 L 95 460 L 153 460 L 153 472"/>
+<path class="arr" marker-end="url(#arrow)" d="M 238 436 L 238 448 L 265 448 L 265 472"/>
+<path class="arr" marker-end="url(#arrow)" d="M 272 436 L 272 460 L 363 460 L 363 472"/>
+</svg>
