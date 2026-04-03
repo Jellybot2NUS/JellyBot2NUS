@@ -76,6 +76,53 @@
     }
     nav a:hover { color: var(--text); }
 
+    /* ─── ENHANCED LIGHTBOX ──────────────────────────── */
+#lightbox {
+  display: none;
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(4,9,18,0.96);
+  backdrop-filter: blur(15px);
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+#lightbox.open { display: flex; }
+
+#lightbox-img {
+  max-width: 85vw;
+  max-height: 75vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 0 50px rgba(0,0,0,0.5);
+}
+
+/* Nav Buttons */
+.lb-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  color: white;
+  padding: 20px;
+  cursor: pointer;
+  font-size: 1.5em;
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+
+.lb-nav:hover { background: var(--accent); color: var(--ink); }
+#lb-prev { left: 30px; }
+#lb-next { right: 30px; }
+
+#lightbox-counter {
+  font-family: 'DM Mono', monospace;
+  color: var(--accent);
+  margin-top: 15px;
+  font-size: 0.8em;
+}
+
     /* ─── HERO ──────────────────────────────────────── */
     .hero {
       position: relative;
@@ -359,15 +406,24 @@
         <div class="media-grid">
 
           <!-- PHOTO CARD 1 -->
-          <div class="media-card">
-            <div class="media-box">
-              <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/testinggroup.jpg?raw=true" alt="Exhibit B">
-            </div>
-            <div class="media-info">
-              <span class="media-tag">BTS · Photo</span>
-              <h4>NUS Swimming Pool Test</h4>
-            </div>
-          </div>
+<!-- PHOTO CARD: POOL TEST 1 -->
+<div class="media-card gallery-trigger" data-group="pool-test">
+  <div class="media-box">
+    <!-- This is the cover photo shown on the page -->
+    <img src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/testinggroup.jpg?raw=true" alt="Pool Test Cover">
+  </div>
+  <div class="media-info">
+    <span class="media-tag">BTS · Photo</span>
+    <h4>NUS Swimming Pool Test 1</h4>
+  </div>
+
+  <!-- HIDDEN LIST OF IMAGES FOR THIS GROUP -->
+  <div class="hidden-assets">
+    <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group.jpg?raw=true"></span>
+    <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/group2.jpg?raw=true"></span>
+    <span data-src="https://github.com/JellyBot2NUS/JellyBot2NUS.github.io/blob/main/images/bts/2man?raw=true"></span>
+  </div>
+</div>
 
           <!-- PHOTO CARD 2 -->
           <div class="media-card">
@@ -426,6 +482,16 @@
     }, { threshold: 0.1 });
     document.querySelectorAll('.doc-section').forEach(el => observer.observe(el));
   </script>
-
+<div id="lightbox">
+  <button id="lightbox-close" style="position:fixed; top:20px; right:30px; background:none; border:none; color:white; font-size:2em; cursor:pointer;">✕</button>
+  
+  <button id="lb-prev" class="lb-nav">‹</button>
+  <img id="lightbox-img" src="">
+  <button id="lb-next" class="lb-nav">›</button>
+  
+  <div id="lightbox-counter">1 / 1</div>
+  <p id="lightbox-caption" style="color:var(--muted); margin-top:10px; font-family:'DM Mono';"></p>
+</div>
+  
 </body>
 </html>
