@@ -609,7 +609,13 @@
         <hr class="sub-divider"/>
 
         <h3>3.2 Motor Control Extension (<code>blueos-motori2c-extension</code>)</h3>
-        <p>A custom BlueOS Docker extension drives the pneumatic actuation system. A <strong>Flask REST API</strong> (<code>main.py</code>) runs inside a Docker container on <strong>port 8084</strong>, communicating with the PCA9685 over I²C Bus 6 using <code>smbus2</code>. PWM duty cycle maps linearly: <strong>0–100% ≈ 0–12V</strong> motor output.</p>
+        <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> — a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors. 
+          This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction. 
+          To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.</p>
+
+        <p>The operator-side <code>controller.py</code> script runs on the Mac and reads PS4 button inputs. When a button is pressed, it sends an <strong>HTTP POST request</strong> to the Flask API running inside the Docker container on <strong>port 8084</strong> of the Pi
+          — for example, <code>POST /motor/0/speed</code> with a <code>percent</code> value. The Flask server receives the request and calls <code>set_pwm()</code>, which writes the corresponding duty cycle to the PCA9685 register for that channel over I²C. 
+          If the I²C write fails due to motor electrical noise, the function automatically retries up to <strong>3 times at 10 ms intervals</strong> before raising an error.</p>
 
         <h4>Key API Endpoints</h4>
         <div class="table-wrap">
