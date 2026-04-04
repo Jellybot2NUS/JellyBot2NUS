@@ -536,13 +536,14 @@
         <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
 
         <h3 id="sensors-actuators">2.1 Sensors and Actuators</h3>
-        <p>The listed components form the core sensing and control framework of Jellybot. Each sensor contributes a unique data stream:</p>
-        <ul>
-          <li>To provide a user control interface [design specification 3b], the Playstation 4 Controller was selected.</li>
-          <li>To measure depth [design specification 4a], the Blue Robotics Bar02 Sensor was selected.</li>
-          <li>To provide orientation [design specification 4b], the Blue Robotics Flight Navigator was selected.</li>
-          <li>To provide real-time visual feedback for monitoring and analysis [design specification 4d], the Blue Robotics Low-Light USB Camera was selected.</li>
-          <li>To coordinate communication between all onboard sensors [design specification 5], the Raspberry Pi 4 was selected.</li>
+        <p>The listed components form the core sensing and control framework of Jellybot, each selected to fulfil a specific <a href="../report/report.html#section-6" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">design feature and specification</a>.</p>        <ul>
+          <li>To achieve directional and surface control, the Playstation 4 Controller was selected.</li>
+          <li>To step down power, the Blue Robotics Power Sense Module was selected.</li>
+          <li>To ensure connection between the Ground Control System and Jellybot, a 5m ethernet cable was selected.</li>
+          <li>To provide orientation, the Blue Robotics Flight Navigator was selected.</li>
+          <li>To provide real-time visual feedback for monitoring and analysis, the Blue Robotics Low-Light USB Camera was selected.</li>
+          <li>To measure depth, the Blue Robotics Bar02 Sensor was selected.</li>
+          <li>To coordinate communication between all onboard sensors, the Raspberry Pi 4 was selected.</li>
         </ul>
 
         <figure class="img-fig img-single">
