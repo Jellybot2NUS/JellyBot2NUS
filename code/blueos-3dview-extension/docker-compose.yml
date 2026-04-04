@@ -1,0 +1,4 @@
+services:
+  blueos-3dview:
+    image: blueos-3dview-extension:latest
+    network_mode: host

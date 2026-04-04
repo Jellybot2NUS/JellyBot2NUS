@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jellybot ROV — Attitude</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: radial-gradient(ellipse at 50% 25%, #091e38 0%, #020b16 100%);
+    width: 100vw; height: 100vh; overflow: hidden;
+    font-family: 'Courier New', monospace; color: #88ccff;
+    display: flex; flex-direction: column;
+  }
+  header {
+    padding: 10px 16px; border-bottom: 1px solid #0c2238;
+    display: flex; justify-content: space-between; align-items: center; flex-shrink: 0;
+    gap: 8px; flex-wrap: wrap;
+  }
+  .title-block .sub { font-size: 9px; letter-spacing: 3px; color: #0088dd; text-transform: uppercase; }
+  .title-block .title { font-size: 15px; font-weight: bold; color: #fff; }
+  #status {
+    font-size: 10px; letter-spacing: 1px; padding: 4px 10px;
+    border-radius: 20px; border: 1px solid #333; background: #111;
+    color: #ff4444; text-transform: uppercase; white-space: nowrap;
+    transition: all 0.3s;
+  }
+  #status.live { border-color: #00cc66; background: #001a0d; color: #00cc66; }
+  canvas { display: block; flex: 1; touch-action: none; }
+  footer {
+    padding: 8px 16px; border-top: 1px solid #0c2238;
+    display: flex; gap: 16px; font-size: 10px; flex-wrap: wrap;
+    color: #aaccee; flex-shrink: 0; align-items: center;
+  }
+  .hud {
+    position: absolute;
+    bottom: 44px; left: 16px;
+    display: flex; flex-direction: column; gap: 3px;
+    font-size: 11px; letter-spacing: 1px; pointer-events: none;
+  }
+  .hud-row { display: flex; gap: 8px; align-items: center; }
+  .hud-label { color: #446688; width: 36px; }
+  .hud-bar-bg { width: 80px; height: 4px; background: #0d2238; border-radius: 2px; }
+  .hud-bar { height: 4px; border-radius: 2px; background: #0088dd; width: 50%; transition: width 0.1s; }
+  .hud-val { color: #88ccff; width: 48px; text-align: right; }
+</style>
+</head>
+<body>
+<header>
+  <div class="title-block">
+    <div class="sub">FYP · Blue Robotics</div>
+    <div class="title">Jellybot ROV — Live Attitude</div>
+  </div>
+  <div id="status">● No Signal</div>
+</header>
+<canvas id="c"></canvas>
+<div class="hud">
+  <div class="hud-row">
+    <span class="hud-label">ROLL</span>
+    <div class="hud-bar-bg"><div class="hud-bar" id="bar-roll"></div></div>
+    <span class="hud-val" id="val-roll">0.0°</span>
+  </div>
+  <div class="hud-row">
+    <span class="hud-label">PITCH</span>
+    <div class="hud-bar-bg"><div class="hud-bar" id="bar-pitch"></div></div>
+    <span class="hud-val" id="val-pitch">0.0°</span>
+  </div>
+  <div class="hud-row">
+    <span class="hud-label">YAW</span>
+    <div class="hud-bar-bg"><div class="hud-bar" id="bar-yaw"></div></div>
+    <span class="hud-val" id="val-yaw">0.0°</span>
+  </div>
+</div>
+<footer>
+  <span>🔵 Dome</span>
+  <span>⬛ Body</span>
+  <span>🤍 Skirt</span>
+  <span>💧 Tentacles</span>
+  <span style="margin-left:auto; color:#446688;">drag to override</span>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script>
+const ATTITUDE_URL = '/mavlink2rest/mavlink/vehicles/1/components/1/messages/ATTITUDE';
+const POLL_MS = 100;
+let liveRoll=0, livePitch=0, liveYaw=0, dataLive=false;
+
+async function pollAttitude() {
+  try {
+    const res = await fetch(ATTITUDE_URL, { cache: 'no-store' });
+    const json = await res.json();
+    const msg = json.message;
+    liveRoll=msg.roll; livePitch=msg.pitch; liveYaw=msg.yaw; dataLive=true;
+    const pill = document.getElementById('status');
+    pill.textContent='● Live'; pill.classList.add('live');
+    const toDeg = r => (r*180/Math.PI).toFixed(1)+'°';
+    document.getElementById('val-roll').textContent=toDeg(liveRoll);
+    document.getElementById('val-pitch').textContent=toDeg(livePitch);
+    document.getElementById('val-yaw').textContent=toDeg(liveYaw);
+    const norm = r => ((r/Math.PI)*0.5+0.5)*100;
+    document.getElementById('bar-roll').style.width=norm(liveRoll)+'%';
+    document.getElementById('bar-pitch').style.width=norm(livePitch)+'%';
+    document.getElementById('bar-yaw').style.width=norm(liveYaw)+'%';
+  } catch(e) {
+    dataLive=false;
+    document.getElementById('status').textContent='● No Signal';
+    document.getElementById('status').classList.remove('live');
+  }
+}
+pollAttitude();
+setInterval(pollAttitude, POLL_MS);
+
+const canvas = document.getElementById('c');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias:true, alpha:true });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(42,1,0.1,100);
+camera.position.set(0,1.5,6.5); camera.lookAt(0,0,0);
+
+function resize() {
+  const w=canvas.clientWidth, h=canvas.clientHeight;
+  renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+}
+
+scene.add(new THREE.AmbientLight(0xaaddff,0.6));
+const key=new THREE.DirectionalLight(0xffffff,1.0); key.position.set(3,6,4); scene.add(key);
+const fill=new THREE.DirectionalLight(0x88ccff,0.45); fill.position.set(-4,1,-2); scene.add(fill);
+const under=new THREE.DirectionalLight(0x334466,0.35); under.position.set(0,-4,1); scene.add(under);
+
+const robotGroup=new THREE.Group(); scene.add(robotGroup);
+const BODY_R=0.52, BODY_H=2.5;
+
+const clearMat=new THREE.MeshPhongMaterial({color:0xaaccff,transparent:true,opacity:0.30,shininess:130,specular:0xffffff,side:THREE.DoubleSide});
+const blackMat=new THREE.MeshPhongMaterial({color:0x1a1a1a,shininess:50,specular:0x222222});
+const skirtMat=new THREE.MeshPhongMaterial({color:0xe8f4ff,transparent:true,opacity:0.80,shininess:20,specular:0x99bbdd,side:THREE.DoubleSide});
+const tentacleMat=new THREE.MeshPhongMaterial({color:0xddeeff,transparent:true,opacity:0.55,shininess:60});
+const internalMat=new THREE.MeshPhongMaterial({color:0x1e3248,shininess:10});
+
+robotGroup.add(new THREE.Mesh(new THREE.CylinderGeometry(BODY_R,BODY_R,BODY_H,64),blackMat));
+const dome=new THREE.Mesh(new THREE.SphereGeometry(BODY_R,48,24,0,Math.PI*2,0,Math.PI/2),clearMat);
+dome.position.y=BODY_H/2; robotGroup.add(dome);
+const pcb=new THREE.Mesh(new THREE.BoxGeometry(0.42,0.16,0.42),internalMat);
+pcb.position.y=BODY_H/2+0.08; robotGroup.add(pcb);
+
+(function buildSkirt() {
+  const RADIAL=128,DEPTH=24,INNER_R=BODY_R+0.005,OUTER_R=1.60,ATTACH_Y=0.35,DROOP=-0.70;
+  const verts=[];
+  for(let ri=0;ri<=RADIAL;ri++){
+    const a=(ri/RADIAL)*Math.PI*2,cosA=Math.cos(a),sinA=Math.sin(a);
+    for(let si=0;si<=DEPTH;si++){
+      const t=si/DEPTH,r=INNER_R+(OUTER_R-INNER_R)*t,y=ATTACH_Y+DROOP*t*t*(3-2*t);
+      verts.push(cosA*r,y,sinA*r);
+    }
+  }
+  const idx=[],stride=DEPTH+1;
+  for(let ri=0;ri<RADIAL;ri++)
+    for(let si=0;si<DEPTH;si++){
+      const a=ri*stride+si,b=a+1,c=(ri+1)*stride+si,d=c+1;
+      idx.push(a,c,b,b,c,d);
+    }
+  const geo=new THREE.BufferGeometry();
+  geo.setAttribute('position',new THREE.Float32BufferAttribute(verts,3));
+  geo.setIndex(idx); geo.computeVertexNormals();
+  robotGroup.add(new THREE.Mesh(geo,skirtMat));
+})();
+
+const tCfgs=[{ox:0.14,oz:0,sw:1,ph:0},{ox:-0.14,oz:0,sw:-1,ph:1.1},{ox:0,oz:0.14,sw:0.8,ph:2.2},{ox:0,oz:-0.14,sw:-0.8,ph:3.3}];
+const tentMeshes=[];
+function makeTentPts(cfg,t){
+  const pts=[];
+  for(let i=0;i<=22;i++){const tt=i/22,w=Math.sin(t*1.1+tt*Math.PI*2+cfg.ph)*0.07*cfg.sw;pts.push(new THREE.Vector3(cfg.ox+w,-(BODY_H/2)-tt*2.0,cfg.oz+w*0.4));}
+  return pts;
+}
+tCfgs.forEach(cfg=>{
+  const m=new THREE.Mesh(new THREE.TubeGeometry(new THREE.CatmullRomCurve3(makeTentPts(cfg,0)),22,0.024,6,false),tentacleMat);
+  robotGroup.add(m); tentMeshes.push({mesh:m,cfg});
+});
+
+const pArr=new Float32Array(160*3);
+for(let i=0;i<160;i++){pArr[i*3]=(Math.random()-.5)*16;pArr[i*3+1]=(Math.random()-.5)*14;pArr[i*3+2]=(Math.random()-.5)*8;}
+const pGeo=new THREE.BufferGeometry();
+pGeo.setAttribute('position',new THREE.BufferAttribute(pArr,3));
+const particles=new THREE.Points(pGeo,new THREE.PointsMaterial({color:0x88ccff,size:0.055,transparent:true,opacity:0.28}));
+scene.add(particles);
+
+let dragging=false,lastX=0,lastY=0,manualRotX=0.25,manualRotY=0.5;
+canvas.addEventListener('mousedown',e=>{dragging=true;lastX=e.clientX;lastY=e.clientY;});
+canvas.addEventListener('mousemove',e=>{if(!dragging)return;manualRotY+=(e.clientX-lastX)*0.008;manualRotX=Math.max(-Math.PI/2,Math.min(Math.PI/2,manualRotX+(e.clientY-lastY)*0.008));lastX=e.clientX;lastY=e.clientY;});
+canvas.addEventListener('mouseup',()=>dragging=false);
+canvas.addEventListener('mouseleave',()=>dragging=false);
+canvas.addEventListener('touchstart',e=>{e.preventDefault();dragging=true;lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;},{passive:false});
+canvas.addEventListener('touchmove',e=>{e.preventDefault();if(!dragging)return;manualRotY+=(e.touches[0].clientX-lastX)*0.008;manualRotX=Math.max(-Math.PI/2,Math.min(Math.PI/2,manualRotX+(e.touches[0].clientY-lastY)*0.008));lastX=e.touches[0].clientX;lastY=e.touches[0].clientY;},{passive:false});
+canvas.addEventListener('touchend',()=>dragging=false);
+window.addEventListener('resize',resize);
+
+let t=0,autoYaw=0,smoothX=0,smoothY=0,smoothZ=0;
+const LERP=0.12;
+function lerp(a,b,t){return a+(b-a)*t;}
+
+function animate(){
+  requestAnimationFrame(animate); resize(); t+=0.012;
+  if(dataLive&&!dragging){
+    smoothX=lerp(smoothX,livePitch,LERP);
+    smoothY=lerp(smoothY,-liveYaw,LERP);
+    smoothZ=lerp(smoothZ,liveRoll,LERP);
+    robotGroup.rotation.x=smoothX;
+    robotGroup.rotation.y=smoothY;
+    robotGroup.rotation.z=smoothZ;
+  } else if(!dragging){
+    autoYaw+=0.004;
+    robotGroup.rotation.x=manualRotX;
+    robotGroup.rotation.y=autoYaw;
+    robotGroup.rotation.z=0;
+  } else {
+    robotGroup.rotation.x=manualRotX;
+    robotGroup.rotation.y=manualRotY;
+    robotGroup.rotation.z=0;
+  }
+  robotGroup.position.y=Math.sin(t*0.7)*0.06;
+  tentMeshes.forEach(({mesh,cfg})=>{
+    const g=new THREE.TubeGeometry(new THREE.CatmullRomCurve3(makeTentPts(cfg,t)),22,0.024,6,false);
+    mesh.geometry.dispose(); mesh.geometry=g;
+  });
+  particles.rotation.y+=0.0003;
+  renderer.render(scene,camera);
+}
+animate();
+</script>
+</body>
+</html>
