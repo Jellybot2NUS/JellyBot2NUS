@@ -618,7 +618,12 @@
 
         <div class="callout callout-warn">
           <div class="callout-title">The Problem</div>
-          <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors. This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction. To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.</p>
+          <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors. 
+            This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction. </p>
+            
+          <p>To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.
+          <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-motori2c-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
+        
         </div>
 
         <div class="callout">
