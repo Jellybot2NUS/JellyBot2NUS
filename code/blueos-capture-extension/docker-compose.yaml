@@ -1,0 +1,6 @@
+services:
+  image-evaluator:
+    image: blueos-capture
+    network_mode: host
+    volumes:
+      - ./userdata:/userdata
