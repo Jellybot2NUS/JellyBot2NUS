@@ -1125,10 +1125,6 @@
           This is particularly relevant to coral bleaching detection, where the colour shift from the warm tones of healthy coral to the pale white of bleached coral relies on the camera being able to distinguish red channel variation. </p>
 
 
-        <h3>6.4 Future Work</h3>
-        <ol>
-          <li>To be Uploaded</li>
-        </ol>
       </div>
 
       <!-- 7. 3D VISUALISER -->
@@ -1168,25 +1164,38 @@
         <p>A pool test was conducted with the team to validate the overall system. Video was recorded via <strong>Cockpit's Video Library</strong> widget, which saves recordings as <code>.mkv</code> files alongside <code>.ass</code> telemetry subtitle files containing time-stamped sensor data overlaid on the footage.</p>
       </div>
 
-      <!-- 9. ENGINEERING DECISIONS -->
-      <div class="doc-section" id="section-9">
-        <span class="section-num">09</span>
-        <h2>Key Engineering Decisions</h2>
-        <div class="section-rule"></div>
 
-        <h4>Why not use ArduPilot GPIO or Servo PWM for motor control?</h4>
-        <p>ArduPilot's "GPIO" channel mode is a software label only — the physical pins remain PCA9685 I²C outputs. Servo PWM (50 Hz, 1000–2000 µs) encodes <em>position</em>, not duty cycle, making it incompatible with H-bridge motor control. Driving the PCA9685 directly via <code>smbus2</code> was the correct approach.</p>
 
-        <h4>Independent H-Bridge Drivers</h4>
-        <p>The initial design used a single driver with motors and solenoids in parallel per channel. This was revised to <strong>two independent drivers</strong> to give individual control over each motor and solenoid, enabling the trap-air sequence and precise per-flap operation.</p>
-      </div>
-
-      <!-- 10. SUMMARY & PENDING -->
+      <!-- 10. Future Work -->
       <div class="doc-section" id="section-10">
         <span class="section-num">10</span>
-        <h2>Summary &amp; Pending Work</h2>
+        <h2>Future Work</h2>
         <div class="section-rule"></div>
-        <p>To be Uploaded</p>
+
+        <h3>10.1 Limitations</h3>
+        
+        <div class="callout callout-warn">
+          <div class="callout-title">Limitation — Proxy Target Instead of Real Coral</div>
+          <p>All camera characterisation scenarios were conducted using a <strong>laminated print of a coral reef image</strong> rather than actual coral. 
+            While this provides a controlled and repeatable target for quantifying distortion and colour response, it cannot replicate a real coral. 
+            The UCIQE scores and RGB channel analysis therefore represent the system's capability under ideal conditions, and real-world performance on live coral reef scenes may differ.
+          </p>
+        </div>
+        
+        <div class="callout callout-warn">
+          <div class="callout-title">Limitation — Shallow Water Testing Conditions</div>
+          <p>All underwater testing was conducted in a shallow pool under ambient indoor lighting. 
+            At the target deployment depth of <strong>5 metres</strong>, lighting conditions change significantly: red wavelengths are attenuated more aggressively than observed in shallow pool tests, ambient light intensity drops, and colour contrast between healthy and bleached coral diminishes. 
+            The camera's ability to distinguish coral bleaching at 5 m depth under natural reef lighting has not yet been tested. Auxiliary lighting will likely be required at operational depth to restore colour, and its effect on image quality has not been characterised.</p>
+        </div>
+
+        <h3>10.2 Future Work</h3>
+        <ul>
+          <li>Validate camera colour response and UCIQE at <strong>5 m depth</strong> under natural reef lighting.</li>
+          <li>Characterise the effect of <strong>auxiliary lighting</strong> on image quality and colour accuracy at depth.</li>
+          <li>Confirm stable <strong>Bar02 depth readings</strong>.</li>
+        </ul>
+        
       </div>
 
       <!-- 11. REFERENCES -->
