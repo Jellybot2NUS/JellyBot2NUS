@@ -670,6 +670,8 @@
 
         <h3 id="capture-extension">3.2 Camera Capture Extension (<code>blueos-capture-extension</code>)</h3>
         <p>A second BlueOS Docker extension captures still images from the live underwater camera stream, exposing a simple HTTP endpoint for triggering image saves.</p>
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-capture-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
+
 
         <figure class="img-fig img-single">
           <div class="img-frame" data-caption="Figure 4 — Camera Capture Extension UI (blueos.local:8080)">
@@ -693,7 +695,11 @@
 
         <h3 id="controller-interface">3.3 Pneumatic Actuation &amp; Controller Interface</h3>
         <p>The <code>controller.py</code> script runs on the topside Ground Control Unit and sends HTTP POST requests to the Flask API on the Pi, which in turn drives the PCA9685 over I²C to control two DC pump motors and two 3-way solenoid valves. Each flap pair has an independent motor (pressurisation) and solenoid (direction control), allowing coordinated or per-flap operation.</p>
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/controller" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
 
+
+
+        
         <h4>PS4 Controller Button Mappings</h4>
         <figure class="img-fig img-single">
           <div class="img-frame" data-caption="Figure 5 — PS4 Controller Layout">
@@ -1034,6 +1040,8 @@
         <h2>3D Orientation Visualiser</h2>
         <div class="section-rule"></div>
         <p>A custom BlueOS extension provides real-time visual representation of Jellybot's orientation — addressing the lack of visual feedback inherent to operating an upright cylinder underwater.</p>
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-3dview-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
+
 
         <iframe
           width="100%"
