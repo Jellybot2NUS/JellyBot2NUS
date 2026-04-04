@@ -898,20 +898,37 @@
 
 
 
-
-
         
         <h4>Results</h4>
-        <div class="table-wrap">
-          <table class="styled-table">
-            <thead><tr><th>Condition</th><th>k1</th></tr></thead>
-            <tbody>
-              <tr><td>No dome (baseline)</td><td>−0.006172</td></tr>
-              <tr><td>With dome</td><td>−0.006274</td></tr>
-              <tr><td><strong>Δk1 (dome effect)</strong></td><td><strong>−0.000102</strong></td></tr>
-            </tbody>
-          </table>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; margin: 24px 0;">
+          <div>
+            <div class="table-wrap" style="margin: 0;">
+              <table class="styled-table">
+                <thead><tr><th>Condition</th><th>k1</th><th>k2</th><th>k3</th></tr></thead>
+                <tbody>
+                  <tr><td>No dome (baseline)</td><td>−0.006172</td><td>0.049733</td><td>−0.032124</td></tr>
+                  <tr><td>With dome</td><td>−0.006274</td><td>0.071756</td><td>−0.062122</td></tr>
+                  <tr><td><strong>Δ (dome effect)</strong></td><td><strong>−0.000102</strong></td><td><strong>+0.022023</strong></td><td><strong>−0.029998</strong></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <span class="caption" style="text-align:left;">Table — Distortion Coefficients (Scenario 1)</span>
+          </div>
+        
+          <figure class="img-fig" style="margin: 0;">
+            <div class="img-frame" data-caption="Figure — Distortion Vector Field (With Dome, Air)">
+              <img src="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/blob/main/images/dome_distortion_field.png?raw=true" alt="Distortion vector field showing pixel displacement during undistortion with dome">
+            </div>
+            <figcaption>Distortion Vector Field (With Dome, Air)</figcaption>
+          </figure>
         </div>
+        <p>The distortion vector field above plots the pixel displacement that OpenCV's undistortion algorithm applies to correct each point in the image. 
+          The arrows point in the direction each pixel is moved during correction, with arrow length proportional to displacement magnitude. 
+          The field confirms the k1 result — displacement is negligible across the centre and mid-frame, growing significantly only at the periphery. 
+          This peripheral concentration is driven by the higher-order radial coefficients k2 (0.071756) and k3 (−0.062122), which cause distortion to grow non-linearly with distance from the optical centre.
+        </p>
+
+
         <div class="table-wrap">
           <table class="styled-table">
             <thead><tr><th>Zone</th><th>Sharpness Reduction</th></tr></thead>
@@ -924,7 +941,9 @@
         </div>
         <span class="caption">Table 9 — Scenario 1 Spatial Sharpness Results</span>
         <h4>Analysis</h4>
-        <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
+        <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). 
+          This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. 
+          For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
 
         <h3>6.3 Scenario 2 — Dome Optics in Water</h3>
         <div class="callout">
