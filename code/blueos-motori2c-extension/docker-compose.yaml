@@ -1,0 +1,5 @@
+version: '3'
+services:
+  motor-controller:
+    image: blueos-motor-controller:v1
+    network_mode: host
