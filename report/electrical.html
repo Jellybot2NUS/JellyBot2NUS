@@ -486,6 +486,13 @@
       .img-single { max-width: 100%; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
     }
+    
+    sup {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
   </style>
 </head>
 <body>
@@ -554,7 +561,7 @@
         <h2>Overview</h2>
         <div class="section-rule"></div>
         <p>The electrical subsystem of the Jellybot is a multi-tier power and communication architecture designed to bridge high-current actuation with precision digital control. At its core, the system regulates power for a dual-Raspberry Pi configuration, coordinating the Master–Slave communication required for remote underwater surveillance.</p>
-        <p>To meet the specific demands of coral reef monitoring, the subsystem prioritises <strong>actuation stability</strong> over raw thrust. It integrates a <strong>BlueOS Flight Navigator</strong> with a 2-pump and 2-solenoid valve array, allowing for a dampened response characterised by a time constant τ. This configuration ensures that the electrical load remains optimised at <strong>76.8 W</strong>, extending mission endurance to <strong>3.1 hours</strong>.</p>
+        <p>To meet the specific demands of coral reef monitoring, the subsystem prioritises <strong>actuation stability</strong> over raw thrust. It integrates a <strong>BlueOS Flight Navigator</strong> with a 2-pump and 2-solenoid valve array, allowing for a dampened response characterised by a time constant τ<sup>[1]</sup>. This configuration ensures that the electrical load remains optimised at <strong>76.8 W</strong>, extending mission endurance to <strong>3.1 hours</strong>.</p>
 
         <div class="stat-row">
           <div class="stat-box">
@@ -705,7 +712,7 @@
       <div class="doc-section" id="sub-4a">
         <h3>4.1 Pump Configuration — 2 vs 4 Pumps</h3>
         <div class="subsection-rule"></div>
-        <p>To demonstrate that a 2-pump configuration can match the steady-state performance of a 4-pump system, both setups were evaluated at maximum actuation. A maximum tentacle bend angle of ~71° was confirmed using HX710 pressure sensing at 206 kPa — sufficient to overcome hydrostatic pressure beyond 5 m depth.</p>
+        <p>To demonstrate that a 2-pump configuration can match the steady-state performance of a 4-pump system, both setups were evaluated at maximum actuation. A maximum tentacle bend angle of ~71° was confirmed using HX710 pressure sensing at 206 kPa<sup>[1]</sup> — sufficient to overcome hydrostatic pressure beyond 5 m depth.</p>
 
         <div class="img-grid-2">
           <figure class="img-fig">
@@ -849,11 +856,11 @@
         </div>
         <span class="tbl-caption">Table 6 — Depth Deviation Comparison During Active Depth Control</span>
 
-        <p>The 2-pump system's slower time constant (τ) effectively acts as a "dampener," allowing finer granular control over buoyancy. This reduction in vertical jitter is essential for maintaining the constant focal length required for automated coral detection algorithms. A higher τ describes a more sluggish but smoother system which in the coral reef context, this is a feature, not a limitation.</p>
+        <p>The 2-pump system's slower time constant (τ) effectively acts as a "dampener,"<sup>[1]</sup> allowing finer granular control over buoyancy. This reduction in vertical jitter is essential for maintaining the constant focal length required for automated coral detection algorithms. A higher τ describes a more sluggish but smoother system which in the coral reef context, this is a feature, not a limitation.</p>
 
         <div class="callout">
           <div class="callout-title">Time Constant Interpretation</div>
-          <p>A <strong>lower τ</strong> (4-pump, τ ≈ 0.45 s) indicates a fast system reaching target displacement rapidly which is ideal for propulsion but causing aggressive, jerky movements that make depth control difficult. A <strong>higher τ</strong> (2-pump, τ ≈ 1.1 s) produces a smoother buoyancy transition, filtering out high-frequency jitter and enabling tighter depth precision.</p>
+          <p>A <strong>lower τ</strong> (4-pump, τ ≈ 0.45 s) indicates a fast system reaching target displacement rapidly which is ideal for propulsion but causing aggressive, jerky movements that make depth control difficult. A <strong>higher τ</strong> (2-pump, τ ≈ 1.1 s) produces a smoother buoyancy transition, filtering out high-frequency jitter and enabling tighter depth precision.<sup>[2]</sup></p>
         </div>
       </div>
 
@@ -969,7 +976,7 @@
 
         <div class="callout">
           <div class="callout-title">Mission-Specific Stability</div>
-          <p>The higher time constant of the 2-pump setup provides a mechanical "low-pass filter" effect, dampening abrupt buoyancy shifts. This stability is critical for capturing high-resolution, blur-free imagery of coral reefs.</p>
+          <p>The higher time constant of the 2-pump setup provides a mechanical "low-pass filter" effect, dampening abrupt buoyancy shifts<sup>[2]</sup>. This stability is critical for capturing high-resolution, blur-free imagery of coral reefs.</p>
         </div>
         <div class="callout">
           <div class="callout-title">Logistical &amp; Thermal Efficiency</div>
