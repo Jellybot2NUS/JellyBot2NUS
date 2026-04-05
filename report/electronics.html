@@ -493,20 +493,20 @@
         <li class="sub"><a href="#motor-extension">↳ Motor Extension</a></li>
         <li class="sub"><a href="#capture-extension">↳ Capture Extension</a></li>
         <li class="sub"><a href="#controller-interface">↳ Controller Interface</a></li>
-        <li><a href="#section-5">5. Component Config</a></li>
+        <li><a href="#section-4">4. Component Config</a></li>
         <li class="sub"><a href="#ahrs">↳ AHRS & IMU</a></li>
         <li class="sub"><a href="#bar02">↳ Bar02 Depth</a></li>
-        <li><a href="#section-6">6. Camera Characterisation</a></li>
+        <li><a href="#section-5">5. Camera Characterisation</a></li>
         <li class="sub"><a href="#scenario-1">↳ Scenario 1</a></li>
         <li class="sub"><a href="#scenario-2">↳ Scenario 2</a></li>
         <li class="sub"><a href="#scenario-3">↳ Scenario 3</a></li>
-        <li><a href="#section-7">7. 3D Visualiser</a></li>
-        <li><a href="#section-8">8. Pool Test</a></li>
+        <li><a href="#section-6">6. 3D Visualiser</a></li>
+        <li><a href="#section-7">7. Pool Test</a></li>
         <li class="sub"><a href="#pool-pov">↳ Operator POV</a></li>
         <li class="sub"><a href="#pool-postdive">↳ Post-Dive</a></li>
-        <li><a href="#section-10">10. Future Work</a></li>
-        <li><a href="#section-11">11. References</a></li>
-        <li><a href="#figures-list">12. List of Figures</a></li>
+        <li><a href="#section-8">8. Future Work</a></li>
+        <li><a href="#section-9">9. References</a></li>
+        <li><a href="#figures-list">10. List of Figures</a></li>
       </ul>
     </aside>
 
@@ -536,7 +536,8 @@
         <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
 
         <h3 id="sensors-actuators">2.1 Sensors and Actuators</h3>
-        <p>The listed components form the core sensing and control framework of Jellybot, each selected to fulfil a specific <a href="../report/report.html#section-6" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">design feature and specification</a>.</p>        <ul>
+        <p>The listed components form the core sensing and control framework of Jellybot, each selected to fulfil a specific <a href="../report/report.html#section-6" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">design feature and specification</a>.</p>
+        <ul>
           <li>To achieve directional and surface control, the Playstation 4 Controller was selected.</li>
           <li>To step down power, the Blue Robotics Power Sense Module was selected.</li>
           <li>To ensure connection between the Ground Control System and Jellybot, a 5m ethernet cable was selected.</li>
@@ -618,12 +619,10 @@
 
         <div class="callout callout-warn">
           <div class="callout-title">The Problem</div>
-          <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors. 
-            This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction. </p>
-            
-          <p>To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.
-          <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-motori2c-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
-        
+          <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors.
+            This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction.</p>
+          <p>To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.</p>
+          <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-motori2c-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>
         </div>
 
         <div class="callout">
@@ -647,10 +646,8 @@
           style="border: 1px solid var(--glass-border); border-radius: 4px; margin: 20px 0; display: block;"
           allowfullscreen>
         </iframe>
-        <span class="caption">Video 1 — Motor Control Extension Testing </span>
+        <span class="caption">Video 1 — Motor Control Extension Testing</span>
 
-
-        
         <p>Prior to attaching the system to the silicone flaps, a <strong>multimeter was used to verify the output voltages</strong>, confirming that the PCA9685 was correctly driving the motor drivers. The voltage readings shown are below 12V as the PWM duty cycle was not set to 100% during testing.</p>
 
         <h4>Key API Endpoints</h4>
@@ -670,8 +667,7 @@
 
         <h3 id="capture-extension">3.2 Camera Capture Extension (<code>blueos-capture-extension</code>)</h3>
         <p>A second BlueOS Docker extension captures still images from the live underwater camera stream, exposing a simple HTTP endpoint for triggering image saves.</p>
-        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-capture-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
-
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-capture-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>
 
         <figure class="img-fig img-single">
           <div class="img-frame" data-caption="Figure 4 — Camera Capture Extension UI (blueos.local:8080)">
@@ -695,11 +691,8 @@
 
         <h3 id="controller-interface">3.3 Pneumatic Actuation &amp; Controller Interface</h3>
         <p>The <code>controller.py</code> script runs on the topside Ground Control Unit and sends HTTP POST requests to the Flask API on the Pi, which in turn drives the PCA9685 over I²C to control two DC pump motors and two 3-way solenoid valves. Each flap pair has an independent motor (pressurisation) and solenoid (direction control), allowing coordinated or per-flap operation.</p>
-        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/controller" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/controller" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>
 
-
-
-        
         <h4>PS4 Controller Button Mappings</h4>
         <figure class="img-fig img-single">
           <div class="img-frame" data-caption="Figure 5 — PS4 Controller Layout">
@@ -733,13 +726,13 @@
 
       </div>
 
-      <!-- 5. COMPONENT CONFIGURATION -->
-      <div class="doc-section" id="section-5">
-        <span class="section-num">05</span>
+      <!-- 4. COMPONENT CONFIGURATION -->
+      <div class="doc-section" id="section-4">
+        <span class="section-num">04</span>
         <h2>Component Configuration</h2>
         <div class="section-rule"></div>
 
-        <h3 id="ahrs">5.1 AHRS Orientation &amp; Accelerometer Calibration</h3>
+        <h3 id="ahrs">4.1 AHRS Orientation &amp; Accelerometer Calibration</h3>
         <p>Because Jellybot is a <strong>vertical cylinder</strong>, the Navigator is mounted upright inside the enclosure — a significant deviation from the default flat/horizontal orientation assumed by ArduPilot.</p>
 
         <div class="callout callout-warn">
@@ -754,7 +747,7 @@
 
         <hr class="sub-divider"/>
 
-        <h3 id="bar02">5.2 Bar02 Depth/Pressure Sensor Integration</h3>
+        <h3 id="bar02">4.2 Bar02 Depth/Pressure Sensor Integration</h3>
         <p>The Bar02 connects to one of the two I²C ports on the Navigator via JST GH cable.</p>
 
         <h4>Zeroing Behaviour</h4>
@@ -773,13 +766,13 @@
         <hr class="sub-divider"/>
       </div>
 
-      <!-- 6. CAMERA CHARACTERISATION -->
-      <div class="doc-section" id="section-6">
-        <span class="section-num">06</span>
+      <!-- 5. CAMERA CHARACTERISATION -->
+      <div class="doc-section" id="section-5">
+        <span class="section-num">05</span>
         <h2>Camera System Characterisation</h2>
         <div class="section-rule"></div>
 
-        <h3>6.1 Introduction &amp; Motivation</h3>
+        <h3>5.1 Introduction &amp; Motivation</h3>
         <p>Jellybot's camera system consists of a <strong>Blue Robotics USB Low-Light Camera</strong> sealed behind a <strong>clear acrylic dome port</strong>. The dome introduces a refractive air–glass–water interface that can distort imagery.</p>
         <p>For a system whose core task is visual inspection of coral bleaching, uncharacterised optical distortion poses a direct risk to detection reliability. Three objectives structure this work:</p>
         <ol>
@@ -787,8 +780,7 @@
           <li>Characterise spatial sharpness degradation across the field of view (centre, edges, corners).</li>
           <li>Evaluate colour visibility and underwater image quality.</li>
         </ol>
-        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/camera-characterisation" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>   
-
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/camera-characterisation" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>
 
         <div class="table-wrap">
           <table class="styled-table">
@@ -802,7 +794,7 @@
         </div>
         <span class="caption">Table 5 — Camera Characterisation Scenarios</span>
 
-        <h3 id="scenario-1">6.2 Scenario 1 — Dome Optics on Land (Air Baseline)</h3>
+        <h3 id="scenario-1">5.2 Scenario 1 — Dome Optics on Land (Air Baseline)</h3>
         <div class="callout">
           <div class="callout-title">Hypothesis</div>
           <p>The dome port will introduce barrel distortion and a reduction in sharpness. However, the effects should be minimal as the medium (air) remains constant.</p>
@@ -822,8 +814,8 @@
         </ul>
 
         <h4>Testing Set-Up</h4>
-        <p>The Camera was mounted onto a stand and positioned 0.6m away from the target. 
-          For every position, 2 pictures are taken (one without the dome and the other with the dome). 
+        <p>The Camera was mounted onto a stand and positioned 0.6m away from the target.
+          For every position, 2 pictures are taken (one without the dome and the other with the dome).
           In total, 30 pictures were used with varying angles as required from OpenCV. The gallery of photos taken can be assessed <a href="https://jellybot2nus.github.io/gallery.html" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
           The complete photo set for Scenario 1 can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/images/camera/scenario1" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
         </p>
@@ -890,7 +882,7 @@
         <h4>Analysis</h4>
         <p>The result obtained supports the hypothesis. In the same medium (air), the dome introduced minimal distortion (Δk1 = −0.0001, negligible). This is expected because the Blue Robotics Camera is already low-distortion in design. What was surprising was the degree of sharpness loss introduced by the dome. Approximately 30% at the centre, 39% at the edges, and 58% at the corners. For Jellybot, having the target (coral reef) positioned at the centre of the frame would be optimal, and a 30% reduction is acceptable.</p>
 
-        <h3 id="scenario-2">6.3 Scenario 2 — Dome Optics in Water</h3>
+        <h3 id="scenario-2">5.3 Scenario 2 — Dome Optics in Water</h3>
         <div class="callout">
           <div class="callout-title">Hypothesis</div>
           <p>In a different medium (water), refraction becomes a new contributing factor. The greater refractive index difference between water and the acrylic dome compared to air is expected to increase geometric distortion and further degrade sharpness relative to the air baseline established in Scenario 1.</p>
@@ -912,7 +904,7 @@
         </ul>
 
         <h4>Testing Set-Up</h4>
-        <p>Scenario 2 and 3 have identical set-ups. They are both positioned 0.6m away from the target. For scenario 2, we did not attach the checkerboard onto any background, we simply held it in place. 
+        <p>Scenario 2 and 3 have identical set-ups. They are both positioned 0.6m away from the target. For scenario 2, we did not attach the checkerboard onto any background, we simply held it in place.
           In total, 6 pictures were used with varying angles. The gallery of photos taken can be assessed <a href="https://jellybot2nus.github.io/gallery.html" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
           The complete photo set for Scenario 2 can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/images/camera/scenario2" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
         </p>
@@ -967,7 +959,7 @@
         <h4>Analysis</h4>
         <p>The results partially support the hypothesis. Being underwater introduced significantly more barrel distortion than in air, with Δk1 shifting from −0.000102 in Scenario 1 to −0.039674. This confirms the hypothesis that water refraction has an effect on image geometry. Therefore, upon visual inspection of the image, the effects of water refraction on image geometry is acceptable. The sharpness results were expected to be similar to Scenario 1, with the centre having the least sharpness loss. However, here the pattern is reversed: the centre degraded the most (88%) while the corners degraded the least (49%). This does not support what we visually see and expect optically, since the dome should cause more blurring towards the corners rather than the centre. Therefore, Scenario 2 sharpness numbers are not reliable as optical measurements and should not be directly compared against Scenario 1.</p>
 
-        <h3 id="scenario-3">6.4 Scenario 3 — Colour Visibility in Water</h3>
+        <h3 id="scenario-3">5.4 Scenario 3 — Colour Visibility in Water</h3>
         <div class="callout">
           <div class="callout-title">Hypothesis</div>
           <p>The camera system will retain sufficient colour information across all three channels (R, G, B) to distinguish coral features underwater, despite the expected attenuation of red wavelengths in water. Image quality as measured by UCIQE will fall within an acceptable range for underwater imaging.</p>
@@ -1036,14 +1028,13 @@
         <p>The RGB channel analysis shows a consistent pattern across all captures — red channel mean (98.8) is noticeably lower than green (141.8) and blue (136.7). This is the expected underwater light attenuation signature, where water absorbs red wavelengths more readily than green and blue. Importantly, the red channel is not lost — a mean of 98.8 out of 255 indicates meaningful red signal is still being captured. This is particularly relevant to coral bleaching detection, where the colour shift from the warm tones of healthy coral to the pale white of bleached coral relies on the camera being able to distinguish red channel variation.</p>
       </div>
 
-      <!-- 7. 3D VISUALISER -->
-      <div class="doc-section" id="section-7">
-        <span class="section-num">07</span>
+      <!-- 6. 3D VISUALISER -->
+      <div class="doc-section" id="section-6">
+        <span class="section-num">06</span>
         <h2>3D Orientation Visualiser</h2>
         <div class="section-rule"></div>
         <p>A custom BlueOS extension provides real-time visual representation of Jellybot's orientation — addressing the lack of visual feedback inherent to operating an upright cylinder underwater.</p>
-        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-3dview-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>        
-
+        <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-3dview-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>
 
         <iframe
           width="100%"
@@ -1071,15 +1062,14 @@
         <p>Packaged as a Docker image, pushed to Docker Hub, installed via BlueOS Extension Manager (Kraken). Registers as a sidebar service via the <code>register_service</code> API on startup. Served via nginx, which also proxies MAVLink2REST to avoid CORS issues. Delivered as plain HTML (Three.js) for compatibility with phone and iPad access.</p>
       </div>
 
-      <!-- 8. POOL TEST -->
-      <div class="doc-section" id="section-8">
-        <span class="section-num">08</span>
+      <!-- 7. POOL TEST -->
+      <div class="doc-section" id="section-7">
+        <span class="section-num">07</span>
         <h2>Pool Test &amp; Video Recording</h2>
         <div class="section-rule"></div>
         <p>A pool test was conducted with the team to validate the overall system. Video was recorded via <strong>Cockpit's Video Library</strong> widget, which saves recordings as <code>.mkv</code> files alongside <code>.ass</code> telemetry subtitle files containing time-stamped sensor data overlaid on the footage. The following sections shows the different point of views.</p>
 
-        
-        <h3 id="pool-pov">8.1 User (Operator) Point of View of the Ground Control System</h3>
+        <h3 id="pool-pov">7.1 User (Operator) Point of View of the Ground Control System</h3>
         <p>This is the live view that the operator sees during operation. The <strong>Cockpit interface</strong> runs on the Ground Control System and displays the real-time camera feed from Jellybot alongside telemetry widgets. This is the primary interface used to monitor and control the ROV during the pool test.</p>
 
         <iframe
@@ -1091,7 +1081,7 @@
         </iframe>
         <span class="caption">Video 3 — User (Operator) Point of View</span>
 
-        <h3 id="pool-postdive">8.2 Post-Dive: Saved Video with Telemetry Overlay</h3>
+        <h3 id="pool-postdive">7.2 Post-Dive: Saved Video with Telemetry Overlay</h3>
         <p>This is the <strong>recorded footage</strong> saved by Cockpit's Video Library, with the <code>.ass</code> telemetry subtitle file as an overlay. The overlay displays time-stamped sensor data, providing a post-dive record of the vehicle's state at every moment during the dive. This is useful for reviewing the ROV's behaviour and diagnosing any issues that occurred during the pool test.</p>
 
         <iframe
@@ -1105,18 +1095,18 @@
 
         <div class="callout">
           <div class="callout-title">Key Observation</div>
-          <p>During the observation of the coral reef print, Jellybot's <strong>Pitch and Roll readings remained within ±5°</strong> throughout the session. 
+          <p>During the observation of the coral reef print, Jellybot's <strong>Pitch and Roll readings remained within ±5°</strong> throughout the session.
             This directly contributed to achieving the <a href="../report/report.html#section-7" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">Visual Surveillance and Navigation & Stability critical functions</a>.</p>
         </div>
       </div>
 
-      <!-- 10. FUTURE WORK -->
-      <div class="doc-section" id="section-10">
-        <span class="section-num">10</span>
+      <!-- 8. FUTURE WORK -->
+      <div class="doc-section" id="section-8">
+        <span class="section-num">08</span>
         <h2>Future Work</h2>
         <div class="section-rule"></div>
 
-        <h3>10.1 Limitations</h3>
+        <h3>8.1 Limitations</h3>
 
         <div class="callout callout-warn">
           <div class="callout-title">Limitation — Proxy Target Instead of Real Coral</div>
@@ -1128,7 +1118,7 @@
           <p>All underwater testing was conducted in a shallow pool under ambient indoor lighting. At the target deployment depth of <strong>5 metres</strong>, lighting conditions change significantly: red wavelengths are attenuated more aggressively than observed in shallow pool tests, ambient light intensity drops, and colour contrast between healthy and bleached coral diminishes. The camera's ability to distinguish coral bleaching at 5 m depth under natural reef lighting has not yet been tested. Auxiliary lighting will likely be required at operational depth to restore colour, and its effect on image quality has not been characterised.</p>
         </div>
 
-        <h3>10.2 Future Work</h3>
+        <h3>8.2 Future Work</h3>
         <ul>
           <li>Validate camera colour response and UCIQE at <strong>5 m depth</strong> under natural reef lighting.</li>
           <li>Characterise the effect of <strong>auxiliary lighting</strong> on image quality and colour accuracy at depth.</li>
@@ -1136,9 +1126,9 @@
         </ul>
       </div>
 
-      <!-- 11. REFERENCES -->
-      <div class="doc-section" id="section-11">
-        <span class="section-num">11</span>
+      <!-- 9. REFERENCES -->
+      <div class="doc-section" id="section-9">
+        <span class="section-num">09</span>
         <h2>References</h2>
         <div class="section-rule"></div>
         <ol>
@@ -1146,6 +1136,7 @@
           <li><p>Blue Robotics. (2024). <em>BlueOS Documentation.</em> https://blueos.cloud</p></li>
           <li><p>Blue Robotics. (2024). <em>Navigator Flight Controller Documentation.</em> Blue Robotics. https://bluerobotics.com</p></li>
           <li><p>JOU-UIP. (2024). <em>UCIQE — Underwater Colour Image Quality Evaluation.</em> GitHub. https://github.com/JOU-UIP/UCIQE/blob/main/UCIQE.py</p></li>
+          <li><p>Koei Tecmo America. (n.d.). <em>Romance of the Three Kingdoms VIII Remake — Game Manual.</em> Koei Tecmo. https://www.koeitecmoamerica.com/manual/rtk8-remake/en/2200.html</p></li>
           <li><p>Mallick, S. (2020). <em>Camera Calibration Using OpenCV.</em> LearnOpenCV. https://learnopencv.com/camera-calibration-using-opencv/</p></li>
           <li><p>MAVLink Project. (2024). <em>MAVLink Common Message Set.</em> MAVLink Developer Guide. https://mavlink.io/en/messages/common.html</p></li>
           <li><p>MAVLink Project. (2024). <em>MAVLink2REST — MAVLink to REST API Bridge.</em> GitHub. https://github.com/mavlink/mavlink2rest</p></li>
@@ -1157,9 +1148,9 @@
         </ol>
       </div>
 
-      <!-- 12. LIST OF FIGURES -->
+      <!-- 10. LIST OF FIGURES -->
       <div class="doc-section" id="figures-list">
-        <span class="section-num">12</span>
+        <span class="section-num">10</span>
         <h2>List of Figures</h2>
         <div class="section-rule"></div>
 
@@ -1172,14 +1163,14 @@
               <tr><td>Figure 2</td><td>BlueOS Software Stack Architecture</td><td>3</td></tr>
               <tr><td>Figure 3</td><td>Motor Architecture Diagram</td><td>3.1</td></tr>
               <tr><td>Figure 4</td><td>Camera Capture Extension UI (blueos.local:8080)</td><td>3.2</td></tr>
-              <tr><td>Figure 5</td><td>PS4 Controller Layout</td><td>3.2</td></tr>
-              <tr><td>Figure 6</td><td>Scenario 1 Set-Up</td><td>6.2</td></tr>
-              <tr><td>Figure 7</td><td>Checkerboard Comparison: No Dome vs With Dome (Air, 0.6 m)</td><td>6.2</td></tr>
-              <tr><td>Figure 8</td><td>Distortion Vector Field (With Dome, Air)</td><td>6.2</td></tr>
-              <tr><td>Figure 9</td><td>Scenario 2 Set-Up</td><td>6.3</td></tr>
-              <tr><td>Figure 10</td><td>Photos taken for Scenario 2</td><td>6.3</td></tr>
-              <tr><td>Figure 11</td><td>Photos taken for Scenario 3</td><td>6.4</td></tr>
-              <tr><td>Figure 12</td><td>UCIQE Image Quality Score</td><td>6.4</td></tr>
+              <tr><td>Figure 5</td><td>PS4 Controller Layout</td><td>3.3</td></tr>
+              <tr><td>Figure 6</td><td>Scenario 1 Set-Up</td><td>5.2</td></tr>
+              <tr><td>Figure 7</td><td>Checkerboard Comparison: No Dome vs With Dome (Air, 0.6 m)</td><td>5.2</td></tr>
+              <tr><td>Figure 8</td><td>Distortion Vector Field (With Dome, Air)</td><td>5.2</td></tr>
+              <tr><td>Figure 9</td><td>Scenario 2 Set-Up</td><td>5.3</td></tr>
+              <tr><td>Figure 10</td><td>Photos taken for Scenario 2</td><td>5.3</td></tr>
+              <tr><td>Figure 11</td><td>Photos taken for Scenario 3</td><td>5.4</td></tr>
+              <tr><td>Figure 12</td><td>UCIQE Image Quality Score</td><td>5.4</td></tr>
             </tbody>
           </table>
         </div>
@@ -1193,12 +1184,12 @@
               <tr><td>Table 2</td><td>Software Stack Summary</td><td>3</td></tr>
               <tr><td>Table 3</td><td>Motor Control Extension API Endpoints</td><td>3.1</td></tr>
               <tr><td>Table 4</td><td>PS4 Controller Button Mappings</td><td>3.3</td></tr>
-              <tr><td>Table 5</td><td>Camera Characterisation Scenarios</td><td>6.1</td></tr>
-              <tr><td>Table 6</td><td>Distortion Coefficients (Scenario 1)</td><td>6.2</td></tr>
-              <tr><td>Table 7</td><td>Scenario 1 Spatial Sharpness Results</td><td>6.2</td></tr>
-              <tr><td>Table 8</td><td>Scenario 2 Distortion Coefficients</td><td>6.3</td></tr>
-              <tr><td>Table 9</td><td>Scenario 2 Spatial Sharpness Results</td><td>6.3</td></tr>
-              <tr><td>Table 10</td><td>Scenario 3 Image Quality and RGB Channel Results</td><td>6.4</td></tr>
+              <tr><td>Table 5</td><td>Camera Characterisation Scenarios</td><td>5.1</td></tr>
+              <tr><td>Table 6</td><td>Distortion Coefficients (Scenario 1)</td><td>5.2</td></tr>
+              <tr><td>Table 7</td><td>Scenario 1 Spatial Sharpness Results</td><td>5.2</td></tr>
+              <tr><td>Table 8</td><td>Scenario 2 Distortion Coefficients</td><td>5.3</td></tr>
+              <tr><td>Table 9</td><td>Scenario 2 Spatial Sharpness Results</td><td>5.3</td></tr>
+              <tr><td>Table 10</td><td>Scenario 3 Image Quality and RGB Channel Results</td><td>5.4</td></tr>
             </tbody>
           </table>
         </div>
@@ -1209,9 +1200,9 @@
             <thead><tr><th>Video</th><th>Description</th><th>Section</th></tr></thead>
             <tbody>
               <tr><td>Video 1</td><td>Motor Control Extension Testing</td><td>3.1</td></tr>
-              <tr><td>Video 2</td><td>3D Orientation Visualiser</td><td>7</td></tr>
-              <tr><td>Video 3</td><td>User (Operator) Point of View</td><td>8.1</td></tr>
-              <tr><td>Video 4</td><td>Post-Dive: Saved Video with Telemetry Overlay</td><td>8.2</td></tr>
+              <tr><td>Video 2</td><td>3D Orientation Visualiser</td><td>6</td></tr>
+              <tr><td>Video 3</td><td>User (Operator) Point of View</td><td>7.1</td></tr>
+              <tr><td>Video 4</td><td>Post-Dive: Saved Video with Telemetry Overlay</td><td>7.2</td></tr>
             </tbody>
           </table>
         </div>
