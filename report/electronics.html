@@ -449,6 +449,14 @@
       color: var(--muted);
     }
     .footer-logo span { color: var(--accent); }
+
+    sup {
+      font-family: 'DM Mono', monospace;
+      font-size: 0.65em;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+    
   </style>
 </head>
 <body>
@@ -533,7 +541,7 @@
         <span class="section-num">02</span>
         <h2>Hardware</h2>
         <div class="section-rule"></div>
-        <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
+        <p>The electronics subsystem of Jellybot is built around the <strong>Blue Robotics Navigator Flight Controller HAT</strong>, mounted on a <strong>Raspberry Pi 4 Model B</strong><sup>[3]</sup>. Unlike a conventional ROV where the flight controller directly drives motors, the Navigator in this project serves exclusively as a <strong>sensor and attitude data source</strong>. Motor and solenoid control is handled by a separate custom system, which preserves the Navigator's role purely for telemetry, orientation sensing, and depth measurement.</p>
 
         <h3 id="sensors-actuators">2.1 Sensors and Actuators</h3>
         <p>The listed components form the core sensing and control framework of Jellybot, each selected to fulfil a specific <a href="../report/report.html#section-6" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">design feature and specification</a>.</p>
@@ -585,7 +593,7 @@
         <p>Jellybot's software stack is organised into three distinct layers.</p>
         <ul>
           <li>At the bottom, the <strong>Flight Controller Board</strong> runs <strong>ArduSub 4.5.3 STABLE</strong>. It is the autopilot firmware responsible for sensor fusion, attitude estimation, and depth sensing.</li>
-          <li>Above it, the <strong>Onboard Computer</strong> (Raspberry Pi 4) runs <strong>BlueOS</strong>, a Docker-based operating system that orchestrates services, manages <strong>custom extensions</strong>, and bridges communication between layers using the <strong>MAVLink</strong> protocol.</li>
+          <li>Above it, the <strong>Onboard Computer</strong> (Raspberry Pi 4) runs <strong>BlueOS</strong>, a Docker-based operating system that orchestrates services, manages <strong>custom extensions</strong><sup>[2]</sup>, and bridges communication between layers using the <strong>MAVLink</strong> protocol.</li>
           <li>At the top, the <strong>Ground Control Station</strong> runs <strong>Cockpit</strong> for the pilot interface and <strong>QGroundControl</strong> for sensor calibration and parameter configuration, communicating with the vehicle over Ethernet.</li>
         </ul>
 
@@ -619,7 +627,7 @@
 
         <div class="callout callout-warn">
           <div class="callout-title">The Problem</div>
-          <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors.
+          <p>The Navigator HAT's PWM outputs are managed by ArduPilot, which configures them as <strong>servo PWM signals</strong> at a 50 Hz protocol with 1000–2000 µs pulses designed for ESCs and servo motors<sup>[3]</sup>.
             This format encodes position or throttle, not raw duty cycle, making it incompatible with H-bridge motor drivers which require a <strong>variable duty cycle PWM signal</strong> to control motor speed and direction.</p>
           <p>To overcome this limitation, this custom BlueOS Docker extension communicates directly with the PCA9685 over I²C Bus 6 using <code>smbus2</code>, configuring it at <strong>1 kHz</strong> with a full 0–100% duty cycle range, translating linearly to 0–12V motor output.</p>
           <p>The full code for this extension can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/code/blueos-motori2c-extension" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.</p>
@@ -740,7 +748,7 @@
           <p>Unlike conventional ROVs, Jellybot does not have a dedicated nose as the front. Additionally, ArduPilot's IMU assumes the board is mounted face-up. Mounting it vertically means gravity is sensed on the wrong axis, making all attitude readings incorrect by default.</p>
         </div>
 
-        <p>ArduPilot provides the <code>AHRS_ORIENTATION</code> parameter to remap IMU axes. After determining the Navigator's installed orientation, this was set to <strong>Pitch90 (value 25)</strong>, correcting for the 90° pitch offset.</p>
+        <p>ArduPilot provides the <code>AHRS_ORIENTATION</code> parameter to remap IMU axes. After determining the Navigator's installed orientation, this was set to <strong>Pitch90 (value 25)</strong>, correcting for the 90° pitch offset<sup>[1]</sup>.</p>
 
         <h4>Accelerometer Calibration</h4>
         <p>Performed via QGroundControl's Sensors tab (6-position procedure). The <strong>GPIO pins on the Navigator were used as a fixed reference point</strong> for identifying the "nose" direction during each step.</p>
@@ -1059,7 +1067,7 @@
         </ul>
 
         <h4>Deployment</h4>
-        <p>Packaged as a Docker image, pushed to Docker Hub, installed via BlueOS Extension Manager (Kraken). Registers as a sidebar service via the <code>register_service</code> API on startup. Served via nginx, which also proxies MAVLink2REST to avoid CORS issues. Delivered as plain HTML (Three.js) for compatibility with phone and iPad access.</p>
+        <p>Packaged as a Docker image<sup>[2]</sup>, pushed to Docker Hub, installed via BlueOS Extension Manager (Kraken). Registers as a sidebar service via the <code>register_service</code> API on startup. Served via nginx, which also proxies MAVLink2REST to avoid CORS issues. Delivered as plain HTML (Three.js) for compatibility with phone and iPad access.</p>
       </div>
 
       <!-- 7. POOL TEST -->
@@ -1132,7 +1140,7 @@
         <h2>References</h2>
         <div class="section-rule"></div>
         <ol>
-          <li><p>ArduPilot Development Team. (2024). <em>ArduSub Documentation — Parameters and Sensor Configuration.</em> https://www.ardusub.com</p></li>
+          <li><p>ArduPilot Development Team. (2024). <em>ArduSub Documentation — Parameters and Sensor Configuration.</em> https://ardupilot.org/copter/docs/parameters.html#ahrs-orientation </p></li>
           <li><p>Blue Robotics. (2024). <em>BlueOS Documentation.</em> https://blueos.cloud</p></li>
           <li><p>Blue Robotics. (2024). <em>Navigator Flight Controller Documentation.</em> Blue Robotics. https://bluerobotics.com</p></li>
           <li><p>JOU-UIP. (2024). <em>UCIQE — Underwater Colour Image Quality Evaluation.</em> GitHub. https://github.com/JOU-UIP/UCIQE/blob/main/UCIQE.py</p></li>
