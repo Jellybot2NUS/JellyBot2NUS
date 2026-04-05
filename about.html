@@ -403,6 +403,35 @@
       color: var(--muted);
     }
 
+    /* ─── Project Plan Clickable Link ────────────────────────────────────── */
+    .external-sheet-link {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72em;
+    color: var(--accent);
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.1em;
+    transition: opacity 0.3s ease;
+    border: 1px solid var(--glass-border);
+    padding: 8px 16px;
+    border-radius: 4px;
+    background: var(--glass);
+  }
+  
+  .external-sheet-link:hover {
+    background: var(--accent-dim);
+    border-color: var(--accent);
+    opacity: 0.8;
+  }
+  
+  .external-sheet-link span {
+    margin-right: 8px;
+    font-size: 1.2em;
+  }
+
     /* ─── RESPONSIVE ────────────────────────────────── */
     @media (max-width: 900px) {
       header { padding: 16px 32px; }
@@ -544,7 +573,7 @@
     <div class="section-divider"></div>
 
     <!-- Project Plan -->
-    <div class="about-section" id="plan">
+      <div class="about-section" id="plan">
       <span class="section-label">Timeline</span>
       <h2>Our Project <em>Plan</em></h2>
       <div class="section-rule"></div>
@@ -561,6 +590,12 @@
           <iframe src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRmkAxV5fVDMlaFTGk1D9_-tDHMLEV_ZLCKX9GaID626hc1k_u2Bw11bNllf9hy5wlKJe0lLvgFqDdh/pubhtml?widget=true&headers=false"></iframe>
         </div>
       </div>
+
+      <a href="https://docs.google.com/spreadsheets/d/1zzqf9wmI5woZz1IhgT2JijTZPJ7loHcgYFy9XiZp2Vg/edit?usp=sharing" 
+         target="_blank" 
+         class="external-sheet-link">
+         <span>&#8599;</span> View Fullscreen Spreadsheet
+      </a>
     </div>
 
   </div>
