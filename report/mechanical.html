@@ -479,6 +479,7 @@
         <li><a href="#section-6">6. Verification: Phase II Waterproofing Results</a></li>
         <li><a href="#section-7">7. Future Work: Operational and Hardware Enhancements</a></li>
         <li><a href="#figures-list">Appendix: Figures List</a></li>
+        <li><a href="#references">Appendix: References</a></li>
       </ul>
     </aside>
     
@@ -1090,28 +1091,17 @@
 
         <h3 id="sub-7a">7.1 Integrated External Power Switching</h3>
         <div class="subsection-rule"></div>
-        <p>A primary operational limitation of the current prototype is the requirement to partially disassemble the pressure hull to manually connect or disconnect the internal battery. This process is time-consuming and increases the risk of introducing humidity or debris into the sealed electronics chamber.</p>
+        <p>A primary operational limitation of the current prototype is the requirement to partially disassemble the pressure hull to manually connect or disconnect the internal battery. This process is time-consuming and increases the risk of introducing humidity or debris into the sealed electronics chamber, which can lead to long-term component degradation.</p>
         
-        <p><strong>Proposed Solution:</strong> Future iterations will integrate a waterproof <strong>External Piezo Switch</strong> directly into the aluminum end-cap.</p>
+        <p><strong>Proposed Solution:</strong> Future iterations will resolve this by integrating a waterproof External Piezo Switch directly into the aluminum end-cap. By adopting this industry-standard approach, the JellyBot can utilize an M10-threaded penetrator switch to maintain a hermetic seal while allowing for external power control (Blue Robotics, n.d.). This modification would allow the operator to power the Raspberry Pi and the pneumatic systems on or off from the exterior of the housing. </p>
         
         <div class="callout">
           <div class="callout-title">Operational Impact</div>
           <p>This would allow the operator to power the Raspberry Pi and the pneumatic systems on or off from the exterior of the housing. By eliminating the need to open the enclosure between dives, the team can maintain the "factory seal" integrity throughout a full day of field trials, significantly reducing the risk of accidental leaks.</p>
         </div>
 
-        <h3 id="sub-7b">7.2 Integrated Lighting for Deep-Water Surveillance</h3>
-        <div class="subsection-rule"></div>
-        <p>The current Cast Acrylic housing provides excellent 360° visibility; however, as the JellyBot descends to deeper reef sections, natural light attenuation significantly degrades the quality of the video feed for the onboard camera.</p>
-        
-        <p><strong>Proposed Solution:</strong> The integration of high-efficiency, dimmable <strong>Underwater LED Arrays</strong> mounted around the internal tray or external Flap Clamp.</p>
 
-        <div class="callout">
-          <div class="callout-title">Surveillance Impact</div>
-          <p>Integrated lighting would allow the JellyBot to perform surveillance in low-light "twilight zones" of the reef or during night-time monitoring missions. By synchronizing the light pulses with the camera’s frame rate, the system can capture high-contrast imagery of coral health and marine life without requiring external heavy-duty diving lights.</p>
-        </div>
-
-
-        <h3 id="sub-7c">7.3 Integrated Ballasting and Weight Distribution</h3>
+        <h3 id="sub-7b">7.2 Integrated Ballasting and Weight Distribution</h3>
         <div class="subsection-rule"></div>
         <p>Currently, the prototype relies on external lead weights that are manually suspended from the exterior of the JellyBot. This manual setup is inefficient, as it requires constant re-attachment and complicates the deployment workflow.</p>
         
@@ -1119,7 +1109,7 @@
 
         <div class="callout">
           <div class="callout-title">Operational Impact</div>
-          <p>Weights integration eliminates the need for external "hanging" weights, reducing parasitic drag and ensuring a consistent Center of Gravity (CoG) for a more stable and predictable swimming gait during long-duration missions.</p>
+          <p>Weights integration eliminates the need for external "hanging" weights, reducing parasitic drag and ensuring a consistent Center of Gravity (CoG) for a more stable and predictable swimming gait during long-duration missions. By concentrating mass at the lowest point of the structural assembly, the robot achieves higher static stability and a more predictable swimming gait, a method proven to optimize energy consumption during long-duration underwater missions (Detweiler et al., 2008).</p>
         </div>
         </div>
 
@@ -1130,7 +1120,6 @@
         <div class="section-rule"></div>
 
         <div class="figures-toc">
-          <span class="figures-toc-title">Content of Figures</span>
           <ul class="figures-toc-list">
             <li><span>Figure 1.</span><span>Prototype 1</span></li>
             <li><span>Figure 2.</span><span>Cable Penetrator Visualization</span></li>
@@ -1157,6 +1146,25 @@
           </ul>
         </div>
       </div>
+
+      <!-- ── References ────────────────────────── -->
+      <div class="doc-section" id="references">
+        <span class="section-num">Appendix</span>
+        <h2>References</h2>
+        <div class="section-rule"></div>
+
+         <div class="figures-toc">
+          <ul class="figures-toc-list">
+            
+            <li><span>Blue Robotics. (n.d.). Switch Installation Guide. Retrieved from https://bluerobotics.com/learn/switch-installation/</span></li>
+            <li><span>Detweiler, C., Stefan, S., Iuliu, V., & Daniela, R. (2018). Saving Energy with Buoyancy and Balance Control for Underwater Robots with Dynamic Payloads.Retrived from https://cse.unl.edu/~carrick/papers/DetweilerSVR2009.pdf</span></li>
+            <li><span>Figure 21.</span><span>Final Intergration Waterproof</span></li>
+            
+          </ul>
+        </div>
+      </div>
+
+        
       
     </main>
   </div>
