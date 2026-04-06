@@ -440,6 +440,55 @@
     }
     .footer-logo span { color: var(--accent); }
 
+        /* ─── RESPONSIVE MOBILE FIX ─────────────────────────── */
+    @media (max-width: 1024px) {
+        /* Change from 2-column grid to a single column */
+        .page-body { 
+            grid-template-columns: 1fr; 
+            padding: 40px 24px; 
+        }
+    
+        /* Hide the sticky sidebar on mobile to save space */
+        .sidebar { 
+            display: none; 
+        }
+    
+        /* Remove the left padding that was making room for the sidebar */
+        .content { 
+            padding-left: 0; 
+        }
+    
+        /* Adjust the Header for smaller screens */
+        header {
+            padding: 20px 24px;
+        }
+    
+        nav {
+            gap: 20px;
+        }
+    
+        /* Adjust the Hero section for smaller screens */
+        .hero {
+            padding: 100px 24px 40px;
+            min-height: auto;
+        }
+    
+        .hero h1 {
+            font-size: 3.5em; /* Shrink the title so it doesn't overflow */
+        }
+    }
+    
+    /* Fix for very small phones */
+    @media (max-width: 480px) {
+        nav {
+            display: none; /* Optionally hide nav or switch to a burger menu */
+        }
+        
+        .hero h1 {
+            font-size: 2.8em;
+        }
+    }
+
   </style>
 </head>
 <body>
