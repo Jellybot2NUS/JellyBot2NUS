@@ -578,7 +578,7 @@
               <tr><td>Camera</td><td>Blue Robotics 1080P USB Camera</td><td>Onboard video feed and still capture</td></tr>
               <tr><td>Power Sense Module</td><td>Blue Robotics Power Sense</td><td>12V to 5V step-down voltage regulation</td></tr>
               <tr><td>Battery</td><td>12V 20,000 mAh Li-Ion</td><td>Powers motors and Navigator</td></tr>
-              <tr><td>Controller</td><td>PS4 DualShock 4</td><td>Wired operator input via Ground Control Unit</td></tr>
+              <tr><td>Controller</td><td>PS4 DualShock 4<sup>[5]</sup></td><td>Wired operator input via Ground Control Unit</td></tr>
             </tbody>
           </table>
         </div>
@@ -612,7 +612,7 @@
             <tbody>
               <tr><td>Firmware</td><td>ArduSub 4.5.3 STABLE</td><td>Sensor fusion, attitude estimation, depth sensing</td></tr>
               <tr><td>OS / Middleware</td><td>BlueOS (Docker-based)</td><td>Service orchestration, web UI, extension management</td></tr>
-              <tr><td>Protocol Bridge</td><td>MAVLink2REST</td><td>Translates MAVLink binary → HTTP/JSON (port 6040)</td></tr>
+              <tr><td>Protocol Bridge</td><td>MAVLink2REST<sup>[8]</sup></td><td>Translates MAVLink binary → HTTP/JSON (port 6040)</td></tr>
               <tr><td>Message Routing</td><td>MAVLink Router</td><td>Routes MAVLink between ArduSub and network clients</td></tr>
               <tr><td>Ground Control Station (browser)</td><td>Cockpit</td><td>Pilot interface, video feed, telemetry widgets</td></tr>
               <tr><td>Config / Calibration</td><td>QGroundControl</td><td>Sensor calibration, parameter configuration</td></tr>
@@ -796,7 +796,7 @@
             <tbody>
               <tr><td>1</td><td>Air</td><td>Dome optics baseline (distortion + sharpness)</td><td><span class="badge badge-done">✓ Complete</span></td></tr>
               <tr><td>2</td><td>Water</td><td>Dome optics underwater (distortion + sharpness)</td><td><span class="badge badge-done">✓ Complete</span></td></tr>
-              <tr><td>3</td><td>Water</td><td>Colour visibility (colour accuracy, UCIQE)</td><td><span class="badge badge-done">✓ Complete</span></td></tr>
+              <tr><td>3</td><td>Water</td><td>Colour visibility (colour accuracy, UCIQE)<sup>[4]</sup></td><td><span class="badge badge-done">✓ Complete</span></td></tr>
             </tbody>
           </table>
         </div>
@@ -817,14 +817,14 @@
         <p>Checkerboard image captured with and without the acrylic dome, in air.</p>
         <h4>Metrics</h4>
         <ul>
-          <li>Geometric distortion (radial + tangential distortion coefficients via OpenCV <code>calibrateCamera</code>)</li>
+          <li>Geometric distortion (radial + tangential distortion coefficients via OpenCV <code>calibrateCamera</code>)<sup>[10]</sup></li>
           <li>Sharpness/resolution (Laplacian variance across the FOV)</li>
         </ul>
 
         <h4>Testing Set-Up</h4>
         <p>The Camera was mounted onto a stand and positioned 0.6m away from the target.
           For every position, 2 pictures are taken (one without the dome and the other with the dome).
-          In total, 30 pictures were used with varying angles as required from OpenCV. The gallery of photos taken can be assessed <a href="https://jellybot2nus.github.io/gallery.html" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
+          In total, 30 pictures were used with varying angles as required from OpenCV<sup>[6][11]</sup>. The gallery of photos taken can be assessed <a href="https://jellybot2nus.github.io/gallery.html" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
           The complete photo set for Scenario 1 can be accessed <a href="https://github.com/Jellybot2NUS/JellyBot2NUS.github.io/tree/main/images/camera/scenario1" style="color: var(--accent); border-bottom: 1px solid rgba(77,184,212,0.3);">here</a>.
         </p>
         <figure class="img-fig img-single">
@@ -908,7 +908,7 @@
         <h4>Metrics</h4>
         <ul>
           <li>Geometric distortion (radial + tangential distortion coefficients via OpenCV <code>calibrateCamera</code>)</li>
-          <li>Sharpness/resolution (Laplacian variance across the FOV)</li>
+          <li>Sharpness/resolution (Laplacian variance across the FOV)<sup>[12]</sup></li>
         </ul>
 
         <h4>Testing Set-Up</h4>
@@ -970,7 +970,8 @@
         <h3 id="scenario-3">5.4 Scenario 3 — Colour Visibility in Water</h3>
         <div class="callout">
           <div class="callout-title">Hypothesis</div>
-          <p>The camera system will retain sufficient colour information across all three channels (R, G, B) to distinguish coral features underwater, despite the expected attenuation of red wavelengths in water. Image quality as measured by UCIQE will fall within an acceptable range for underwater imaging.</p>
+          <p>The camera system will retain sufficient colour information across all three channels (R, G, B) to distinguish coral features underwater, despite the expected attenuation of red wavelengths in water. 
+            Image quality as measured by UCIQE will fall within an acceptable range for underwater imaging.</p>
         </div>
         <h4>Purpose</h4>
         <p>Evaluate whether Jellybot's camera can capture meaningful colour information underwater, and assess the overall image quality.</p>
@@ -980,7 +981,7 @@
         <p>Printed and laminated A4 coral reef image, submerged and photographed through the acrylic dome underwater.</p>
         <h4>Metrics</h4>
         <ul>
-          <li>Image quality (UCIQE — Underwater Colour Image Quality Evaluation)</li>
+          <li>Image quality (UCIQE — Underwater Colour Image Quality Evaluation)<sup>[2]</sup></li>
           <li>RGB channel analysis (mean and standard deviation per channel)</li>
         </ul>
 
@@ -1032,8 +1033,9 @@
         </figure>
 
         <h4>Analysis</h4>
-        <p>The results support the hypothesis. 5 out of 6 images fall within the accepted UCIQE good quality range of 0.55–0.65, with a mean score of 0.5741. This indicates that Jellybot's camera system produces images of acceptable quality for underwater use without auxiliary lighting.</p>
-        <p>The RGB channel analysis shows a consistent pattern across all captures — red channel mean (98.8) is noticeably lower than green (141.8) and blue (136.7). This is the expected underwater light attenuation signature, where water absorbs red wavelengths more readily than green and blue. Importantly, the red channel is not lost — a mean of 98.8 out of 255 indicates meaningful red signal is still being captured. This is particularly relevant to coral bleaching detection, where the colour shift from the warm tones of healthy coral to the pale white of bleached coral relies on the camera being able to distinguish red channel variation.</p>
+        <p>The results support the hypothesis. 5 out of 6 images fall within the accepted UCIQE good quality range of 0.55–0.65<sup>[4][13]</sup>, with a mean score of 0.5741. This indicates that Jellybot's camera system produces images of acceptable quality for underwater use without auxiliary lighting.</p>
+        <p>The RGB channel analysis shows a consistent pattern across all captures — red channel mean (98.8) is noticeably lower than green (141.8) and blue (136.7). This is the expected underwater light attenuation signature, where water absorbs red wavelengths more readily than green and blue<sup>[9]</sup>. 
+          Importantly, the red channel is not lost — a mean of 98.8 out of 255 indicates meaningful red signal is still being captured. This is particularly relevant to coral bleaching detection, where the colour shift from the warm tones of healthy coral to the pale white of bleached coral relies on the camera being able to distinguish red channel variation.</p>
       </div>
 
       <!-- 6. 3D VISUALISER -->
@@ -1058,7 +1060,7 @@
 
         <h4>How It Works</h4>
         <ul>
-          <li>Every 100 ms, the extension polls MAVLink2REST at <code>/mavlink/vehicles/1/components/1/messages/ATTITUDE</code>.</li>
+          <li>Every 100 ms, the extension polls MAVLink2REST at <code>/mavlink/vehicles/1/components/1/messages/ATTITUDE</code><sup>[7]</sup>.</li>
           <li>Roll, pitch, yaw (radians, NED frame) map to Three.js axes: Pitch → X, −Yaw → Y, Roll → Z.</li>
           <li>Linear interpolation (lerp) smoothing prevents jittery motion.</li>
           <li>HUD overlay shows roll/pitch/yaw in degrees with bar indicators.</li>
@@ -1067,7 +1069,8 @@
         </ul>
 
         <h4>Deployment</h4>
-        <p>Packaged as a Docker image<sup>[2]</sup>, pushed to Docker Hub, installed via BlueOS Extension Manager (Kraken). Registers as a sidebar service via the <code>register_service</code> API on startup. Served via nginx, which also proxies MAVLink2REST to avoid CORS issues. Delivered as plain HTML (Three.js) for compatibility with phone and iPad access.</p>
+        <p>Packaged as a Docker image<sup>[2]</sup>, pushed to Docker Hub, installed via BlueOS Extension Manager (Kraken). 
+          Registers as a sidebar service via the <code>register_service</code> API on startup. Served via nginx, which also proxies MAVLink2REST to avoid CORS issues. Delivered as plain HTML (Three.js) for compatibility with phone and iPad access.</p>
       </div>
 
       <!-- 7. POOL TEST -->
