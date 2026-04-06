@@ -774,11 +774,14 @@
             Mounting it vertically means gravity is sensed on the wrong axis, making all attitude readings incorrect by default.</p>
           <p>Because Jellybot is a <strong>vertical cylinder</strong>, the Navigator is not oriented in its default horizontal orientation assumed by ArduPilot.</p>
         </div>
-
+        
+        
+        <div class="callout">
         <div class="callout-title">Overcoming the Problem</div>
           <p>ArduPilot provides the <code>AHRS_ORIENTATION</code> parameter to remap IMU axes. 
           After determining the Navigator's installed orientation, this was set to <strong>Pitch90 (value 25)</strong>, correcting for the 90° pitch offset<sup>[1]</sup>.</p>
         </div>
+
 
         <h4>Accelerometer Calibration</h4>
         <p>Performed via QGroundControl's Sensors tab (6-position procedure). The <strong>GPIO pins on the Navigator were used as a fixed reference point</strong> for identifying the "nose" direction during each step.</p>
@@ -789,8 +792,7 @@
 
 
 
-      
-
+  
         <h3 id="bar02">4.2 Bar02 Depth/Pressure Sensor Integration</h3>
         <p>The Bar02 connects to one of the two I²C ports on the Navigator via JST GH cable.</p>
 
@@ -812,6 +814,8 @@
 
         <hr class="sub-divider"/>
       </div>
+
+  
 
       <!-- 5. CAMERA CHARACTERISATION -->
       <div class="doc-section" id="section-5">
@@ -1229,7 +1233,7 @@
 
         <div class="callout callout-warn">
           <div class="callout-title">Battery and Depth Data</div>
-          <p>In Video 3, battery voltage (top right corner) requires further calibration and the depth reading is a limitation mentioned earlier in section 4.2.</p>
+          <p>In Video 3, battery voltage (top right corner) requires further calibration, and the depth reading is a limitation mentioned earlier in section 4.2.</p>
         </div>
         
 
@@ -1256,7 +1260,7 @@
   
          <div class="callout callout-warn">
           <div class="callout-title">Battery and Depth Data</div>
-          <p>In Video 4, battery voltage requires further calibration and the depth reading is a limitation mentioned earlier in section 4.2.</p>
+          <p>In Video 4, battery voltage requires further calibration, and the depth reading is a limitation mentioned earlier in section 4.2.</p>
         </div>
 
 
@@ -1267,24 +1271,34 @@
         <h2>Future Work</h2>
         <div class="section-rule"></div>
 
-        <h3>8.1 Limitations</h3>
-
         <div class="callout callout-warn">
-          <div class="callout-title">Limitation — Proxy Target Instead of Real Coral</div>
-          <p>All camera characterisation scenarios were conducted using a <strong>laminated print of a coral reef image</strong> rather than actual coral. While this provides a controlled and repeatable target for quantifying distortion and colour response, it cannot replicate a real coral. The UCIQE scores and RGB channel analysis therefore represent the system's capability under ideal conditions, and real-world performance on live coral reef scenes may differ.</p>
+          <div class="callout-title">Limitation: Shallow Water Testing Conditions</div>
+          <p>All underwater testing was conducted in a shallow pool under ambient indoor lighting. 
+            At the target deployment depth of <strong>5 metres</strong>, lighting conditions change significantly: red wavelengths are attenuated more aggressively than observed in shallow pool tests, ambient light intensity drops, and colour contrast between healthy and bleached coral diminishes. 
+            Future work aims to characterise the camera's ability to distinguish coral bleaching at 5 m depth under natural reef lighting. 
+          </p>
         </div>
 
         <div class="callout callout-warn">
-          <div class="callout-title">Limitation — Shallow Water Testing Conditions</div>
-          <p>All underwater testing was conducted in a shallow pool under ambient indoor lighting. At the target deployment depth of <strong>5 metres</strong>, lighting conditions change significantly: red wavelengths are attenuated more aggressively than observed in shallow pool tests, ambient light intensity drops, and colour contrast between healthy and bleached coral diminishes. The camera's ability to distinguish coral bleaching at 5 m depth under natural reef lighting has not yet been tested. Auxiliary lighting will likely be required at operational depth to restore colour, and its effect on image quality has not been characterised.</p>
+          <div class="callout-title">Scenario 2: Sharpness Assessment</div>
+          <p>The unexpected sharpness pattern is likely due to the limited sample size of 6 images. 
+            Future work would repeat Scenario 2 with at least 15 images for a reliable measurement to validate the hypothesis.</p>          
         </div>
 
-        <h3>8.2 Future Work</h3>
-        <ul>
-          <li>Validate camera colour response and UCIQE at <strong>5 m depth</strong> under natural reef lighting.</li>
-          <li>Characterise the effect of <strong>auxiliary lighting</strong> on image quality and colour accuracy at depth.</li>
-          <li>Confirm stable <strong>Bar02 depth readings</strong>.</li>
-        </ul>
+        <div class="callout callout-warn">
+          <div class="callout-title">Scenario 3: Use of Real Corals</div>
+          <p>All camera characterisation scenarios were conducted using a <strong>laminated print of a coral reef image</strong> rather than actual coral. 
+            The current results and analysis obtained therefore represent the system's capablity under ideal conditions.
+            As future work, repeating scenario 3 with actual coral would provide us with a true measure of real-world performance.
+          </p>
+        </div>
+
+        
+          <div class="callout callout-warn">
+          <div class="callout-title">Calibration of Sensors</div>
+          <p>Future work aims to further calibrate the following sensors:  <strong>Bar02</strong> depth sensor, the <strong>voltage and current sensor</strong>, and <strong>yaw telemetry</strong>. 
+          </p>
+        </div>
       </div>
 
       <!-- 9. REFERENCES -->
